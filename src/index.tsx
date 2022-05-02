@@ -1,15 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import theme from "./theme";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import { createRoot } from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+const container = document.getElementById("root");
+// @ts-ignore
+const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter basename="/">
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+      ,
+    </BrowserRouter>
   </React.StrictMode>
 );
 
