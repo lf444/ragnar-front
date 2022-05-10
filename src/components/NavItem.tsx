@@ -23,8 +23,9 @@ const NavItem: FunctionComponent<NavItemProps> = ({ pageURL, title }) => {
           py: 1.25,
           textTransform: "none",
           width: "fit-content",
-          fontSize: "24px",
+          fontSize: "20px",
           fontWeight: "700",
+          lineHeight: "24px",
         }}
         title={title}
         to={pageURL}

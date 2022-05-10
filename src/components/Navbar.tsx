@@ -46,17 +46,21 @@ const Navbar = () => {
     <AppBar
       position="static"
       elevation={0}
-      sx={{ background: "transparent", borderBottom: "solid 2px #7F98AC" }}
+      sx={{
+        background: "transparent",
+        borderBottom: "solid 2px #7F98AC",
+        height: "80px",
+      }}
     >
       <Toolbar disableGutters>
         <Grid container direction="row" alignItems="center">
           <Box
             sx={{
               position: "relative",
-              left: "3.85%",
+              left: "70px",
             }}
           >
-            <img height="100" src={logo} alt="Ragnar Logo" />
+            <img height="80" src={logo} alt="Ragnar Logo" />
           </Box>
 
           <Grid item xs={2}>
@@ -67,6 +71,7 @@ const Navbar = () => {
                 fontSize: "24px",
                 fontWeight: "700",
                 color: "#627F91",
+                lineHeight: "29px",
               }}
               variant="h6"
               color="textPrimary"
@@ -104,8 +109,9 @@ const Navbar = () => {
                   py: 1.25,
                   textTransform: "none",
                   width: "fit-content",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   fontWeight: "700",
+                  lineHeight: "24px",
                 }}
               >
                 More <KeyboardArrowDownIcon />

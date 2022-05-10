@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
+import StakeScreen from "./components/stake/StakeScreen";
 
 import Notfound from "./pages/Notfound";
 
@@ -9,8 +10,8 @@ function App() {
     <React.Fragment>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-    {/*     <Route path="/stake" element={<Stake />}></Route>
-        <Route path="/claim" element={<Claim />}></Route>
+        <Route path="/stake" element={<StakeScreen />}></Route>
+        {/*  <Route path="/claim" element={<Claim />}></Route>
         <Route path="/lock" element={<Lock />}></Route> */}
         <Route path="*" element={<Notfound />}></Route>
       </Routes>
