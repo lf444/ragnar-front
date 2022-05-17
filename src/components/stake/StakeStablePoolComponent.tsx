@@ -10,7 +10,8 @@ import {
   stablePoolAddress,
 } from "../../abi/pools";
 import PairTab from "./PairTab";
-
+import { Grid } from "@mui/material";
+import SettingsIcon from "@mui/icons-material/Settings";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -51,14 +52,19 @@ export default function StakeStablePoolComponent() {
   };
 
   return (
-    <Box sx={{ width: "100%",    maxHeight: {
-      sx: "calc(100vh - 500px)",
-      sm: "calc(100vh - 350px)",
-      md: "calc(100vh - 450px)",
-      lg: "calc(100vh - 450px)",
-      xl: "calc(100vh - 450px)",
-    }
-, overflowY:"auto" }}>
+    <Box
+      sx={{
+        width: "100%",
+        height: {
+          sx: "calc(100vh - 500px)",
+          sm: "calc(100vh - 500px)",
+          md: "calc(100vh - 450px)",
+          lg: "calc(100vh - 450px)",
+          xl: "calc(100vh - 450px)",
+        },
+        overflowY: "auto",
+      }}
+    >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -73,14 +79,74 @@ export default function StakeStablePoolComponent() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-      <PairTab pools={avaxStablePoolAddress} />
-      <PairTab pools={avaxAltPoolAddress} />
+        <Grid container direction="row">
+          <Typography
+            sx={{
+              position: "relative",
+              color: "#3A4149",
+              left: "0%",
+              fontSize: "0.85em",
+            }}
+          >
+            Pool Name
+          </Typography>
+          <Typography
+            sx={{
+              position: "relative",
+              color: "#3A4149",
+              left: { xs: "25%", sm: "30%", md: "30.5%", lg: "35%", xl: "36.5%" },
+              fontSize: "0.85em",
+            }}
+          >
+            APR
+          </Typography>
+          <Typography
+            sx={{
+              position: "relative",
+              color: "#3A4149",
+              left: { xs: "35%", sm: "39%", md: "40%", lg: "47%",xl:"50%" },
+              fontSize: "0.85em",
+            }}
+          >
+            Your deposits
+          </Typography>
+          <Typography
+            sx={{
+              position: "relative",
+              color: "#3A4149",
+              left: { xs: "45%", sm: "42%", md: "44%", lg: "54.5%",xl:"59%" },
+              fontSize: "0.85em",
+            }}
+          >
+            TVL
+          </Typography>
+          <Typography
+            sx={{
+              position: "relative",
+              color: "#3A4149",
+              left: { xs: "50%", sm: "48.5%", md: "50%", lg: "63%",xl:"68.5%" },
+              fontSize: "0.85em",
+            }}
+          >
+            Claimable
+          </Typography>
+          <SettingsIcon
+            sx={{
+              position: "relative",
+              color: "#3A4149",
+              left: { xs: "60%", sm: "54%", md: "65%", lg: "72%",xl:"78.4%" },
+              size: "1.5em",
+            }}
+          />
+        </Grid>
+        <PairTab pools={avaxStablePoolAddress} />
+        <PairTab pools={avaxAltPoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PairTab pools={avaxStablePoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <PairTab pools={avaxAltPoolAddress} />  
+        <PairTab pools={avaxAltPoolAddress} />
       </TabPanel>
     </Box>
   );
