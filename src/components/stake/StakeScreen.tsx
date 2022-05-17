@@ -3,10 +3,6 @@ import { Box, Grid, Typography } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import Funds from "./Funds";
 import StakeStablePoolComponent from "./StakeStablePoolComponent";
-import StakeMainPoolComponent from "./StakeMainPoolComponent";
-import { contractAddress } from "../../abi/address";
-import frame from "../../assets/images/frame.png";
-import joe from "../../assets/poolsImages/joe.png";
 
 const StakeScreen = () => {
   return (
@@ -20,7 +16,6 @@ const StakeScreen = () => {
           alignItems="center"
           sx={{
             typography: "body1",
-            border: "1px solid red",
             width: "100%",
             height: "100%",
           }}

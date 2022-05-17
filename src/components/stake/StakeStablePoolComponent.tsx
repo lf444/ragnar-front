@@ -9,7 +9,7 @@ import {
   otherPoolAddress,
   stablePoolAddress,
 } from "../../abi/pools";
-import StableStakeComponent from "./stableStakeComponent";
+import PairTab from "./PairTab";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -51,7 +51,14 @@ export default function StakeStablePoolComponent() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%",    maxHeight: {
+      sx: "calc(100vh - 500px)",
+      sm: "calc(100vh - 350px)",
+      md: "calc(100vh - 450px)",
+      lg: "calc(100vh - 450px)",
+      xl: "calc(100vh - 450px)",
+    }
+, overflowY:"auto" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -67,28 +74,16 @@ export default function StakeStablePoolComponent() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Main Pool
-        {avaxStablePoolAddress.map((pool) => {
-          return <StableStakeComponent pool={pool} />;
-        })}
+        <PairTab pools={otherPoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Avax-Stable
-        {avaxStablePoolAddress.map((pool) => {
-          return <StableStakeComponent pool={pool} />;
-        })}
+        <PairTab pools={avaxStablePoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Avax-Alt
-        {avaxAltPoolAddress.map((pool) => {
-          return <StableStakeComponent pool={pool} />;
-        })}
+        <PairTab pools={avaxAltPoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Stable-Stable
-        {stablePoolAddress.map((pool) => {
-          return <StableStakeComponent pool={pool} />;
-        })}
+        <PairTab pools={stablePoolAddress} />
       </TabPanel>
     </Box>
   );

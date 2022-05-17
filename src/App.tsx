@@ -9,7 +9,7 @@ function App() {
   return (
     <React.Fragment>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<StakeScreen />}></Route>
         <Route path="/stake" element={<StakeScreen />}></Route>
         {/*  <Route path="/claim" element={<Claim />}></Route>
         <Route path="/lock" element={<Lock />}></Route> */}

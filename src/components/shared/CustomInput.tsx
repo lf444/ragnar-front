@@ -23,7 +23,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({ poolName }) => {
         </Grid>
         <Grid xs={2}>
           {" "}
-          <Button variant="contained" sx={{ margin: 0.5 }}>
+          <Button variant="contained" sx={{ margin: 0.5}}>
             MAX
           </Button>
         </Grid>

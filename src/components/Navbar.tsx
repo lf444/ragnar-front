@@ -49,7 +49,13 @@ const Navbar = () => {
       sx={{
         background: "transparent",
         borderBottom: "solid 2px #7F98AC",
-        height: "80px",
+        height: {
+          sx: "5%",
+          sm: "8%",
+          md: "9%",
+          lg: "8%",
+          xl:"7%",
+        },
       }}
     >
       <Toolbar disableGutters>

@@ -127,80 +127,85 @@ const FundSecondTabs = () => {
         item
         xs
         sx={{
-          backgroundColor: "#7A8C98",
+          backgroundColor: "#FFFFFF",
           borderRadius: "20px 0 0 20px",
           borderRight: "2px solid grey",
+          boxShadow:3,
           textAlign: "center",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px" }}>
+        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
           {" "}
           TOTAL VALUE LOCKED
         </Typography>
-        <Typography sx={{ fontWeight: "bold" }}>{totalValueLocked}</Typography>
+        <Typography sx={{ fontWeight: "bold" ,color:"#627F91"}}>{totalValueLocked}</Typography>
       </Grid>
       <Grid
         item
         xs
         sx={{
-          backgroundColor: "#7A8C98",
+          backgroundColor: "#FFFFFF",
           borderRight: "2px solid grey",
+          boxShadow:3,
           textAlign: "center",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px" }}>
+        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
           {" "}
           TOTAL PTP CONVERTED
         </Typography>
-        <Typography sx={{ fontWeight: "bold" }}>{totalRJOE}</Typography>
+        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRJOE}</Typography>
       </Grid>
       <Grid
         item
         xs
         sx={{
-          backgroundColor: "#7A8C98",
+          backgroundColor: "#FFFFFF",
           borderRight: "2px solid grey",
+          boxShadow:3,
           textAlign: "center",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px" }}>
+        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
           VECTOR vePTP BALANCE
         </Typography>
-        <Typography sx={{ fontWeight: "bold" }}>{totalRAJOE}</Typography>
+        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRAJOE}</Typography>
       </Grid>
       <Grid
         item
         xs
         sx={{
-          backgroundColor: "#7A8C98",
+          backgroundColor: "#FFFFFF",
           textAlign: "center",
+          boxShadow:3,
           borderRight: "2px solid grey",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px" }}>
+        <Typography sx={{ fontSize: "11px", marginTop: "5px" ,color:"#3A4149"}}>
           VTX CIRCULATING SUPPLY
         </Typography>
-        <Typography sx={{ fontWeight: "bold" }}>{totalRGN}</Typography>
+        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRGN}</Typography>
       </Grid>
       <Grid
         item
         xs
         sx={{
-          backgroundColor: "#7A8C98",
+          backgroundColor: "#FFFFFF",
           textAlign: "center",
+          boxShadow:3,
           borderRadius: "0 20px 20px 0",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px" }}>
+        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
           {" "}
           TOTAL VTX LOCKED
         </Typography>
-        <Typography sx={{ fontWeight: "bold" }}>{totalRGNLocked}</Typography>
+        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRGNLocked}</Typography>
       </Grid>
     </Grid>
   );

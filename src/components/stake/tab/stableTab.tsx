@@ -21,7 +21,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 1 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -58,9 +58,9 @@ export default function StableTab(props: StableTabProps) {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Deposit" {...a11yProps(0)} />
-          <Tab label="Withdraw" {...a11yProps(1)} />
-          <Tab label="INFO" {...a11yProps(2)} />
+          <Tab label="Deposit" {...a11yProps(0)} sx={{fontSize:"14px"}}/>
+          <Tab label="Withdraw" {...a11yProps(1)} sx={{fontSize:"14px"}} />
+          <Tab label="INFO" {...a11yProps(2)}  sx={{fontSize:"14px"}}/>
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
