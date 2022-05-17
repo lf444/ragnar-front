@@ -36,10 +36,10 @@ const Navbar = () => {
       menuTitle: "Lock",
       pageURL: "/lock",
     },
-    {
+  /*   {
       menuTitle: "Borrow",
       pageURL: "/borrow",
-    },
+    }, */
   ];
 
   return (
@@ -54,7 +54,7 @@ const Navbar = () => {
           sm: "8%",
           md: "9%",
           lg: "8%",
-          xl:"7%",
+          xl: "7%",
         },
       }}
     >
@@ -69,7 +69,21 @@ const Navbar = () => {
             <img height="80" src={logo} alt="Ragnar Logo" />
           </Box>
 
-          <Grid item xs={2}>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={2}
+            sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "none",
+                lg: "flex",
+                xl: "flex",
+              },
+            }}
+          >
             {" "}
             <Typography
               sx={{
@@ -86,7 +100,15 @@ const Navbar = () => {
               Ragnar Finance
             </Typography>{" "}
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={2}       sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "flex",
+                lg: "flex",
+                xl: "flex",
+              },
+            }}>
             <List
               sx={{
                 display: "flex",
@@ -139,8 +161,25 @@ const Navbar = () => {
               </Menu>
             </List>
           </Grid>
-          <Grid item xs={4}></Grid>
-          <Grid xs={3} item container direction={"row"} alignItems="center">
+          <Grid item xs={4} sm={4} md={4} lg={3} ></Grid>
+          <Grid
+            xs={1}
+            sm={2}
+            md={2}
+            item
+            container
+            direction={"row"}
+            alignItems="center"
+            sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "none",
+                lg: "flex",
+                xl: "flex",
+              },
+            }}
+          >
             <Box>
               <img height="15" src={frame} alt="Ragnar Logo" />
             </Box>
@@ -172,6 +211,8 @@ const Navbar = () => {
               {" "}
               00.00$
             </Typography>
+          </Grid>
+          <Grid item xs={3} sm={3} md={3} lg={2}>
             <ConnectWalletButton />
           </Grid>
         </Grid>

@@ -49,9 +49,10 @@ const FundsFirstTabs = () => {
   }
 
   return (
-    <Grid container direction="row" spacing={2} justifyContent="space-evenly">
+    <Grid container direction="row" justifyContent="space-between">
       <Grid
-        xs={4}
+      item
+        xs={3}
         sx={{
           backgroundColor: "#627F91",
           borderRadius: "15px",
@@ -59,13 +60,15 @@ const FundsFirstTabs = () => {
           paddingBottom: "5px",
           marginBottom: "15px",
           textAlign: "center",
+          boxShadow: 3,
         }}
       >
         <Typography> YOUR DEPOSIT</Typography>
         <Typography sx={{ fontWeight: "bold" }}>${deposit}USD</Typography>
       </Grid>
       <Grid
-        xs={4}
+      item
+        xs={3}
         sx={{
           backgroundColor: "#627F91",
           borderRadius: "15px",
@@ -73,6 +76,7 @@ const FundsFirstTabs = () => {
           paddingBottom: "5px",
           marginBottom: "15px",
           textAlign: "center",
+          boxShadow: 3,
         }}
       >
         {" "}
@@ -80,14 +84,17 @@ const FundsFirstTabs = () => {
         <Typography sx={{ fontWeight: "bold" }}>${reward}USD</Typography>
       </Grid>
       <Grid
-        xs={4}
+      item
+        xs={3}
         sx={{
           backgroundColor: "#627F91",
           borderRadius: "15px",
           paddingTop: "5px",
           paddingBottom: "5px",
           marginBottom: "15px",
+          marginLeft:"5px",
           textAlign: "center",
+          boxShadow: 3,
         }}
       >
         {" "}
@@ -122,7 +129,7 @@ const FundSecondTabs = () => {
   }
 
   return (
-    <Grid container direction="row">
+    <Grid container direction="row" >
       <Grid
         item
         xs

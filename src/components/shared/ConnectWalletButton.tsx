@@ -58,6 +58,7 @@ function ConnectWalletButton() {
       }
     } catch (error) {
       appLogger(appTag, "- Error connectWallet -", error);
+      console.log(error);
     }
   };
 
@@ -98,7 +99,7 @@ function ConnectWalletButton() {
       )}
       {errorMsg !== "" && (
         <Typography
-          sx={{ color: "#ff0000", position: "absolute", marginTop: "10px" }}
+          sx={{ color: "#ff0000", position: "absolute",zIndex: "1",backgroundColor: "#3A4149", padding: "10px", borderRadius: "5px", marginTop:"0.5em"}}
         >
           {errorMsg}
         </Typography>

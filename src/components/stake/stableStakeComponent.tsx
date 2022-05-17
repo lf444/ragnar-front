@@ -56,28 +56,28 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px" }}>
+          <Typography sx={{ fontSize: "11px", marginTop: "2px", color:"#3A4149"}}>
             {" "}
             APR
           </Typography>
           <Typography sx={{ fontWeight: "bold" }}>{aprValue}</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px" }}>
+          <Typography sx={{ fontSize: "11px", marginTop: "2px" ,color:"#3A4149"}}>
             {" "}
             {pool.pairName1}-{pool.pairName2}
           </Typography>
           <Typography sx={{ fontWeight: "bold" }}>{rajoeValue}</Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px" }}>
+          <Typography sx={{ fontSize: "11px", marginTop: "2px" ,color:"#3A4149"}}>
             {" "}
             TVL
           </Typography>
           <Typography sx={{ fontWeight: "bold" }}>{tvlValue}</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px" }}>
+          <Typography sx={{ fontSize: "11px", marginTop: "2px",color:"#3A4149" }}>
             {" "}
             Claimable
           </Typography>
