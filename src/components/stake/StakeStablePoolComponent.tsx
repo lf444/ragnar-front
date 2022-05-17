@@ -67,23 +67,20 @@ export default function StakeStablePoolComponent() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Main Pool" {...a11yProps(0)} />
-          <Tab label="Avax-Stable" {...a11yProps(1)} />
-          <Tab label="Avax-Alt" {...a11yProps(2)} />
-          <Tab label="Stable-Stable" {...a11yProps(3)} />
+          <Tab label="All Pool" {...a11yProps(0)} />
+          <Tab label="Main Pool" {...a11yProps(1)} />
+          <Tab label="Yeti Pool" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <PairTab pools={otherPoolAddress} />
+      <PairTab pools={avaxStablePoolAddress} />
+      <PairTab pools={avaxAltPoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PairTab pools={avaxStablePoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <PairTab pools={avaxAltPoolAddress} />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <PairTab pools={stablePoolAddress} />
+        <PairTab pools={avaxAltPoolAddress} />  
       </TabPanel>
     </Box>
   );

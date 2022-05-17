@@ -86,7 +86,7 @@ function ConnectWalletButton() {
           sx={{
             marginLeft: "50px",
             height: "45px",
-            borderRadius: "40px",
+            borderRadius: "10px",
             backgroundColor: "#7F98AC",
             color: "#ffffff",
           }}
