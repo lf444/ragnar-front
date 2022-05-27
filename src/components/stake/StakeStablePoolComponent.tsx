@@ -54,9 +54,10 @@ export default function StakeStablePoolComponent() {
   return (
     <Box
       sx={{
+        width: "100%",
         height: {
-          sx: "calc(100vh - 500px)",
-          sm: "calc(100vh - 500px)",
+          sx: "1000px",
+          sm: "calc(100vh - 300px)",
           md: "calc(100vh - 450px)",
           lg: "calc(100vh - 450px)",
           xl: "calc(100vh - 450px)",

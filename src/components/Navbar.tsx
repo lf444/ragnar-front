@@ -50,9 +50,9 @@ const Navbar = () => {
         background: "transparent",
         borderBottom: "solid 2px #7F98AC",
         height: {
-          sx: "2%",
-          sm: "8%",
-          md: "9%",
+          sx: "1%",
+          sm: "9%",
+          md: "7%",
           lg: "8%",
           xl: "7%",
         },
@@ -60,18 +60,10 @@ const Navbar = () => {
     >
       <Toolbar disableGutters>
         <Grid container direction="row" alignItems="center">
-          <Box
-            sx={{
-              position: "relative",
-              left: {
-                sx: "0%",
-                sm: "5%",
-              },
-            }}
-          >
+          <Grid item xs={0.7}></Grid>
+          <Grid item xs={2} sm={1}>
             <img height="80" src={logo} alt="Ragnar Logo" />
-          </Box>
-
+          </Grid>
           <Grid
             item
             xs={0}
@@ -84,13 +76,13 @@ const Navbar = () => {
                 md: "none",
                 lg: "flex",
                 xl: "flex",
-              },
+              }
             }}
           >
             {" "}
             <Typography
               sx={{
-                marginLeft: "50px",
+                marginLeft: "-5%",
                 fontSize: "24px",
                 fontWeight: "700",
                 color: "#627F91",
@@ -106,16 +98,16 @@ const Navbar = () => {
           <Grid
             item
             xs={0}
-            sm={0}
-            md={2}
+            sm={3}
+            md={3}
             sx={{
               display: {
                 xs: "none",
-                sm: "none",
+                sm: "flex",
                 md: "flex",
                 lg: "flex",
                 xl: "flex",
-              },
+              }
             }}
           >
             <List
@@ -123,7 +115,6 @@ const Navbar = () => {
                 display: "flex",
                 flexDirection: "row",
                 padding: 0,
-                marginLeft: "182px",
                 width: "100%",
               }}
             >
@@ -170,10 +161,10 @@ const Navbar = () => {
               </Menu>
             </List>
           </Grid>
-          <Grid item xs={0} sm={2} md={2} lg={3}></Grid>
+          <Grid item xs={0} sm={1} md={1} lg={1}></Grid>
           <Grid
             xs={7}
-            sm={3}
+            sm={4}
             md={3}
             lg={3}
             item
@@ -259,7 +250,13 @@ const Navbar = () => {
               0.00$
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={1} lg={1}>
+          <Grid
+            item
+            xs={2}
+            sm={1}
+            md={1}
+            lg={1}
+          >
             <ConnectWalletButton />
           </Grid>
         </Grid>

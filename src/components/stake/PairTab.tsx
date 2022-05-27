@@ -15,7 +15,7 @@ const PairTab: FunctionComponent<PairTabProps> = ({ pools }) => {
         alignItems="center"
         direction="column"
         sx={{
-          height: "40%",
+          height: "100%",
           overflowY: "auto",
         }}
       >
