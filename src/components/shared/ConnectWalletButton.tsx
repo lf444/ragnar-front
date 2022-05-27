@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { Button, Typography } from "@mui/material";
 import { appLogger } from "../../utils/method";
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 function ConnectWalletButton() {
   const appTag = "ConnectWalletButton";
@@ -84,7 +85,6 @@ function ConnectWalletButton() {
       ) : (
         <Button
           sx={{
-            marginLeft: "50px",
             height: "45px",
             borderRadius: "10px",
             backgroundColor: "#7F98AC",
@@ -94,12 +94,12 @@ function ConnectWalletButton() {
             connectWallet();
           }}
         >
-          Connect wallet
+         <AccountBalanceWalletIcon/>
         </Button>
       )}
       {errorMsg !== "" && (
         <Typography
-          sx={{ color: "#ff0000", position: "absolute",zIndex: "1",backgroundColor: "#3A4149", padding: "10px", borderRadius: "5px", marginTop:"0.5em"}}
+          sx={{ color: "#ff0000", position: "absolute",zIndex: "1",backgroundColor: "#3A4149", padding: "10px", borderRadius: "5px", marginTop:"0.5em", right: "5em" }}
         >
           {errorMsg}
         </Typography>

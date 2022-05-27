@@ -19,7 +19,6 @@ root.render(
         <CssBaseline />
         <App />
       </ThemeProvider>
-      ,
     </BrowserRouter>
   </React.StrictMode>
 );

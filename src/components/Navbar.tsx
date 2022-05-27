@@ -36,7 +36,7 @@ const Navbar = () => {
       menuTitle: "Lock",
       pageURL: "/lock",
     },
-  /*   {
+    /*   {
       menuTitle: "Borrow",
       pageURL: "/borrow",
     }, */
@@ -50,7 +50,7 @@ const Navbar = () => {
         background: "transparent",
         borderBottom: "solid 2px #7F98AC",
         height: {
-          sx: "5%",
+          sx: "2%",
           sm: "8%",
           md: "9%",
           lg: "8%",
@@ -63,7 +63,10 @@ const Navbar = () => {
           <Box
             sx={{
               position: "relative",
-              left: "70px",
+              left: {
+                sx: "0%",
+                sm: "5%",
+              },
             }}
           >
             <img height="80" src={logo} alt="Ragnar Logo" />
@@ -71,7 +74,7 @@ const Navbar = () => {
 
           <Grid
             item
-            xs={1}
+            xs={0}
             sm={1}
             md={2}
             sx={{
@@ -100,7 +103,12 @@ const Navbar = () => {
               Ragnar Finance
             </Typography>{" "}
           </Grid>
-          <Grid item xs={2}       sx={{
+          <Grid
+            item
+            xs={0}
+            sm={0}
+            md={2}
+            sx={{
               display: {
                 xs: "none",
                 sm: "none",
@@ -108,7 +116,8 @@ const Navbar = () => {
                 lg: "flex",
                 xl: "flex",
               },
-            }}>
+            }}
+          >
             <List
               sx={{
                 display: "flex",
@@ -161,58 +170,96 @@ const Navbar = () => {
               </Menu>
             </List>
           </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={3} ></Grid>
+          <Grid item xs={0} sm={2} md={2} lg={3}></Grid>
           <Grid
-            xs={1}
-            sm={2}
-            md={2}
+            xs={7}
+            sm={3}
+            md={3}
+            lg={3}
             item
             container
-            direction={"row"}
+            direction="row"
+            justifyContent="space-around"
             alignItems="center"
-            sx={{
-              display: {
-                xs: "none",
-                sm: "none",
-                md: "none",
-                lg: "flex",
-                xl: "flex",
-              },
-            }}
           >
-            <Box>
-              <img height="15" src={frame} alt="Ragnar Logo" />
-            </Box>
             <Typography
-              sx={{ marginRight: "10px", fontSize: "11", fontWeight: "500" }}
+              sx={{
+                marginRight: "2%",
+                fontSize: {
+                  sx: "8px",
+                  sm: "9px",
+                  md: "11px",
+                },
+                display: "flex",
+                alignItems: "center",
+                fontWeight: "500",
+              }}
               color="textPrimary"
             >
-              {" "}
-              00.00$
+              <Box
+                component={"img"}
+                sx={{
+                  height: "18px",
+                  marginRight: "3px",
+                }}
+                src={frame}
+                alt="Ragnar Logo"
+              />{" "}
+              0.00$
             </Typography>
-            <Box>
-              <img height="15" src={frame} alt="Ragnar Logo" />
-            </Box>
-            <Typography
-              sx={{ marginRight: "10px", fontSize: "11", fontWeight: "500" }}
-              color="textPrimary"
-            >
-              {" "}
-              00.00$
-            </Typography>
-            <Box>
-              <img height="15" src={frame} alt="Ragnar Logo" />
-            </Box>
 
             <Typography
-              sx={{ fontSize: "11", fontWeight: "500" }}
+              sx={{
+                marginRight: "2%",
+                fontSize: {
+                  sx: "8px",
+                  sm: "9px",
+                  md: "11px",
+                },
+                display: "flex",
+                alignItems: "center",
+                fontWeight: "500",
+              }}
               color="textPrimary"
             >
-              {" "}
-              00.00$
+              <Box
+                component={"img"}
+                sx={{
+                  height: "18px",
+                  marginRight: "3px",
+                }}
+                src={frame}
+                alt="Ragnar Logo"
+              />{" "}
+              0.00$
+            </Typography>
+            <Typography
+              sx={{
+                marginRight: "2%",
+                fontSize: {
+                  sx: "8px",
+                  sm: "9px",
+                  md: "11px",
+                },
+                display: "flex",
+                alignItems: "center",
+                fontWeight: "500",
+              }}
+              color="textPrimary"
+            >
+              <Box
+                component={"img"}
+                sx={{
+                  height: "18px",
+                  marginRight: "3px",
+                }}
+                src={frame}
+                alt="Ragnar Logo"
+              />{" "}
+              0.00$
             </Typography>
           </Grid>
-          <Grid item xs={3} sm={3} md={3} lg={2}>
+          <Grid item xs={2} sm={1} md={1} lg={1}>
             <ConnectWalletButton />
           </Grid>
         </Grid>

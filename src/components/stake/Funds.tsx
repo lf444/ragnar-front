@@ -11,11 +11,12 @@ const Funds = () => {
       <Typography
         sx={{
           fontWeight: "bold",
-          marginBottom: "10px",
           color: "#3A4149",
           width: "fit-content",
-          padding: "5px",
+          padding: 1,
+          paddingTop: 4,
           borderRadius: "5px",
+          fontSize: "1rem",
         }}
       >
         STAKE FUNDS
@@ -49,57 +50,145 @@ const FundsFirstTabs = () => {
   }
 
   return (
-    <Grid container direction="row" justifyContent="space-between">
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-between"
+      sx={{ marginBottom: "3%" }}
+    >
       <Grid
-      item
-        xs={3}
+        item
+        container
+        alignItems="center"
+        justifyContent="center"
+        display="flex"
+        xs={3.75}
+        sm={3}
         sx={{
           backgroundColor: "#627F91",
-          borderRadius: "15px",
-          paddingTop: "5px",
-          paddingBottom: "5px",
-          marginBottom: "15px",
+          borderRadius: "10px",
           textAlign: "center",
           boxShadow: 3,
+          p: 1,
         }}
       >
-        <Typography> YOUR DEPOSIT</Typography>
-        <Typography sx={{ fontWeight: "bold" }}>${deposit}USD</Typography>
+        <Grid item direction="column">
+          <Typography
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.85rem",
+              },
+            }}
+          >
+            {" "}
+            YOUR DEPOSIT
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.85rem",
+              },
+              fontWeight: "bold",
+            }}
+          >
+            ${deposit}USD
+          </Typography>
+        </Grid>
       </Grid>
       <Grid
-      item
-        xs={3}
+        item
+        container
+        alignItems="center"
+        justifyContent="center"
+        display="flex"
+        xs={3.75}
+        sm={3}
         sx={{
           backgroundColor: "#627F91",
-          borderRadius: "15px",
-          paddingTop: "5px",
-          paddingBottom: "5px",
-          marginBottom: "15px",
+          borderRadius: "10px",
           textAlign: "center",
           boxShadow: 3,
+          p: 1,
         }}
       >
-        {" "}
-        <Typography> YOUR REWARDS</Typography>
-        <Typography sx={{ fontWeight: "bold" }}>${reward}USD</Typography>
+        <Grid item direction="column">
+          <Typography
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.85rem",
+              },
+            }}
+          >
+            {" "}
+            YOUR REWARDS
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.85rem",
+              },
+              fontWeight: "bold",
+            }}
+          >
+            ${reward}USD
+          </Typography>
+        </Grid>
       </Grid>
       <Grid
-      item
-        xs={3}
+        item
+        container
+        alignItems="center"
+        justifyContent="center"
+        display="flex"
+        xs={3.75}
+        sm={3}
         sx={{
           backgroundColor: "#627F91",
-          borderRadius: "15px",
-          paddingTop: "5px",
-          paddingBottom: "5px",
-          marginBottom: "15px",
-          marginLeft:"5px",
+          borderRadius: "10px",
           textAlign: "center",
           boxShadow: 3,
+          p: 1,
         }}
       >
-        {" "}
-        <Typography>raJOE : RAG RATIO</Typography>
-        <Typography sx={{ fontWeight: "bold" }}>{ratio}</Typography>
+        <Grid item direction="column">
+          <Typography
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.85rem",
+              },
+            }}
+          >
+            raJOE RATIO
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.85rem",
+              },
+              fontWeight: "bold",
+            }}
+          >
+            {ratio}
+          </Typography>
+        </Grid>
       </Grid>
     </Grid>
   );
@@ -129,24 +218,48 @@ const FundSecondTabs = () => {
   }
 
   return (
-    <Grid container direction="row" >
+    <Grid container direction="row">
       <Grid
         item
         xs
         sx={{
           backgroundColor: "#FFFFFF",
-          borderRadius: "20px 0 0 20px",
+          borderRadius: "10px 0 0 10px",
           borderRight: "2px solid grey",
-          boxShadow:3,
+          boxShadow: 3,
           textAlign: "center",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            marginTop: "5px",
+            color: "#3A4149",
+          }}
+        >
           {" "}
           TOTAL VALUE LOCKED
         </Typography>
-        <Typography sx={{ fontWeight: "bold" ,color:"#627F91"}}>{totalValueLocked}</Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            fontWeight: "bold",
+            color: "#627F91",
+          }}
+        >
+          {totalValueLocked}
+        </Typography>
       </Grid>
       <Grid
         item
@@ -154,16 +267,40 @@ const FundSecondTabs = () => {
         sx={{
           backgroundColor: "#FFFFFF",
           borderRight: "2px solid grey",
-          boxShadow:3,
+          boxShadow: 3,
           textAlign: "center",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            marginTop: "5px",
+            color: "#3A4149",
+          }}
+        >
           {" "}
           TOTAL PTP CONVERTED
         </Typography>
-        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRJOE}</Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            fontWeight: "bold",
+            color: "#627F91",
+          }}
+        >
+          {totalRJOE}
+        </Typography>
       </Grid>
       <Grid
         item
@@ -171,15 +308,39 @@ const FundSecondTabs = () => {
         sx={{
           backgroundColor: "#FFFFFF",
           borderRight: "2px solid grey",
-          boxShadow:3,
+          boxShadow: 3,
           textAlign: "center",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            marginTop: "5px",
+            color: "#3A4149",
+          }}
+        >
           VECTOR vePTP BALANCE
         </Typography>
-        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRAJOE}</Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            fontWeight: "bold",
+            color: "#627F91",
+          }}
+        >
+          {totalRAJOE}
+        </Typography>
       </Grid>
       <Grid
         item
@@ -187,15 +348,39 @@ const FundSecondTabs = () => {
         sx={{
           backgroundColor: "#FFFFFF",
           textAlign: "center",
-          boxShadow:3,
+          boxShadow: 3,
           borderRight: "2px solid grey",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px" ,color:"#3A4149"}}>
-          VTX CIRCULATING SUPPLY
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            marginTop: "5px",
+            color: "#3A4149",
+          }}
+        >
+          VTX CIRCUL SUPPLY
         </Typography>
-        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRGN}</Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            fontWeight: "bold",
+            color: "#627F91",
+          }}
+        >
+          {totalRGN}
+        </Typography>
       </Grid>
       <Grid
         item
@@ -203,16 +388,40 @@ const FundSecondTabs = () => {
         sx={{
           backgroundColor: "#FFFFFF",
           textAlign: "center",
-          boxShadow:3,
-          borderRadius: "0 20px 20px 0",
+          boxShadow: 3,
+          borderRadius: "0 10px 10px 0",
         }}
       >
         {" "}
-        <Typography sx={{ fontSize: "11px", marginTop: "5px",color:"#3A4149" }}>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            marginTop: "5px",
+            color: "#3A4149",
+          }}
+        >
           {" "}
           TOTAL VTX LOCKED
         </Typography>
-        <Typography sx={{ fontWeight: "bold",color:"#627F91" }}>{totalRGNLocked}</Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.65em",
+              xs: "0.60rem",
+            },
+            fontWeight: "bold",
+            color: "#627F91",
+          }}
+        >
+          {totalRGNLocked}
+        </Typography>
       </Grid>
     </Grid>
   );
