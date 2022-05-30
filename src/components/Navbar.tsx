@@ -274,6 +274,7 @@ const Navbar = () => {
             sm: "none",
           },
           backgroundColor: "#DDEAF2",
+          zIndex: "1000",
         }}
       >
         <List

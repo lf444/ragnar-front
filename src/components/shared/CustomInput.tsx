@@ -18,7 +18,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({ poolName }) => {
         }}
       >
         {" "}
-        <Grid xs={10}>
+        <Grid xs={7} sm={9} md={10}>
           <Input disableUnderline defaultValue={0}></Input>
         </Grid>
         <Grid xs={2}>

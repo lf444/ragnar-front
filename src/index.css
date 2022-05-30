@@ -32,7 +32,7 @@ code {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  overflow-y: auto;
+  overflow-y: overlay;
   overflow-x: auto;
 }
 

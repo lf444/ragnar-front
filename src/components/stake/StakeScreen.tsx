@@ -16,7 +16,7 @@ const StakeScreen = () => {
           sx={{
             width: "100%",
             height: "100%",
-            alignItems:{
+            alignItems: {
               xs: "flex-start",
               sm: "center",
               md: "center",
@@ -33,7 +33,10 @@ const StakeScreen = () => {
                 sx: "100%",
                 sm: "85%",
               },
-              height: "90%",
+              height: {
+                sx: "100%",
+                sm: "90%",
+              },
               boxShadow: { sx: 0, sm: 3 },
               borderRadius: { sx: "0px", sm: "20px" },
               backgroundColor: {
@@ -43,11 +46,11 @@ const StakeScreen = () => {
               },
             }}
           >
-            <Grid item sx={{ width: "90%"}}>
+            <Grid item sx={{ width: "90%" }}>
               <Funds />
             </Grid>
             <Grid item sx={{ width: "90%" }}>
-                <StakeStablePoolComponent /> 
+              <StakeStablePoolComponent />
             </Grid>
           </Grid>
         </Box>
