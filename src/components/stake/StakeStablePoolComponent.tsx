@@ -34,13 +34,17 @@ function TabPanel(props: TabPanelProps) {
           sx={{
             paddingTop: 3,
             height: {
-              sx: "100vh",
+              xs: "auto",
               sm: "calc(100vh - 480px)",
               md: "calc(100vh - 460px)",
               lg: "calc(100vh - 500px)",
               xl: "calc(100vh - 500px)",
             },
             overflowY: "overlay",
+            paddingBottom:{
+              xs:10,
+              sm:0
+            },
           }}
         >
           <Typography>{children}</Typography>
@@ -150,8 +154,6 @@ export default function StakeStablePoolComponent() {
         <PairTab pools={avaxStablePoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <PairTab pools={avaxStablePoolAddress} />
-        <PairTab pools={avaxStablePoolAddress} />
         <PairTab pools={avaxStablePoolAddress} />
         <PairTab pools={avaxStablePoolAddress} />
         <PairTab pools={avaxStablePoolAddress} />

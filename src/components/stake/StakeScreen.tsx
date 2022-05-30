@@ -30,17 +30,16 @@ const StakeScreen = () => {
             alignContent={"center"}
             sx={{
               width: {
-                sx: "100%",
+                xs: "100%",
                 sm: "85%",
               },
               height: {
-                sx: "100%",
                 sm: "90%",
               },
-              boxShadow: { sx: 0, sm: 3 },
-              borderRadius: { sx: "0px", sm: "20px" },
+              boxShadow: { xs: 0, sm: 3 },
+              borderRadius: { xs: "0px", sm: "20px" },
               backgroundColor: {
-                sx: "none",
+                xs: "none",
                 sm: "#DDEAF2",
                 md: "#DDEAF2",
               },

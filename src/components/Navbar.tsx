@@ -51,20 +51,15 @@ const Navbar = () => {
         sx={{
           background: "transparent",
           borderBottom: "solid 2px #7F98AC",
-          height: {
-            sx: "1%",
-            sm: "9%",
-            md: "7%",
-            lg: "8%",
-            xl: "7%",
-          },
+          height: "auto",
+          marginBottom: "-1rem",
         }}
       >
         <Toolbar disableGutters>
           <Grid container direction="row" alignItems="center">
             <Grid item xs={0.7}></Grid>
             <Grid item xs={2} sm={1}>
-              <img height="80" src={logo} alt="Ragnar Logo" />
+              <img height="70" src={logo} alt="Ragnar Logo" />
             </Grid>
             <Grid
               item
@@ -111,10 +106,10 @@ const Navbar = () => {
                   xl: "flex",
                 },
                 position: {
-                  sx: "relative",
+                  xs: "relative",
                   sm: "initial",
                 },
-                bot: { sx: "0" },
+                bot: { xs: "0" },
               }}
             >
               <List
@@ -184,7 +179,7 @@ const Navbar = () => {
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    sx: "8px",
+                    xs: "8px",
                     sm: "9px",
                     md: "11px",
                   },
@@ -210,7 +205,7 @@ const Navbar = () => {
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    sx: "8px",
+                    xs: "8px",
                     sm: "9px",
                     md: "11px",
                   },
@@ -235,7 +230,7 @@ const Navbar = () => {
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    sx: "8px",
+                    xs: "8px",
                     sm: "9px",
                     md: "11px",
                   },
