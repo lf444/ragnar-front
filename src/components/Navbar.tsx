@@ -47,19 +47,23 @@ const Navbar = () => {
     <>
       <AppBar
         position="static"
-        elevation={0}
+        elevation={1}
         sx={{
-          background: "transparent",
-          borderBottom: "solid 2px #7F98AC",
-          height: "auto",
+          //borderBottom: "solid 2px #7F98AC",
+          height: {
+            xs: "3.5rem",
+            sm: "auto",
+          },
           marginBottom: "-1rem",
+          backgroundColor: "#DDEAF2",
+          boxShadow: 3,
         }}
       >
         <Toolbar disableGutters>
           <Grid container direction="row" alignItems="center">
             <Grid item xs={0.7}></Grid>
             <Grid item xs={2} sm={1}>
-              <img height="70" src={logo} alt="Ragnar Logo" />
+              <img height="60" src={logo} alt="Ragnar Logo" />
             </Grid>
             <Grid
               item
@@ -270,6 +274,7 @@ const Navbar = () => {
           },
           backgroundColor: "#DDEAF2",
           zIndex: "1000",
+          height: "5%",
         }}
       >
         <List

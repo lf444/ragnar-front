@@ -41,9 +41,9 @@ function TabPanel(props: TabPanelProps) {
               xl: "calc(100vh - 500px)",
             },
             overflowY: "overlay",
-            paddingBottom:{
-              xs:10,
-              sm:0
+            paddingBottom: {
+              xs: 10,
+              sm: 0,
             },
           }}
         >
@@ -81,9 +81,42 @@ export default function StakeStablePoolComponent() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="All Pool" {...a11yProps(0)} />
-          <Tab label="Main Pool" {...a11yProps(1)} />
-          <Tab label="Yeti Pool" {...a11yProps(2)} />
+          <Tab
+            label="All Pool"
+            {...a11yProps(0)}
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
+              },
+            }}
+          />
+          <Tab
+            label="Main Pool"
+            {...a11yProps(1)}
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
+              },
+            }}
+          />
+          <Tab
+            label="Yeti Pool"
+            {...a11yProps(2)}
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
+              },
+            }}
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

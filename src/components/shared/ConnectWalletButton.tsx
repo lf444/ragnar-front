@@ -69,15 +69,7 @@ function ConnectWalletButton() {
       appLogger(appTag, "Current account:", currentAccount);
     }
   }, [currentAccount]);
-
-  useEffect(() => {
-    checkIfWalletIsConnected();
-    // execute checkIfWalletIsConnected is connected when component unmounts
-    return () => {
-      checkIfWalletIsConnected();
-    };
-  }, []);
-
+  
   return (
     <div>
       {currentAccount && currentAccount !== "" ? (
@@ -85,7 +77,7 @@ function ConnectWalletButton() {
       ) : (
         <Button
           sx={{
-            height: "45px",
+            height: "2emx",
             borderRadius: "10px",
             backgroundColor: "#7F98AC",
             color: "#ffffff",
@@ -99,7 +91,7 @@ function ConnectWalletButton() {
       )}
       {errorMsg !== "" && (
         <Typography
-          sx={{ color: "#ff0000", position: "absolute",zIndex: "1",backgroundColor: "#3A4149", padding: "10px", borderRadius: "5px", marginTop:"0.5em", right: "5em" }}
+          sx={{ fontSize:"1em" ,color: "#ff0000", position: "absolute",zIndex: "1",backgroundColor: "#3A4149", padding: "10px", borderRadius: "5px", marginTop:"0.5em", right: "5em" }}
         >
           {errorMsg}
         </Typography>
