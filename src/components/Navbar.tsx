@@ -305,7 +305,7 @@ const Navbar = () => {
               py: 1.25,
               textTransform: "none",
               width: "fit-content",
-              fontSize: "20px",
+              fontSize: { xs: "1em", sm: "20px" },
               fontWeight: "700",
               lineHeight: "24px",
             }}

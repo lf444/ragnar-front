@@ -58,9 +58,21 @@ export default function StableTab(props: StableTabProps) {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Deposit" {...a11yProps(0)} sx={{fontSize:"14px"}}/>
-          <Tab label="Withdraw" {...a11yProps(1)} sx={{fontSize:"14px"}} />
-          <Tab label="INFO" {...a11yProps(2)}  sx={{fontSize:"14px"}}/>
+          <Tab
+            label="Deposit"
+            {...a11yProps(0)}
+            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
+          />
+          <Tab
+            label="Withdraw"
+            {...a11yProps(1)}
+            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
+          />
+          <Tab
+            label="INFO"
+            {...a11yProps(2)}
+            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -76,11 +88,11 @@ export default function StableTab(props: StableTabProps) {
             alignItems="center"
             textAlign="center"
           >
-            <Grid item xs={6}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
               {" "}
               1
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
               2
             </Grid>
           </Grid>
@@ -90,10 +102,16 @@ export default function StableTab(props: StableTabProps) {
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" }}>
+            <Button
+              variant="contained"
+              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1.5em" } }}
+            >
               APPROVE
             </Button>
-            <Button variant="contained" sx={{ width: "45%" }}>
+            <Button
+              variant="contained"
+              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1.5em" } }}
+            >
               DEPOSIT
             </Button>
           </Grid>
@@ -123,28 +141,31 @@ export default function StableTab(props: StableTabProps) {
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" }}>
+            <Button
+              variant="contained"
+              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1.5em" } }}
+            >
               WITHDRAW
             </Button>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography sx={{ fontSize: "14px" }}>
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
           {" "}
           {pool.pairName1}-{pool.pairName2} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.address}`}>
             {pool.address}
           </a>
         </Typography>
-        <Typography sx={{ fontSize: "14px" }}>
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
           {" "}
           {pool.pairName1} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.pairAddress1}`}>
             {pool.pairAddress1}
           </a>
         </Typography>
-        <Typography sx={{ fontSize: "14px" }}>
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
           {" "}
           {pool.pairName2} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.pairAddress2}`}>

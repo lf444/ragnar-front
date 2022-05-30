@@ -23,7 +23,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
   };
 
   return (
-    <Box sx={{ width: "100%", color: "#000000", marginBottom:"8px"}}>
+    <Box sx={{ width: "100%", color: "#000000", marginBottom: "8px" }}>
       <Grid
         container
         justifyContent="center"
@@ -41,49 +41,88 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
           setOpen(!open);
         }}
       >
-        <Grid
-          item
-          xs={2}
-          sx={{ textAlign: "center", paddingTop:"5px" }}
-        >
+        <Grid item xs={3} sx={{ textAlign: "center", paddingTop: "5px" }}>
           <img height="35px" src={pool.logo1} alt={`${pool.logo1} Logo`} />
-          <img height="35px" src={pool.logo2} alt={`${pool.logo2} Logo`} />
+          <img
+            height="35px"
+            style={{ position: "relative", left: "-6%" }}
+            src={pool.logo2}
+            alt={`${pool.logo2} Logo`}
+          />
         </Grid>
-        <Grid item xs={2}>
-          <Typography sx={{ fontWeight: "bold" }}>
+        <Grid item xs={1}>
+          <Typography
+            sx={{ fontSize: { xs: "0.75em", sm: "1em" }, fontWeight: "bold" }}
+          >
             {" "}
             {pool.pairName1}-{pool.pairName2}
           </Typography>
         </Grid>
-        <Grid item xs={2}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px", color:"#3A4149"}}>
+        <Grid item xs={1}>
+          <Typography
+            sx={{
+              fontSize: { xs: "0.75em", sm: "1em" },
+              marginTop: "2px",
+              color: "#3A4149",
+            }}
+          >
             {" "}
             APR
           </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>{aprValue}</Typography>
+          <Typography
+            sx={{ fontSize: { xs: "0.75em", sm: "1em" }, fontWeight: "bold" }}
+          >
+            {aprValue}
+          </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px" ,color:"#3A4149"}}>
+          <Typography
+            sx={{
+              fontSize: { xs: "0.75em", sm: "1em" },
+              marginTop: "2px",
+              color: "#3A4149",
+            }}
+          >
             {" "}
             {pool.pairName1}-{pool.pairName2}
           </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>{rajoeValue}</Typography>
+          <Typography
+            sx={{ fontSize: { xs: "0.75em", sm: "1em" }, fontWeight: "bold" }}
+          >
+            {rajoeValue}
+          </Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px" ,color:"#3A4149"}}>
+          <Typography
+            sx={{
+              fontSize: { xs: "0.75em", sm: "1em" },
+              marginTop: "2px",
+              color: "#3A4149",
+            }}
+          >
             {" "}
             TVL
           </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>{tvlValue}</Typography>
+          <Typography
+            sx={{ fontSize: { xs: "0.75em", sm: "1em" }, fontWeight: "bold" }}
+          >
+            {tvlValue}
+          </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: "11px", marginTop: "2px",color:"#3A4149" }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "0.75em", sm: "1em" },
+              marginTop: "2px",
+              color: "#3A4149",
+            }}
+          >
             {" "}
             Claimable
           </Typography>
-          <Typography sx={{ fontWeight: "bold" }}>{claimable}</Typography>
+          <Typography sx={{ fontSize: { xs: "0.75em", sm: "1em" },fontWeight: "bold" }}>{claimable}</Typography>
         </Grid>
-        <Grid item xs={1} sx={{ marginTop: "2px" }}>
+        <Grid item xs={1} sx={{ marginTop: "2px",fontSize: { xs: "0.55em", sm: "1em" } }}>
           {" "}
           <LinearScaleIcon style={style} />
         </Grid>

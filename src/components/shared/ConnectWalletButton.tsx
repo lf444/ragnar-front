@@ -89,13 +89,13 @@ function ConnectWalletButton() {
          <AccountBalanceWalletIcon/>
         </Button>
       )}
-      {errorMsg !== "" && (
+{/*       {errorMsg !== "" && (
         <Typography
           sx={{ fontSize:"1em" ,color: "#ff0000", position: "absolute",zIndex: "1",backgroundColor: "#3A4149", padding: "10px", borderRadius: "5px", marginTop:"0.5em", right: "5em" }}
         >
           {errorMsg}
         </Typography>
-      )}
+      )} */}
     </div>
   );
 }
