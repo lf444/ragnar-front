@@ -30,7 +30,19 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ paddingTop: 3 }}>
+        <Box
+          sx={{
+            paddingTop: 3,
+            height: {
+              sx: "100vh",
+              sm: "calc(100vh - 480px)",
+              md: "calc(100vh - 460px)",
+              lg: "calc(100vh - 500px)",
+              xl: "calc(100vh - 500px)",
+            },
+            overflowY: "overlay",
+          }}
+        >
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -55,17 +67,9 @@ export default function StakeStablePoolComponent() {
     <Box
       sx={{
         width: "100%",
-        height: {
-          sx: "100vh",
-          sm: "calc(100vh - 300px)",
-          md: "calc(100vh - 450px)",
-          lg: "calc(100vh - 450px)",
-          xl: "calc(100vh - 450px)",
-        },
-        overflowY: "auto",
       }}
     >
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ borderBottom: 1, paddingBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           variant="fullWidth"
@@ -146,6 +150,9 @@ export default function StakeStablePoolComponent() {
         <PairTab pools={avaxStablePoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={2}>
+        <PairTab pools={avaxStablePoolAddress} />
+        <PairTab pools={avaxStablePoolAddress} />
+        <PairTab pools={avaxStablePoolAddress} />
         <PairTab pools={avaxStablePoolAddress} />
         <PairTab pools={avaxStablePoolAddress} />
         <PairTab pools={avaxStablePoolAddress} />

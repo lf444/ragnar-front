@@ -46,7 +46,7 @@ const StakeScreen = () => {
               },
             }}
           >
-            <Grid item sx={{ width: "90%" }}>
+            <Grid item sx={{ width: "90%" ,paddingBottom:2}}>
               <Funds />
             </Grid>
             <Grid item sx={{ width: "90%" }}>
