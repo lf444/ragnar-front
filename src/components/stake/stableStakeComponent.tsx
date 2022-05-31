@@ -54,7 +54,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             textAlign: "center",
             paddingTop: "5px",
             paddingLeft: {
-              xs: "15px",
+              xs: "10px",
               sm: "0px",
             },
           }}
