@@ -8,7 +8,6 @@ const StakeScreen = () => {
   return (
     <>
       {" "}
-      <Navbar />
       <Zoom in={true}>
         <Box
           display="flex"
@@ -40,7 +39,7 @@ const StakeScreen = () => {
               borderRadius: { xs: "0px", sm: "20px" },
               backgroundColor: {
                 xs: "none",
-                sm: "#DDEAF2",
+                sm: "#none",
                 md: "#DDEAF2",
               },
             }}

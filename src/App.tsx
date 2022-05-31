@@ -1,19 +1,25 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/home/Home";
-import StakeScreen from "./components/stake/StakeScreen";
+import RagnarRoute from "./components/RagnarRoute";
 
-import Notfound from "./pages/Notfound";
 
 function App() {
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    // check if user is first time lauching the app and redirect to home
+    if (localStorage.getItem("firstTime") === null) {
+      localStorage.setItem("firstTime", "false");
+      //navigate("/home");
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <Routes>
-        <Route path="/" element={<StakeScreen />}></Route>
-        <Route path="/stake" element={<StakeScreen />}></Route>
-        {/*  <Route path="/claim" element={<Claim />}></Route>
-        <Route path="/lock" element={<Lock />}></Route> */}
-        <Route path="*" element={<Notfound />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="*" element={<RagnarRoute />} />
       </Routes>
     </React.Fragment>
   );

@@ -79,7 +79,7 @@ function ConnectWalletButton() {
           sx={{
             height: "2emx",
             borderRadius: "10px",
-            backgroundColor: "#7F98AC",
+            backgroundColor: "#627F91",
             color: "#ffffff",
           }}
           onClick={() => {

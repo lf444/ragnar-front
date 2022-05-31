@@ -20,6 +20,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
   const style = {
     transform: open ? "" : "rotate(90deg)",
     transition: "transform 150ms ease", // smooth transition
+    color:"#3A4149"
   };
 
   return (
@@ -36,23 +37,46 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
           borderRight: "2px solid grey",
           textAlign: "center",
           cursor: "pointer",
+          justifyContent: {
+            xs: "space-between",
+            sm: "center",
+          },
         }}
         onClick={() => {
           setOpen(!open);
         }}
       >
-        <Grid item xs={3} sx={{ textAlign: "center", paddingTop: "5px" }}>
+        <Grid
+          item
+          xs={3}
+          sm={2}
+          sx={{
+            textAlign: "center",
+            paddingTop: "5px",
+            paddingLeft: {
+              xs: "15px",
+              sm: "0px",
+            },
+          }}
+        >
           <img height="35px" src={pool.logo1} alt={`${pool.logo1} Logo`} />
           <img
             height="35px"
-            style={{ position: "relative", left: "-6%" }}
+            style={{ position: "relative", left: "-0.75em" }}
             src={pool.logo2}
             alt={`${pool.logo2} Logo`}
           />
         </Grid>
-        <Grid item xs={1}>
+        <Grid
+          item
+          xs={1}
+          sm={2}
+          sx={{
+            marginRight: "3px",
+          }}
+        >
           <Typography
-            sx={{ fontSize: { xs: "0.75em", sm: "1em" }, fontWeight: "bold" }}
+            sx={{ fontSize: { xs: "0.5em", sm: "1em" }, fontWeight: "bold",color: "#3A4149", }}
           >
             {" "}
             {pool.pairName1}-{pool.pairName2}
@@ -92,7 +116,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             {rajoeValue}
           </Typography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={0} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
           <Typography
             sx={{
               fontSize: { xs: "0.75em", sm: "1em" },
@@ -104,12 +128,15 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             TVL
           </Typography>
           <Typography
-            sx={{ fontSize: { xs: "0.75em", sm: "1em" }, fontWeight: "bold" }}
+            sx={{
+              fontSize: { xs: "0.75em", sm: "1em" },
+              fontWeight: "bold",
+            }}
           >
             {tvlValue}
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
           <Typography
             sx={{
               fontSize: { xs: "0.75em", sm: "1em" },
@@ -120,9 +147,20 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             {" "}
             Claimable
           </Typography>
-          <Typography sx={{ fontSize: { xs: "0.75em", sm: "1em" },fontWeight: "bold" }}>{claimable}</Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: "0.75em", sm: "1em" },
+              fontWeight: "bold",
+            }}
+          >
+            {claimable}
+          </Typography>
         </Grid>
-        <Grid item xs={1} sx={{ marginTop: "2px",fontSize: { xs: "0.55em", sm: "1em" } }}>
+        <Grid
+          item
+          xs={1}
+          sx={{ marginTop: "2px", fontSize: { xs: "0.55em", sm: "1em" } }}
+        >
           {" "}
           <LinearScaleIcon style={style} />
         </Grid>

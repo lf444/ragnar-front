@@ -52,7 +52,7 @@ const Navbar = () => {
           //borderBottom: "solid 2px #7F98AC",
           height: {
             xs: "3.5rem",
-            sm: "auto",
+            sm: "4rem",
           },
           marginBottom: "-1rem",
           backgroundColor: "#DDEAF2",
@@ -61,14 +61,14 @@ const Navbar = () => {
       >
         <Toolbar disableGutters>
           <Grid container direction="row" alignItems="center">
-            <Grid item xs={0.7}></Grid>
+            <Grid item xs={0.2} sm={1}></Grid>
             <Grid item xs={2} sm={1}>
               <img height="60" src={logo} alt="Ragnar Logo" />
             </Grid>
             <Grid
               item
               xs={0}
-              sm={1}
+              sm={0}
               md={2}
               sx={{
                 display: {
@@ -78,6 +78,8 @@ const Navbar = () => {
                   lg: "flex",
                   xl: "flex",
                 },
+                position: "relative",
+                left: "-3rem",
               }}
             >
               {" "}
@@ -99,7 +101,7 @@ const Navbar = () => {
             <Grid
               item
               xs={0}
-              sm={3}
+              sm={3.5}
               md={3}
               sx={{
                 display: {
@@ -183,9 +185,9 @@ const Navbar = () => {
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    xs: "8px",
-                    sm: "9px",
-                    md: "11px",
+                    xs: "0.75em",
+                    sm: "0.75em",
+                    md: "0.75em",
                   },
                   display: "flex",
                   alignItems: "center",
@@ -209,9 +211,9 @@ const Navbar = () => {
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    xs: "8px",
-                    sm: "9px",
-                    md: "11px",
+                    xs: "0.75em",
+                    sm: "0.75em",
+                    md: "0.75em",
                   },
                   display: "flex",
                   alignItems: "center",
@@ -234,9 +236,9 @@ const Navbar = () => {
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    xs: "8px",
-                    sm: "9px",
-                    md: "11px",
+                    xs: "0.75em",
+                    sm: "0.75em",
+                    md: "0.75em",
                   },
                   display: "flex",
                   alignItems: "center",
