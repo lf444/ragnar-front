@@ -88,11 +88,11 @@ export default function StableTab(props: StableTabProps) {
             alignItems="center"
             textAlign="center"
           >
-            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
               {" "}
               1
             </Grid>
-            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
               2
             </Grid>
           </Grid>
@@ -104,13 +104,13 @@ export default function StableTab(props: StableTabProps) {
             {" "}
             <Button
               variant="contained"
-              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1.5em" } }}
+              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1em" } }}
             >
               APPROVE
             </Button>
             <Button
               variant="contained"
-              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1.5em" } }}
+              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1em" } }}
             >
               DEPOSIT
             </Button>
@@ -143,7 +143,7 @@ export default function StableTab(props: StableTabProps) {
             {" "}
             <Button
               variant="contained"
-              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1.5em" } }}
+              sx={{ width: "45%", fontSize: { xs: "0.65em", sm: "1em" } }}
             >
               WITHDRAW
             </Button>
@@ -151,21 +151,21 @@ export default function StableTab(props: StableTabProps) {
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
           {" "}
           {pool.pairName1}-{pool.pairName2} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.address}`}>
             {pool.address}
           </a>
         </Typography>
-        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
           {" "}
           {pool.pairName1} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.pairAddress1}`}>
             {pool.pairAddress1}
           </a>
         </Typography>
-        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1.5em" } }}>
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
           {" "}
           {pool.pairName2} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.pairAddress2}`}>

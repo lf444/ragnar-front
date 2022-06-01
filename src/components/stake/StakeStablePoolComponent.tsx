@@ -33,18 +33,8 @@ function TabPanel(props: TabPanelProps) {
         <Box
           sx={{
             paddingTop: 3,
-            height: {
-              xs: "auto",
-              sm: "calc(100vh - 480px)",
-              md: "calc(100vh - 460px)",
-              lg: "calc(100vh - 500px)",
-              xl: "calc(100vh - 500px)",
-            },
             overflowY: "overlay",
-            paddingBottom: {
-              xs: 10,
-              sm: 0,
-            },
+            paddingBottom: 10,
           }}
         >
           <Typography>{children}</Typography>
@@ -180,18 +170,19 @@ export default function StakeStablePoolComponent() {
             }}
           />
         </Grid> */}
-        {/*   <PairTab pools={avaxStablePoolAddress} />
-        <PairTab pools={avaxAltPoolAddress} /> */}
+        <PairTab pools={stablePoolAddress} />
+        <PairTab pools={otherPoolAddress} />
+        <PairTab pools={avaxAltPoolAddress} />     
+        <PairTab pools={otherPoolAddress} />
+        <PairTab pools={avaxAltPoolAddress} />     
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PairTab pools={avaxStablePoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <PairTab pools={avaxStablePoolAddress} />
-        <PairTab pools={avaxStablePoolAddress} />
-        <PairTab pools={avaxStablePoolAddress} />
-        <PairTab pools={avaxStablePoolAddress} />
-        <PairTab pools={avaxStablePoolAddress} />
+      <PairTab pools={stablePoolAddress} />
+        <PairTab pools={otherPoolAddress} />
+        <PairTab pools={avaxAltPoolAddress} />     
       </TabPanel>
     </Box>
   );

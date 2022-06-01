@@ -32,7 +32,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
         direction="row"
         sx={{
           display: "flex",
-          backgroundColor: "#7A8C98",
+          backgroundColor: "#627F91",
           borderRadius: "5px 5px 5px 5px",
           borderRight: "2px solid grey",
           textAlign: "center",

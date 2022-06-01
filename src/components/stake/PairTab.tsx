@@ -16,7 +16,6 @@ const PairTab: FunctionComponent<PairTabProps> = ({ pools }) => {
         direction="column"
         sx={{
           height: "100%",
-          overflowY: "auto",
         }}
       >
         {pools.map((pool) => {

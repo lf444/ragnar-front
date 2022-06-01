@@ -9,31 +9,17 @@ const StakeScreen = () => {
     <>
       {" "}
       <Zoom in={true}>
-        <Box
-          display="flex"
-          justifyContent="center"
-          sx={{
-            width: "100%",
-            height: "100%",
-            alignItems: {
-              xs: "flex-start",
-              sm: "center",
-              md: "center",
-              lg: "center",
-            },
-          }}
-        >
           <Grid
             container
             direction="column"
-            alignContent={"center"}
+            alignItems="center"
             sx={{
+              marginBottom:"4rem",
+              marginLeft: "auto",
+              marginRight: "auto",
               width: {
                 xs: "100%",
-                sm: "85%",
-              },
-              height: {
-                sm: "90%",
+                sm: "70%",
               },
               boxShadow: { xs: 0, sm: 3 },
               borderRadius: { xs: "0px", sm: "20px" },
@@ -51,7 +37,6 @@ const StakeScreen = () => {
               <StakeStablePoolComponent />
             </Grid>
           </Grid>
-        </Box>
       </Zoom>
     </>
   );

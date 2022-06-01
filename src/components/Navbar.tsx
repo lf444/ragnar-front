@@ -54,7 +54,7 @@ const Navbar = () => {
             xs: "3.5rem",
             sm: "4rem",
           },
-          marginBottom: "-1rem",
+          marginBottom: "2rem",
           backgroundColor: "#DDEAF2",
           boxShadow: 3,
         }}
