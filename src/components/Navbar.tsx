@@ -169,6 +169,11 @@ const Navbar = () => {
                   MenuListProps={{
                     "aria-labelledby": "fade-button",
                   }}
+                  sx={{
+                    "& .MuiPaper-root": {
+                      backgroundColor: "#2f343a"
+                    }
+                  }}
                   anchorEl={anchorEl}
                   open={open}
                   onClose={handleClose}
@@ -286,7 +291,7 @@ const Navbar = () => {
             xs: "flex",
             sm: "none",
           },
-          backgroundColor: "#2f343a",
+           backgroundColor: "#2f343a",
           zIndex: "1000",
           height: "5%",
         }}
@@ -330,6 +335,11 @@ const Navbar = () => {
             id="fade-menu"
             MenuListProps={{
               "aria-labelledby": "fade-button",
+            }}
+            sx={{
+              "& .MuiPaper-root": {
+                backgroundColor: "#2f343a"
+              }
             }}
             anchorEl={anchorEl}
             open={open}
