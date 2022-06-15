@@ -38,8 +38,7 @@ const Home = () => {
         <Typography
           sx={{ color: '#3A4149', fontWeight: '700', fontSize: '18px' }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.
+          Lorem Ipsum is simply dummy text of the printing and typesetting .
         </Typography>
         <Button
           variant='contained'
