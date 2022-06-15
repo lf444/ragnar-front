@@ -21,7 +21,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({ poolName }) => {
         <Input disableUnderline defaultValue={0}></Input>
         <Button
           variant="contained"
-          sx={{ margin: 0.5,borderRadius:"05px",height: "80%", fontSize: { xs: "0.65em", sm: "0.85em" }, position:"relative", marginRight:"0.35rem" ,fontWeight:"bold", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
+          sx={{ margin: 0.5,borderRadius:"5px",height: "80%", fontSize: { xs: "0.45", sm: "0.85em" }, position:"relative", marginRight:"0.35rem" ,fontWeight:"bold", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
         >
           Max
         </Button>

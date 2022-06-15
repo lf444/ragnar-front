@@ -286,7 +286,7 @@ const Navbar = () => {
             xs: "flex",
             sm: "none",
           },
-          backgroundColor: "#DDEAF2",
+          backgroundColor: "#2f343a",
           zIndex: "1000",
           height: "5%",
         }}
@@ -314,7 +314,7 @@ const Navbar = () => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
             sx={{
-              color: open ? "#3a4149" : "#627F91",
+              color: open ? (theme) => theme.palette.text.primary : "#929ea6",
               justifyContent: "flex-start",
               py: 1.25,
               textTransform: "none",
