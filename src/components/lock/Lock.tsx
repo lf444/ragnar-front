@@ -1,9 +1,10 @@
-import { Grid } from '@mui/material';
+import Navbar from '../Navbar';
+import { Box, Grid, Typography } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
-import Funds from './Funds';
-import StakeStablePoolComponent from './StakeStablePoolComponent';
+import StakeMainPoolComponent from '../stake/StakeMainPoolComponent';
+import frame from '../../assets/images/frame.png';
 
-const StakeScreen = () => {
+const LockRGN = () => {
   return (
     <>
       {' '}
@@ -29,16 +30,17 @@ const StakeScreen = () => {
             },
           }}
         >
-          <Grid item sx={{ width: '90%', paddingBottom: 2 }}>
-            <Funds />
-          </Grid>
-          <Grid item sx={{ width: '90%' }}>
-            <StakeStablePoolComponent />
-          </Grid>
+          <StakeMainPoolComponent
+            pairName1={'RGN'}
+            address={'0x5817d4f0b62a59b17f75207da1848c2ce75e7af4'}
+            logo1={frame}
+            type={'rgn'}
+            openForScreen={true}
+          />
         </Grid>
       </Zoom>
     </>
   );
 };
 
-export default StakeScreen;
+export default LockRGN;
