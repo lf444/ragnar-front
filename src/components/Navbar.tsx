@@ -47,7 +47,7 @@ const Navbar = () => {
     <>
       <AppBar
         position="static"
-        elevation={1}
+        elevation={0}
         sx={{
           //borderBottom: "solid 2px #7F98AC",
           height: {
@@ -55,8 +55,8 @@ const Navbar = () => {
             sm: "4rem",
           },
           marginBottom: "2rem",
-          backgroundColor: "#DDEAF2",
-          boxShadow: 3,
+         backgroundColor: "#2f343a",
+/*           boxShadow: 3, */ 
         }}
       >
         <Toolbar disableGutters>
@@ -86,16 +86,28 @@ const Navbar = () => {
               <Typography
                 sx={{
                   marginLeft: "-5%",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   fontWeight: "700",
-                  color: "#627F91",
+                  color:(theme) => theme.palette.text.primary,
+                  lineHeight: "29px",
+                  
+                }}
+                variant="h6"              >
+                {" "}
+                Ragnar
+              </Typography>{" "}
+              <Typography
+                sx={{
+                  fontSize: "20px",
+                  fontWeight: "500",
+                  color:(theme) => theme.palette.text.secondary,
                   lineHeight: "29px",
                 }}
                 variant="h6"
                 color="textPrimary"
               >
                 {" "}
-                Ragnar Finance
+                Finance
               </Typography>{" "}
             </Grid>
             <Grid
@@ -140,7 +152,7 @@ const Navbar = () => {
                   aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
                   sx={{
-                    color: open ? "#3a4149" : "#627F91",
+                    color: open ? (theme) => theme.palette.text.primary : "#929ea6",
                     justifyContent: "flex-start",
                     py: 1.25,
                     textTransform: "none",

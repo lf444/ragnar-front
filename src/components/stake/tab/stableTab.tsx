@@ -1,8 +1,8 @@
-import { Box, Typography, Tabs, Tab, Grid, Button } from '@mui/material';
-import React from 'react';
-import { Pools } from '../../../abi/pools';
-import CustomInput from '../../shared/CustomInput';
-import CustomDisplay from '../../shared/CustomDisplay';
+import { Box, Typography, Tabs, Tab, Grid, Button } from "@mui/material";
+import React from "react";
+import { Pools } from "../../../abi/pools";
+import CustomInput from "../../shared/CustomInput";
+import CustomDisplay from "../../shared/CustomDisplay";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -14,7 +14,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -32,7 +32,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -49,70 +49,103 @@ export default function StableTab(props: StableTabProps) {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
-          variant='fullWidth'
-          centered
           onChange={handleChange}
-          aria-label='basic tabs example'
+          aria-label="basic tabs example"
         >
           <Tab
-            label='Deposit'
+            label="Deposit"
             {...a11yProps(0)}
-            sx={{ fontSize: { xs: '0.60em', sm: '1em' } }}
+            style={{
+              color: value === 0 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }}
+            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
           />
           <Tab
-            label='Withdraw'
+            label="Withdraw"
             {...a11yProps(1)}
-            sx={{ fontSize: { xs: '0.60em', sm: '1em' } }}
+            style={{
+              color: value === 1 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }}
+            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
           />
           <Tab
-            label='INFO'
+            label="Info"
+            style={{
+              color: value === 2 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }}
             {...a11yProps(2)}
-            sx={{ fontSize: { xs: '0.60em', sm: '1em' } }}
+            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
           />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={pool.pairName1} display='deposit' />
+            <CustomDisplay poolName={pool.pairName1} display="deposit" />
           </Grid>
           <Grid
             item
             container
             xs={6}
-            justifyContent='center'
-            alignItems='center'
-            textAlign='center'
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
           >
-            <Grid item xs={6} sx={{ fontSize: { xs: '0.65em', sm: '1em' } }}>
-              {' '}
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              {" "}
               1
             </Grid>
-            <Grid item xs={6} sx={{ fontSize: { xs: '0.65em', sm: '1em' } }}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
               2
             </Grid>
           </Grid>
           <Grid item container xs={6}>
-            {' '}
+            {" "}
             <CustomInput poolName={pool.pairName1} />
           </Grid>
-          <Grid item container xs={6} justifyContent='space-around'>
-            {' '}
+          <Grid item container xs={6} justifyContent="space-around">
+            {" "}
             <Button
-              variant='contained'
-              sx={{ width: '45%', fontSize: { xs: '0.65em', sm: '1em' } }}
+              variant="contained"
+              sx={{
+                width: "45%",
+                height: "80%",
+                fontSize: { xs: "0.95em", sm: "0.95em" },
+                borderRadius:"10px",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                textTransform: "none",
+                boxShadow: "none",
+              }}
             >
-              APPROVE
+              Approve
             </Button>
             <Button
-              variant='contained'
-              sx={{ width: '45%', fontSize: { xs: '0.65em', sm: '1em' } }}
+              variant="contained"
+              sx={{
+                width: "45%",
+                height: "80%",
+                fontSize: { xs: "0.95em", sm: "0.95em" },
+                borderRadius:"10px",
+                fontWeight: "bold",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                textTransform: "none",
+                boxShadow: "none",
+              }}
             >
-              DEPOSIT
+              Deposit
             </Button>
           </Grid>
         </Grid>
@@ -120,54 +153,64 @@ export default function StableTab(props: StableTabProps) {
       <TabPanel value={value} index={1}>
         <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={pool.pairName1} display='withdraw' />
+            <CustomDisplay poolName={pool.pairName1} display="withdraw" />
           </Grid>
           <Grid
             item
             container
             xs={6}
-            justifyContent='center'
-            alignItems='center'
-            textAlign='center'
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
           >
             <Grid item xs={6}>
-              {' '}
+              {" "}
             </Grid>
             <Grid item xs={6}></Grid>
           </Grid>
           <Grid item container xs={6}>
-            {' '}
+            {" "}
             <CustomInput poolName={pool.pairName1} />
           </Grid>
-          <Grid item container xs={6} justifyContent='space-around'>
-            {' '}
+          <Grid item container xs={6} justifyContent="space-around">
+            {" "}
             <Button
-              variant='contained'
-              sx={{ width: '45%', fontSize: { xs: '0.65em', sm: '1em' } }}
+              variant="contained"
+              sx={{
+                width: "45%",
+                height: "80%",
+                fontSize: { xs: "0.95em", sm: "0.95em" },
+                borderRadius:"10px",
+                fontWeight: "bold",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                textTransform: "none",
+                boxShadow: "none",
+              }}
             >
-              WITHDRAW
+              Withdraw
             </Button>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography sx={{ fontSize: { xs: '0.65em', sm: '1em' } }}>
-          {' '}
-          {pool.pairName1}-{pool.pairName2} Contract:{'    '}
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+          {" "}
+          {pool.pairName1}-{pool.pairName2} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.address}`}>
             {pool.address}
           </a>
         </Typography>
-        <Typography sx={{ fontSize: { xs: '0.65em', sm: '1em' } }}>
-          {' '}
-          {pool.pairName1} Contract:{'    '}
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+          {" "}
+          {pool.pairName1} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.pairAddress1}`}>
             {pool.pairAddress1}
           </a>
         </Typography>
-        <Typography sx={{ fontSize: { xs: '0.65em', sm: '1em' } }}>
-          {' '}
-          {pool.pairName2} Contract:{'    '}
+        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+          {" "}
+          {pool.pairName2} Contract:{"    "}
           <a href={`https://snowtrace.io/address/${pool.pairAddress2}`}>
             {pool.pairAddress2}
           </a>

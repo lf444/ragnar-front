@@ -121,10 +121,10 @@ export default function JoeTable() {
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" }}>
+            <Button variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light }}>
               APPROVE
             </Button>
-            <Button variant="contained" sx={{ width: "45%" }}>
+            <Button variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light }}>
               DEPOSIT
             </Button>
           </Grid>

@@ -27,15 +27,12 @@ const StakeMainPoolComponent: FunctionComponent<
   };
 
   return (
-    <Box sx={{ width: '100%', color: '#000000', marginBottom: '7px' }}>
+    <Box sx={{ width: '100%',backgroundColor:(theme) => theme.palette.secondary.main,  borderRadius: '5px 5px 5px 5px', boxShadow:"none" }}>
       <Grid
         container
         justifyContent='center'
         alignItems='center'
         sx={{
-          backgroundColor: '#7A8C98',
-          borderRadius: '5px 5px 5px 5px',
-          borderRight: '2px solid grey',
           textAlign: 'center',
           cursor: 'pointer',
         }}
@@ -50,36 +47,36 @@ const StakeMainPoolComponent: FunctionComponent<
         >
           <img height='45px' src={logo1} alt={`${logo1} Logo`} />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ color:  (theme) => theme.palette.text.secondary}}>
           {pairName1}
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: '11px', marginTop: '5px' }}>
+          <Typography sx={{ fontSize: '11px', marginTop: '5px', color:  (theme) => theme.palette.text.secondary, }}>
             {' '}
             APR
           </Typography>
-          <Typography sx={{ fontWeight: 'bold' }}>{aprValue}</Typography>
+          <Typography sx={{ fontWeight: 'bold' ,color:  (theme) => theme.palette.text.primary}}>{aprValue}</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: '11px', marginTop: '5px' }}>
+          <Typography sx={{ fontSize: '11px', marginTop: '5px',color:  (theme) => theme.palette.text.secondary }}>
             {' '}
             {pairName1}
           </Typography>
-          <Typography sx={{ fontWeight: 'bold' }}>{rajoeValue}</Typography>
+          <Typography sx={{ fontWeight: 'bold',color:  (theme) => theme.palette.text.primary }}>{rajoeValue}</Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography sx={{ fontSize: '11px', marginTop: '5px' }}>
+          <Typography sx={{ fontSize: '11px', marginTop: '5px', color:  (theme) => theme.palette.text.secondary, }}>
             {' '}
             TVL
           </Typography>
-          <Typography sx={{ fontWeight: 'bold' }}>{tvlValue}</Typography>
+          <Typography sx={{ fontWeight: 'bold',color:  (theme) => theme.palette.text.primary }}>{tvlValue}</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography sx={{ fontSize: '11px', marginTop: '5px' }}>
+          <Typography sx={{ fontSize: '11px', marginTop: '5px', color:  (theme) => theme.palette.text.secondary, }}>
             {' '}
             Claimable
           </Typography>
-          <Typography sx={{ fontWeight: 'bold' }}>{claimable}</Typography>
+          <Typography sx={{ fontWeight: 'bold',color:  (theme) => theme.palette.text.primary }}>{claimable}</Typography>
         </Grid>
         <Grid
           item
@@ -93,7 +90,7 @@ const StakeMainPoolComponent: FunctionComponent<
 
       {open && (
         <Fade in={open}>
-          <Box sx={{ color: '#000000' }}>
+          <Box>
             {type === 'joe' ? <JoeTable /> : <RGNTable />}
           </Box>
         </Fade>

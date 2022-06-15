@@ -10,6 +10,7 @@ import {
   stablePoolAddress,
 } from '../../abi/pools';
 import PairTab from './PairTab';
+import { textTransform } from '@mui/system';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -72,6 +73,11 @@ export default function StakeStablePoolComponent() {
           <Tab
             label='All Pool'
             {...a11yProps(0)}
+            style={{
+              color: value === 0 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }}
             sx={{
               fontSize: {
                 lg: '1em',
@@ -79,11 +85,17 @@ export default function StakeStablePoolComponent() {
                 sm: '1em',
                 xs: '0.75em',
               },
+              
             }}
           />
           <Tab
             label='Main Pool'
             {...a11yProps(1)}
+            style={{
+              color: value === 1 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }}
             sx={{
               fontSize: {
                 lg: '1em',
@@ -96,6 +108,11 @@ export default function StakeStablePoolComponent() {
           <Tab
             label='Yeti Pool'
             {...a11yProps(2)}
+            style={{
+              color: value === 2 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }}
             sx={{
               fontSize: {
                 lg: '1em',
@@ -170,9 +187,6 @@ export default function StakeStablePoolComponent() {
         </Grid> */}
         <PairTab pools={stablePoolAddress} />
         <PairTab pools={otherPoolAddress} />
-        <PairTab pools={avaxAltPoolAddress} />
-        <PairTab pools={otherPoolAddress} />
-        <PairTab pools={avaxAltPoolAddress} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <PairTab pools={avaxStablePoolAddress} />
@@ -180,7 +194,6 @@ export default function StakeStablePoolComponent() {
       <TabPanel value={value} index={2}>
         <PairTab pools={stablePoolAddress} />
         <PairTab pools={otherPoolAddress} />
-        <PairTab pools={avaxAltPoolAddress} />
       </TabPanel>
     </Box>
   );

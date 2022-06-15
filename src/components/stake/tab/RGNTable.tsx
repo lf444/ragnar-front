@@ -43,8 +43,8 @@ export default function RGNTableLock() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box sx={{ width: "100%" ,boxShadow:"none"}}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" ,boxShadow:"none" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -52,15 +52,27 @@ export default function RGNTableLock() {
           centered
           aria-label="basic tabs example"
         >
-          <Tab label="Stake" {...a11yProps(0)} />
-          <Tab label="Unstake" {...a11yProps(1)} />
-          <Tab label="INFO" {...a11yProps(2)} />
+          <Tab label="Stake" {...a11yProps(0)}    style={{
+              color: value === 0 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }} />
+          <Tab label="Unstake" {...a11yProps(1)}   style={{
+              color: value === 1 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }} />
+          <Tab label="INFO" {...a11yProps(2)}    style={{
+              color: value === 2 ?"#ddeaf2":"#929ea6",
+              fontWeight:"bold",
+              textTransform: "none",
+            }} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Grid container>
+      <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={"RGN"} display="Stake" />
+            <CustomDisplay poolName={"RGN"} display="deposit" />
           </Grid>
           <Grid
             item
@@ -70,11 +82,11 @@ export default function RGNTableLock() {
             alignItems="center"
             textAlign="center"
           >
-            <Grid item xs={6}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
               {" "}
               1
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
               2
             </Grid>
           </Grid>
@@ -84,11 +96,37 @@ export default function RGNTableLock() {
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" }}>
-              APPROVE
+            <Button
+              variant="contained"
+              sx={{
+                width: "45%",
+                height: "80%",
+                fontSize: { xs: "0.95em", sm: "0.95em" },
+                borderRadius:"10px",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                textTransform: "none",
+                boxShadow: "none",
+              }}
+            >
+              Approve
             </Button>
-            <Button variant="contained" sx={{ width: "45%" }}>
-              DEPOSIT
+            <Button
+              variant="contained"
+              sx={{
+                width: "45%",
+                height: "80%",
+                fontSize: { xs: "0.95em", sm: "0.95em" },
+                borderRadius:"10px",
+                fontWeight: "bold",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                textTransform: "none",
+                boxShadow: "none",
+              }}
+            >
+              Deposit
             </Button>
           </Grid>
         </Grid>
@@ -117,8 +155,18 @@ export default function RGNTableLock() {
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" }}>
-              WITHDRAW
+            <Button variant="contained"   sx={{
+                width: "45%",
+                height: "80%",
+                fontSize: { xs: "0.95em", sm: "0.95em" },
+                borderRadius:"10px",
+                fontWeight: "bold",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                textTransform: "none",
+                boxShadow: "none",
+              }}>
+              Unstake
             </Button>
           </Grid>
         </Grid>

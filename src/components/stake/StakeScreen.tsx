@@ -20,13 +20,13 @@ const StakeScreen = () => {
               xs: '100%',
               sm: '70%',
             },
-            boxShadow: { xs: 0, sm: 3 },
+            /* boxShadow: { xs: 0, sm: 3 }, */
             borderRadius: { xs: '0px', sm: '20px' },
-            backgroundColor: {
+/*             backgroundColor: {
               xs: 'none',
               sm: '#none',
               md: '#DDEAF2',
-            },
+            }, */
           }}
         >
           <Grid item sx={{ width: '90%', paddingBottom: 2 }}>

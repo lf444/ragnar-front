@@ -46,7 +46,7 @@ const ClaimRewards = () => {
       <Typography
         sx={{
           fontWeight: 'bold',
-          color: '#3A4149',
+          color: (theme) => theme.palette.text.primary,
           width: 'fit-content',
           padding: 1,
           paddingTop: 4,
@@ -84,49 +84,51 @@ const FundsFirstTabs = () => {
   return (
     <Grid
       container
-      direction='row'
-      justifyContent='space-between'
-      sx={{ marginBottom: '3%' }}
+      direction="row"
+      justifyContent="space-between"
+      sx={{ marginBottom: "3%" }}
     >
       <Grid
         item
         container
-        alignItems='center'
-        justifyContent='center'
-        display='flex'
+        alignItems="center"
+        justifyContent="center"
+        display="flex"
         xs={3.75}
         sm={3}
         sx={{
-          backgroundColor: '#627F91',
-          borderRadius: '10px',
-          textAlign: 'center',
-          boxShadow: 3,
+          backgroundColor: (theme) => theme.palette.secondary.main,
+          borderRadius: "10px",
+          textAlign: "center",
+          
           p: 1,
         }}
       >
-        <Grid item direction='column'>
+        <Grid item direction="column">
           <Typography
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.50rem',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.50rem",
               },
+              color: (theme) => theme.palette.text.secondary,
             }}
           >
-            {' '}
+            {" "}
             YOUR DEPOSIT
           </Typography>
           <Typography
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.50rem',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
+              fontWeight: "bold",
+              color: (theme) => theme.palette.text.primary,
             }}
           >
             ${deposit}USD
@@ -136,42 +138,44 @@ const FundsFirstTabs = () => {
       <Grid
         item
         container
-        alignItems='center'
-        justifyContent='center'
-        display='flex'
+        alignItems="center"
+        justifyContent="center"
+        display="flex"
         xs={3.75}
         sm={3}
         sx={{
-          backgroundColor: '#627F91',
-          borderRadius: '10px',
-          textAlign: 'center',
-          boxShadow: 3,
+          backgroundColor: (theme) => theme.palette.secondary.main,
+          borderRadius: "10px",
+          textAlign: "center",
+          
           p: 1,
         }}
       >
-        <Grid item direction='column'>
+        <Grid item direction="column">
           <Typography
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.50rem',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.50rem",
               },
+              color: (theme) => theme.palette.text.secondary,
             }}
           >
-            {' '}
+            {" "}
             YOUR REWARDS
           </Typography>
           <Typography
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.50rem',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
+              fontWeight: "bold",
+              color: (theme) => theme.palette.text.primary,
             }}
           >
             ${reward}USD
@@ -181,28 +185,29 @@ const FundsFirstTabs = () => {
       <Grid
         item
         container
-        alignItems='center'
-        justifyContent='center'
-        display='flex'
+        alignItems="center"
+        justifyContent="center"
+        display="flex"
         xs={3.75}
         sm={3}
         sx={{
-          backgroundColor: '#627F91',
-          borderRadius: '10px',
-          textAlign: 'center',
-          boxShadow: 3,
+          backgroundColor: (theme) => theme.palette.secondary.main,
+          borderRadius: "10px",
+          textAlign: "center",
+          
           p: 1,
         }}
       >
-        <Grid item direction='column'>
+        <Grid item direction="column">
           <Typography
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.50rem',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.50rem",
               },
+              color: (theme) => theme.palette.text.secondary,
             }}
           >
             raJOE RATIO
@@ -210,12 +215,13 @@ const FundsFirstTabs = () => {
           <Typography
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.50rem',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
+              color: (theme) => theme.palette.text.primary,
+              fontWeight: "bold",
             }}
           >
             {ratio}

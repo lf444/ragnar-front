@@ -11,22 +11,20 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({ poolName }) => {
         item
         container
         sx={{
-          backgroundColor: "#7A8C98",
+          backgroundColor: (theme) => theme.palette.background.default,
           borderRadius: "5px",
-          border: "1px solid grey",
           alignItems: "center",
+          height: "80%",
         }}
       >
         {" "}
-        <Grid xs={7} sm={9} md={10}>
-          <Input disableUnderline defaultValue={0}></Input>
-        </Grid>
-        <Grid xs={2}>
-          {" "}
-          <Button variant="contained" sx={{ margin: 0.5,fontSize: { xs: "0.65em", sm: "1em" }}}>
-            MAX
-          </Button>
-        </Grid>
+        <Input disableUnderline defaultValue={0}></Input>
+        <Button
+          variant="contained"
+          sx={{ margin: 0.5,borderRadius:"05px",height: "80%", fontSize: { xs: "0.65em", sm: "0.85em" }, position:"relative", marginRight:"0.35rem" ,fontWeight:"bold", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
+        >
+          Max
+        </Button>
       </Grid>
     </>
   );

@@ -11,7 +11,7 @@ const Funds = () => {
       <Typography
         sx={{
           fontWeight: "bold",
-          color: "#3A4149",
+          color: (theme) => theme.palette.text.primary,
           width: "fit-content",
           padding: 1,
           paddingTop: 4,
@@ -65,10 +65,10 @@ const FundsFirstTabs = () => {
         xs={3.75}
         sm={3}
         sx={{
-          backgroundColor: "#627F91",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           borderRadius: "10px",
           textAlign: "center",
-          boxShadow: 3,
+          
           p: 1,
         }}
       >
@@ -81,6 +81,7 @@ const FundsFirstTabs = () => {
                 sm: "1em",
                 xs: "0.50rem",
               },
+              color: (theme) => theme.palette.text.secondary,
             }}
           >
             {" "}
@@ -95,6 +96,7 @@ const FundsFirstTabs = () => {
                 xs: "0.50rem",
               },
               fontWeight: "bold",
+              color: (theme) => theme.palette.text.primary,
             }}
           >
             ${deposit}USD
@@ -110,10 +112,10 @@ const FundsFirstTabs = () => {
         xs={3.75}
         sm={3}
         sx={{
-          backgroundColor: "#627F91",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           borderRadius: "10px",
           textAlign: "center",
-          boxShadow: 3,
+          
           p: 1,
         }}
       >
@@ -126,6 +128,7 @@ const FundsFirstTabs = () => {
                 sm: "1em",
                 xs: "0.50rem",
               },
+              color: (theme) => theme.palette.text.secondary,
             }}
           >
             {" "}
@@ -140,6 +143,7 @@ const FundsFirstTabs = () => {
                 xs: "0.50rem",
               },
               fontWeight: "bold",
+              color: (theme) => theme.palette.text.primary,
             }}
           >
             ${reward}USD
@@ -155,10 +159,10 @@ const FundsFirstTabs = () => {
         xs={3.75}
         sm={3}
         sx={{
-          backgroundColor: "#627F91",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           borderRadius: "10px",
           textAlign: "center",
-          boxShadow: 3,
+          
           p: 1,
         }}
       >
@@ -171,6 +175,7 @@ const FundsFirstTabs = () => {
                 sm: "1em",
                 xs: "0.50rem",
               },
+              color: (theme) => theme.palette.text.secondary,
             }}
           >
             raJOE RATIO
@@ -183,6 +188,7 @@ const FundsFirstTabs = () => {
                 sm: "1em",
                 xs: "0.50rem",
               },
+              color: (theme) => theme.palette.text.primary,
               fontWeight: "bold",
             }}
           >
@@ -223,10 +229,10 @@ const FundSecondTabs = () => {
         item
         xs
         sx={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           borderRadius: "10px 0 0 10px",
           borderRight: "2px solid grey",
-          boxShadow: 3,
+          
           textAlign: "center",
         }}
       >
@@ -240,7 +246,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             marginTop: "5px",
-            color: "#3A4149",
+            color: "#929ea6",
           }}
         >
           {" "}
@@ -255,7 +261,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             fontWeight: "bold",
-            color: "#627F91",
+            color: "#bfcbd2",
           }}
         >
           {totalValueLocked}
@@ -265,9 +271,9 @@ const FundSecondTabs = () => {
         item
         xs
         sx={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           borderRight: "2px solid grey",
-          boxShadow: 3,
+          
           textAlign: "center",
         }}
       >
@@ -281,7 +287,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             marginTop: "5px",
-            color: "#3A4149",
+            color:  (theme) => theme.palette.text.secondary,
           }}
         >
           {" "}
@@ -296,7 +302,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             fontWeight: "bold",
-            color: "#627F91",
+            color: "#bfcbd2",
           }}
         >
           {totalRJOE}
@@ -306,9 +312,9 @@ const FundSecondTabs = () => {
         item
         xs
         sx={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           borderRight: "2px solid grey",
-          boxShadow: 3,
+          
           textAlign: "center",
         }}
       >
@@ -322,7 +328,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             marginTop: "5px",
-            color: "#3A4149",
+            color: (theme) => theme.palette.text.secondary,
           }}
         >
           VECTOR vePTP BALANCE
@@ -336,7 +342,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             fontWeight: "bold",
-            color: "#627F91",
+            color:  (theme) => theme.palette.text.primary,
           }}
         >
           {totalRAJOE}
@@ -346,9 +352,9 @@ const FundSecondTabs = () => {
         item
         xs
         sx={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           textAlign: "center",
-          boxShadow: 3,
+          
           borderRight: "2px solid grey",
         }}
       >
@@ -362,7 +368,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             marginTop: "5px",
-            color: "#3A4149",
+            color: (theme) => theme.palette.text.secondary,
           }}
         >
           VTX CIRCUL SUPPLY
@@ -376,7 +382,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             fontWeight: "bold",
-            color: "#627F91",
+            color:  (theme) => theme.palette.text.primary,
           }}
         >
           {totalRGN}
@@ -386,9 +392,9 @@ const FundSecondTabs = () => {
         item
         xs
         sx={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor: (theme) => theme.palette.secondary.main,
           textAlign: "center",
-          boxShadow: 3,
+          
           borderRadius: "0 10px 10px 0",
         }}
       >
@@ -402,7 +408,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             marginTop: "5px",
-            color: "#3A4149",
+            color: "#929ea6",
           }}
         >
           {" "}
@@ -417,7 +423,7 @@ const FundSecondTabs = () => {
               xs: "0.50rem",
             },
             fontWeight: "bold",
-            color: "#627F91",
+            color:  (theme) => theme.palette.text.primary,
           }}
         >
           {totalRGNLocked}
