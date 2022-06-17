@@ -6,7 +6,6 @@ import rgnABI from "../../abi/contracts/Tokens/RGN.sol/RGN.json"
 import { contractAddress } from "../../abi/address";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import vejoestackingABI from "../../abi/vejoestking.json"
 
 const Funds = () => {
   return (
