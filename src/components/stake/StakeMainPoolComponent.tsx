@@ -7,7 +7,7 @@ import RGNTable from './tab/RGNTable';
 
 interface StakeMainPoolComponenttProps {
   pairName1: string;
-  address: string;
+  addressPool: string;
   logo1: string;
   type: 'rgn' | 'joe';
   openForScreen: boolean;
@@ -15,7 +15,7 @@ interface StakeMainPoolComponenttProps {
 
 const StakeMainPoolComponent: FunctionComponent<
   StakeMainPoolComponenttProps
-> = ({ pairName1, address, logo1, type, openForScreen }) => {
+> = ({ pairName1, addressPool, logo1, type, openForScreen }) => {
   const [aprValue, setAprValue] = useState(0);
   const [rajoeValue, setRajoeValue] = useState(0);
   const [tvlValue, setTvlValue] = useState(0);

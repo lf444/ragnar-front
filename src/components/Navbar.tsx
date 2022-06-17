@@ -2,7 +2,9 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import logo from '../assets/images/logo.png';
-import frame from '../assets/images/frame.png';
+import rgn from '../assets/poolsImages/rgn.png'
+import yusd from '../assets/poolsImages/yusd.png'
+import yeti from '../assets/poolsImages/yeti.png'
 
 import Button from '@mui/material/Button';
 import { Box, Grid, List, Typography } from '@mui/material';
@@ -14,8 +16,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ConnectWalletButton from './shared/ConnectWalletButton';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ConnectWallet from './wallet/ConnectWallet';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
+  const [priceYeti, setPriceYeti] = useState(0);
+  const [priceYusd, setPriceYusd] = useState(0);
+  const [priceRgn, setPriceRgn] = useState(0);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -24,6 +32,27 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    Price();
+  }, [])
+
+  async function getPrice(tokenID: string): Promise<number> {
+    return axios
+      .get(`https://api.coingecko.com/api/v3/coins/${tokenID}`)
+      .then((response) => {
+        return response.data.market_data.current_price.usd;
+      });
+
+    }
+    
+    async function Price() {
+      setPriceYeti(await getPrice("yeti-finance"));
+      setPriceYusd(await getPrice("yusd-stablecoin"));
+      setPriceRgn(await getPrice("yeti-finance"));
+    }
+
+
 
   const menuItems = [
     {
@@ -63,8 +92,11 @@ const Navbar = () => {
         <Toolbar disableGutters>
           <Grid container direction='row' alignItems='center'>
             <Grid item xs={0.2} sm={1}></Grid>
-            <Grid item xs={2} sm={1}>
-              <img height='60' src={logo} alt='Ragnar Logo' />
+            <Grid item xs={2} sm={1} sx={{
+                position: 'relative',
+                left: '2rem'
+              }}>
+              <img height='40' src={logo} alt='Ragnar Logo' />
             </Grid>
             <Grid
               item
@@ -80,7 +112,7 @@ const Navbar = () => {
                   xl: 'flex',
                 },
                 position: 'relative',
-                left: '-3rem',
+                left: '-1rem',
               }}
             >
               {' '}
@@ -205,77 +237,77 @@ const Navbar = () => {
                 sx={{
                   marginRight: '2%',
                   fontSize: {
-                    xs: '0.75em',
-                    sm: '0.75em',
-                    md: '0.75em',
+                    xs: '0.9em',
+                    sm: '0.9em',
+                    md: '0.9em',
                   },
                   display: 'flex',
                   alignItems: 'center',
-                  fontWeight: '500',
+                  fontWeight: '600',
                 }}
                 color='textPrimary'
               >
                 <Box
                   component={'img'}
                   sx={{
-                    height: '18px',
-                    marginRight: '3px',
+                    height: '22px',
+                    marginRight: '8px',
                   }}
-                  src={frame}
+                  src={rgn}
                   alt='Ragnar Logo'
                 />{' '}
-                0.00$
+                0.30$
               </Typography>
 
               <Typography
                 sx={{
                   marginRight: '2%',
                   fontSize: {
-                    xs: '0.75em',
-                    sm: '0.75em',
-                    md: '0.75em',
+                    xs: '0.9em',
+                    sm: '0.9em',
+                    md: '0.9em',
                   },
                   display: 'flex',
                   alignItems: 'center',
-                  fontWeight: '500',
+                  fontWeight: '600',
                 }}
                 color='textPrimary'
               >
                 <Box
                   component={'img'}
                   sx={{
-                    height: '18px',
-                    marginRight: '3px',
+                    height: '22px',
+                    marginRight: '8px',
                   }}
-                  src={frame}
-                  alt='Ragnar Logo'
+                  src={yusd}
+                  alt='YUSD Logo'
                 />{' '}
-                0.00$
+                {priceYusd.toFixed(3)}$
               </Typography>
               <Typography
                 sx={{
                   marginRight: '2%',
                   fontSize: {
-                    xs: '0.75em',
-                    sm: '0.75em',
-                    md: '0.75em',
+                    xs: '0.9em',
+                    sm: '0.9em',
+                    md: '0.9em',
                   },
                   display: 'flex',
                   alignItems: 'center',
-                  fontWeight: '500',
+                  fontWeight: '600',
                 }}
                 color='textPrimary'
               >
                 <Box
                   component={'img'}
                   sx={{
-                    height: '18px',
-                    marginRight: '3px',
+                    height: '22px',
+                    marginRight: '8px',
                   }}
-                  src={frame}
-                  alt='Ragnar Logo'
+                  src={yeti}
+                  alt='YETI Logo'
                 />{' '}
-                0.00$
+                {priceYeti.toFixed(2)}$
               </Typography>
             </Grid>
             <Grid item xs={2} sm={1} md={1} lg={1}>

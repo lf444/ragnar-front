@@ -72,13 +72,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             },
           }}
         >
-          <img height="35px" src={pool.logo1} alt={`${pool.logo1} Logo`} />
-          <img
-            height="35px"
-            style={{ position: "relative", left: "-0.75em" }}
-            src={pool.logo2}
-            alt={`${pool.logo2} Logo`}
-          />
+          <img height="35px" style={{ position: "relative", left: "-0.75em" }} src={pool.logo1} alt={`${pool.logo1} Logo`} />
           <Typography
             sx={{
               fontSize: { xs: "0.5em", sm: "1.25em" },
@@ -87,7 +81,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             }}
           >
             {" "}
-            {pool.pairName1}-{pool.pairName2}
+            {pool.pairName1}
           </Typography>
         </Grid>
         <Grid item xs={2}>
@@ -120,7 +114,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             }}
           >
             {" "}
-            {pool.pairName1}-{pool.pairName2}
+            {pool.pairName1}
           </Typography>
           <Typography
             sx={{

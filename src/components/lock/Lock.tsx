@@ -2,7 +2,7 @@ import Navbar from '../Navbar';
 import { Box, Grid, Typography } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
 import StakeMainPoolComponent from '../stake/StakeMainPoolComponent';
-import frame from '../../assets/images/frame.png';
+import rgn from '../../assets/poolsImages/rgn.png';
 
 const LockRGN = () => {
   return (
@@ -32,8 +32,8 @@ const LockRGN = () => {
         >
           <StakeMainPoolComponent
             pairName1={'RGN'}
-            address={'0x5817d4f0b62a59b17f75207da1848c2ce75e7af4'}
-            logo1={frame}
+            addressPool={'0x5817d4f0b62a59b17f75207da1848c2ce75e7af4'}
+            logo1={rgn}
             type={'rgn'}
             openForScreen={true}
           />

@@ -4,13 +4,12 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {
-  avaxAltPoolAddress,
-  avaxStablePoolAddress,
-  otherPoolAddress,
-  stablePoolAddress,
+  mainPool,
+  yetiPool
 } from '../../abi/pools';
 import PairTab from './PairTab';
 import { textTransform } from '@mui/system';
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -185,15 +184,14 @@ export default function StakeStablePoolComponent() {
             }}
           />
         </Grid> */}
-        <PairTab pools={stablePoolAddress} />
-        <PairTab pools={otherPoolAddress} />
+        <PairTab pools={mainPool} />
+        <PairTab pools={yetiPool} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PairTab pools={avaxStablePoolAddress} />
+        <PairTab pools={mainPool} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <PairTab pools={stablePoolAddress} />
-        <PairTab pools={otherPoolAddress} />
+        <PairTab pools={yetiPool} />
       </TabPanel>
     </Box>
   );

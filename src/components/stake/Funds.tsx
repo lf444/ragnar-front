@@ -35,11 +35,13 @@ const FundsFirstTabs = () => {
   const [deposit, setDeposit] = useState(0);
   const [reward, setReward] = useState(0);
   const [ratio, setRatio] = useState(1);
+  const [valuelocked, setTotalValueLocked] = useState(0);
  
 
   useEffect(() => {
     fetchMyDeposit();
     fetchMyReward();
+    TVL();
   }, [])
 
 
@@ -105,6 +107,33 @@ const FundsFirstTabs = () => {
     }
   }
 
+  async function TVL() {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const priceYusd = await getPrice("yusd-stablecoin");
+        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceLpCurve = 1;
+        const priceRGN = 0.3;
+        const TVLYUSD = await masterchef.getPoolInfo(contractAddress.fakeYusdAddress);
+        const TVLRgnYeti = await masterchef.getPoolInfo(contractAddress.rgnYetiAddress);
+        const TVLLpCurve = await masterchef.getPoolInfo(contractAddress.fakeLpCurveAddress);
+        const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
+        setTotalValueLocked((Number(TVLYUSD.sizeOfPool) * priceYusd / 10**18) + (Number(TVLRgnYeti.sizeOfPool) * priceRgnYeti / 10**18) +
+        (Number(TVLLpCurve.sizeOfPool) * priceLpCurve / 10**18) + (Number(TVLRGN.sizeOfPool) * priceRGN / 10**18));
+      }
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  }  
+
+
 
   return (
     <Grid
@@ -123,7 +152,7 @@ const FundsFirstTabs = () => {
         sm={3}
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
-          borderRadius: "10px",
+          borderRadius: "5px",
           textAlign: "center",
           
           p: 1,
@@ -170,7 +199,7 @@ const FundsFirstTabs = () => {
         sm={3}
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
-          borderRadius: "10px",
+          borderRadius: "5px",
           textAlign: "center",
           
           p: 1,
@@ -217,7 +246,7 @@ const FundsFirstTabs = () => {
         sm={3}
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
-          borderRadius: "10px",
+          borderRadius: "5px",
           textAlign: "center",
           
           p: 1,
@@ -235,7 +264,7 @@ const FundsFirstTabs = () => {
               color: (theme) => theme.palette.text.secondary,
             }}
           >
-            rgnYETI RATIO
+            TOTAL VALUE LOCKED
           </Typography>
           <Typography
             sx={{
@@ -249,7 +278,7 @@ const FundsFirstTabs = () => {
               fontWeight: "bold",
             }}
           >
-            {ratio}
+            ${Math.round(valuelocked)}USD
           </Typography>
         </Grid>
       </Grid>
@@ -258,14 +287,12 @@ const FundsFirstTabs = () => {
 };
 
 const FundSecondTabs = () => {
-  const [totalValueLocked, setTotalValueLocked] = useState(0);
   const [totalYeti, setTotalYeti] = useState(0);
   const [totalVeYeti, setTotalVeYeti] = useState(0);
   const [totalRGN, setTotalRGN] = useState(0);
   const [totalRGNLocked, setTotalRGNLocked] = useState(0);
 
   useEffect(() => {
-    TVL();
     fetchDATA();
   }, [])
 
@@ -277,32 +304,6 @@ const FundSecondTabs = () => {
         return response.data.market_data.current_price.usd;
       });
   }
-
-  async function TVL() {
-    try {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-        const priceYusd = await getPrice("yusd-stablecoin");
-        const priceRgnYeti = await getPrice("yeti-finance");
-        const priceLpCurve = 1;
-        const priceRGN = 0.3;
-        const TVLYUSD = await masterchef.getPoolInfo(contractAddress.fakeYusdAddress);
-        const TVLRgnYeti = await masterchef.getPoolInfo(contractAddress.rgnYetiAddress);
-        const TVLLpCurve = await masterchef.getPoolInfo(contractAddress.fakeLpCurveAddress);
-        const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
-        setTotalValueLocked((Number(TVLYUSD.sizeOfPool) * priceYusd / 10**18) + (Number(TVLRgnYeti.sizeOfPool) * priceRgnYeti / 10**18) +
-        (Number(TVLLpCurve.sizeOfPool) * priceLpCurve / 10**18) + (Number(TVLRGN.sizeOfPool) * priceRGN / 10**18));
-      }
-    } catch (err: any) {
-      console.log(err.message);
-    }
-  }  
 
   async function fetchDATA() {
     try {
@@ -341,8 +342,8 @@ const FundSecondTabs = () => {
         xs
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
-          borderRadius: "10px 0 0 10px",
-          borderRight: "2px solid grey",
+          borderRadius: "1px 0 0 1px",
+          borderRight: "1px solid grey",
           
           textAlign: "center",
         }}
@@ -361,7 +362,7 @@ const FundSecondTabs = () => {
           }}
         >
           {" "}
-          TOTAL VALUE LOCKED
+          RGN BURNED
         </Typography>
         <Typography
           sx={{
@@ -375,7 +376,7 @@ const FundSecondTabs = () => {
             color: "#bfcbd2",
           }}
         >
-          ${Math.round(totalValueLocked)}USD
+          0
         </Typography>
       </Grid>
       <Grid
@@ -383,7 +384,7 @@ const FundSecondTabs = () => {
         xs
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
-          borderRight: "2px solid grey",
+          borderRight: "1px solid grey",
           
           textAlign: "center",
         }}
@@ -424,7 +425,7 @@ const FundSecondTabs = () => {
         xs
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
-          borderRight: "2px solid grey",
+          borderRight: "1px solid grey",
           
           textAlign: "center",
         }}
@@ -466,7 +467,7 @@ const FundSecondTabs = () => {
           backgroundColor: (theme) => theme.palette.secondary.main,
           textAlign: "center",
           
-          borderRight: "2px solid grey",
+          borderRight: "1px solid grey",
         }}
       >
         {" "}
@@ -506,7 +507,7 @@ const FundSecondTabs = () => {
           backgroundColor: (theme) => theme.palette.secondary.main,
           textAlign: "center",
           
-          borderRadius: "0 10px 10px 0",
+          borderRadius: "0 1px 1px 0",
         }}
       >
         {" "}

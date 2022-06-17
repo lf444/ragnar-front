@@ -9,6 +9,7 @@ interface TabPanelProps {
   value: number;
 }
 
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -72,7 +73,7 @@ export default function RGNTableLock() {
       <TabPanel value={value} index={0}>
       <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={"RGN"} display="deposit" />
+            <CustomDisplay poolName={"RGN"} display="Deposit" />
           </Grid>
           <Grid
             item
@@ -174,7 +175,7 @@ export default function RGNTableLock() {
       <TabPanel value={value} index={2}>
         <Typography sx={{ fontSize: "14px" }}>
           {" "}
-          RGN Contract:{"    "}
+          Pools Contract:{"    "}
           <a
             href={`https://snowtrace.io/address/0x3bc40d4307cd946157447cd55d70ee7495ba6140`}
           >
@@ -183,9 +184,9 @@ export default function RGNTableLock() {
         </Typography>
         <Typography sx={{ fontSize: "14px" }}>
           {" "}
-          Staking Contract:{"    "}
+          Rgn Contract:{"    "}
           <a
-            href={`https://snowtrace.io/address/0x3bc40d4307cd946157447cd55d70ee7495ba6140`}
+            href={`https://snowtrace.io/address/0x2bdCC0de6bE1f7D2ee689a0342D76F52E8EFABa3`}
           >
             {"0x3bc40d4307cd946157447cd55d70ee7495ba6140"}
           </a>
