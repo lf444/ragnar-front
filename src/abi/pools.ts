@@ -2,11 +2,7 @@ import rgn from "../assets/poolsImages/rgn.png";
 import curve from "../assets/poolsImages/curve.png";
 import yeti from "../assets/poolsImages/yeti.png";
 import yusd from "../assets/poolsImages/yusd.png";
-import { contractAddress } from './address';
-import { useState, useEffect } from 'react';
-import axios from "axios";
-import { ethers } from 'ethers';
-import masterchefABI from './contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json'
+
 
 
 
