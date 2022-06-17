@@ -1,8 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import { ethers } from "ethers";
-import masterchefABI from "../../abi/MasterChefRGN.json";
+import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+import mainstakingABI from "../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import rgnABI from "../../abi/contracts/Tokens/RGN.sol/RGN.json"
 import { contractAddress } from "../../abi/address";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 // import vejoestackingABI from "../../abi/vejoestking.json"
 
 const Funds = () => {
@@ -33,21 +36,76 @@ const FundsFirstTabs = () => {
   const [deposit, setDeposit] = useState(0);
   const [reward, setReward] = useState(0);
   const [ratio, setRatio] = useState(1);
-  async function fetchData() {
+ 
+
+  useEffect(() => {
+    fetchMyDeposit();
+    fetchMyReward();
+  }, [])
+
+
+  async function getPrice(tokenID: string): Promise<number> {
+    return axios
+      .get(`https://api.coingecko.com/api/v3/coins/${tokenID}`)
+      .then((response) => {
+        return response.data.market_data.current_price.usd;
+      });
+  }
+
+  async function fetchMyDeposit() {
     try {
       if (window.ethereum) {
+        let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
-          contractAddress.masterchef,
+          contractAddress.masterchefAddress,
           masterchefABI.abi,
           signer
         );
+        const priceYusd = await getPrice("yusd-stablecoin");
+        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceLpCurve = 1;
+        const priceRGN = 0.3;
+        const myDepositYUSD = await masterchef.depositInfo(contractAddress.fakeYusdAddress, String(accounts)) * priceYusd;
+        const myDepositRgnYeti = await masterchef.depositInfo(contractAddress.rgnYetiAddress, String(accounts)) * priceRgnYeti;
+        const myDepositLpCurve = await masterchef.depositInfo(contractAddress.fakeLpCurveAddress, String(accounts)) * priceLpCurve;
+        const myDepositRGN = await masterchef.depositInfo(contractAddress.rgnAddress, String(accounts)) * priceRGN;
+        setDeposit((myDepositYUSD + myDepositLpCurve + myDepositRgnYeti + myDepositRGN) / 10**18);  
       }
     } catch (err: any) {
       console.log(err.message);
     }
   }
+
+  async function fetchMyReward() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceRGN = 0.3;
+        const myRewardYUSD = await masterchef.pendingTokens(contractAddress.fakeYusdAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardRgnYeti = await masterchef.pendingTokens(contractAddress.rgnYetiAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardLpCurve = await masterchef.pendingTokens(contractAddress.fakeLpCurveAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardRGN = await masterchef.pendingTokens(contractAddress.rgnAddress, String(accounts), contractAddress.yetiAddres);
+        const myTotalReward = ((Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardYUSD.pendingRGN) * priceRGN / 10**18) + 
+        (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRgnYeti.pendingRGN) * priceRGN / 10**18) + 
+        (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardLpCurve.pendingRGN) * priceRGN / 10**18) + 
+        (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRGN.pendingRGN) * priceRGN / 10**18))
+        setReward(myTotalReward)  
+      }
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  }
+
 
   return (
     <Grid
@@ -99,7 +157,7 @@ const FundsFirstTabs = () => {
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${deposit}USD
+            ${Math.round(deposit)}USD
           </Typography>
         </Grid>
       </Grid>
@@ -146,7 +204,7 @@ const FundsFirstTabs = () => {
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${reward}USD
+            ${Math.round(reward)}USD
           </Typography>
         </Grid>
       </Grid>
@@ -178,7 +236,7 @@ const FundsFirstTabs = () => {
               color: (theme) => theme.palette.text.secondary,
             }}
           >
-            raJOE RATIO
+            rgnYETI RATIO
           </Typography>
           <Typography
             sx={{
@@ -202,26 +260,80 @@ const FundsFirstTabs = () => {
 
 const FundSecondTabs = () => {
   const [totalValueLocked, setTotalValueLocked] = useState(0);
-  const [totalRJOE, setTotalRJOE] = useState(0);
-  const [totalRAJOE, setTotalRAJOE] = useState(0);
+  const [totalYeti, setTotalYeti] = useState(0);
+  const [totalVeYeti, setTotalVeYeti] = useState(0);
   const [totalRGN, setTotalRGN] = useState(0);
   const [totalRGNLocked, setTotalRGNLocked] = useState(0);
 
-  async function fetchData() {
+  useEffect(() => {
+    TVL();
+    fetchDATA();
+  }, [])
+
+
+  async function getPrice(tokenID: string): Promise<number> {
+    return axios
+      .get(`https://api.coingecko.com/api/v3/coins/${tokenID}`)
+      .then((response) => {
+        return response.data.market_data.current_price.usd;
+      });
+  }
+
+  async function TVL() {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
-          contractAddress.masterchef,
+          contractAddress.masterchefAddress,
           masterchefABI.abi,
           signer
         );
+        const priceYusd = await getPrice("yusd-stablecoin");
+        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceLpCurve = 1;
+        const priceRGN = 0.3;
+        const TVLYUSD = await masterchef.getPoolInfo(contractAddress.fakeYusdAddress);
+        const TVLRgnYeti = await masterchef.getPoolInfo(contractAddress.rgnYetiAddress);
+        const TVLLpCurve = await masterchef.getPoolInfo(contractAddress.fakeLpCurveAddress);
+        const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
+        setTotalValueLocked((Number(TVLYUSD.sizeOfPool) * priceYusd / 10**18) + (Number(TVLRgnYeti.sizeOfPool) * priceRgnYeti / 10**18) +
+        (Number(TVLLpCurve.sizeOfPool) * priceLpCurve / 10**18) + (Number(TVLRGN.sizeOfPool) * priceRGN / 10**18));
       }
     } catch (err: any) {
       console.log(err.message);
     }
-  }
+  }  
+
+  async function fetchDATA() {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const mainstaking = new ethers.Contract(
+          contractAddress.mainstakingAddress,
+          mainstakingABI.abi,
+          signer
+        );
+        const rgn = new ethers.Contract(
+          contractAddress.rgnAddress,
+          rgnABI.abi,
+          signer
+        );
+        const getStackedYETI = await mainstaking.getStakedYeti();
+        const getStackedVeYeti = await mainstaking.getVeYETI();
+        const rgnSupply = await rgn.totalSupply();
+        //const rgnLocked = await
+        setTotalYeti(Number(getStackedYETI) / 10**18);
+        setTotalVeYeti(Number(getStackedVeYeti) / 10**18);
+        setTotalRGN(Number(rgnSupply) / 10**18);
+        //setTotalRGNLocked(Number(rgnLocked) / 10**18)
+      }
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  }  
+
 
   return (
     <Grid container direction="row">
@@ -264,7 +376,7 @@ const FundSecondTabs = () => {
             color: "#bfcbd2",
           }}
         >
-          {totalValueLocked}
+          ${Math.round(totalValueLocked)}USD
         </Typography>
       </Grid>
       <Grid
@@ -291,7 +403,7 @@ const FundSecondTabs = () => {
           }}
         >
           {" "}
-          TOTAL PTP CONVERTED
+          TOTAL YETI CONVERTED
         </Typography>
         <Typography
           sx={{
@@ -305,7 +417,7 @@ const FundSecondTabs = () => {
             color: "#bfcbd2",
           }}
         >
-          {totalRJOE}
+          {totalYeti}
         </Typography>
       </Grid>
       <Grid
@@ -331,7 +443,7 @@ const FundSecondTabs = () => {
             color: (theme) => theme.palette.text.secondary,
           }}
         >
-          VECTOR vePTP BALANCE
+          veYeti BALANCE
         </Typography>
         <Typography
           sx={{
@@ -345,7 +457,7 @@ const FundSecondTabs = () => {
             color:  (theme) => theme.palette.text.primary,
           }}
         >
-          {totalRAJOE}
+          {totalVeYeti}
         </Typography>
       </Grid>
       <Grid
@@ -371,7 +483,7 @@ const FundSecondTabs = () => {
             color: (theme) => theme.palette.text.secondary,
           }}
         >
-          VTX CIRCUL SUPPLY
+          RGN CIRCUL SUPPLY
         </Typography>
         <Typography
           sx={{
@@ -412,7 +524,7 @@ const FundSecondTabs = () => {
           }}
         >
           {" "}
-          TOTAL VTX LOCKED
+          TOTAL RGN LOCKED
         </Typography>
         <Typography
           sx={{

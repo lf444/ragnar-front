@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@mui/material';
 import { ethers } from 'ethers';
-import masterchefABI from '../../abi/MasterChefRGN.json';
+import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
 import { contractAddress } from '../../abi/address';
 import { useState } from 'react';
 // import vejoestackingABI from "../../abi/vejoestking.json"
@@ -71,7 +71,7 @@ const FundsFirstTabs = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
-          contractAddress.masterchef,
+          contractAddress.masterchefAddress,
           masterchefABI.abi,
           signer
         );
