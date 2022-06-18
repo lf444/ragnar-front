@@ -1,6 +1,5 @@
 import { Box, Typography, Tabs, Tab, Grid, Button } from "@mui/material";
-import React from "react";
-import { Pools } from "../../../abi/pools";
+import { FunctionComponent, useState } from "react";
 import CustomInput from "../../shared/CustomInput";
 import CustomDisplay from "../../shared/CustomDisplay";
 interface TabPanelProps {
@@ -37,13 +36,16 @@ function a11yProps(index: number) {
 }
 
 interface StableTabProps {
-  pool: Pools;
+  addressPool: string;
+  pairAddress: string;
+  pairName: string;
 }
 
-export default function StableTab(props: StableTabProps) {
-  const { pool } = props;
+const StableTab: FunctionComponent<StableTabProps> = ({
+  addressPool, pairAddress, pairName
+}) => {
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -91,7 +93,7 @@ export default function StableTab(props: StableTabProps) {
       <TabPanel value={value} index={0}>
         <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={pool.pairName1} display="Deposit" />
+            <CustomDisplay poolName={pairName} display="Deposit" />
           </Grid>
           <Grid
             item
@@ -111,7 +113,7 @@ export default function StableTab(props: StableTabProps) {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={pool.pairName1} />
+            <CustomInput poolName={pairName} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
@@ -153,7 +155,7 @@ export default function StableTab(props: StableTabProps) {
       <TabPanel value={value} index={1}>
         <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={pool.pairName1} display="Withdraw" />
+            <CustomDisplay poolName={pairName} display="Withdraw" />
           </Grid>
           <Grid
             item
@@ -170,7 +172,7 @@ export default function StableTab(props: StableTabProps) {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={pool.pairName1} />
+            <CustomInput poolName={pairName} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
@@ -197,18 +199,20 @@ export default function StableTab(props: StableTabProps) {
         <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary }}>
           {" "}
           Pools Contract:{"    "}
-          <a href={`https://snowtrace.io/address/${pool.addressPool}`}>
-            {pool.addressPool}
+          <a href={`https://snowtrace.io/address/${addressPool}`}>
+            {addressPool}
           </a>
         </Typography>
         <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary }}>
           {" "}
-          {pool.pairName1} Contract:{"    "}
-          <a href={`https://snowtrace.io/address/${pool.pairAddress1}`}>
-            {pool.pairAddress1}
+          {pairName} Contract:{"    "}
+          <a href={`https://snowtrace.io/address/${pairAddress}`}>
+            {pairAddress}
           </a>
         </Typography>
       </TabPanel>
     </Box>
   );
 }
+
+export default StableTab;

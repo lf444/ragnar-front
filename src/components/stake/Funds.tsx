@@ -34,7 +34,6 @@ export default Funds;
 const FundsFirstTabs = () => {
   const [deposit, setDeposit] = useState(0);
   const [reward, setReward] = useState(0);
-  const [ratio, setRatio] = useState(1);
   const [valuelocked, setTotalValueLocked] = useState(0);
  
 

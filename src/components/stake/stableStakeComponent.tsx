@@ -3,20 +3,22 @@ import { FunctionComponent, useState } from "react";
 import Fade from "@mui/material/Fade";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import StableTab from "./tab/stableTab";
-import { Pools } from "../../abi/pools";
 import theme from "../../theme";
 
 interface StableStakeComponentProps {
-  pool: Pools;
+  pairName1: string;
+  logo1: string;
+  apr: number;
+  stacked: number;
+  tvl: number;
+  claimable: number;
+  addressPool: string;
+  pairAddress: string;
 }
 
 const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
-  pool,
+  pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress
 }) => {
-  const [aprValue, setAprValue] = useState(0);
-  const [rajoeValue, setRajoeValue] = useState(0);
-  const [tvlValue, setTvlValue] = useState(0);
-  const [claimable, setClaimable] = useState(0);
   const [open, setOpen] = useState<boolean>(false);
   const style = {
     transform: open ? "" : "rotate(90deg)",
@@ -72,7 +74,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             },
           }}
         >
-          <img height="35px" style={{ position: "relative", left: "-0.75em" }} src={pool.logo1} alt={`${pool.logo1} Logo`} />
+          <img height="35px" style={{ position: "relative", left: "-0.75em" }} src={logo1} alt={`${logo1} Logo`} />
           <Typography
             sx={{
               fontSize: { xs: "0.5em", sm: "1.25em" },
@@ -81,7 +83,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             }}
           >
             {" "}
-            {pool.pairName1}
+            {pairName1}
           </Typography>
         </Grid>
         <Grid item xs={2}>
@@ -102,7 +104,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {aprValue}
+            {apr}%
           </Typography>
         </Grid>
         <Grid item xs={2}>
@@ -114,7 +116,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             }}
           >
             {" "}
-            {pool.pairName1}
+            Staked {pairName1}
           </Typography>
           <Typography
             sx={{
@@ -123,7 +125,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {rajoeValue}
+            {stacked}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -144,7 +146,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {tvlValue}
+            ${tvl}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -177,14 +179,15 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
           <LinearScaleIcon style={style} />
         </Grid>
       </Grid>
-
+      
       {open && (
         <Fade in={open}>
           <Box sx={{ color: "#000000" }}>
-            <StableTab pool={pool} />
+            <StableTab addressPool={addressPool} pairAddress={pairAddress} pairName={pairName1} />
           </Box>
         </Fade>
       )}
+
     </Box>
   );
 };

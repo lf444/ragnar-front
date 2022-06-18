@@ -1,12 +1,25 @@
 import { Grid } from "@mui/material";
-import { Pools } from "../../abi/pools";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import StableStakeComponent from "./stableStakeComponent";
+import axios from 'axios';
+import ethers from 'ethers';
+import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json'
+import { contractAddress } from '../../abi/address';
+
 
 type PairTabProps = {
-  pools: Pools[];
+  pairName1: string;
+  logo1: string;
+  apr: number;
+  stacked: number;
+  tvl: number;
+  claimable: number;
+  addressPool: string;
+  pairAddress: string;
 };
-const PairTab: FunctionComponent<PairTabProps> = ({ pools }) => {
+
+const PairTab: FunctionComponent<PairTabProps> = ({ pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress }) => {
+
   return (
     <>
       <Grid
@@ -18,9 +31,9 @@ const PairTab: FunctionComponent<PairTabProps> = ({ pools }) => {
           height: "100%",
         }}
       >
-        {pools.map((pool) => {
-          return <StableStakeComponent pool={pool} />;
-        })}
+        <StableStakeComponent pairName1={pairName1} logo1={logo1} 
+        apr={apr} stacked={stacked} 
+        tvl={tvl} claimable={claimable} addressPool={addressPool} pairAddress={pairAddress} />
       </Grid>
     </>
   );
