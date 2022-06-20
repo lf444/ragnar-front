@@ -1,10 +1,7 @@
 import { Grid } from "@mui/material";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent } from "react";
 import StableStakeComponent from "./stableStakeComponent";
-import axios from 'axios';
-import ethers from 'ethers';
-import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json'
-import { contractAddress } from '../../abi/address';
+
 
 
 type PairTabProps = {

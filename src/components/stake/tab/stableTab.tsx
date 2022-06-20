@@ -39,6 +39,7 @@ interface StableTabProps {
   addressPool: string;
   pairAddress: string;
   pairName: string;
+
 }
 
 const StableTab: FunctionComponent<StableTabProps> = ({

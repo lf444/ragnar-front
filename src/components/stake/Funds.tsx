@@ -5,7 +5,8 @@ import mainstakingABI from "../../abi/contracts/MainProtocol/MainStaking.sol/Mai
 import rgnABI from "../../abi/contracts/Tokens/RGN.sol/RGN.json"
 import { contractAddress } from "../../abi/address";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { coinGeckoService } from "../../services/coinGeckoService";
+import { TOKEN_ID } from "../../utils/constance";
 
 const Funds = () => {
   return (
@@ -44,14 +45,6 @@ const FundsFirstTabs = () => {
   }, [])
 
 
-  async function getPrice(tokenID: string): Promise<number> {
-    return axios
-      .get(`https://api.coingecko.com/api/v3/coins/${tokenID}`)
-      .then((response) => {
-        return response.data.market_data.current_price.usd;
-      });
-  }
-
   async function fetchMyDeposit() {
     try {
       if (window.ethereum) {
@@ -63,8 +56,8 @@ const FundsFirstTabs = () => {
           masterchefABI.abi,
           signer
         );
-        const priceYusd = await getPrice("yusd-stablecoin");
-        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceYusd = await coinGeckoService.getPrice(TOKEN_ID.yusd);
+        const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
         const priceLpCurve = 1;
         const priceRGN = 0.3;
         const myDepositYUSD = await masterchef.depositInfo(contractAddress.fakeYusdAddress, String(accounts)) * priceYusd;
@@ -89,7 +82,7 @@ const FundsFirstTabs = () => {
           masterchefABI.abi,
           signer
         );
-        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
         const priceRGN = 0.3;
         const myRewardYUSD = await masterchef.pendingTokens(contractAddress.fakeYusdAddress, String(accounts), contractAddress.yetiAddres);
         const myRewardRgnYeti = await masterchef.pendingTokens(contractAddress.rgnYetiAddress, String(accounts), contractAddress.yetiAddres);
@@ -116,8 +109,8 @@ const FundsFirstTabs = () => {
           masterchefABI.abi,
           signer
         );
-        const priceYusd = await getPrice("yusd-stablecoin");
-        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceYusd = await coinGeckoService.getPrice(TOKEN_ID.yusd);
+        const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
         const priceLpCurve = 1;
         const priceRGN = 0.3;
         const TVLYUSD = await masterchef.getPoolInfo(contractAddress.fakeYusdAddress);
@@ -184,7 +177,7 @@ const FundsFirstTabs = () => {
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${Math.round(deposit)}USD
+            ${Math.round(deposit)} USD
           </Typography>
         </Grid>
       </Grid>
@@ -231,7 +224,7 @@ const FundsFirstTabs = () => {
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${Math.round(reward)}USD
+            ${Math.round(reward)} USD
           </Typography>
         </Grid>
       </Grid>
@@ -277,7 +270,7 @@ const FundsFirstTabs = () => {
               fontWeight: "bold",
             }}
           >
-            ${Math.round(valuelocked)}USD
+            ${Math.round(valuelocked)} USD
           </Typography>
         </Grid>
       </Grid>
@@ -296,13 +289,6 @@ const FundSecondTabs = () => {
   }, [])
 
 
-  async function getPrice(tokenID: string): Promise<number> {
-    return axios
-      .get(`https://api.coingecko.com/api/v3/coins/${tokenID}`)
-      .then((response) => {
-        return response.data.market_data.current_price.usd;
-      });
-  }
 
   async function fetchDATA() {
     try {

@@ -16,8 +16,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ConnectWalletButton from './shared/ConnectWalletButton';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ConnectWallet from './wallet/ConnectWallet';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { coinGeckoService } from '../services/coinGeckoService';
+import { TOKEN_ID } from "../utils/constance";
+
 
 const Navbar = () => {
   const [priceYeti, setPriceYeti] = useState(0);
@@ -37,19 +39,11 @@ const Navbar = () => {
     Price();
   }, [])
 
-  async function getPrice(tokenID: string): Promise<number> {
-    return axios
-      .get(`https://api.coingecko.com/api/v3/coins/${tokenID}`)
-      .then((response) => {
-        return response.data.market_data.current_price.usd;
-      });
-
-    }
     
     async function Price() {
-      setPriceYeti(await getPrice("yeti-finance"));
-      setPriceYusd(await getPrice("yusd-stablecoin"));
-      setPriceRgn(await getPrice("yeti-finance"));
+      setPriceYeti(await coinGeckoService.getPrice(TOKEN_ID.yeti));
+      setPriceYusd(await coinGeckoService.getPrice(TOKEN_ID.yusd));
+      setPriceRgn(await coinGeckoService.getPrice(TOKEN_ID.yeti));
     }
 
 
@@ -307,7 +301,7 @@ const Navbar = () => {
                   src={yeti}
                   alt='YETI Logo'
                 />{' '}
-                {priceYeti.toFixed(2)}$
+                {priceYeti.toFixed(3)}$
               </Typography>
             </Grid>
             <Grid item xs={2} sm={1} md={1} lg={1}>

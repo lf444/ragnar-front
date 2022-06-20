@@ -6,5 +6,6 @@ export const contractAddress = {
   yusdAddress: "0x111111111111ed1D73f860F57b2798b683f2d325",
   yetiAddres: "0x77777777777d4554c39223C354A05825b2E8Faa3",
   fakeYusdAddress: "0xcfe53426950562347a6D2B90bE99D98167eac32d",
-  fakeLpCurveAddress : "0x0a26c41eB1D42981aD15d7D593789cC455B7Ae71"
+  fakeLpCurveAddress: "0x0a26c41eB1D42981aD15d7D593789cC455B7Ae71",
+  lpCurveAddress: "0x1da20Ac34187b2d9c74F729B85acB225D3341b25"
 };

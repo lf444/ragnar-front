@@ -4,16 +4,13 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PairTab from './PairTab';
-import { textTransform } from '@mui/system';
 import { contractAddress } from '../../abi/address';
 import { useState, useEffect } from 'react';
-import axios from "axios";
+import { coinGeckoService } from '../../services/coinGeckoService';
 import { ethers } from 'ethers';
 import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json'
-import rgn from '../../assets/poolsImages/rgn.png'
-import curve from '../../assets/poolsImages/curve.png'
-import yeti from '../../assets/poolsImages/yeti.png'
-import yusd from '../../assets/poolsImages/yusd.png'
+import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools'
+import { TOKEN_ID } from "../../utils/constance";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -55,43 +52,100 @@ function a11yProps(index: number) {
 }
 
 export default function StakeStablePoolComponent() {
+  const [myStake, setMyStake] = useState({
+    myYusd: 0,
+    myYeti: 0,
+    myRgn: 0,
+    myLpCurve: 0,
+    tvlYusd: 0,
+    tvlYeti: 0,
+    tvlRgn: 0,
+    tvlLpCurve: 0,
+
+  });
+  const [aprRgn, setAprRgn] = useState({
+    aprYusd: 0,
+    aprYeti: 0,
+    aprRgn: 0,
+    aprLpCurve: 0
+  })
   const [value, setValue] = useState(0);
-  const [myYusd, setMyYusd] = useState(0);
-  const [myYeti, setMyYeti] = useState(0);
-  const [myRgn, setMyRgn] = useState(0);
-  const [myLpCurve, setMyLpCurve] = useState(0);
-  const [tvlYusd, setTvlYusd] = useState(0);
-  const [tvlYeti, setTvlYeti] = useState(0);
-  const [tvlRgn, setTvlRgn] = useState(0);
-  const [tvlLpCurve, setTvlLpCurve] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  const RGN = <PairTab pairName1="Rgn" logo1={rgn} 
-  apr={100} stacked={Math.round(myRgn)} 
-  tvl={Math.round(tvlRgn)} claimable={100} addressPool="0x7969c5eD335650692Bc04293B07F5BF2e7A673C0" pairAddress="0x2bdCC0de6bE1f7D2ee689a0342D76F52E8EFABa3" />
-  const Yeti = <PairTab pairName1="Yeti" logo1={yeti} 
-  apr={100} stacked={Math.round(myYeti)} 
-  tvl={Math.round(tvlYeti)} claimable={100} addressPool="0x7969c5eD335650692Bc04293B07F5BF2e7A673C0" pairAddress="0x77777777777d4554c39223C354A05825b2E8Faa3" />
-  const Yusd = <PairTab pairName1="Yusd" logo1={yusd} 
-  apr={100} stacked={Math.round(myYusd)} 
-  tvl={Math.round(tvlYusd)} claimable={100} addressPool="0x7bc06c482DEAd17c0e297aFbC32f6e63d3846650" pairAddress="0x111111111111ed1D73f860F57b2798b683f2d325" />
-  const CurveLp = <PairTab pairName1="LP Curve" logo1={curve} 
-  apr={100} stacked={Math.round(myLpCurve)} 
-  tvl={Math.round(tvlLpCurve)} claimable={100} addressPool="0x7bc06c482DEAd17c0e297aFbC32f6e63d3846650" pairAddress="0xD8A4AA01D54C8Fdd104EAC28B9C975f0663E75D8" />
+
+  const RGN = <PairTab pairName1="Rgn" logo1={rgnPool.logo} 
+  apr={aprRgn.aprRgn} stacked={Math.round(myStake.myRgn)} 
+  tvl={Math.round(myStake.tvlRgn)} claimable={100} 
+  addressPool={rgnPool.addressPool} pairAddress={rgnPool.pairAddress}
+   />
+
+  const Yeti = <PairTab pairName1="Yeti" logo1={YetiPool.logo} 
+  apr={aprRgn.aprYeti} stacked={Math.round(myStake.myYeti)} 
+  tvl={Math.round(myStake.tvlYeti)} claimable={100} 
+  addressPool={YetiPool.addressPool} pairAddress={YetiPool.pairAddress}
+   />
+
+  const Yusd = <PairTab pairName1="Yusd" logo1={YusdPool.logo} 
+  apr={aprRgn.aprYusd} stacked={Number(myStake.myYusd)} 
+  tvl={Math.round(myStake.tvlYusd)} claimable={100} 
+  addressPool={YusdPool.addressPool} pairAddress={YusdPool.pairAddress}
+   />
+  
+  const CurveLp = <PairTab pairName1="LP Curve" logo1={LpCurvePool.logo} 
+  apr={aprRgn.aprLpCurve} stacked={Math.round(myStake.myLpCurve)} 
+  tvl={Math.round(myStake.tvlLpCurve)} claimable={100} 
+  addressPool={LpCurvePool.addressPool} pairAddress={LpCurvePool.pairAddress}
+   />
 
   useEffect(() => {
     fetchMyDeposit();
     fetchTVL();
+    fetchAprRGN();
   }, [])
 
-async function getPrice(tokenID: string): Promise<number> {
-    return axios
-      .get(`https://api.coingecko.com/api/v3/coins/${tokenID}`)
-      .then((response) => {
-        return response.data.market_data.current_price.usd;
-      });
+/*
+
+Calculer l'apr : 
+
+APR Pool(in %) = (Total valeur des rewards token/Total valeur des staked token)*100
+
+
+Total valeur des rewards token = Nombre de reward token * Prix d'un reward token
+Nombre de reward token = Token par block * le nombre de block par an
+
+Total valeur des staked token = Nombre de token stake * Prix d'un token stake
+
+*/
+
+async function fetchAprRGN() {
+  try {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const masterchef = new ethers.Contract(
+        contractAddress.masterchefAddress,
+        masterchefABI.abi,
+        signer
+      );
+      const rgnPerBlock = await masterchef.rgnPerSec();
+      const allocPointYusd = await masterchef.getPoolInfo(contractAddress.fakeYusdAddress);
+      const allocPointYeti = await masterchef.getPoolInfo(contractAddress.rgnYetiAddress);
+      const allocPointLpCurve = await masterchef.getPoolInfo(contractAddress.fakeLpCurveAddress);
+      const allocPointRgn = await masterchef.getPoolInfo(contractAddress.rgnAddress);
+      const allocPointTotal = await masterchef.totalAllocPoint();
+      const rgnPerBlockYusd = allocPointYusd.allocpoint * rgnPerBlock / allocPointTotal; 
+      const rgnPerBlockYeti = allocPointYeti.allocpoint * rgnPerBlock / allocPointTotal; 
+      const rgnPerBlockLpCurve = allocPointLpCurve.allocpoint * rgnPerBlock / allocPointTotal; 
+      const rgnPerBlockRgn = allocPointRgn.allocpoint * rgnPerBlock / allocPointTotal; 
+      setAprRgn({...aprRgn, aprYusd: (rgnPerBlockYusd * 28800 * 365 / allocPointYusd.sizeOfPool) * 100, aprLpCurve: ((rgnPerBlockLpCurve * 28800 * 365) / allocPointLpCurve.sizeOfPool) * 100,
+    aprRgn: ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100, aprYeti: ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100})
+    }
+  } catch (err: any) {
+    console.log(err.message);
   }
+}
+
 
   async function fetchMyDeposit() {
     try {
@@ -108,10 +162,7 @@ async function getPrice(tokenID: string): Promise<number> {
         const myDepositYeti = await masterchef.depositInfo(contractAddress.rgnYetiAddress, String(accounts));
         const myDepositRgn = await masterchef.depositInfo(contractAddress.rgnAddress, String(accounts));
         const myDepositLpCurve = await masterchef.depositInfo(contractAddress.fakeLpCurveAddress, String(accounts));
-        setMyYusd(Number(myDepositYUSD) / 10**18);  
-        setMyYeti(Number(myDepositYeti) / 10**18);  
-        setMyRgn(Number(myDepositRgn) / 10**18);  
-        setMyLpCurve(Number(myDepositLpCurve) / 10**18);  
+        setMyStake({...myStake, myYusd: myDepositYUSD, myYeti: myDepositYeti, myRgn: myDepositRgn, myLpCurve: myDepositLpCurve});
       }
     } catch (err: any) {
       console.log(err.message);
@@ -128,26 +179,24 @@ async function getPrice(tokenID: string): Promise<number> {
           masterchefABI.abi,
           signer
         );
-        const priceYusd = await getPrice("yusd-stablecoin");
-        const priceRgnYeti = await getPrice("yeti-finance");
+        const priceYusd = await coinGeckoService.getPrice(TOKEN_ID.yusd);
+        const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
         const priceLpCurve = 1;
         const priceRGN = 0.3;
         const TVLYUSD = await masterchef.getPoolInfo(contractAddress.fakeYusdAddress);
         const TVLRgnYeti = await masterchef.getPoolInfo(contractAddress.rgnYetiAddress);
         const TVLLpCurve = await masterchef.getPoolInfo(contractAddress.fakeLpCurveAddress);
         const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
-        setTvlYusd((Number(TVLYUSD.sizeOfPool) / 10**18) * priceYusd);  
-        setTvlYeti((Number(TVLRgnYeti.sizeOfPool) / 10**18) * priceRgnYeti);  
-        setTvlRgn((Number(TVLLpCurve.sizeOfPool) / 10**18) * priceRGN);  
-        setTvlLpCurve((Number(TVLRGN.sizeOfPool) / 10**18) * priceLpCurve);  
+        setMyStake({...myStake, tvlYusd: TVLYUSD.sizeOfPool * priceYusd / 10**18, 
+        tvlYeti: TVLRgnYeti.sizeOfPool * priceRgnYeti / 10**18, 
+        tvlRgn: TVLRGN.sizeOfPool * priceRGN / 10**18, 
+        tvlLpCurve: TVLLpCurve.sizeOfPool * priceLpCurve / 10**18});
       }
     } catch (err: any) {
       console.log(err.message);
     }
   }
-
-  
-
+ 
   return (
     <Box
       sx={{

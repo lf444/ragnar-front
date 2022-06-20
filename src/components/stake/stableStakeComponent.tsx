@@ -14,6 +14,7 @@ interface StableStakeComponentProps {
   claimable: number;
   addressPool: string;
   pairAddress: string;
+
 }
 
 const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
@@ -125,7 +126,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {stacked}
+            {stacked} {pairName1}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
