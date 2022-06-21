@@ -10,7 +10,6 @@ const RagnarRoute = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // check if user is first time lauching the app and redirect to home
     if (location.pathname === '/') {
       navigate('/stake');
     }
