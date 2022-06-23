@@ -1,4 +1,4 @@
-import { Box, Typography, Tabs, Tab, Grid, Button } from "@mui/material";
+import { Box, Typography, Tabs, Tab, Grid, Button, Link } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import CustomInput from "../../shared/CustomInput";
 import CustomDisplay from "../../shared/CustomDisplay";
@@ -39,11 +39,12 @@ interface StableTabProps {
   addressPool: string;
   pairAddress: string;
   pairName: string;
+  info: string;
 
 }
 
 const StableTab: FunctionComponent<StableTabProps> = ({
-  addressPool, pairAddress, pairName
+  addressPool, pairAddress, pairName, info
 }) => {
 
   const [value, setValue] = useState(0);
@@ -57,44 +58,32 @@ const StableTab: FunctionComponent<StableTabProps> = ({
         <Tabs
           value={value}
           onChange={handleChange}
+          variant="fullWidth"
+          centered
           aria-label="basic tabs example"
+          
         >
-          <Tab
-            label="Deposit"
-            {...a11yProps(0)}
-            style={{
-              color: value === 0 ?"#ddeaf2":"#929ea6",
-              fontWeight:"bold",
+          <Tab label="Stake" {...a11yProps(0)} style={{
+            color: value === 0 ?"#ddeaf2":"#929ea6",
               textTransform: "none",
-            }}
-            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
-          />
-          <Tab
-            label="Withdraw"
-            {...a11yProps(1)}
-            style={{
-              color: value === 1 ?"#ddeaf2":"#929ea6",
-              fontWeight:"bold",
+            }} />
+          <Tab label="Unstake" {...a11yProps(1)} style={{
+            color: value === 1 ?"#ddeaf2":"#929ea6",
               textTransform: "none",
-            }}
-            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
-          />
-          <Tab
-            label="Info"
-            style={{
-              color: value === 2 ?"#ddeaf2":"#929ea6",
-              fontWeight:"bold",
+            }} />
+          <Tab label="INFO" {...a11yProps(2)} style={{
+            color: value === 2 ?"#ddeaf2":"#929ea6",
               textTransform: "none",
-            }}
-            {...a11yProps(2)}
-            sx={{ fontSize: { xs: "0.60em", sm: "1em" } }}
-          />
+            }} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
+      <Typography sx={{ fontSize: { xs: "0.65em", sm: "0.9em" }, color: (theme) => theme.palette.text.primary, marginBottom: "20px", marginTop: "20px", fontWeight: "bold" }}>
+          {info}
+       </Typography>
         <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={pairName} display="Deposit" />
+            <CustomDisplay poolName={pairName} display="Stake" />
           </Grid>
           <Grid
             item
@@ -104,51 +93,25 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             alignItems="center"
             textAlign="center"
           >
-            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary }}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary, fontWeight: "bold" }}>
               {" "}
               1
             </Grid>
-            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary }}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary, fontWeight: "bold" }}>
               2
             </Grid>
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={pairName} />
+            <CustomInput poolName={"YETI"} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button
-              variant="contained"
-              sx={{
-                width: "45%",
-                height: "80%",
-                fontSize: { xs: "0.95em", sm: "0.95em" },
-                borderRadius:"10px",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                textTransform: "none",
-                boxShadow: "none",
-              }}
-            >
-              Approve
+            <Button variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+              APPROVE
             </Button>
-            <Button
-              variant="contained"
-              sx={{
-                width: "45%",
-                height: "80%",
-                fontSize: { xs: "0.95em", sm: "0.95em" },
-                borderRadius:"10px",
-                fontWeight: "bold",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                textTransform: "none",
-                boxShadow: "none",
-              }}
-            >
-              Deposit
+            <Button variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
+              DEPOSIT
             </Button>
           </Grid>
         </Grid>
@@ -156,7 +119,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       <TabPanel value={value} index={1}>
         <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={pairName} display="Withdraw" />
+            <CustomDisplay poolName={"RGNYETI"} display="Unstake" />
           </Grid>
           <Grid
             item
@@ -173,43 +136,44 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={pairName} />
+            <CustomInput poolName={"YETI"} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button
-              variant="contained"
-              sx={{
-                width: "45%",
-                height: "80%",
-                fontSize: { xs: "0.95em", sm: "0.95em" },
-                borderRadius:"10px",
-                fontWeight: "bold",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                textTransform: "none",
-                boxShadow: "none",
-              }}
-            >
-              Withdraw
+            <Button variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+              WITHDRAW
             </Button>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary }}>
+        <Typography sx={{ 
+          fontSize: "14px", 
+          color: (theme) => theme.palette.text.primary,
+          marginBottom: "10px",
+          fontWeight: "bold"
+          }}>
           {" "}
-          Pools Contract:{"    "}
-          <a href={`https://snowtrace.io/address/${addressPool}`}>
+           {pairName} Contract: {"    "}
+          <Link sx={{color: (theme) => theme.palette.text.secondary, textDecoration: 'none', fontWeight: "normal"}}
+            href={`https://snowtrace.io/address/${pairAddress}`}
+          >
             {addressPool}
-          </a>
+          </Link>
         </Typography>
-        <Typography sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary }}>
+        <Typography sx={{ 
+          fontSize: "14px", 
+          color: (theme) => theme.palette.text.primary,
+          marginBottom: "10px",
+          fontWeight: "bold",
+          }}>
           {" "}
-          {pairName} Contract:{"    "}
-          <a href={`https://snowtrace.io/address/${pairAddress}`}>
-            {pairAddress}
-          </a>
+          Staking Contract: {"    "}
+          <Link sx={{color: (theme) => theme.palette.text.secondary, textDecoration: 'none', fontWeight: "normal"}}   
+          href={`https://snowtrace.io/address/${addressPool}`}
+          >
+            {addressPool}
+          </Link>
         </Typography>
       </TabPanel>
     </Box>

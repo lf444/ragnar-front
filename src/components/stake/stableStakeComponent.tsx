@@ -4,6 +4,7 @@ import Fade from "@mui/material/Fade";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import StableTab from "./tab/stableTab";
 import theme from "../../theme";
+import RgnYetiStable from './tab/RgnYetiTable';
 
 interface StableStakeComponentProps {
   pairName1: string;
@@ -14,11 +15,13 @@ interface StableStakeComponentProps {
   claimable: number;
   addressPool: string;
   pairAddress: string;
+  rgn: boolean;
+  info: string;
 
 }
 
 const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
-  pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress
+  pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress, rgn, info
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const style = {
@@ -184,7 +187,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
       {open && (
         <Fade in={open}>
           <Box sx={{ color: "#000000" }}>
-            <StableTab addressPool={addressPool} pairAddress={pairAddress} pairName={pairName1} />
+            {rgn ? <RgnYetiStable /> : <StableTab addressPool={addressPool} pairAddress={pairAddress} pairName={pairName1} info={info} />}
           </Box>
         </Fade>
       )}

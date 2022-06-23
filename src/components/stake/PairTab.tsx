@@ -13,9 +13,11 @@ type PairTabProps = {
   claimable: number;
   addressPool: string;
   pairAddress: string;
+  rgn: boolean;
+  info: string;
 };
 
-const PairTab: FunctionComponent<PairTabProps> = ({ pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress }) => {
+const PairTab: FunctionComponent<PairTabProps> = ({ pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress, rgn, info }) => {
 
   return (
     <>
@@ -30,7 +32,7 @@ const PairTab: FunctionComponent<PairTabProps> = ({ pairName1, logo1, apr, stack
       >
         <StableStakeComponent pairName1={pairName1} logo1={logo1} 
         apr={apr} stacked={stacked} 
-        tvl={tvl} claimable={claimable} addressPool={addressPool} pairAddress={pairAddress} />
+        tvl={tvl} claimable={claimable} addressPool={addressPool} pairAddress={pairAddress} rgn={rgn} info={info} />
       </Grid>
     </>
   );

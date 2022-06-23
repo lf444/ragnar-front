@@ -2,14 +2,13 @@ import { Box, Grid, Typography } from '@mui/material';
 import { FunctionComponent, useState } from 'react';
 import Fade from '@mui/material/Fade';
 import LinearScaleIcon from '@mui/icons-material/LinearScale';
-import JoeTable from './tab/JoeTable';
 import RGNTable from './tab/RGNTable';
 
 interface StakeMainPoolComponenttProps {
   pairName1: string;
   addressPool: string;
   logo1: string;
-  type: 'rgn' | 'joe';
+  type: 'rgn' | 'yeti';
   openForScreen: boolean;
 }
 
@@ -17,7 +16,7 @@ const StakeMainPoolComponent: FunctionComponent<
   StakeMainPoolComponenttProps
 > = ({ pairName1, addressPool, logo1, type, openForScreen }) => {
   const [aprValue, setAprValue] = useState(0);
-  const [rajoeValue, setRajoeValue] = useState(0);
+  const [rgnyetiValue, setrgnyetiValue] = useState(0);
   const [tvlValue, setTvlValue] = useState(0);
   const [claimable, setClaimable] = useState(0);
   const [open, setOpen] = useState<boolean>(openForScreen);
@@ -47,22 +46,22 @@ const StakeMainPoolComponent: FunctionComponent<
         >
           <img height='45px' src={logo1} alt={`${logo1} Logo`} />
         </Grid>
-        <Grid item xs={2} sx={{ color:  (theme) => theme.palette.text.secondary}}>
-          {pairName1}
+        <Grid item xs={2} sx={{ color:  (theme) => theme.palette.text.primary, fontWeight: 'bold', fontSize: {xs: "0.75em", sm: "0.75em", md:'1em'}}}>
+          Lock RGN in a NFT
         </Grid>
         <Grid item xs={2}>
           <Typography sx={{ fontSize: '11px', marginTop: '5px', color:  (theme) => theme.palette.text.secondary, }}>
             {' '}
             APR
           </Typography>
-          <Typography sx={{ fontWeight: 'bold' ,color:  (theme) => theme.palette.text.primary}}>{aprValue}</Typography>
+          <Typography sx={{ fontWeight: 'bold' ,color:  (theme) => theme.palette.text.primary}}>{aprValue}%</Typography>
         </Grid>
         <Grid item xs={2}>
           <Typography sx={{ fontSize: '11px', marginTop: '5px',color:  (theme) => theme.palette.text.secondary }}>
             {' '}
             {pairName1}
           </Typography>
-          <Typography sx={{ fontWeight: 'bold',color:  (theme) => theme.palette.text.primary }}>{rajoeValue}</Typography>
+          <Typography sx={{ fontWeight: 'bold',color:  (theme) => theme.palette.text.primary }}>{rgnyetiValue}</Typography>
         </Grid>
         <Grid item xs={1}>
           <Typography sx={{ fontSize: '11px', marginTop: '5px', color:  (theme) => theme.palette.text.secondary, }}>
@@ -91,7 +90,7 @@ const StakeMainPoolComponent: FunctionComponent<
       {open && (
         <Fade in={open}>
           <Box>
-            {type === 'joe' ? <JoeTable /> : <RGNTable />}
+            <RGNTable />
           </Box>
         </Fade>
       )}

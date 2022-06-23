@@ -11,19 +11,6 @@ import { TOKEN_ID } from "../../utils/constance";
 const Funds = () => {
   return (
     <>
-      <Typography
-        sx={{
-          fontWeight: "bold",
-          color: (theme) => theme.palette.text.primary,
-          width: "fit-content",
-          padding: 1,
-          paddingTop: 4,
-          borderRadius: "5px",
-          fontSize: "1rem",
-        }}
-      >
-        STAKE FUNDS
-      </Typography>
       <FundsFirstTabs />
       <FundSecondTabs />
     </>

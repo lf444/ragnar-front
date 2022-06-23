@@ -13,17 +13,17 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({ poolName }) => {
         sx={{
           backgroundColor: (theme) => theme.palette.background.default,
           borderRadius: "5px",
-          alignItems: "center",
-          height: "80%",
+          alignItems: "center", 
+          height: "100%",
         }}
       >
         {" "}
-        <Input disableUnderline defaultValue={0}></Input>
+        <Input sx={{marginLeft: 1, width: {xs: "50%", md:"65%" , sm: "30%"}}} disableUnderline placeholder="Enter an amount" defaultValue={0} type="number"></Input>
         <Button
           variant="contained"
-          sx={{ margin: 0.5,borderRadius:"5px",height: "80%", fontSize: { xs: "0.45", sm: "0.85em" }, position:"relative", marginRight:"0.35rem" ,fontWeight:"bold", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
+          sx={{ margin: 0.5,borderRadius:"5px",height: "80%", fontSize: { xs: "0.45", sm: "0.85em" }, position:"relative", marginRight:"0.35rem" ,fontWeight:"normal", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
         >
-          Max
+          MAX
         </Button>
       </Grid>
     </>

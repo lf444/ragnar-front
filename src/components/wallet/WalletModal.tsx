@@ -44,7 +44,7 @@ const WalletModal: FunctionComponent<WalletModalProps> = ({
             sx={{
               postion: 'relative',
               marginTop: '5px',
-              marginRight: 'auto',
+              marginRight: '10px',
               marginLeft: '10px',
             }}
           >

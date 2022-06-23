@@ -2,6 +2,8 @@ import { Box, Typography, Tabs, Tab, Button, Grid } from "@mui/material";
 import React from "react";
 import CustomDisplay from "../../shared/CustomDisplay";
 import CustomInput from "../../shared/CustomInput";
+import MyNFT from "../MyNFT";
+import threemonth from "../../../assets/images/3months.png"
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -53,24 +55,69 @@ export default function RGNTableLock() {
           centered
           aria-label="basic tabs example"
         >
-          <Tab label="Stake" {...a11yProps(0)}    style={{
-              color: value === 0 ?"#ddeaf2":"#929ea6",
-              fontWeight:"bold",
+          <Tab label="3 MONTHS" {...a11yProps(0)}    style={{
+            color: value === 0 ?"#ddeaf2":"#929ea6",
               textTransform: "none",
             }} />
-          <Tab label="Unstake" {...a11yProps(1)}   style={{
+          <Tab label="6 MONTHS" {...a11yProps(1)}   style={{
               color: value === 1 ?"#ddeaf2":"#929ea6",
-              fontWeight:"bold",
               textTransform: "none",
             }} />
-          <Tab label="INFO" {...a11yProps(2)}    style={{
+          <Tab label="1 YEAR" {...a11yProps(2)}    style={{
               color: value === 2 ?"#ddeaf2":"#929ea6",
-              fontWeight:"bold",
+              textTransform: "none",
+            }} />
+          <Tab label="2 YEARS" {...a11yProps(3)}    style={{
+              color: value === 3 ?"#ddeaf2":"#929ea6",
+              textTransform: "none",
+            }} />
+          <Tab label="3 YEARS" {...a11yProps(4)}    style={{
+              color: value === 4 ?"#ddeaf2":"#929ea6",
               textTransform: "none",
             }} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
+      <Grid sx={{width: "100%"}} container>
+          <Grid item container xs={6}>
+            <CustomDisplay poolName={"RGN"} display="Deposit" />
+          </Grid>
+          <Grid
+            item
+            container
+            xs={6}
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
+          >
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              {" "}
+              1
+            </Grid>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              2
+            </Grid>
+          </Grid>
+          <Grid item container xs={6}>
+            {" "}
+            <CustomInput poolName={"RGN"} />
+          </Grid>
+          <Grid item container xs={6} justifyContent="space-around">
+            {" "}
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Approve
+            </Button>
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Lock
+            </Button>
+          </Grid>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
       <Grid container>
           <Grid item container xs={6}>
             <CustomDisplay poolName={"RGN"} display="Deposit" />
@@ -98,44 +145,22 @@ export default function RGNTableLock() {
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              variant="contained"
-              sx={{
-                width: "45%",
-                height: "80%",
-                fontSize: { xs: "0.95em", sm: "0.95em" },
-                borderRadius:"10px",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                textTransform: "none",
-                boxShadow: "none",
-              }}
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
             >
               Approve
             </Button>
             <Button
-              variant="contained"
-              sx={{
-                width: "45%",
-                height: "80%",
-                fontSize: { xs: "0.95em", sm: "0.95em" },
-                borderRadius:"10px",
-                fontWeight: "bold",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                textTransform: "none",
-                boxShadow: "none",
-              }}
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
             >
-              Deposit
+              Lock
             </Button>
           </Grid>
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Grid container>
+      <TabPanel value={value} index={2}>
+      <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={"RGN"} display="Unstake" />
+            <CustomDisplay poolName={"RGN"} display="Deposit" />
           </Grid>
           <Grid
             item
@@ -145,52 +170,112 @@ export default function RGNTableLock() {
             alignItems="center"
             textAlign="center"
           >
-            <Grid item xs={6}>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
               {" "}
+              1
             </Grid>
-            <Grid item xs={6}></Grid>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              2
+            </Grid>
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"JOE"} />
+            <CustomInput poolName={"RGN"} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained"   sx={{
-                width: "45%",
-                height: "80%",
-                fontSize: { xs: "0.95em", sm: "0.95em" },
-                borderRadius:"10px",
-                fontWeight: "bold",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                textTransform: "none",
-                boxShadow: "none",
-              }}>
-              Unstake
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Approve
+            </Button>
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Lock
             </Button>
           </Grid>
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Typography sx={{ fontSize: "14px" }}>
-          {" "}
-          Pools Contract:{"    "}
-          <a
-            href={`https://snowtrace.io/address/0x3bc40d4307cd946157447cd55d70ee7495ba6140`}
+      <TabPanel value={value} index={3}>
+      <Grid container>
+          <Grid item container xs={6}>
+            <CustomDisplay poolName={"RGN"} display="Deposit" />
+          </Grid>
+          <Grid
+            item
+            container
+            xs={6}
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
           >
-            {"0x3bc40d4307cd946157447cd55d70ee7495ba6140"}
-          </a>
-        </Typography>
-        <Typography sx={{ fontSize: "14px" }}>
-          {" "}
-          Rgn Contract:{"    "}
-          <a
-            href={`https://snowtrace.io/address/0x2bdCC0de6bE1f7D2ee689a0342D76F52E8EFABa3`}
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              {" "}
+              1
+            </Grid>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              2
+            </Grid>
+          </Grid>
+          <Grid item container xs={6}>
+            {" "}
+            <CustomInput poolName={"RGN"} />
+          </Grid>
+          <Grid item container xs={6} justifyContent="space-around">
+            {" "}
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Approve
+            </Button>
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Lock
+            </Button>
+          </Grid>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+      <Grid container>
+          <Grid item container xs={6}>
+            <CustomDisplay poolName={"RGN"} display="Deposit" />
+          </Grid>
+          <Grid
+            item
+            container
+            xs={6}
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
           >
-            {"0x3bc40d4307cd946157447cd55d70ee7495ba6140"}
-          </a>
-        </Typography>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              {" "}
+              1
+            </Grid>
+            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" } }}>
+              2
+            </Grid>
+          </Grid>
+          <Grid item container xs={6}>
+            {" "}
+            <CustomInput poolName={"RGN"} />
+          </Grid>
+          <Grid item container xs={6} justifyContent="space-around">
+            {" "}
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Approve
+            </Button>
+            <Button
+              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+            >
+              Lock
+            </Button>
+          </Grid>
+        </Grid>
       </TabPanel>
     </Box>
   );

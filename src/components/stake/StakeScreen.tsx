@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
 import Funds from './Funds';
 import StakeStablePoolComponent from './StakeStablePoolComponent';
+import { Typography } from "@mui/material";
 
 const StakeScreen = () => {
   return (
@@ -20,16 +21,23 @@ const StakeScreen = () => {
               xs: '100%',
               sm: '70%',
             },
-            /* boxShadow: { xs: 0, sm: 3 }, */
             borderRadius: { xs: '0px', sm: '20px' },
-/*             backgroundColor: {
-              xs: 'none',
-              sm: '#none',
-              md: '#DDEAF2',
-            }, */
           }}
         >
           <Grid item sx={{ width: '90%', paddingBottom: 2 }}>
+          <Typography
+          sx={{
+          fontWeight: "bold",
+          color: (theme) => theme.palette.text.primary,
+          width: "fit-content",
+          padding: 1,
+          paddingTop: 4,
+          borderRadius: "5px",
+          fontSize: "1rem",
+          }}
+        >
+        STAKE FUNDS
+          </Typography>
             <Funds />
           </Grid>
           <Grid item sx={{ width: '90%' }}>

@@ -23,7 +23,6 @@ import { TOKEN_ID } from "../utils/constance";
 
 const Navbar = () => {
   const [priceYeti, setPriceYeti] = useState(0);
-  const [priceYusd, setPriceYusd] = useState(0);
   const [priceRgn, setPriceRgn] = useState(0);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -42,7 +41,6 @@ const Navbar = () => {
     
     async function Price() {
       setPriceYeti(await coinGeckoService.getPrice(TOKEN_ID.yeti));
-      setPriceYusd(await coinGeckoService.getPrice(TOKEN_ID.yusd));
       setPriceRgn(await coinGeckoService.getPrice(TOKEN_ID.yeti));
     }
 
@@ -73,30 +71,35 @@ const Navbar = () => {
         position='static'
         elevation={0}
         sx={{
-          //borderBottom: "solid 2px #7F98AC",
           height: {
             xs: '3.5rem',
             sm: '4rem',
           },
           marginBottom: '2rem',
+          marginTop: '0.5rem',
           backgroundColor: '#2f343a',
-          /*           boxShadow: 3, */
         }}
       >
         <Toolbar disableGutters>
           <Grid container direction='row' alignItems='center'>
-            <Grid item xs={0.2} sm={1}></Grid>
+            <Grid item xs={0.2} sm={1.55}></Grid>
             <Grid item xs={2} sm={1} sx={{
                 position: 'relative',
-                left: '2rem'
+                left: {
+                  xs:'2rem',
+                  sm:'0rem',
+                  md:'2rem',
+                  lg:'3rem',
+                  xl:'7rem',
+              },
               }}>
               <img height='40' src={logo} alt='Ragnar Logo' />
             </Grid>
             <Grid
               item
-              xs={0}
-              sm={0}
-              md={2}
+              xs={2}
+              sm={2}
+              md={0}
               sx={{
                 display: {
                   xs: 'none',
@@ -106,13 +109,19 @@ const Navbar = () => {
                   xl: 'flex',
                 },
                 position: 'relative',
-                left: '-1rem',
+                left: {
+                  xs:'-4rem',
+                  sm:'-4rem',
+                  md:'-4rem',
+                  lg:'-2rem',
+                  xl:'-0.5rem',
+              },
               }}
             >
               {' '}
               <Typography
                 sx={{
-                  marginLeft: '-5%',
+                  marginLeft: '5%',
                   fontSize: '20px',
                   fontWeight: '700',
                   color: (theme) => theme.palette.text.primary,
@@ -141,7 +150,7 @@ const Navbar = () => {
               item
               xs={0}
               sm={3.5}
-              md={3}
+              md={2.5}
               sx={{
                 display: {
                   xs: 'none',
@@ -161,7 +170,7 @@ const Navbar = () => {
                 sx={{
                   display: 'flex',
                   flexDirection: 'row',
-                  padding: 0,
+                  padding: 1,
                   width: '100%',
                 }}
               >
@@ -215,12 +224,12 @@ const Navbar = () => {
                 </Menu>
               </List>
             </Grid>
-            <Grid item xs={0} sm={1} md={1} lg={1}></Grid>
+            <Grid item xs={0} sm={2} md={1.7} lg={0.8}></Grid>
             <Grid
               xs={7}
-              sm={4}
-              md={3}
-              lg={3}
+              sm={2.2}
+              md={2}
+              lg={1.5}
               item
               container
               direction='row'
@@ -253,31 +262,6 @@ const Navbar = () => {
                 0.30$
               </Typography>
 
-              <Typography
-                sx={{
-                  marginRight: '2%',
-                  fontSize: {
-                    xs: '0.9em',
-                    sm: '0.9em',
-                    md: '0.9em',
-                  },
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontWeight: '600',
-                }}
-                color='textPrimary'
-              >
-                <Box
-                  component={'img'}
-                  sx={{
-                    height: '22px',
-                    marginRight: '8px',
-                  }}
-                  src={yusd}
-                  alt='YUSD Logo'
-                />{' '}
-                {priceYusd.toFixed(3)}$
-              </Typography>
               <Typography
                 sx={{
                   marginRight: '2%',

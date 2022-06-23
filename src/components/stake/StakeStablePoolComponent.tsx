@@ -74,28 +74,28 @@ export default function StakeStablePoolComponent() {
     setValue(newValue);
   };
 
-  const RGN = <PairTab pairName1="Rgn" logo1={rgnPool.logo} 
+  const RGN = <PairTab pairName1="RGN" logo1={rgnPool.logo} 
   apr={aprRgn.aprRgn} stacked={Math.round(myStake.myRgn)} 
-  tvl={Math.round(myStake.tvlRgn)} claimable={100} 
-  addressPool={rgnPool.addressPool} pairAddress={rgnPool.pairAddress}
+  tvl={Math.round(myStake.tvlRgn)} claimable={0} 
+  addressPool={rgnPool.addressPool} pairAddress={rgnPool.pairAddress} rgn={false} info={rgnPool.info}
    />
 
-  const Yeti = <PairTab pairName1="Yeti" logo1={YetiPool.logo} 
+  const Yeti = <PairTab pairName1="YETI" logo1={YetiPool.logo} 
   apr={aprRgn.aprYeti} stacked={Math.round(myStake.myYeti)} 
-  tvl={Math.round(myStake.tvlYeti)} claimable={100} 
-  addressPool={YetiPool.addressPool} pairAddress={YetiPool.pairAddress}
+  tvl={Math.round(myStake.tvlYeti)} claimable={0} 
+  addressPool={YetiPool.addressPool} pairAddress={YetiPool.pairAddress} rgn={true} info=""
    />
 
-  const Yusd = <PairTab pairName1="Yusd" logo1={YusdPool.logo} 
+  const Yusd = <PairTab pairName1="YUSD" logo1={YusdPool.logo} 
   apr={aprRgn.aprYusd} stacked={Number(myStake.myYusd)} 
-  tvl={Math.round(myStake.tvlYusd)} claimable={100} 
-  addressPool={YusdPool.addressPool} pairAddress={YusdPool.pairAddress}
+  tvl={Math.round(myStake.tvlYusd)} claimable={0} 
+  addressPool={YusdPool.addressPool} pairAddress={YusdPool.pairAddress} rgn={false} info={YusdPool.info}
    />
   
-  const CurveLp = <PairTab pairName1="LP Curve" logo1={LpCurvePool.logo} 
+  const CurveLp = <PairTab pairName1="LP CURVE" logo1={LpCurvePool.logo} 
   apr={aprRgn.aprLpCurve} stacked={Math.round(myStake.myLpCurve)} 
-  tvl={Math.round(myStake.tvlLpCurve)} claimable={100} 
-  addressPool={LpCurvePool.addressPool} pairAddress={LpCurvePool.pairAddress}
+  tvl={Math.round(myStake.tvlLpCurve)} claimable={0} 
+  addressPool={LpCurvePool.addressPool} pairAddress={LpCurvePool.pairAddress} rgn={false} info={LpCurvePool.info}
    />
 
   useEffect(() => {
@@ -212,7 +212,7 @@ async function fetchAprRGN() {
           aria-label='basic tabs example'
         >
           <Tab
-            label='All Pool'
+            label='All Pools'
             {...a11yProps(0)}
             style={{
               color: value === 0 ?"#ddeaf2":"#929ea6",
@@ -230,7 +230,7 @@ async function fetchAprRGN() {
             }}
           />
           <Tab
-            label='Main Pool'
+            label='Main Pools'
             {...a11yProps(1)}
             style={{
               color: value === 1 ?"#ddeaf2":"#929ea6",
@@ -247,7 +247,7 @@ async function fetchAprRGN() {
             }}
           />
           <Tab
-            label='Yeti Pool'
+            label='Yeti Pools'
             {...a11yProps(2)}
             style={{
               color: value === 2 ?"#ddeaf2":"#929ea6",
@@ -266,14 +266,14 @@ async function fetchAprRGN() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {RGN}
         {Yeti}
+        {RGN}
         {Yusd}
         {CurveLp}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {RGN}
         {Yeti}
+        {RGN}
       </TabPanel>
       <TabPanel value={value} index={2}>
         {Yusd}
