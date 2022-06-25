@@ -7,7 +7,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 function ConnectWalletButton() {
   const appTag = "ConnectWalletButton";
   /*
-   * Just a state variable we use to store our user's public wallet.
+   * Just a state variable we use to store our user's public walllet.
    */
   const [currentAccount, setCurrentAccount] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
