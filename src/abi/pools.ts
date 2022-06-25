@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Rgn from "../assets/poolsImages/rgn.png";
 import Yeti from "../assets/poolsImages/yeti.png";
 import Yusd from "../assets/poolsImages/yusd.png";
@@ -34,11 +35,19 @@ export const LpCurvePool = {
   info: "Deposit your LP Curve to enjoy the veYeti boost and receive bonus RGN !",
 };
 =======
+=======
+>>>>>>> 8d90050 (dev: reduce req call)
 import Rgn from '../assets/poolsImages/rgn.png'
 import Yeti from '../assets/poolsImages/yeti.png'
 import Yusd from '../assets/poolsImages/yusd.png'
 import LpCurve from '../assets/poolsImages/curve.png'
 import { contractAddress } from './address'
+=======
+import Rgn from '../assets/images/pools/rgn.png'
+import Yeti from '../assets/images/pools/yeti.png'
+import Yusd from '../assets/images/pools/yusd.png'
+import LpCurve from '../assets/images/pools/curve.png'
+>>>>>>> 96c243c (dev: reduce req call)
 
 export const rgnPool = {
     pairName: "Rgn",

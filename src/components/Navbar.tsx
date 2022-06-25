@@ -12,11 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import Menu from "@mui/material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ConnectWalletButton from "./shared/ConnectWalletButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
-
-const drawerWidth = 100;
 
 const Navbar = ({
   priceYeti,
@@ -25,17 +22,7 @@ const Navbar = ({
   priceYeti: number;
   priceRgn: number;
 }) => {
-  const [openDrawer, SetOpenDrawer] = useState(false);
-
-  const handleDrawerOpen = () => {
-    SetOpenDrawer(true);
-  };
-
-  const handleDrawerClose = () => {
-    SetOpenDrawer(false);
-  };
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -331,7 +318,7 @@ const Navbar = ({
               </Typography>
             </Grid>
             <Grid item xs={2} sm={1} md={1} lg={1}>
-              <ConnectWalletButton />
+              <ConnectWalletButton/>
             </Grid>
           </Grid>
           <Drawer
