@@ -1,4 +1,4 @@
-import { Button, Grid, Typography, Box } from '@mui/material';
+import { Button, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {

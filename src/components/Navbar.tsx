@@ -1,30 +1,27 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import logo from '../assets/images/logo.png';
-import rgn from '../assets/poolsImages/rgn.png'
-import yusd from '../assets/poolsImages/yusd.png'
-import yeti from '../assets/poolsImages/yeti.png'
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import logo from "../assets/images/logo.png";
+import rgn from "../assets/images/pools/rgn.png";
+import yeti from "../assets/images/pools/yeti.png";
 
-import Button from '@mui/material/Button';
-import { Box, Grid, List, Typography } from '@mui/material';
-import NavItem from './NavItem';
-import MenuItem from '@mui/material/MenuItem';
-import Fade from '@mui/material/Fade';
-import Menu from '@mui/material/Menu';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import ConnectWalletButton from './shared/ConnectWalletButton';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ConnectWallet from './wallet/ConnectWallet';
-import { useEffect, useState } from 'react';
-import { coinGeckoService } from '../services/coinGeckoService';
-import { TOKEN_ID } from "../utils/constance";
+import Button from "@mui/material/Button";
+import { Box, Grid, List, Typography } from "@mui/material";
+import NavItem from "./NavItem";
+import MenuItem from "@mui/material/MenuItem";
+import Fade from "@mui/material/Fade";
+import Menu from "@mui/material/Menu";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ConnectWalletButton from "./shared/ConnectWalletButton";
 
-
-const Navbar = () => {
-  const [priceYeti, setPriceYeti] = useState(0);
-  const [priceRgn, setPriceRgn] = useState(0);
-
+const Navbar = ({
+  priceYeti,
+  priceRgn,
+}: {
+  priceYeti: number;
+  priceRgn: number;
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -34,30 +31,19 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    Price();
-  }, [])
-
-    
-    async function Price() {
-      setPriceYeti(await coinGeckoService.getPrice(TOKEN_ID.yeti));
-      setPriceRgn(await coinGeckoService.getPrice(TOKEN_ID.yeti));
-    }
-
-
 
   const menuItems = [
     {
-      menuTitle: 'Stake',
-      pageURL: '/stake',
+      menuTitle: "Stake",
+      pageURL: "/stake",
     },
     {
-      menuTitle: 'Claim',
-      pageURL: '/claim',
+      menuTitle: "Claim",
+      pageURL: "/claim",
     },
     {
-      menuTitle: 'Lock',
-      pageURL: '/lock',
+      menuTitle: "Lock",
+      pageURL: "/lock",
     },
     /*   {
       menuTitle: "Borrow",
@@ -68,32 +54,37 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position='static'
+        position="static"
         elevation={0}
         sx={{
           height: {
-            xs: '3.5rem',
-            sm: '4rem',
+            xs: "3.5rem",
+            sm: "4rem",
           },
-          marginBottom: '2rem',
-          marginTop: '0.5rem',
-          backgroundColor: '#2f343a',
+          marginBottom: "2rem",
+          marginTop: "0.5rem",
+          backgroundColor: "#2f343a",
         }}
       >
         <Toolbar disableGutters>
-          <Grid container direction='row' alignItems='center'>
+          <Grid container direction="row" alignItems="center">
             <Grid item xs={0.2} sm={1.55}></Grid>
-            <Grid item xs={2} sm={1} sx={{
-                position: 'relative',
+            <Grid
+              item
+              xs={2}
+              sm={1}
+              sx={{
+                position: "relative",
                 left: {
-                  xs:'2rem',
-                  sm:'0rem',
-                  md:'2rem',
-                  lg:'3rem',
-                  xl:'7rem',
-              },
-              }}>
-              <img height='40' src={logo} alt='Ragnar Logo' />
+                  xs: "2rem",
+                  sm: "0rem",
+                  md: "2rem",
+                  lg: "3rem",
+                  xl: "7rem",
+                },
+              }}
+            >
+              <img height="40" src={logo} alt="Ragnar Logo" />
             </Grid>
             <Grid
               item
@@ -102,49 +93,49 @@ const Navbar = () => {
               md={0}
               sx={{
                 display: {
-                  xs: 'none',
-                  sm: 'none',
-                  md: 'none',
-                  lg: 'flex',
-                  xl: 'flex',
+                  xs: "none",
+                  sm: "none",
+                  md: "none",
+                  lg: "flex",
+                  xl: "flex",
                 },
-                position: 'relative',
+                position: "relative",
                 left: {
-                  xs:'-4rem',
-                  sm:'-4rem',
-                  md:'-4rem',
-                  lg:'-2rem',
-                  xl:'-0.5rem',
-              },
+                  xs: "-4rem",
+                  sm: "-4rem",
+                  md: "-4rem",
+                  lg: "-2rem",
+                  xl: "-0.5rem",
+                },
               }}
             >
-              {' '}
+              {" "}
               <Typography
                 sx={{
-                  marginLeft: '5%',
-                  fontSize: '20px',
-                  fontWeight: '700',
+                  marginLeft: "5%",
+                  fontSize: "20px",
+                  fontWeight: "700",
                   color: (theme) => theme.palette.text.primary,
-                  lineHeight: '29px',
+                  lineHeight: "29px",
                 }}
-                variant='h6'
+                variant="h6"
               >
-                {' '}
+                {" "}
                 Ragnar
-              </Typography>{' '}
+              </Typography>{" "}
               <Typography
                 sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
+                  fontSize: "20px",
+                  fontWeight: "500",
                   color: (theme) => theme.palette.text.secondary,
-                  lineHeight: '29px',
+                  lineHeight: "29px",
                 }}
-                variant='h6'
-                color='textPrimary'
+                variant="h6"
+                color="textPrimary"
               >
-                {' '}
+                {" "}
                 Finance
-              </Typography>{' '}
+              </Typography>{" "}
             </Grid>
             <Grid
               item
@@ -153,25 +144,25 @@ const Navbar = () => {
               md={2.5}
               sx={{
                 display: {
-                  xs: 'none',
-                  sm: 'flex',
-                  md: 'flex',
-                  lg: 'flex',
-                  xl: 'flex',
+                  xs: "none",
+                  sm: "flex",
+                  md: "flex",
+                  lg: "flex",
+                  xl: "flex",
                 },
                 position: {
-                  xs: 'relative',
-                  sm: 'initial',
+                  xs: "relative",
+                  sm: "initial",
                 },
-                bot: { xs: '0' },
+                bot: { xs: "0" },
               }}
             >
               <List
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
+                  display: "flex",
+                  flexDirection: "row",
                   padding: 1,
-                  width: '100%',
+                  width: "100%",
                 }}
               >
                 {menuItems.map((item) => (
@@ -182,34 +173,34 @@ const Navbar = () => {
                   />
                 ))}
                 <Button
-                  id='fade-button'
-                  aria-controls={open ? 'fade-menu' : undefined}
-                  aria-haspopup='true'
-                  aria-expanded={open ? 'true' : undefined}
+                  id="fade-button"
+                  aria-controls={open ? "fade-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
                   sx={{
                     color: open
                       ? (theme) => theme.palette.text.primary
-                      : '#929ea6',
-                    justifyContent: 'flex-start',
+                      : "#929ea6",
+                    justifyContent: "flex-start",
                     py: 1.25,
-                    textTransform: 'none',
-                    width: 'fit-content',
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    lineHeight: '24px',
+                    textTransform: "none",
+                    width: "fit-content",
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    lineHeight: "24px",
                   }}
                 >
                   More <KeyboardArrowDownIcon />
                 </Button>
                 <Menu
-                  id='fade-menu'
+                  id="fade-menu"
                   MenuListProps={{
-                    'aria-labelledby': 'fade-button',
+                    "aria-labelledby": "fade-button",
                   }}
                   sx={{
-                    '& .MuiPaper-root': {
-                      backgroundColor: '#2f343a',
+                    "& .MuiPaper-root": {
+                      backgroundColor: "#2f343a",
                     },
                   }}
                   anchorEl={anchorEl}
@@ -232,64 +223,70 @@ const Navbar = () => {
               lg={1.5}
               item
               container
-              direction='row'
-              justifyContent='space-around'
-              alignItems='center'
+              direction="row"
+              justifyContent="space-around"
+              alignItems="center"
             >
               <Typography
                 sx={{
-                  marginRight: '2%',
+                  marginRight: "2%",
                   fontSize: {
-                    xs: '0.9em',
-                    sm: '0.9em',
-                    md: '0.9em',
+                    xs: "0.9em",
+                    sm: "0.9em",
+                    md: "0.9em",
                   },
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontWeight: '600',
+                  display: "flex",
+                  alignItems: "center",
+                  fontWeight: "600",
                 }}
-                color='textPrimary'
+                color="textPrimary"
               >
                 <Box
-                  component={'img'}
+                  component={"img"}
                   sx={{
-                    height: '22px',
-                    marginRight: '8px',
+                    height: "22px",
+                    marginRight: "8px",
                   }}
                   src={rgn}
+<<<<<<< HEAD
                   alt='Ragnar Logo'
                 />{' '}
                 0.00$
+=======
+                  alt="Ragnar Logo"
+                />{" "}
+                0.30$
+>>>>>>> 96c243c (dev: reduce req call)
               </Typography>
 
               <Typography
                 sx={{
-                  marginRight: '2%',
+                  marginRight: "2%",
                   fontSize: {
-                    xs: '0.9em',
-                    sm: '0.9em',
-                    md: '0.9em',
+                    xs: "0.9em",
+                    sm: "0.9em",
+                    md: "0.9em",
                   },
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontWeight: '600',
+                  display: "flex",
+                  alignItems: "center",
+                  fontWeight: "600",
                 }}
-                color='textPrimary'
+                color="textPrimary"
               >
                 <Box
-                  component={'img'}
+                  component={"img"}
                   sx={{
-                    height: '22px',
-                    marginRight: '8px',
+                    height: "22px",
+                    marginRight: "8px",
                   }}
                   src={yeti}
-                  alt='YETI Logo'
-                />{' '}
+                  alt="YETI Logo"
+                />{" "}
                 {priceYeti.toFixed(3)}$
               </Typography>
             </Grid>
             <Grid item xs={2} sm={1} md={1} lg={1}>
-              <ConnectWallet />
+              <ConnectWalletButton/>
             </Grid>
           </Grid>
         </Toolbar>
@@ -297,25 +294,22 @@ const Navbar = () => {
 
       <Box
         sx={{
-          position: 'fixed',
-          bottom: '0px',
-          width: '100%',
+          position: "fixed",
+          width: "100%",
           display: {
-            xs: 'flex',
-            sm: 'none',
+            xs: "flex",
+            sm: "none",
           },
-          backgroundColor: '#2f343a',
-          zIndex: '1000',
-          height: '5%',
+          backgroundColor: "#2f343a",
         }}
       >
         <List
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
+            display: "flex",
+            flexDirection: "row",
             paddingLeft: 3,
             paddingRight: 3,
-            width: '100%',
+            width: "100%",
           }}
         >
           {menuItems.map((item) => (
@@ -326,32 +320,32 @@ const Navbar = () => {
             />
           ))}
           <Button
-            id='fade-button'
-            aria-controls={open ? 'fade-menu' : undefined}
-            aria-haspopup='true'
-            aria-expanded={open ? 'true' : undefined}
+            id="fade-button"
+            aria-controls={open ? "fade-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
             sx={{
-              color: open ? (theme) => theme.palette.text.primary : '#929ea6',
-              justifyContent: 'flex-start',
+              color: open ? (theme) => theme.palette.text.primary : "#929ea6",
+              justifyContent: "flex-start",
               py: 1.25,
-              textTransform: 'none',
-              width: 'fit-content',
-              fontSize: { xs: '1em', sm: '20px' },
-              fontWeight: '700',
-              lineHeight: '24px',
+              textTransform: "none",
+              width: "fit-content",
+              fontSize: { xs: "1em", sm: "20px" },
+              fontWeight: "700",
+              lineHeight: "24px",
             }}
           >
             More <ArrowDropUpIcon />
           </Button>
           <Menu
-            id='fade-menu'
+            id="fade-menu"
             MenuListProps={{
-              'aria-labelledby': 'fade-button',
+              "aria-labelledby": "fade-button",
             }}
             sx={{
-              '& .MuiPaper-root': {
-                backgroundColor: '#2f343a',
+              "& .MuiPaper-root": {
+                backgroundColor: "#2f343a",
               },
             }}
             anchorEl={anchorEl}

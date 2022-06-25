@@ -1,13 +1,19 @@
-import Navbar from '../Navbar';
 import { Box, Grid, Typography } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
 import StakeMainPoolComponent from '../stake/StakeMainPoolComponent';
-import rgn from '../../assets/poolsImages/rgn.png';
-import Funds from '../stake/Funds';
+import rgn from '../../assets/images/pools/rgn.png';
+import Funds from '../stake/funds/Funds';
 import MyNFT from '../stake/MyNFT';
 import theme from '../../theme';
 
-const LockRGN = () => {
+const LockRGN = ({
+  priceYusd,
+  priceRgnYeti,
+}: {
+  priceYusd: number;
+  priceRgnYeti: number;
+}) => {
+
   return (
     <>
       {' '}
@@ -24,13 +30,8 @@ const LockRGN = () => {
               xs: '100%',
               sm: '70%',
             },
-            /* boxShadow: { xs: 0, sm: 3 }, */
             borderRadius: { xs: '0px', sm: '20px' },
-/*             backgroundColor: {
-              xs: 'none',
-              sm: '#none',
-              md: '#DDEAF2',
-            }, */
+
           }}
         >
           <Grid item sx={{ width: '90%', paddingBottom: 5 }}>
@@ -47,7 +48,7 @@ const LockRGN = () => {
         >
         LOCK RGN
           </Typography>
-            <Funds />
+            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} />
           </Grid>
           <Grid item sx={{ width: '90%' }}>
             <StakeMainPoolComponent

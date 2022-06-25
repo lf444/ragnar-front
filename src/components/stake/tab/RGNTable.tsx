@@ -3,8 +3,6 @@ import React from "react";
 import { useState } from "react";
 import CustomDisplay from "../../shared/CustomDisplay";
 import CustomInput from "../../shared/CustomInput";
-import MyNFT from "../MyNFT";
-import threemonth from "../../../assets/images/3months.png"
 
 interface TabPanelProps {
   children?: React.ReactNode;

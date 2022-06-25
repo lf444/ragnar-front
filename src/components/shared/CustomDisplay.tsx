@@ -1,5 +1,4 @@
-import { Typography, Grid } from "@mui/material";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 
 interface CustomDisplayProps {
