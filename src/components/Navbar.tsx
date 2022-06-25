@@ -6,14 +6,17 @@ import rgn from "../assets/images/pools/rgn.png";
 import yeti from "../assets/images/pools/yeti.png";
 
 import Button from "@mui/material/Button";
-import { Box, Grid, List, Typography } from "@mui/material";
+import { Box, Drawer, Grid, List, Typography } from "@mui/material";
 import NavItem from "./NavItem";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import Menu from "@mui/material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ConnectWalletButton from "./shared/ConnectWalletButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useState } from "react";
+
+const drawerWidth = 100;
 
 const Navbar = ({
   priceYeti,
@@ -22,7 +25,17 @@ const Navbar = ({
   priceYeti: number;
   priceRgn: number;
 }) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [openDrawer, SetOpenDrawer] = useState(false);
+
+  const handleDrawerOpen = () => {
+    SetOpenDrawer(true);
+  };
+
+  const handleDrawerClose = () => {
+    SetOpenDrawer(false);
+  };
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -30,7 +43,6 @@ const Navbar = ({
   const handleClose = () => {
     setAnchorEl(null);
   };
-
 
   const menuItems = [
     {
@@ -75,6 +87,10 @@ const Navbar = ({
               sm={1}
               sx={{
                 position: "relative",
+                display: {
+                  xs: "none",
+                  sm: "flex",
+                },
                 left: {
                   xs: "2rem",
                   sm: "0rem",
@@ -136,6 +152,29 @@ const Navbar = ({
                 {" "}
                 Finance
               </Typography>{" "}
+            </Grid>
+            <Grid
+              xs={2}
+              sm={0}
+              sx={{
+                display: {
+                  xs: "flex",
+                  sm: "none",
+                },
+                position: {
+                  xs: "relative",
+                  sm: "initial",
+                },
+                bot: { xs: "0" },
+                left: {
+                  xs: "1rem",
+                },
+              }}
+            >
+              <Button sx={{      
+            color:(theme) => theme.palette.text.primary}} onClick={handleDrawerOpen}>
+                <MenuIcon />
+              </Button>
             </Grid>
             <Grid
               item
@@ -286,80 +325,86 @@ const Navbar = ({
               </Typography>
             </Grid>
             <Grid item xs={2} sm={1} md={1} lg={1}>
-              <ConnectWalletButton/>
+              <ConnectWalletButton />
             </Grid>
           </Grid>
-        </Toolbar>
-      </AppBar>
-
-      <Box
-        sx={{
-          position: "fixed",
-          width: "100%",
-          display: {
-            xs: "flex",
-            sm: "none",
-          },
-          backgroundColor: "#2f343a",
-        }}
-      >
-        <List
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            paddingLeft: 3,
-            paddingRight: 3,
-            width: "100%",
-          }}
-        >
-          {menuItems.map((item) => (
-            <NavItem
-              pageURL={item.pageURL}
-              key={item.menuTitle}
-              title={item.menuTitle}
-            />
-          ))}
-          <Button
-            id="fade-button"
-            aria-controls={open ? "fade-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
+          <Drawer
+            variant="temporary"
+            anchor="left"
+            open={openDrawer}
+            onClose={() => handleDrawerClose()}
             sx={{
-              color: open ? (theme) => theme.palette.text.primary : "#929ea6",
-              justifyContent: "flex-start",
-              py: 1.25,
-              textTransform: "none",
-              width: "fit-content",
-              fontSize: { xs: "1em", sm: "20px" },
-              fontWeight: "700",
-              lineHeight: "24px",
-            }}
-          >
-            More <ArrowDropUpIcon />
-          </Button>
-          <Menu
-            id="fade-menu"
-            MenuListProps={{
-              "aria-labelledby": "fade-button",
-            }}
-            sx={{
+              width: drawerWidth,
+              flexShrink: 0,
+              "& .MuiDrawer-paper": {
+                width: drawerWidth,
+                boxSizing: "border-box",
+              },
               "& .MuiPaper-root": {
                 backgroundColor: "#2f343a",
-              },
+              }
             }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
           >
-            <MenuItem onClick={handleClose}>Docs</MenuItem>
-            <MenuItem onClick={handleClose}>Discord</MenuItem>
-            <MenuItem onClick={handleClose}>Medium</MenuItem>
-            <MenuItem onClick={handleClose}>Twitter</MenuItem>
-          </Menu>
-        </List>
-      </Box>
+            <List
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                padding: 1,
+                width: "100%",
+              }}
+            >
+              {menuItems.map((item) => (
+                <NavItem
+                  pageURL={item.pageURL}
+                  key={item.menuTitle}
+                  title={item.menuTitle}
+                />
+              ))}
+              <Button
+                id="fade-button"
+                aria-controls={open ? "fade-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+                sx={{
+                  color: open
+                    ? (theme) => theme.palette.text.primary
+                    : "#929ea6",
+                  justifyContent: "flex-start",
+                  py: 1.25,
+                  textTransform: "none",
+                  width: "fit-content",
+                  fontSize: "20px",
+                  fontWeight: "700",
+                  lineHeight: "24px",
+                }}
+              >
+                More <KeyboardArrowDownIcon />
+              </Button>
+              <Menu
+                id="fade-menu"
+                MenuListProps={{
+                  "aria-labelledby": "fade-button",
+                }}
+                sx={{
+                  "& .MuiPaper-root": {
+                    backgroundColor: "#2f343a",
+                  },
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+              >
+                <MenuItem onClick={handleClose}>Docs</MenuItem>
+                <MenuItem onClick={handleClose}>Discord</MenuItem>
+                <MenuItem onClick={handleClose}>Medium</MenuItem>
+                <MenuItem onClick={handleClose}>Twitter</MenuItem>
+              </Menu>
+            </List>
+          </Drawer>
+        </Toolbar>
+      </AppBar>
     </>
   );
 };

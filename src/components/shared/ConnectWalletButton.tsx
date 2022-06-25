@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import { appLogger } from "../../utils/method";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
