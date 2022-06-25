@@ -2,7 +2,7 @@ import { Box, Typography, Tabs, Tab, Grid, Button, Link } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import CustomInput from "../../shared/CustomInput";
 import CustomDisplay from "../../shared/CustomDisplay";
-import { ethers, BigNumber } from 'ethers';
+import { ethers, BigNumber } from "ethers";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -12,7 +12,6 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-
 
   return (
     <div
@@ -50,9 +49,15 @@ interface StableTabProps {
 }
 
 const StableTab: FunctionComponent<StableTabProps> = ({
-  addressPool, pairAddress, pairName, info, deposit, withdraw, approve, masterchef
+  addressPool,
+  pairAddress,
+  pairName,
+  info,
+  deposit,
+  withdraw,
+  approve,
+  masterchef,
 }) => {
-
   const [value, setValue] = useState(0);
   const decimals = 18;
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -64,33 +69,38 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     console.log(amountToStake);
   };
 
-   function approveToken() {
+  function approveToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      const amount = BigNumber.from(amountToStake).mul(
+        BigNumber.from(10).pow(decimals)
+      );
       approve(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
-   }
+    }
   }
 
-   function depositToken() {
+  function depositToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      const amount = BigNumber.from(amountToStake).mul(
+        BigNumber.from(10).pow(decimals)
+      );
       deposit(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
-   }
+    }
   }
 
-   function withdrawToken() {
+  function withdrawToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      const amount = BigNumber.from(amountToStake).mul(
+        BigNumber.from(10).pow(decimals)
+      );
       withdraw(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
-   }
+    }
   }
-
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -101,26 +111,45 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           variant="fullWidth"
           centered
           aria-label="basic tabs example"
-          
         >
-          <Tab label="Stake" {...a11yProps(0)} style={{
-            color: value === 0 ?"#ddeaf2":"#929ea6",
+          <Tab
+            label="Stake"
+            {...a11yProps(0)}
+            style={{
+              color: value === 0 ? "#ddeaf2" : "#929ea6",
               textTransform: "none",
-            }} />
-          <Tab label="Unstake" {...a11yProps(1)} style={{
-            color: value === 1 ?"#ddeaf2":"#929ea6",
+            }}
+          />
+          <Tab
+            label="Unstake"
+            {...a11yProps(1)}
+            style={{
+              color: value === 1 ? "#ddeaf2" : "#929ea6",
               textTransform: "none",
-            }} />
-          <Tab label="INFO" {...a11yProps(2)} style={{
-            color: value === 2 ?"#ddeaf2":"#929ea6",
+            }}
+          />
+          <Tab
+            label="INFO"
+            {...a11yProps(2)}
+            style={{
+              color: value === 2 ? "#ddeaf2" : "#929ea6",
               textTransform: "none",
-            }} />
+            }}
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-      <Typography sx={{ fontSize: { xs: "0.65em", sm: "0.9em" }, color: (theme) => theme.palette.text.primary, marginBottom: "20px", marginTop: "20px", fontWeight: "bold" }}>
+        <Typography
+          sx={{
+            fontSize: { xs: "0.65em", sm: "0.9em" },
+            color: (theme) => theme.palette.text.primary,
+            marginBottom: "20px",
+            marginTop: "20px",
+            fontWeight: "bold",
+          }}
+        >
           {info}
-       </Typography>
+        </Typography>
         <Grid container>
           <Grid item container xs={6}>
             <CustomDisplay poolName={pairName} display="Stake" />
@@ -133,24 +162,59 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             alignItems="center"
             textAlign="center"
           >
-            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary, fontWeight: "bold" }}>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                fontSize: { xs: "0.65em", sm: "1em" },
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+              }}
+            >
               {" "}
               1
             </Grid>
-            <Grid item xs={6} sx={{ fontSize: { xs: "0.65em", sm: "1em" }, color: (theme) => theme.palette.text.primary, fontWeight: "bold" }}>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                fontSize: { xs: "0.65em", sm: "1em" },
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+              }}
+            >
               2
             </Grid>
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
+            <CustomInput
+              poolName={"YETI"}
+              amountToStake={amountToStake}
+              setAmountToStake={handleChangeAmount}
+            />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button onClick={approveToken} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
-              APPROVE 
+            <Button
+              onClick={approveToken}
+              variant="contained"
+              sx={{
+                width: "45%",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                fontWeight: "bold",
+              }}
+            >
+              APPROVE
             </Button>
-            <Button onClick={depositToken} variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
+            <Button
+              variant="contained"
+              sx={{
+                width: "45%",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                fontWeight: "bold",
+              }}
+            >
               DEPOSIT
             </Button>
           </Grid>
@@ -176,41 +240,67 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount}  />
+            <CustomInput
+              poolName={"YETI"}
+              amountToStake={amountToStake}
+              setAmountToStake={handleChangeAmount}
+            />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button onClick={withdrawToken} variant="contained" sx={{ width: "50%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button
+              onClick={withdrawToken}
+              variant="contained"
+              sx={{
+                width: "50%",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                fontWeight: "bold",
+              }}
+            >
               WITHDRAW
             </Button>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography sx={{ 
-          fontSize: "14px", 
-          color: (theme) => theme.palette.text.primary,
-          marginBottom: "10px",
-          fontWeight: "bold"
-          }}>
+        <Typography
+          sx={{
+            fontSize: "14px",
+            color: (theme) => theme.palette.text.primary,
+            marginBottom: "10px",
+            fontWeight: "bold",
+          }}
+        >
           {" "}
-           {pairName} Contract: {"    "}
-          <Link sx={{color: (theme) => theme.palette.text.secondary, textDecoration: 'none', fontWeight: "normal"}}
+          {pairName} Contract: {"    "}
+          <Link
+            sx={{
+              color: (theme) => theme.palette.text.secondary,
+              textDecoration: "none",
+              fontWeight: "normal",
+            }}
             href={`https://snowtrace.io/address/${pairAddress}`}
           >
             {addressPool}
           </Link>
         </Typography>
-        <Typography sx={{ 
-          fontSize: "14px", 
-          color: (theme) => theme.palette.text.primary,
-          marginBottom: "10px",
-          fontWeight: "bold",
-          }}>
+        <Typography
+          sx={{
+            fontSize: "14px",
+            color: (theme) => theme.palette.text.primary,
+            marginBottom: "10px",
+            fontWeight: "bold",
+          }}
+        >
           {" "}
           Staking Contract: {"    "}
-          <Link sx={{color: (theme) => theme.palette.text.secondary, textDecoration: 'none', fontWeight: "normal"}}   
-          href={`https://snowtrace.io/address/${addressPool}`}
+          <Link
+            sx={{
+              color: (theme) => theme.palette.text.secondary,
+              textDecoration: "none",
+              fontWeight: "normal",
+            }}
+            href={`https://snowtrace.io/address/${addressPool}`}
           >
             {addressPool}
           </Link>
@@ -218,6 +308,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       </TabPanel>
     </Box>
   );
-}
+};
 
 export default StableTab;

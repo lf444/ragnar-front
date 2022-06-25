@@ -113,7 +113,7 @@ export default function RGNTableLock() {
               Approve
             </Button>
             <Button
-              variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
+              variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}
             >
               Lock
             </Button>

@@ -110,7 +110,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             sx={{
               fontSize: { xs: "0.75em", sm: "1em" },
               fontWeight: "bold",
-              color: (theme) => theme.palette.text.primary,
+              color:"#D0BA97",
             }}
           >
             {apr}%
