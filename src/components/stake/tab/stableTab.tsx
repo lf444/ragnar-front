@@ -216,12 +216,14 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button onClick={approveToken} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               APPROVE 
             </Button>
-<<<<<<< HEAD
             <Button variant="contained" sx={{ width: "45%", backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
+<<<<<<< HEAD
 =======
             <Button onClick={depositToken} variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
 >>>>>>> 67fd7e4 (all data + all function)
 >>>>>>> 7449a99 (all data + all function)
+=======
+>>>>>>> c66f1d1 (dev: pool minor change)
               DEPOSIT
             </Button>
           </Grid>
