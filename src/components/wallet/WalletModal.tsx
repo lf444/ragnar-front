@@ -1,5 +1,7 @@
-import { Typography, Button, Modal } from '@mui/material';
+import { Typography, Grid, Button, Modal } from '@mui/material';
+import { useWeb3React } from '@web3-react/core';
 import { FunctionComponent } from 'react';
+import { connectors } from './connector';
 
 interface WalletModalProps {
   open: boolean;
@@ -10,7 +12,7 @@ const WalletModal: FunctionComponent<WalletModalProps> = ({
   open,
   handleClose,
 }) => {
-
+  const { activate } = useWeb3React();
   const setProvider = (type: any) => {
     window.localStorage.setItem('provider', type);
   };
@@ -42,7 +44,7 @@ const WalletModal: FunctionComponent<WalletModalProps> = ({
             sx={{
               postion: 'relative',
               marginTop: '5px',
-              marginRight: '10px',
+              marginRight: 'auto',
               marginLeft: '10px',
             }}
           >
@@ -50,7 +52,7 @@ const WalletModal: FunctionComponent<WalletModalProps> = ({
           </Typography>
           <Button
             onClick={() => {
-             
+              activate(connectors.injected);
               setProvider('injected');
               handleClose();
             }}
@@ -72,7 +74,8 @@ const WalletModal: FunctionComponent<WalletModalProps> = ({
           </Button>
           <Button
             onClick={() => {
-       
+              activate(connectors.walletConnect);
+              setProvider('walletConnect');
               handleClose();
             }}
             variant='contained'

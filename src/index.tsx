@@ -9,6 +9,16 @@ import { HelmetProvider } from "react-helmet-async";
 
 import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
+import {
+  ExternalProvider,
+  JsonRpcFetchFunc,
+  Web3Provider,
+} from "@ethersproject/providers";
+import { Web3ReactProvider } from "@web3-react/core";
+
+function getLibrary(provider: ExternalProvider | JsonRpcFetchFunc) {
+  return new Web3Provider(provider);
+}
 
 const container = document.getElementById("root");
 // @ts-ignore
@@ -20,7 +30,10 @@ root.render(
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <App />
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <App />
+          </Web3ReactProvider>
+          ,
         </ThemeProvider>
       </BrowserRouter>
     </HelmetProvider>
