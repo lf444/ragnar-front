@@ -32,7 +32,7 @@ const FundsFirstTabs = ({
             p: 1,
           }}
         >
-          <Grid item direction="column">
+          <Grid item>
             <Typography
               sx={{
                 fontSize: {
@@ -79,7 +79,7 @@ const FundsFirstTabs = ({
             p: 1,
           }}
         >
-          <Grid item direction="column">
+          <Grid item >
             <Typography
               sx={{
                 fontSize: {
@@ -103,7 +103,7 @@ const FundsFirstTabs = ({
                   xs: "0.50rem",
                 },
                 fontWeight: "bold",
-                color: (theme) => theme.palette.text.primary,
+                color:"#D0BA97",
               }}
             >
               ${Math.round(reward)} USD
@@ -126,7 +126,7 @@ const FundsFirstTabs = ({
             p: 1,
           }}
         >
-          <Grid item direction="column">
+          <Grid item>
             <Typography
               sx={{
                 fontSize: {

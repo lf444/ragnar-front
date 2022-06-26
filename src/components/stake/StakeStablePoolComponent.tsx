@@ -36,15 +36,19 @@ import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
 >>>>>>> 96c243c (dev: reduce req call)
 =======
 
+<<<<<<< HEAD
 >>>>>>> 7449a99 (all data + all function)
 
+=======
+import { appLogger } from "../../utils/method";
+>>>>>>> 9ff617c (dev: somes css changes)
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
-
+const appTag: string = "StakeStablePoolComponent";
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -64,7 +68,7 @@ function TabPanel(props: TabPanelProps) {
             paddingBottom: 10,
           }}
         >
-          <Typography>{children}</Typography>
+          <Typography component={'div'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -259,6 +263,7 @@ Total valeur des staked token = Nombre de token stake * Prix d'un token stake
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
 async function fetchAprRGN() {
@@ -316,6 +321,8 @@ async function fetchAprRGN() {
   }
 }
 
+=======
+>>>>>>> 9ff617c (dev: somes css changes)
 
 async function approve(qty: number, address: string, masterchefContract: boolean) {
 
@@ -432,6 +439,7 @@ async function depositVeYeti(qty: number) {
 }
 
 
+<<<<<<< HEAD
 
   async function fetchMyDeposit() {
 <<<<<<< HEAD
@@ -440,6 +448,9 @@ async function depositVeYeti(qty: number) {
 >>>>>>> 96c243c (dev: reduce req call)
 =======
 >>>>>>> 7449a99 (all data + all function)
+=======
+  async function fetchAprRGN() {
+>>>>>>> 9ff617c (dev: somes css changes)
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
@@ -461,7 +472,10 @@ async function depositVeYeti(qty: number) {
         
         setMyStake({...myStake, myYusd: myDepositYUSD / 10**18, myYeti: myDepositYeti / 10**18, myRgn: myDepositRgn / 10**18, myLpCurve: myDepositLpCurve / 10**18});
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 9ff617c (dev: somes css changes)
         const rgnPerBlock = await masterchef.rgnPerSec();
         const allocPointYusd = await masterchef.getPoolInfo(
           contractAddress.fakeYusdAddress
@@ -497,11 +511,56 @@ async function depositVeYeti(qty: number) {
           aprYeti:
             ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
         });
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
+=======
+>>>>>>> 9ff617c (dev: somes css changes)
       }
     } catch (err: any) {
-      console.log(err.message);
+      appLogger(appTag, "- Error fetchAprRGN-", err.message);
+    }
+  }
+
+  async function fetchMyDeposit() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const myDepositYUSD = await masterchef.depositInfo(
+          contractAddress.fakeYusdAddress,
+          String(accounts)
+        );
+        const myDepositYeti = await masterchef.depositInfo(
+          contractAddress.rgnYetiAddress,
+          String(accounts)
+        );
+        const myDepositRgn = await masterchef.depositInfo(
+          contractAddress.rgnAddress,
+          String(accounts)
+        );
+        const myDepositLpCurve = await masterchef.depositInfo(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts)
+        );
+        setMyStake({
+          ...myStake,
+          myYusd: myDepositYUSD,
+          myYeti: myDepositYeti,
+          myRgn: myDepositRgn,
+          myLpCurve: myDepositLpCurve,
+        });
+      }
+    } catch (err: any) {
+      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
     }
   }
 
@@ -619,6 +678,7 @@ async function depositVeYeti(qty: number) {
         const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
         setMyStake({...myStake, tvlYusd: Number(TVLYUSD.sizeOfPool) * priceYusd / 10**18, 
@@ -627,6 +687,8 @@ async function depositVeYeti(qty: number) {
         tvlLpCurve: Number(TVLLpCurve.sizeOfPool) * priceLpCurve / 10**18});
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> 9ff617c (dev: somes css changes)
         setMyStake({
           ...myStake,
           tvlYusd: (TVLYUSD.sizeOfPool * priceYusd) / 10 ** 18,
@@ -634,12 +696,15 @@ async function depositVeYeti(qty: number) {
           tvlRgn: (TVLRGN.sizeOfPool * priceRGN) / 10 ** 18,
           tvlLpCurve: (TVLLpCurve.sizeOfPool * priceLpCurve) / 10 ** 18,
         });
+<<<<<<< HEAD
 >>>>>>> 96c243c (dev: reduce req call)
 =======
 >>>>>>> 7449a99 (all data + all function)
+=======
+>>>>>>> 9ff617c (dev: somes css changes)
       }
     } catch (err: any) {
-      console.log(err.message);
+      appLogger(appTag, "- Error fetchTVL-", err.message);
     }
   }
 

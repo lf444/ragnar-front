@@ -1,26 +1,29 @@
-import React from 'react';
-import './index.css';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
+import React from "react";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import theme from "./theme";
+import { HelmetProvider } from "react-helmet-async";
 
-import { createRoot } from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import { createRoot } from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 // @ts-ignore
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-      <BrowserRouter basename='/'>
+    <HelmetProvider>
+      <BrowserRouter basename="/">
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <App />
         </ThemeProvider>
       </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

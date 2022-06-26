@@ -141,6 +141,7 @@ const Navbar = ({
               </Typography>{" "}
             </Grid>
             <Grid
+              item
               xs={2}
               sm={0}
               sx={{
@@ -158,8 +159,12 @@ const Navbar = ({
                 },
               }}
             >
-              <Button sx={{      
-            color:(theme) => theme.palette.text.primary}} onClick={handleDrawerOpen}>
+              <Button
+                sx={{
+                  color: (theme) => theme.palette.text.primary,
+                }}
+                onClick={handleDrawerOpen}
+              >
                 <MenuIcon />
               </Button>
             </Grid>
@@ -335,7 +340,7 @@ const Navbar = ({
               },
               "& .MuiPaper-root": {
                 backgroundColor: "#2f343a",
-              }
+              },
             }}
           >
             <List

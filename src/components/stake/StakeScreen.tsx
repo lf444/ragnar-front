@@ -3,6 +3,7 @@ import Zoom from "@mui/material/Zoom";
 import Funds from "./funds/Funds";
 import StakeStablePoolComponent from "./StakeStablePoolComponent";
 import { Typography } from "@mui/material";
+import PageHeader from "../shared/PageHeader";
 
 
 const StakeScreen = ({
@@ -15,6 +16,7 @@ const StakeScreen = ({
 
   return (
     <>
+    <PageHeader pageTitle={`Ragnar finance - Stake`} />
       {" "}
       <Zoom in={true}>
         <Grid

@@ -43,6 +43,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
 >>>>>>> c66f1d1 (dev: pool minor change)
         <Button
           variant="contained"
+<<<<<<< HEAD
           sx={{
             borderRadius: "5px",
             fontSize: { xs: "0.60rem", sm: "1rem" },
@@ -55,6 +56,9 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
             backgroundColor: (theme) => theme.palette.secondary.main,
             color: (theme) => theme.palette.text.primary,
           }}
+=======
+          sx={{borderRadius:"5px", fontSize: { xs: "0.60rem", sm: "0.65em" }, position:"relative", marginRight:"0.25rem" ,fontWeight:"normal", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
+>>>>>>> 9ff617c (dev: somes css changes)
         >
           MAX
         </Button>

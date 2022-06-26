@@ -8,6 +8,9 @@ import { appLogger } from "../../../utils/method";
 import FundsFirstTabs from "./FirstTab";
 import FundSecondTabs from "./SecondTab";
 
+
+const appTag:string = "Funds";
+
 const Funds = ({
   priceYusd,
   priceRgnYeti,
@@ -64,7 +67,7 @@ const Funds = ({
         );
       }
     } catch (err: any) {
-      appLogger("[FUNDS]", " fetchMyDeposit masterChef", err.message);
+      appLogger(appTag, " fetchMyDeposit masterChef", err.message);
     }
   };
 
@@ -116,7 +119,7 @@ const Funds = ({
         setReward(myTotalReward);
       }
     } catch (err: any) {
-      appLogger("[FUNDS]", " fetchMyReward masterChef", err.message);
+      appLogger(appTag, " fetchMyReward masterChef", err.message);
     }
   };
 
@@ -150,7 +153,7 @@ const Funds = ({
         );
       }
     } catch (err: any) {
-      appLogger("[FUNDS]", " GetTVL masterChef", err.message);
+      appLogger(appTag, " GetTVL masterChef", err.message);
     }
   };
 
@@ -179,7 +182,7 @@ const Funds = ({
         //setTotalRGNLocked(Number(rgnLocked) / 10**18)
       }
     } catch (err: any) {
-      console.log(err.message);
+      appLogger(appTag, "- Error getMainsStakingData-", err.message);
     }
   };
 

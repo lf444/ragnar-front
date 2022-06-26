@@ -31,9 +31,9 @@ const PairTab: FunctionComponent<PairTabProps> = ({ pairName1, logo1, apr, stack
         display="flex"
         justifyContent="center"
         alignItems="center"
-        direction="column"
         sx={{
           height: "100%",
+          flexDirection: "column",
         }}
       >
         <StableStakeComponent pairName1={pairName1} logo1={logo1} 

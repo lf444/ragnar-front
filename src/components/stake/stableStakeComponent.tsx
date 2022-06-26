@@ -4,7 +4,7 @@ import Fade from "@mui/material/Fade";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import StableTab from "./tab/stableTab";
 import theme from "../../theme";
-import RgnYetiStable from './tab/RgnYetiTable';
+import RgnYetiStable from "./tab/RgnYetiTable";
 
 interface StableStakeComponentProps {
   pairName1: string;
@@ -22,11 +22,24 @@ interface StableStakeComponentProps {
   approve: any;
   masterchef: boolean;
   depositVeYeti: any;
-
 }
 
 const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
-  pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress, rgn, info, deposit, withdraw, approve, masterchef, depositVeYeti
+  pairName1,
+  logo1,
+  apr,
+  stacked,
+  tvl,
+  claimable,
+  addressPool,
+  pairAddress,
+  rgn,
+  info,
+  deposit,
+  withdraw,
+  approve,
+  masterchef,
+  depositVeYeti,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const style = {
@@ -56,7 +69,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
         direction="row"
         sx={{
           display: "flex",
-          paddingBottom:  open ?"10px": "0px",
+          paddingBottom: open ? "10px" : "0px",
           borderBottom: open ? "3px solid #2f343a" : "none",
           textAlign: "center",
           cursor: "pointer",
@@ -83,7 +96,12 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             },
           }}
         >
-          <img height="35px" style={{ position: "relative", left: "-0.75em" }} src={logo1} alt={`${logo1} Logo`} />
+          <img
+            height="35px"
+            style={{ position: "relative", left: "-0.75em" }}
+            src={logo1}
+            alt={`${logo1} Logo`}
+          />
           <Typography
             sx={{
               fontSize: { xs: "0.5em", sm: "1.25em" },
@@ -100,7 +118,9 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             sx={{
               fontSize: { xs: "0.75em", sm: "1em" },
               marginTop: "2px",
+              pr: { xs: "15px", sm: 0 },
               color: (theme) => theme.palette.text.secondary,
+              display: { xs: "inline-block", sm: "block" },
             }}
           >
             {" "}
@@ -110,13 +130,14 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             sx={{
               fontSize: { xs: "0.75em", sm: "1em" },
               fontWeight: "bold",
-              color:"#D0BA97",
+              color: "#D0BA97",
+              display: { xs: "inline-block", sm: "block" },
             }}
           >
             {apr}%
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
           <Typography
             sx={{
               fontSize: { xs: "0.75em", sm: "1em" },
@@ -188,16 +209,32 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
           <LinearScaleIcon style={style} />
         </Grid>
       </Grid>
-      
+
       {open && (
         <Fade in={open}>
           <Box sx={{ color: "#000000" }}>
-            {rgn ? <RgnYetiStable deposit={deposit} withdraw={withdraw} approve={approve} depositVeYeti={depositVeYeti} /> : <StableTab addressPool={addressPool} pairAddress={pairAddress} pairName={pairName1} info={info} 
-            deposit={deposit} withdraw={withdraw} approve={approve} masterchef={masterchef} />}
+            {rgn ? (
+              <RgnYetiStable
+                deposit={deposit}
+                withdraw={withdraw}
+                approve={approve}
+                depositVeYeti={depositVeYeti}
+              />
+            ) : (
+              <StableTab
+                addressPool={addressPool}
+                pairAddress={pairAddress}
+                pairName={pairName1}
+                info={info}
+                deposit={deposit}
+                withdraw={withdraw}
+                approve={approve}
+                masterchef={masterchef}
+              />
+            )}
           </Box>
         </Fade>
       )}
-
     </Box>
   );
 };

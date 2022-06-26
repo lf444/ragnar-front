@@ -5,6 +5,7 @@ import rgn from '../../assets/images/pools/rgn.png';
 import Funds from '../stake/funds/Funds';
 import MyNFT from '../stake/MyNFT';
 import theme from '../../theme';
+import PageHeader from '../shared/PageHeader';
 
 const LockRGN = ({
   priceYusd,
@@ -16,6 +17,7 @@ const LockRGN = ({
 
   return (
     <>
+    <PageHeader pageTitle={`Ragnar finance - Lock`} />
       {' '}
       <Zoom in={true}>
         <Grid

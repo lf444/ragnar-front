@@ -1,5 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
+import PageHeader from "../shared/PageHeader";
 
 import Funds from "../stake/funds/Funds";
 
@@ -13,6 +14,7 @@ const ClaimRewards = ({
 
   return (
     <>
+    <PageHeader pageTitle={`Ragnar finance - Claim`} />
       {" "}
       <Zoom in={true}>
         <Grid

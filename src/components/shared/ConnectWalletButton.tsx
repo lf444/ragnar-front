@@ -59,7 +59,6 @@ function ConnectWalletButton() {
       }
     } catch (error) {
       appLogger(appTag, "- Error connectWallet -", error);
-      console.log(error);
     }
   };
 
