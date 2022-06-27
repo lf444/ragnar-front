@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7449a99 (all data + all function)
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -7,12 +10,16 @@ import Box from '@mui/material/Box';
 import PairTab from './PairTab';
 import { contractAddress } from '../../abi/address';
 import { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import { coinGeckoService } from '../../services/coinGeckoService';
+=======
+>>>>>>> 7449a99 (all data + all function)
 import { ethers, BigNumber } from 'ethers';
 import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json'
 import mainstakingABI from '../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json'
 import tokenABI from '../../abi/contracts/Tokens/RGN.sol/RGN.json'
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools'
+<<<<<<< HEAD
 import { TOKEN_ID } from "../../utils/constance";
 =======
 import * as React from "react";
@@ -27,6 +34,9 @@ import { ethers } from "ethers";
 import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+
+>>>>>>> 7449a99 (all data + all function)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -89,6 +99,9 @@ export default function StakeStablePoolComponent({
     aprYeti: 0,
     aprRgn: 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7449a99 (all data + all function)
     aprLpCurve: 0
   })
   const [reward, setReward] = useState({
@@ -97,22 +110,29 @@ export default function StakeStablePoolComponent({
     rewardRgn: 0,
     rewardLpCurve: 0
   })
+<<<<<<< HEAD
 =======
     aprLpCurve: 0,
   });
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+>>>>>>> 7449a99 (all data + all function)
   const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7449a99 (all data + all function)
   const RGN = <PairTab pairName1="RGN" logo1={rgnPool.logo} 
   apr={Math.round(aprRgn.aprRgn)} stacked={Math.round(myStake.myRgn)} 
   tvl={Math.round(myStake.tvlRgn)} claimable={Math.round(reward.rewardRgn)} 
   addressPool={rgnPool.addressPool} pairAddress={rgnPool.pairAddress} rgn={false} info={rgnPool.info}
   deposit={deposit} withdraw={withdraw} approve={approve} masterchef={true} depositVeYeti=""
    />
+<<<<<<< HEAD
 
   const Yeti = <PairTab pairName1="YETI" logo1={YetiPool.logo} 
   apr={Math.round(aprRgn.aprYeti)} stacked={Math.round(myStake.myYeti)} 
@@ -149,22 +169,17 @@ export default function StakeStablePoolComponent({
       info={rgnPool.info}
     />
   );
+=======
+>>>>>>> 7449a99 (all data + all function)
 
-  const Yeti = (
-    <PairTab
-      pairName1="YETI"
-      logo1={YetiPool.logo}
-      apr={aprRgn.aprYeti}
-      stacked={Math.round(myStake.myYeti)}
-      tvl={Math.round(myStake.tvlYeti)}
-      claimable={0}
-      addressPool={YetiPool.addressPool}
-      pairAddress={YetiPool.pairAddress}
-      rgn={true}
-      info=""
-    />
-  );
+  const Yeti = <PairTab pairName1="YETI" logo1={YetiPool.logo} 
+  apr={Math.round(aprRgn.aprYeti)} stacked={Math.round(myStake.myYeti)} 
+  tvl={Math.round(myStake.tvlYeti)} claimable={Math.round(reward.rewardYeti)} 
+  addressPool={YetiPool.addressPool} pairAddress={YetiPool.pairAddress} rgn={true} info=""
+  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={true} depositVeYeti={depositVeYeti}
+   />
 
+<<<<<<< HEAD
   const Yusd = (
     <PairTab
       pairName1="YUSD"
@@ -195,17 +210,37 @@ export default function StakeStablePoolComponent({
     />
   );
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+  const Yusd = <PairTab pairName1="YUSD" logo1={YusdPool.logo} 
+  apr={Math.round(aprRgn.aprYusd)} stacked={Number(myStake.myYusd)} 
+  tvl={Math.round(myStake.tvlYusd)} claimable={Math.round(reward.rewardYusd)} 
+  addressPool={YusdPool.addressPool} pairAddress={YusdPool.pairAddress} rgn={false} info={YusdPool.info}
+  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={false} depositVeYeti=""
+   />
+  
+  const CurveLp = <PairTab pairName1="LP CURVE" logo1={LpCurvePool.logo} 
+  apr={Math.round(aprRgn.aprLpCurve)} stacked={Math.round(myStake.myLpCurve)} 
+  tvl={Math.round(myStake.tvlLpCurve)} claimable={Math.round(reward.rewardLpCurve)} 
+  addressPool={LpCurvePool.addressPool} pairAddress={LpCurvePool.pairAddress} rgn={false} info={LpCurvePool.info}
+  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={false} depositVeYeti=""
+   />
+>>>>>>> 7449a99 (all data + all function)
 
   useEffect(() => {
     fetchMyDeposit();
     fetchTVL();
     fetchAprRGN();
 <<<<<<< HEAD
+<<<<<<< HEAD
     fetchMyReward();
   }, [])
 =======
   }, []);
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+    fetchMyReward();
+  }, [])
+>>>>>>> 7449a99 (all data + all function)
 
   /*
 
@@ -222,6 +257,9 @@ Total valeur des staked token = Nombre de token stake * Prix d'un token stake
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7449a99 (all data + all function)
 async function fetchAprRGN() {
   try {
     if (window.ethereum) {
@@ -238,8 +276,11 @@ async function fetchAprRGN() {
         signer
       );
 
+<<<<<<< HEAD
       const priceYusd = await coinGeckoService.getPrice(TOKEN_ID.yusd);
       const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
+=======
+>>>>>>> 7449a99 (all data + all function)
       const priceLpCurve = 1;
       const priceRGN = 0.3;
 
@@ -392,11 +433,15 @@ async function depositVeYeti(qty: number) {
 
 
   async function fetchMyDeposit() {
+<<<<<<< HEAD
 =======
   async function fetchAprRGN() {
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+>>>>>>> 7449a99 (all data + all function)
     try {
       if (window.ethereum) {
+        let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
@@ -405,12 +450,16 @@ async function depositVeYeti(qty: number) {
           signer
         );
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7449a99 (all data + all function)
         const myDepositYUSD = await masterchef.depositInfo(contractAddress.fakeYusdAddress, String(accounts));
         const myDepositYeti = await masterchef.depositInfo(contractAddress.rgnYetiAddress, String(accounts));
         const myDepositRgn = await masterchef.depositInfo(contractAddress.rgnAddress, String(accounts));
         const myDepositLpCurve = await masterchef.depositInfo(contractAddress.fakeLpCurveAddress, String(accounts));
         
         setMyStake({...myStake, myYusd: myDepositYUSD / 10**18, myYeti: myDepositYeti / 10**18, myRgn: myDepositRgn / 10**18, myLpCurve: myDepositLpCurve / 10**18});
+<<<<<<< HEAD
 =======
         const rgnPerBlock = await masterchef.rgnPerSec();
         const allocPointYusd = await masterchef.getPoolInfo(
@@ -447,18 +496,18 @@ async function depositVeYeti(qty: number) {
           aprYeti:
             ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
         });
+=======
+>>>>>>> 7449a99 (all data + all function)
       }
     } catch (err: any) {
       console.log(err.message);
     }
   }
 
-  async function fetchMyDeposit() {
+  async function fetchMyReward() {
     try {
       if (window.ethereum) {
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
+        let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
@@ -466,6 +515,7 @@ async function depositVeYeti(qty: number) {
           masterchefABI.abi,
           signer
         );
+<<<<<<< HEAD
         const myDepositYUSD = await masterchef.depositInfo(
           contractAddress.fakeYusdAddress,
           String(accounts)
@@ -490,12 +540,27 @@ async function depositVeYeti(qty: number) {
           myLpCurve: myDepositLpCurve,
         });
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+        const priceRGN = 0.3;
+        const myRewardYUSD = await masterchef.pendingTokens(contractAddress.fakeYusdAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardRgnYeti = await masterchef.pendingTokens(contractAddress.rgnYetiAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardLpCurve = await masterchef.pendingTokens(contractAddress.fakeLpCurveAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardRGN = await masterchef.pendingTokens(contractAddress.rgnAddress, String(accounts), contractAddress.yetiAddres);
+        console.log(Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti / 10**18)
+
+        setReward({...reward, 
+          rewardYusd: (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardYUSD.pendingRGN) * priceRGN / 10**18)
+        , rewardYeti: (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRgnYeti.pendingRGN) * priceRGN / 10**18), 
+        rewardRgn:(Number(myRewardRGN.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRGN.pendingRGN) * priceRGN / 10**18), 
+        rewardLpCurve: (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardLpCurve.pendingRGN) * priceRGN / 10**18)});
+>>>>>>> 7449a99 (all data + all function)
       }
     } catch (err: any) {
       console.log(err.message);
     }
   }
 
+<<<<<<< HEAD
   async function fetchMyReward() {
     try {
       if (window.ethereum) {
@@ -526,6 +591,8 @@ async function depositVeYeti(qty: number) {
     }
   }
 
+=======
+>>>>>>> 7449a99 (all data + all function)
 
   async function fetchTVL() {
     try {
@@ -550,10 +617,14 @@ async function depositVeYeti(qty: number) {
         );
         const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7449a99 (all data + all function)
         setMyStake({...myStake, tvlYusd: Number(TVLYUSD.sizeOfPool) * priceYusd / 10**18, 
         tvlYeti: Number(TVLRgnYeti.sizeOfPool) * priceRgnYeti / 10**18, 
         tvlRgn: Number(TVLRGN.sizeOfPool) * priceRGN / 10**18, 
         tvlLpCurve: Number(TVLLpCurve.sizeOfPool) * priceLpCurve / 10**18});
+<<<<<<< HEAD
 =======
         setMyStake({
           ...myStake,
@@ -563,6 +634,8 @@ async function depositVeYeti(qty: number) {
           tvlLpCurve: (TVLLpCurve.sizeOfPool * priceLpCurve) / 10 ** 18,
         });
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+>>>>>>> 7449a99 (all data + all function)
       }
     } catch (err: any) {
       console.log(err.message);

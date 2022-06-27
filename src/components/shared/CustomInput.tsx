@@ -30,7 +30,8 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
       >
         {" "}
         <Input
-          sx={{ marginLeft: 1, width: { xs: "40%", md: "65%", sm: "30%" } }}
+          sx={{ marginLeft: 1, width: { xs: "50%", md: "65%", sm: "30%" } }}
+          onChange={(e) => handleChangeAmount(e)}
           disableUnderline
           placeholder="Enter an amount"
           defaultValue={0}

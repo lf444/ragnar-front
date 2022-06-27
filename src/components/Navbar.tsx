@@ -288,6 +288,7 @@ const Navbar = ({
                   }}
                   src={rgn}
 <<<<<<< HEAD
+<<<<<<< HEAD
                   alt='Ragnar Logo'
                 />{' '}
                 0.00$
@@ -296,6 +297,11 @@ const Navbar = ({
                 />{" "}
                 0.30$
 >>>>>>> 96c243c (dev: reduce req call)
+=======
+                  alt='Ragnar Logo'
+                />{' '}
+                {priceRgn}
+>>>>>>> 7449a99 (all data + all function)
               </Typography>
 
               <Typography

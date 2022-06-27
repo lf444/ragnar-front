@@ -2,7 +2,11 @@ import { Box, Typography, Tabs, Tab, Grid, Button, Link } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import CustomInput from "../../shared/CustomInput";
 import CustomDisplay from "../../shared/CustomDisplay";
+<<<<<<< HEAD
 import { ethers, BigNumber } from "ethers";
+=======
+import { ethers, BigNumber } from 'ethers';
+>>>>>>> 7449a99 (all data + all function)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -12,6 +16,7 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
+
 
   return (
     <div
@@ -49,14 +54,7 @@ interface StableTabProps {
 }
 
 const StableTab: FunctionComponent<StableTabProps> = ({
-  addressPool,
-  pairAddress,
-  pairName,
-  info,
-  deposit,
-  withdraw,
-  approve,
-  masterchef,
+  addressPool, pairAddress, pairName, info, deposit, withdraw, approve, masterchef
 }) => {
   const [value, setValue] = useState(0);
   const decimals = 18;
@@ -69,38 +67,33 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     console.log(amountToStake);
   };
 
-  function approveToken() {
+   function approveToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(
-        BigNumber.from(10).pow(decimals)
-      );
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
       approve(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
-    }
+   }
   }
 
-  function depositToken() {
+   function depositToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(
-        BigNumber.from(10).pow(decimals)
-      );
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
       deposit(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
-    }
+   }
   }
 
-  function withdrawToken() {
+   function withdrawToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(
-        BigNumber.from(10).pow(decimals)
-      );
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
       withdraw(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
-    }
+   }
   }
+
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -188,6 +181,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           </Grid>
           <Grid item container xs={6}>
             {" "}
+<<<<<<< HEAD
             <CustomInput
               poolName={"YETI"}
               amountToStake={amountToStake}
@@ -215,6 +209,20 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 fontWeight: "bold",
               }}
             >
+=======
+            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
+          </Grid>
+          <Grid item container xs={6} justifyContent="space-around">
+            {" "}
+            <Button onClick={approveToken} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+              APPROVE 
+            </Button>
+<<<<<<< HEAD
+            <Button variant="contained" sx={{ width: "45%", backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
+=======
+            <Button onClick={depositToken} variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
+>>>>>>> 67fd7e4 (all data + all function)
+>>>>>>> 7449a99 (all data + all function)
               DEPOSIT
             </Button>
           </Grid>
@@ -240,6 +248,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           </Grid>
           <Grid item container xs={6}>
             {" "}
+<<<<<<< HEAD
             <CustomInput
               poolName={"YETI"}
               amountToStake={amountToStake}
@@ -257,6 +266,13 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 fontWeight: "bold",
               }}
             >
+=======
+            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount}  />
+          </Grid>
+          <Grid item container xs={6} justifyContent="space-around">
+            {" "}
+            <Button onClick={withdrawToken} variant="contained" sx={{ width: "50%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+>>>>>>> 7449a99 (all data + all function)
               WITHDRAW
             </Button>
           </Grid>
