@@ -259,7 +259,7 @@ const Navbar = () => {
                   src={rgn}
                   alt='Ragnar Logo'
                 />{' '}
-                0.30$
+                0.00$
               </Typography>
 
               <Typography

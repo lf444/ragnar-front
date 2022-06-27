@@ -1,8 +1,10 @@
 import { Box, Typography, Tabs, Tab, Button, Grid, Link } from "@mui/material";
 import React from "react";
+import { useState, FunctionComponent } from "react";
 import CustomDisplay from "../../shared/CustomDisplay";
 import CustomInput from "../../shared/CustomInput";
 import { contractAddress } from '../../../abi/address';
+import { BigNumber, ethers } from "ethers";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -37,11 +39,71 @@ function a11yProps(index: number) {
   };
 }
 
-export default function RgnYetiTable() {
+interface RgnYetiTableProps {
+  deposit: any;
+  withdraw: any;
+  approve: any;
+  depositVeYeti: any;
+}
+
+const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
+  deposit, withdraw, approve, depositVeYeti
+}) => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  const decimals = 18;
+  const [amountToStake, setAmountToStake] = useState(0);
+  const handleChangeAmount = (newValue: number) => {
+    setAmountToStake(newValue);
+  };
+
+  function approveTokenRgnYETI() {
+    try {
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      approve(String(amount), contractAddress.rgnYetiAddress, true);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
+
+  function approveYeti() {
+    try {
+      const amount = ethers.utils.parseEther(String(amountToStake));
+      console.log(amount);
+      approve(String(amount), contractAddress.yetiAddres, false);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
+
+   function depositToken() {
+    try {
+      const amount = ethers.utils.parseEther(String(amountToStake));
+      deposit(String(amount), contractAddress.rgnYetiAddress, true);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
+
+   function withdrawToken() {
+    try {
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      withdraw(String(amount), contractAddress.rgnYetiAddress, true);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
+
+   function depositVeYetiMain() {
+    try {
+      const amount = ethers.utils.parseEther(String(amountToStake));
+      depositVeYeti(amount);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -101,14 +163,14 @@ export default function RgnYetiTable() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"YETI"} />
+            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount}  />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button onClick={approveYeti} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               APPROVE
             </Button>
-            <Button variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button onClick={depositVeYetiMain} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               DEPOSIT
             </Button>
           </Grid>
@@ -140,14 +202,14 @@ export default function RgnYetiTable() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"YETI"} />
+            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount}  />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button onClick={approveTokenRgnYETI} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               APPROVE
             </Button>
-            <Button variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button onClick={depositToken} variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               DEPOSIT
             </Button>
           </Grid>
@@ -173,11 +235,11 @@ export default function RgnYetiTable() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"YETI"} />
+            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button onClick={withdrawToken} variant="contained" sx={{ width: "55%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               WITHDRAW
             </Button>
           </Grid>
@@ -244,3 +306,5 @@ export default function RgnYetiTable() {
     </Box>
   );
 }
+
+export default RgnYetiTable;

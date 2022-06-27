@@ -17,11 +17,16 @@ interface StableStakeComponentProps {
   pairAddress: string;
   rgn: boolean;
   info: string;
+  deposit: any;
+  withdraw: any;
+  approve: any;
+  masterchef: boolean;
+  depositVeYeti: any;
 
 }
 
 const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
-  pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress, rgn, info
+  pairName1, logo1, apr, stacked, tvl, claimable, addressPool, pairAddress, rgn, info, deposit, withdraw, approve, masterchef, depositVeYeti
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const style = {
@@ -129,7 +134,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {stacked} {pairName1}
+            {stacked}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -171,7 +176,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {claimable}
+            ${claimable}
           </Typography>
         </Grid>
         <Grid
@@ -187,7 +192,8 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
       {open && (
         <Fade in={open}>
           <Box sx={{ color: "#000000" }}>
-            {rgn ? <RgnYetiStable /> : <StableTab addressPool={addressPool} pairAddress={pairAddress} pairName={pairName1} info={info} />}
+            {rgn ? <RgnYetiStable deposit={deposit} withdraw={withdraw} approve={approve} depositVeYeti={depositVeYeti} /> : <StableTab addressPool={addressPool} pairAddress={pairAddress} pairName={pairName1} info={info} 
+            deposit={deposit} withdraw={withdraw} approve={approve} masterchef={masterchef} />}
           </Box>
         </Fade>
       )}

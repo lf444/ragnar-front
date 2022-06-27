@@ -7,8 +7,10 @@ import PairTab from './PairTab';
 import { contractAddress } from '../../abi/address';
 import { useState, useEffect } from 'react';
 import { coinGeckoService } from '../../services/coinGeckoService';
-import { ethers } from 'ethers';
+import { ethers, BigNumber } from 'ethers';
 import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json'
+import mainstakingABI from '../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json'
+import tokenABI from '../../abi/contracts/Tokens/RGN.sol/RGN.json'
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools'
 import { TOKEN_ID } from "../../utils/constance";
 
@@ -69,39 +71,50 @@ export default function StakeStablePoolComponent() {
     aprRgn: 0,
     aprLpCurve: 0
   })
+  const [reward, setReward] = useState({
+    rewardYusd: 0,
+    rewardYeti: 0,
+    rewardRgn: 0,
+    rewardLpCurve: 0
+  })
   const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   const RGN = <PairTab pairName1="RGN" logo1={rgnPool.logo} 
-  apr={aprRgn.aprRgn} stacked={Math.round(myStake.myRgn)} 
-  tvl={Math.round(myStake.tvlRgn)} claimable={0} 
+  apr={Math.round(aprRgn.aprRgn)} stacked={Math.round(myStake.myRgn)} 
+  tvl={Math.round(myStake.tvlRgn)} claimable={Math.round(reward.rewardRgn)} 
   addressPool={rgnPool.addressPool} pairAddress={rgnPool.pairAddress} rgn={false} info={rgnPool.info}
+  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={true} depositVeYeti=""
    />
 
   const Yeti = <PairTab pairName1="YETI" logo1={YetiPool.logo} 
-  apr={aprRgn.aprYeti} stacked={Math.round(myStake.myYeti)} 
-  tvl={Math.round(myStake.tvlYeti)} claimable={0} 
+  apr={Math.round(aprRgn.aprYeti)} stacked={Math.round(myStake.myYeti)} 
+  tvl={Math.round(myStake.tvlYeti)} claimable={Math.round(reward.rewardYeti)} 
   addressPool={YetiPool.addressPool} pairAddress={YetiPool.pairAddress} rgn={true} info=""
+  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={true} depositVeYeti={depositVeYeti}
    />
 
   const Yusd = <PairTab pairName1="YUSD" logo1={YusdPool.logo} 
-  apr={aprRgn.aprYusd} stacked={Number(myStake.myYusd)} 
-  tvl={Math.round(myStake.tvlYusd)} claimable={0} 
+  apr={Math.round(aprRgn.aprYusd)} stacked={Number(myStake.myYusd)} 
+  tvl={Math.round(myStake.tvlYusd)} claimable={Math.round(reward.rewardYusd)} 
   addressPool={YusdPool.addressPool} pairAddress={YusdPool.pairAddress} rgn={false} info={YusdPool.info}
+  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={false} depositVeYeti=""
    />
   
   const CurveLp = <PairTab pairName1="LP CURVE" logo1={LpCurvePool.logo} 
-  apr={aprRgn.aprLpCurve} stacked={Math.round(myStake.myLpCurve)} 
-  tvl={Math.round(myStake.tvlLpCurve)} claimable={0} 
+  apr={Math.round(aprRgn.aprLpCurve)} stacked={Math.round(myStake.myLpCurve)} 
+  tvl={Math.round(myStake.tvlLpCurve)} claimable={Math.round(reward.rewardLpCurve)} 
   addressPool={LpCurvePool.addressPool} pairAddress={LpCurvePool.pairAddress} rgn={false} info={LpCurvePool.info}
+  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={false} depositVeYeti=""
    />
 
   useEffect(() => {
     fetchMyDeposit();
     fetchTVL();
     fetchAprRGN();
+    fetchMyReward();
   }, [])
 
 /*
@@ -128,23 +141,163 @@ async function fetchAprRGN() {
         masterchefABI.abi,
         signer
       );
-      const rgnPerBlock = await masterchef.rgnPerSec();
+      const mainstaking = new ethers.Contract(
+        contractAddress.mainstakingAddress,
+        mainstakingABI.abi,
+        signer
+      );
+
+      const priceYusd = await coinGeckoService.getPrice(TOKEN_ID.yusd);
+      const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
+      const priceLpCurve = 1;
+      const priceRGN = 0.3;
+
+      const rgnPerBlock = Number(ethers.utils.formatEther(await masterchef.rgnPerSec()));
       const allocPointYusd = await masterchef.getPoolInfo(contractAddress.fakeYusdAddress);
       const allocPointYeti = await masterchef.getPoolInfo(contractAddress.rgnYetiAddress);
       const allocPointLpCurve = await masterchef.getPoolInfo(contractAddress.fakeLpCurveAddress);
       const allocPointRgn = await masterchef.getPoolInfo(contractAddress.rgnAddress);
       const allocPointTotal = await masterchef.totalAllocPoint();
+
       const rgnPerBlockYusd = allocPointYusd.allocpoint * rgnPerBlock / allocPointTotal; 
       const rgnPerBlockYeti = allocPointYeti.allocpoint * rgnPerBlock / allocPointTotal; 
       const rgnPerBlockLpCurve = allocPointLpCurve.allocpoint * rgnPerBlock / allocPointTotal; 
       const rgnPerBlockRgn = allocPointRgn.allocpoint * rgnPerBlock / allocPointTotal; 
-      setAprRgn({...aprRgn, aprYusd: (rgnPerBlockYusd * 28800 * 365 / allocPointYusd.sizeOfPool) * 100, aprLpCurve: ((rgnPerBlockLpCurve * 28800 * 365) / allocPointLpCurve.sizeOfPool) * 100,
-    aprRgn: ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100, aprYeti: ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100})
+
+      const rgnPricePerYearYusd = (rgnPerBlockYusd * 28800 * 365) * priceRGN;
+      const rgnPricePerYearLpCurve = (rgnPerBlockLpCurve * 28800 * 365) * priceRGN;
+      const rgnPricePerYearRgn = (rgnPerBlockRgn * 28800 * 365) * priceRGN;
+      const rgnPricePerYearYeti = (rgnPerBlockYeti * 28800 * 365) * priceRGN;
+      
+
+
+      setAprRgn({...aprRgn, 
+      aprYusd: (rgnPricePerYearYusd / (allocPointYusd.sizeOfPool * priceYusd / 10**18) * priceRGN) * 100, 
+      aprLpCurve: (rgnPricePerYearLpCurve / (allocPointLpCurve.sizeOfPool * priceLpCurve / 10**18) * priceRGN) * 100,
+      aprRgn: (rgnPricePerYearRgn / (allocPointRgn.sizeOfPool * priceRGN / 10**18) * priceRGN) * 100, 
+      aprYeti: (rgnPricePerYearYeti / (allocPointYeti.sizeOfPool / 10**18) * priceRgnYeti) * 100})
+
+  }
+  } catch (err: any) {
+    console.log(err.message);
+  }
+}
+
+
+async function approve(qty: number, address: string, masterchefContract: boolean) {
+
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const token = new ethers.Contract(address, tokenABI.abi, signer);
+      try {
+      if (masterchefContract) {
+      const tokenApproveMasterchef = await token.approve(contractAddress.masterchefAddress, qty);
+      tokenApproveMasterchef.wait();
+      } else {
+      const tokenApproveMainstaking = await token.approve(contractAddress.mainstakingAddress, qty);
+      tokenApproveMainstaking.wait();
+      }
+    }
+    catch (err: any) {
+    console.log(err.message);
+  } 
+  }
+}
+
+
+async function deposit(qty: number, address: string, masterchefContract: boolean) {
+  try {
+    if (window.ethereum) {
+      let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const masterchef = new ethers.Contract(
+        contractAddress.masterchefAddress,
+        masterchefABI.abi,
+        signer
+      );
+      const mainstaking = new ethers.Contract(
+        contractAddress.mainstakingAddress,
+        mainstakingABI.abi,
+        signer
+      );
+
+      if (masterchefContract) {
+
+      const depositTokenMasterchef = await masterchef.deposit(address, qty);
+      await depositTokenMasterchef.wait();
+
+      } else {
+
+        const depositTokenMainstaking = await mainstaking.deposit(address, qty, String(accounts));
+        await depositTokenMainstaking.wait();
+      
+      }
+
+
     }
   } catch (err: any) {
     console.log(err.message);
   }
 }
+
+async function withdraw(qty: number, address: string, masterchefContract: boolean) {
+  try {
+    if (window.ethereum) {
+      let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const masterchef = new ethers.Contract(
+        contractAddress.masterchefAddress,
+        masterchefABI.abi,
+        signer
+      );
+      const mainstaking = new ethers.Contract(
+        contractAddress.mainstakingAddress,
+        mainstakingABI.abi,
+        signer
+      );
+
+      if (masterchefContract) {
+
+      const depositTokenMasterchef = await masterchef.withdraw(address, qty);
+      await depositTokenMasterchef.wait();
+
+      } else {
+
+        const depositTokenMainstaking = await mainstaking.withdraw(address, qty, String(accounts));
+        await depositTokenMainstaking.wait();
+      
+      }
+
+
+    }
+  } catch (err: any) {
+    console.log(err.message);
+  }
+}
+
+async function depositVeYeti(qty: number) {
+  try {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const mainstaking = new ethers.Contract(
+        contractAddress.mainstakingAddress,
+        mainstakingABI.abi,
+        signer
+      );
+
+      const depositVeYeti = await mainstaking.stakeYETI(qty);
+      await depositVeYeti.wait();
+
+    }
+  } catch (err: any) {
+    console.log(err.message);
+  }
+}
+
 
 
   async function fetchMyDeposit() {
@@ -162,12 +315,44 @@ async function fetchAprRGN() {
         const myDepositYeti = await masterchef.depositInfo(contractAddress.rgnYetiAddress, String(accounts));
         const myDepositRgn = await masterchef.depositInfo(contractAddress.rgnAddress, String(accounts));
         const myDepositLpCurve = await masterchef.depositInfo(contractAddress.fakeLpCurveAddress, String(accounts));
-        setMyStake({...myStake, myYusd: myDepositYUSD, myYeti: myDepositYeti, myRgn: myDepositRgn, myLpCurve: myDepositLpCurve});
+        
+        setMyStake({...myStake, myYusd: myDepositYUSD / 10**18, myYeti: myDepositYeti / 10**18, myRgn: myDepositRgn / 10**18, myLpCurve: myDepositLpCurve / 10**18});
       }
     } catch (err: any) {
       console.log(err.message);
     }
   }
+
+  async function fetchMyReward() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
+        const priceRGN = 0.3;
+        const myRewardYUSD = await masterchef.pendingTokens(contractAddress.fakeYusdAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardRgnYeti = await masterchef.pendingTokens(contractAddress.rgnYetiAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardLpCurve = await masterchef.pendingTokens(contractAddress.fakeLpCurveAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardRGN = await masterchef.pendingTokens(contractAddress.rgnAddress, String(accounts), contractAddress.yetiAddres);
+        console.log(Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti / 10**18)
+
+        setReward({...reward, 
+          rewardYusd: (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardYUSD.pendingRGN) * priceRGN / 10**18)
+        , rewardYeti: (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRgnYeti.pendingRGN) * priceRGN / 10**18), 
+        rewardRgn:(Number(myRewardRGN.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRGN.pendingRGN) * priceRGN / 10**18), 
+        rewardLpCurve: (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardLpCurve.pendingRGN) * priceRGN / 10**18)});
+      }
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  }
+
 
   async function fetchTVL() {
     try {
@@ -187,10 +372,10 @@ async function fetchAprRGN() {
         const TVLRgnYeti = await masterchef.getPoolInfo(contractAddress.rgnYetiAddress);
         const TVLLpCurve = await masterchef.getPoolInfo(contractAddress.fakeLpCurveAddress);
         const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
-        setMyStake({...myStake, tvlYusd: TVLYUSD.sizeOfPool * priceYusd / 10**18, 
-        tvlYeti: TVLRgnYeti.sizeOfPool * priceRgnYeti / 10**18, 
-        tvlRgn: TVLRGN.sizeOfPool * priceRGN / 10**18, 
-        tvlLpCurve: TVLLpCurve.sizeOfPool * priceLpCurve / 10**18});
+        setMyStake({...myStake, tvlYusd: Number(TVLYUSD.sizeOfPool) * priceYusd / 10**18, 
+        tvlYeti: Number(TVLRgnYeti.sizeOfPool) * priceRgnYeti / 10**18, 
+        tvlRgn: Number(TVLRGN.sizeOfPool) * priceRGN / 10**18, 
+        tvlLpCurve: Number(TVLLpCurve.sizeOfPool) * priceLpCurve / 10**18});
       }
     } catch (err: any) {
       console.log(err.message);

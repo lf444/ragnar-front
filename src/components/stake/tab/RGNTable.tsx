@@ -1,5 +1,6 @@
 import { Box, Typography, Tabs, Tab, Button, Grid } from "@mui/material";
 import React from "react";
+import { useState } from "react";
 import CustomDisplay from "../../shared/CustomDisplay";
 import CustomInput from "../../shared/CustomInput";
 import MyNFT from "../MyNFT";
@@ -43,6 +44,10 @@ export default function RGNTableLock() {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+  const [amountToStake, setAmountToStake] = useState(0);
+  const handleChangeAmount = (newValue: number) => {
+    setAmountToStake(newValue);
   };
 
   return (
@@ -100,7 +105,7 @@ export default function RGNTableLock() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"RGN"} />
+            <CustomInput poolName={"RGN"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount}/>
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
@@ -140,7 +145,7 @@ export default function RGNTableLock() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"RGN"} />
+            <CustomInput poolName={"RGN"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
@@ -180,7 +185,7 @@ export default function RGNTableLock() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"RGN"} />
+            <CustomInput poolName={"RGN"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
@@ -220,7 +225,7 @@ export default function RGNTableLock() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"RGN"} />
+            <CustomInput poolName={"RGN"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
@@ -260,7 +265,7 @@ export default function RGNTableLock() {
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"RGN"} />
+            <CustomInput poolName={"RGN"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}

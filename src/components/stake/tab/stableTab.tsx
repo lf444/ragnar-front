@@ -2,6 +2,8 @@ import { Box, Typography, Tabs, Tab, Grid, Button, Link } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import CustomInput from "../../shared/CustomInput";
 import CustomDisplay from "../../shared/CustomDisplay";
+import { ethers, BigNumber } from 'ethers';
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -10,6 +12,7 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
+
 
   return (
     <div
@@ -40,17 +43,54 @@ interface StableTabProps {
   pairAddress: string;
   pairName: string;
   info: string;
-
+  deposit: any;
+  withdraw: any;
+  approve: any;
+  masterchef: boolean;
 }
 
 const StableTab: FunctionComponent<StableTabProps> = ({
-  addressPool, pairAddress, pairName, info
+  addressPool, pairAddress, pairName, info, deposit, withdraw, approve, masterchef
 }) => {
 
   const [value, setValue] = useState(0);
+  const decimals = 18;
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  const [amountToStake, setAmountToStake] = useState(0);
+  const handleChangeAmount = (newValue: number) => {
+    setAmountToStake(newValue);
+    console.log(amountToStake);
+  };
+
+   function approveToken() {
+    try {
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      approve(String(amount), pairAddress, masterchef);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
+
+   function depositToken() {
+    try {
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      deposit(String(amount), pairAddress, masterchef);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
+
+   function withdrawToken() {
+    try {
+      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      withdraw(String(amount), pairAddress, masterchef);
+    } catch (err: any) {
+      console.log(err.message);
+   }
+  }
+
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -103,14 +143,14 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"YETI"} />
+            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
-              APPROVE
+            <Button onClick={approveToken} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+              APPROVE 
             </Button>
-            <Button variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
+            <Button onClick={depositToken} variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
               DEPOSIT
             </Button>
           </Grid>
@@ -136,11 +176,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           </Grid>
           <Grid item container xs={6}>
             {" "}
-            <CustomInput poolName={"YETI"} />
+            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount}  />
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button onClick={withdrawToken} variant="contained" sx={{ width: "50%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               WITHDRAW
             </Button>
           </Grid>

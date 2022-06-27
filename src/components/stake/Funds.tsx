@@ -469,7 +469,7 @@ const FundSecondTabs = () => {
             color:  (theme) => theme.palette.text.primary,
           }}
         >
-          {totalRGN}
+          {Math.round(totalRGN)}
         </Typography>
       </Grid>
       <Grid
