@@ -46,7 +46,7 @@ const ClaimRewards = ({
             >
               CLAIM REWARDS
             </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} />
+            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false} />
           </Grid>
           <Grid item sx={{ width: "90%" }}></Grid>
         </Grid>

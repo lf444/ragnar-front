@@ -8,15 +8,16 @@ import { appLogger } from "../../../utils/method";
 import FundsFirstTabs from "./FirstTab";
 import FundSecondTabs from "./SecondTab";
 
-
-const appTag:string = "Funds";
+const appTag: string = "Funds";
 
 const Funds = ({
   priceYusd,
   priceRgnYeti,
+  shouldDisplaySecondTabPrice,
 }: {
   priceYusd: number;
   priceRgnYeti: number;
+  shouldDisplaySecondTabPrice: boolean;
 }) => {
   const [deposit, setDeposit] = useState(0);
   const [reward, setReward] = useState(0);
@@ -194,7 +195,9 @@ const Funds = ({
 
   useEffect(() => {
     fetchMasterChefData();
-    getMainsStakingData();
+    {
+      shouldDisplaySecondTabPrice && getMainsStakingData();
+    }
   }, []);
 
   return (
@@ -204,12 +207,15 @@ const Funds = ({
         reward={reward}
         valuelocked={valuelocked}
       />
-      <FundSecondTabs
-        totalYeti={totalYeti}
-        totalVeYeti={totalVeYeti}
-        totalRGN={totalRGN}
-        totalRGNLocked={totalRGNLocked}
-      />
+
+      {shouldDisplaySecondTabPrice && (
+        <FundSecondTabs
+          totalYeti={totalYeti}
+          totalVeYeti={totalVeYeti}
+          totalRGN={totalRGN}
+          totalRGNLocked={totalRGNLocked}
+        />
+      )}
     </>
   );
 };

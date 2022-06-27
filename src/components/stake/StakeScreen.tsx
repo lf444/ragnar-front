@@ -48,7 +48,7 @@ const StakeScreen = ({
             >
               STAKE FUNDS
             </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} />
+            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
             <StakeStablePoolComponent
