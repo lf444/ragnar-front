@@ -57,7 +57,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
   addressPool, pairAddress, pairName, info, deposit, withdraw, approve, masterchef
 }) => {
   const [value, setValue] = useState(0);
-  const decimals = 18;
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -69,7 +68,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 
    function approveToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      const amount = ethers.utils.parseEther(String(amountToStake));
       approve(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
@@ -78,7 +77,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 
    function depositToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      const amount = ethers.utils.parseEther(String(amountToStake));
       deposit(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);
@@ -87,7 +86,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 
    function withdrawToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(BigNumber.from(10).pow(decimals));
+      const amount = ethers.utils.parseEther(String(amountToStake));
       withdraw(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       console.log(err.message);

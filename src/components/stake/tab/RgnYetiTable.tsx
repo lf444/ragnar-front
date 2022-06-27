@@ -56,7 +56,6 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  const decimals = 18;
   const [amountToStake, setAmountToStake] = useState(0);
   const handleChangeAmount = (newValue: number) => {
     setAmountToStake(newValue);
@@ -64,9 +63,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 
   function approveTokenRgnYETI() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(
-        BigNumber.from(10).pow(decimals)
-      );
+      const amount = ethers.utils.parseEther(String(amountToStake));
       approve(String(amount), contractAddress.rgnYetiAddress, true);
     } catch (err: any) {
       console.log(err.message);
@@ -94,9 +91,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 
   function withdrawToken() {
     try {
-      const amount = BigNumber.from(amountToStake).mul(
-        BigNumber.from(10).pow(decimals)
-      );
+      const amount = ethers.utils.parseEther(String(amountToStake));
       withdraw(String(amount), contractAddress.rgnYetiAddress, true);
     } catch (err: any) {
       console.log(err.message);
