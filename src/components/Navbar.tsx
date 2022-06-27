@@ -336,7 +336,7 @@ const Navbar = ({
                 {priceYeti.toFixed(3)}$
               </Typography>
             </Grid>
-            <Grid item xs={2} sm={1} md={1} lg={1}>
+            <Grid item xs={2} sm={2} md={2} lg={2}>
               <ConnectWallet />
             </Grid>
           </Grid>
