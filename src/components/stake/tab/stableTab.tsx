@@ -209,7 +209,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
-            <Button onClick={approveToken} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
+            <Button onClick={approveToken} variant="contained" sx={{ width: "45%", backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               APPROVE 
             </Button>
 <<<<<<< HEAD
@@ -231,7 +231,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container>
-          <Grid item container xs={6}>
+          <Grid sx={{ marginBottom: "5px" }} item container xs={6}>
             <CustomDisplay poolName={"RGNYETI"} display="Unstake" />
           </Grid>
           <Grid

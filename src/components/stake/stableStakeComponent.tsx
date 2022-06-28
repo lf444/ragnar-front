@@ -155,7 +155,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {stacked} {pairName1}
+            {stacked.toLocaleString('en')} {pairName1}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -176,7 +176,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${tvl}
+            ${tvl.toLocaleString('en')}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -197,7 +197,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${claimable}
+            ${claimable.toLocaleString('en')}
           </Typography>
         </Grid>
         <Grid

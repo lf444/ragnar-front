@@ -59,7 +59,7 @@ const FundsFirstTabs = ({
                 color: (theme) => theme.palette.text.primary,
               }}
             >
-              ${Math.round(deposit)} USD
+              ${deposit.toLocaleString('en')} USD
             </Typography>
           </Grid>
         </Grid>
@@ -106,7 +106,7 @@ const FundsFirstTabs = ({
                 color:"#D0BA97",
               }}
             >
-              ${Math.round(reward)} USD
+              ${reward.toLocaleString('en')} USD
             </Typography>
           </Grid>
         </Grid>
@@ -152,7 +152,7 @@ const FundsFirstTabs = ({
                 fontWeight: "bold",
               }}
             >
-              ${Math.round(valuelocked)} USD
+              ${valuelocked.toLocaleString('en')} USD
             </Typography>
           </Grid>
         </Grid>

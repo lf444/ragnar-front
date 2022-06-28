@@ -1,4 +1,4 @@
-import { Grid, Input, Button } from "@mui/material";
+import { Grid, Input, Button, Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 
 interface CustomInputProps {
@@ -44,6 +44,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
         <Button
           variant="contained"
 <<<<<<< HEAD
+<<<<<<< HEAD
           sx={{
             borderRadius: "5px",
             fontSize: { xs: "0.60rem", sm: "1rem" },
@@ -59,6 +60,9 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
 =======
           sx={{borderRadius:"5px", fontSize: { xs: "0.60rem", sm: "0.65em" }, position:"relative", marginRight:"0.25rem" ,fontWeight:"normal", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
 >>>>>>> 9ff617c (dev: somes css changes)
+=======
+          sx={{borderRadius:"5px", fontSize: { xs: "0.50rem", sm: "0.50em" }, position:"relative", marginRight:"0.25rem" ,fontWeight:"bold", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
+>>>>>>> 459293d (minor change)
         >
           MAX
         </Button>

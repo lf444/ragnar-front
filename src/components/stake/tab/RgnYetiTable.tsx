@@ -330,7 +330,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Grid container>
-          <Grid item container xs={6}>
+          <Grid sx={{ marginBottom: "5px" }} item container xs={6}>
             <CustomDisplay poolName={"RGNYETI"} display="Unstake" />
           </Grid>
           <Grid

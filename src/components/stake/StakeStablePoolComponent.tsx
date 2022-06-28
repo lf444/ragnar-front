@@ -749,7 +749,7 @@ async function depositVeYeti(qty: number) {
             }}
           />
           <Tab
-            label="Yeti Pools"
+            label="Yeti Boosted Pools"
             {...a11yProps(1)}
             style={{
               color: value === 1 ? "#ddeaf2" : "#929ea6",

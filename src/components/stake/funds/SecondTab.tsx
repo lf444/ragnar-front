@@ -70,7 +70,7 @@ const FundSecondTabs = ({
               color: "#bfcbd2",
             }}
           >
-            {Math.round(totalRGN)}
+            {totalRGN.toLocaleString('en')} RGN
           </Typography>
         </Grid>
         <Grid
@@ -177,7 +177,7 @@ const FundSecondTabs = ({
               color: (theme) => theme.palette.text.secondary,
             }}
           >
-            veYeti BALANCE
+            TOTAL YETI CONVERTED
           </Typography>
           <Typography
             sx={{
@@ -218,7 +218,7 @@ const FundSecondTabs = ({
             }}
           >
             {" "}
-            TOTAL REVENUE
+            veYeti BALANCE
           </Typography>
           <Typography
             sx={{
