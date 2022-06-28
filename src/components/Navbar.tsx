@@ -306,8 +306,12 @@ const Navbar = ({
 =======
                   alt='Ragnar Logo'
                 />{' '}
+<<<<<<< HEAD
                 {priceRgn}
 >>>>>>> 7449a99 (all data + all function)
+=======
+                {priceRgn.toFixed(3)}$
+>>>>>>> 53dd8be (minor change)
               </Typography>
 
               <Typography

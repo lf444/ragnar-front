@@ -146,7 +146,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             }}
           >
             {" "}
-            Staked {pairName1}
+            Deposit
           </Typography>
           <Typography
             sx={{
@@ -155,7 +155,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {stacked}
+            {stacked} {pairName1}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -188,7 +188,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             }}
           >
             {" "}
-            Claimable
+            Rewards
           </Typography>
           <Typography
             sx={{

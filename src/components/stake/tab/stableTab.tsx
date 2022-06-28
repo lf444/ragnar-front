@@ -2,11 +2,7 @@ import { Box, Typography, Tabs, Tab, Grid, Button, Link } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import CustomInput from "../../shared/CustomInput";
 import CustomDisplay from "../../shared/CustomDisplay";
-<<<<<<< HEAD
-import { ethers, BigNumber } from "ethers";
-=======
 import { ethers, BigNumber } from 'ethers';
->>>>>>> 7449a99 (all data + all function)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -216,6 +212,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button onClick={approveToken} variant="contained" sx={{ width: "45%" ,backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
               APPROVE 
             </Button>
+<<<<<<< HEAD
             <Button variant="contained" sx={{ width: "45%", backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
 <<<<<<< HEAD
 =======
@@ -224,6 +221,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 >>>>>>> 7449a99 (all data + all function)
 =======
 >>>>>>> c66f1d1 (dev: pool minor change)
+=======
+            <Button onClick={depositToken} variant="contained" sx={{ width: "45%", backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
+>>>>>>> 53dd8be (minor change)
               DEPOSIT
             </Button>
           </Grid>

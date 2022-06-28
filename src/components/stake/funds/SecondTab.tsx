@@ -56,7 +56,7 @@ const FundSecondTabs = ({
             }}
           >
             {" "}
-            RAGNAR CIRCULATION SUPPLY
+            RGN SUPPLY
           </Typography>
           <Typography
             sx={{
@@ -70,7 +70,7 @@ const FundSecondTabs = ({
               color: "#bfcbd2",
             }}
           >
-            0
+            {Math.round(totalRGN)}
           </Typography>
         </Grid>
         <Grid
@@ -177,7 +177,7 @@ const FundSecondTabs = ({
               color: (theme) => theme.palette.text.secondary,
             }}
           >
-            RgnYETI BALANCE
+            veYeti BALANCE
           </Typography>
           <Typography
             sx={{
@@ -191,7 +191,7 @@ const FundSecondTabs = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {totalRGN}
+            0
           </Typography>
         </Grid>
         <Grid

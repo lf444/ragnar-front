@@ -25,7 +25,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography  component={'div'}>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -232,6 +232,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               APPROVE
             </Button>
             <Button
+              onClick={depositVeYetiMain}
               variant="contained"
               sx={{
                 width: "45%",
