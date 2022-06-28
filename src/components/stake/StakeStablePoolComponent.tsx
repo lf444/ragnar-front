@@ -238,6 +238,7 @@ export default function StakeStablePoolComponent({
 <<<<<<< HEAD
 <<<<<<< HEAD
     fetchMyReward();
+<<<<<<< HEAD
   }, [])
 =======
   }, []);
@@ -246,6 +247,9 @@ export default function StakeStablePoolComponent({
     fetchMyReward();
   }, [])
 >>>>>>> 7449a99 (all data + all function)
+=======
+  },[])
+>>>>>>> d7c1a2c (fix: correct kool bug)
 
   /*
 
