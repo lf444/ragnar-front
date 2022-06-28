@@ -14,6 +14,12 @@ const RagnarRoute = () => {
   const [priceYeti, setPriceYeti] = useState(0);
   const [priceRgn, setPriceRgn] = useState(0);
 
+  // Change of account will trigger render on each fetch for personnal data and update the state accordingly
+  const [userAccount, setUserAccount] = useState<string>("");
+
+  const handleChangeUserAccount = (newUserAccount: string): void => {
+    setUserAccount(newUserAccount);
+  };
 
   const getPrices = async () => {
     await coinGeckoService.getPrice(TOKEN_ID.yusd).then((r) => SetPriceYusd(r));
@@ -41,9 +47,9 @@ const RagnarRoute = () => {
     <>
       <Navbar priceYeti={priceYeti} priceRgn={priceRgn} />
       <Routes>
-        <Route path='/stake' element={<StakeScreen priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} />} />
-        <Route path='/claim' element={<ClaimRewards priceYusd={priceYusd} priceRgnYeti={priceRgnYeti}/>} />
-        <Route path='/lock' element={<LockRGN priceYusd={priceYusd} priceRgnYeti={priceRgnYeti}/> } />
+        <Route path='/stake' element={<StakeScreen priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} userAccount={userAccount}/>} />
+        <Route path='/claim' element={<ClaimRewards priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} userAccount={userAccount}/>} />
+        <Route path='/lock' element={<LockRGN priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} userAccount={userAccount}/>  } />
       </Routes>
     </>
   );

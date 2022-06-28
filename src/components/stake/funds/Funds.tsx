@@ -11,10 +11,12 @@ import FundSecondTabs from "./SecondTab";
 const appTag: string = "Funds";
 
 const Funds = ({
+  userAccount,
   priceYusd,
   priceRgnYeti,
   shouldDisplaySecondTabPrice,
 }: {
+  userAccount: string;
   priceYusd: number;
   priceRgnYeti: number;
   shouldDisplaySecondTabPrice: boolean;
@@ -198,7 +200,7 @@ const Funds = ({
     {
       shouldDisplaySecondTabPrice && getMainsStakingData();
     }
-  }, []);
+  }, [userAccount]);
 
   return (
     <>

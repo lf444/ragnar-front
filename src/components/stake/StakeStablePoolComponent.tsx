@@ -83,9 +83,11 @@ function a11yProps(index: number) {
 }
 
 export default function StakeStablePoolComponent({
+  userAccount,
   priceYusd,
   priceRgnYeti,
 }: {
+  userAccount:string;
   priceYusd: number;
   priceRgnYeti: number;
 }) {
@@ -239,6 +241,7 @@ export default function StakeStablePoolComponent({
 <<<<<<< HEAD
     fetchMyReward();
 <<<<<<< HEAD
+<<<<<<< HEAD
   }, [])
 =======
   }, []);
@@ -250,6 +253,9 @@ export default function StakeStablePoolComponent({
 =======
   },[])
 >>>>>>> d7c1a2c (fix: correct kool bug)
+=======
+  },[userAccount])
+>>>>>>> 685d0dd (dev: for kool bitch)
 
   /*
 

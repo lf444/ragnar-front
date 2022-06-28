@@ -3,11 +3,14 @@ import Zoom from "@mui/material/Zoom";
 import PageHeader from "../shared/PageHeader";
 
 import Funds from "../stake/funds/Funds";
+import ClaimRewardsScreen from "./ClaimRewardsScreen";
 
 const ClaimRewards = ({
+  userAccount,
   priceYusd,
   priceRgnYeti,
 }: {
+  userAccount: string;
   priceYusd: number;
   priceRgnYeti: number;
 }) => {
@@ -46,9 +49,11 @@ const ClaimRewards = ({
             >
               CLAIM REWARDS
             </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false} />
+            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false}  userAccount={userAccount} />
           </Grid>
-          <Grid item sx={{ width: "90%" }}></Grid>
+          <Grid item sx={{ width: "90%" }}>
+            <ClaimRewardsScreen />
+          </Grid>
         </Grid>
       </Zoom>
     </>
