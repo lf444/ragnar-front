@@ -35,7 +35,7 @@ const ClaimRewards = ({
             borderRadius: { xs: "0px", sm: "20px" },
           }}
         >
-          <Grid item sx={{ width: "90%", paddingBottom: 2 }}>
+          <Grid item sx={{ width: "90%", paddingBottom: 0 }}>
             <Typography
               sx={{
                 fontWeight: "bold",

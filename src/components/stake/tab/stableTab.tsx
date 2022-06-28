@@ -86,6 +86,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
   function approveToken() {
     try {
       const amount = ethers.utils.parseEther(String(amountToStake));
+      console.log(amount)
       approve(String(amount), pairAddress, masterchef);
     } catch (err: any) {
       appLogger(appTag, 'approveToken', err.message);
