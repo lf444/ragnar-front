@@ -9,16 +9,10 @@ import { HelmetProvider } from "react-helmet-async";
 
 import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-import {
-  ExternalProvider,
-  JsonRpcFetchFunc,
-  Web3Provider,
-} from "@ethersproject/providers";
-import { Web3ReactProvider } from "@web3-react/core";
 
-function getLibrary(provider: ExternalProvider | JsonRpcFetchFunc) {
-  return new Web3Provider(provider);
-}
+import {  WagmiConfig } from 'wagmi';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { chains, wagmiClient } from "./components/wallet/walletConfig";
 
 const container = document.getElementById("root");
 // @ts-ignore
@@ -26,15 +20,17 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <HelmetProvider>
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={chains}>
       <BrowserRouter basename="/">
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Web3ReactProvider getLibrary={getLibrary}>
             <App />
-          </Web3ReactProvider>
         </ThemeProvider>
       </BrowserRouter>
+      </RainbowKitProvider>
+    </WagmiConfig>
     </HelmetProvider>
   </React.StrictMode>
 );

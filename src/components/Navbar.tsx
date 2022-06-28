@@ -12,9 +12,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import Menu from "@mui/material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import ConnectWallet from "./wallet/ConnectWallet"
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const drawerWidth = 100;
 
@@ -341,7 +341,7 @@ const Navbar = ({
               </Typography>
             </Grid>
             <Grid item xs={2} sm={2} md={2} lg={2}>
-              <ConnectWallet />
+             <ConnectButton />
             </Grid>
           </Grid>
           <Drawer
