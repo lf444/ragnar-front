@@ -11,6 +11,7 @@ import PairTab from './PairTab';
 import { contractAddress } from '../../abi/address';
 import { useState, useEffect } from 'react';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { coinGeckoService } from '../../services/coinGeckoService';
 =======
 >>>>>>> 7449a99 (all data + all function)
@@ -42,19 +43,28 @@ import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
 =======
 import { appLogger } from "../../utils/method";
 >>>>>>> 9ff617c (dev: somes css changes)
+=======
+import { ethers } from 'ethers';
+import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
+import mainstakingABI from '../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json';
+import tokenABI from '../../abi/contracts/Tokens/RGN.sol/RGN.json';
+import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools';
+
+import { appLogger } from '../../utils/method';
+>>>>>>> 4560517 (dev: remove dirty console log)
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
-const appTag: string = "StakeStablePoolComponent";
+const appTag: string = 'StakeStablePoolComponent';
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -64,7 +74,7 @@ function TabPanel(props: TabPanelProps) {
         <Box
           sx={{
             paddingTop: 3,
-            overflowY: "overlay",
+            overflowY: 'overlay',
             paddingBottom: 10,
           }}
         >
@@ -78,7 +88,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -87,7 +97,7 @@ export default function StakeStablePoolComponent({
   priceYusd,
   priceRgnYeti,
 }: {
-  userAccount:string;
+  userAccount: string;
   priceYusd: number;
   priceRgnYeti: number;
 }) {
@@ -107,14 +117,20 @@ export default function StakeStablePoolComponent({
     aprRgn: 0,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
     aprLpCurve: 0
   })
+=======
+    aprLpCurve: 0,
+  });
+>>>>>>> 4560517 (dev: remove dirty console log)
   const [reward, setReward] = useState({
     rewardYusd: 0,
     rewardYeti: 0,
     rewardRgn: 0,
+<<<<<<< HEAD
     rewardLpCurve: 0
   })
 <<<<<<< HEAD
@@ -124,11 +140,16 @@ export default function StakeStablePoolComponent({
 >>>>>>> 96c243c (dev: reduce req call)
 =======
 >>>>>>> 7449a99 (all data + all function)
+=======
+    rewardLpCurve: 0,
+  });
+>>>>>>> 4560517 (dev: remove dirty console log)
   const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -140,14 +161,49 @@ export default function StakeStablePoolComponent({
   deposit={deposit} withdraw={withdraw} approve={approve} masterchef={true} depositVeYeti=""
    />
 <<<<<<< HEAD
+=======
+  const RGN = (
+    <PairTab
+      pairName1='RGN'
+      logo1={rgnPool.logo}
+      apr={Math.round(aprRgn.aprRgn)}
+      stacked={Math.round(myStake.myRgn)}
+      tvl={Math.round(myStake.tvlRgn)}
+      claimable={Math.round(reward.rewardRgn)}
+      addressPool={rgnPool.addressPool}
+      pairAddress={rgnPool.pairAddress}
+      rgn={false}
+      info={rgnPool.info}
+      deposit={deposit}
+      withdraw={withdraw}
+      approve={approve}
+      masterchef={true}
+      depositVeYeti=''
+    />
+  );
+>>>>>>> 4560517 (dev: remove dirty console log)
 
-  const Yeti = <PairTab pairName1="YETI" logo1={YetiPool.logo} 
-  apr={Math.round(aprRgn.aprYeti)} stacked={Math.round(myStake.myYeti)} 
-  tvl={Math.round(myStake.tvlYeti)} claimable={Math.round(reward.rewardYeti)} 
-  addressPool={YetiPool.addressPool} pairAddress={YetiPool.pairAddress} rgn={true} info=""
-  deposit={deposit} withdraw={withdraw} approve={approve} masterchef={true} depositVeYeti={depositVeYeti}
-   />
+  const Yeti = (
+    <PairTab
+      pairName1='YETI'
+      logo1={YetiPool.logo}
+      apr={Math.round(aprRgn.aprYeti)}
+      stacked={Math.round(myStake.myYeti)}
+      tvl={Math.round(myStake.tvlYeti)}
+      claimable={Math.round(reward.rewardYeti)}
+      addressPool={YetiPool.addressPool}
+      pairAddress={YetiPool.pairAddress}
+      rgn={true}
+      info=''
+      deposit={deposit}
+      withdraw={withdraw}
+      approve={approve}
+      masterchef={true}
+      depositVeYeti={depositVeYeti}
+    />
+  );
 
+<<<<<<< HEAD
   const Yusd = <PairTab pairName1="YUSD" logo1={YusdPool.logo} 
   apr={Math.round(aprRgn.aprYusd)} stacked={Number(myStake.myYusd)} 
   tvl={Math.round(myStake.tvlYusd)} claimable={Math.round(reward.rewardYusd)} 
@@ -195,25 +251,53 @@ export default function StakeStablePoolComponent({
       stacked={Number(myStake.myYusd)}
       tvl={Math.round(myStake.tvlYusd)}
       claimable={0}
+=======
+  const Yusd = (
+    <PairTab
+      pairName1='YUSD'
+      logo1={YusdPool.logo}
+      apr={Math.round(aprRgn.aprYusd)}
+      stacked={Number(myStake.myYusd)}
+      tvl={Math.round(myStake.tvlYusd)}
+      claimable={Math.round(reward.rewardYusd)}
+>>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={YusdPool.addressPool}
       pairAddress={YusdPool.pairAddress}
       rgn={false}
       info={YusdPool.info}
+<<<<<<< HEAD
+=======
+      deposit={deposit}
+      withdraw={withdraw}
+      approve={approve}
+      masterchef={false}
+      depositVeYeti=''
+>>>>>>> 4560517 (dev: remove dirty console log)
     />
   );
 
   const CurveLp = (
     <PairTab
+<<<<<<< HEAD
       pairName1="LP CURVE"
       logo1={LpCurvePool.logo}
       apr={aprRgn.aprLpCurve}
       stacked={Math.round(myStake.myLpCurve)}
       tvl={Math.round(myStake.tvlLpCurve)}
       claimable={0}
+=======
+      pairName1='LP CURVE'
+      logo1={LpCurvePool.logo}
+      apr={Math.round(aprRgn.aprLpCurve)}
+      stacked={Math.round(myStake.myLpCurve)}
+      tvl={Math.round(myStake.tvlLpCurve)}
+      claimable={Math.round(reward.rewardLpCurve)}
+>>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={LpCurvePool.addressPool}
       pairAddress={LpCurvePool.pairAddress}
       rgn={false}
       info={LpCurvePool.info}
+<<<<<<< HEAD
     />
   );
 >>>>>>> 96c243c (dev: reduce req call)
@@ -232,6 +316,15 @@ export default function StakeStablePoolComponent({
   deposit={deposit} withdraw={withdraw} approve={approve} masterchef={false} depositVeYeti=""
    />
 >>>>>>> 7449a99 (all data + all function)
+=======
+      deposit={deposit}
+      withdraw={withdraw}
+      approve={approve}
+      masterchef={false}
+      depositVeYeti=''
+    />
+  );
+>>>>>>> 4560517 (dev: remove dirty console log)
 
   useEffect(() => {
     fetchMyDeposit();
@@ -240,6 +333,7 @@ export default function StakeStablePoolComponent({
 <<<<<<< HEAD
 <<<<<<< HEAD
     fetchMyReward();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   }, [])
@@ -256,6 +350,9 @@ export default function StakeStablePoolComponent({
 =======
   },[userAccount])
 >>>>>>> 685d0dd (dev: for kool bitch)
+=======
+  }, [userAccount]);
+>>>>>>> 4560517 (dev: remove dirty console log)
 
   /*
 
@@ -271,6 +368,7 @@ Total valeur des staked token = Nombre de token stake * Prix d'un token stake
 
 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -336,25 +434,38 @@ async function fetchAprRGN() {
 
 async function approve(qty: number, address: string, masterchefContract: boolean) {
 
+=======
+  async function approve(
+    qty: number,
+    address: string,
+    masterchefContract: boolean
+  ) {
+>>>>>>> 4560517 (dev: remove dirty console log)
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const token = new ethers.Contract(address, tokenABI.abi, signer);
       try {
-      if (masterchefContract) {
-      const tokenApproveMasterchef = await token.approve(contractAddress.masterchefAddress, qty);
-      tokenApproveMasterchef.wait();
-      } else {
-      const tokenApproveMainstaking = await token.approve(contractAddress.mainstakingAddress, qty);
-      tokenApproveMainstaking.wait();
+        if (masterchefContract) {
+          const tokenApproveMasterchef = await token.approve(
+            contractAddress.masterchefAddress,
+            qty
+          );
+          tokenApproveMasterchef.wait();
+        } else {
+          const tokenApproveMainstaking = await token.approve(
+            contractAddress.mainstakingAddress,
+            qty
+          );
+          tokenApproveMainstaking.wait();
+        }
+      } catch (err: any) {
+        appLogger(appTag, '- Error approve-', err.message);
       }
     }
-    catch (err: any) {
-    console.log(err.message);
-  } 
   }
-}
 
+<<<<<<< HEAD
 
 async function deposit(qty: number, address: string, masterchefContract: boolean) {
   try {
@@ -461,9 +572,18 @@ async function depositVeYeti(qty: number) {
 =======
   async function fetchAprRGN() {
 >>>>>>> 9ff617c (dev: somes css changes)
+=======
+  async function deposit(
+    qty: number,
+    address: string,
+    masterchefContract: boolean
+  ) {
+>>>>>>> 4560517 (dev: remove dirty console log)
     try {
       if (window.ethereum) {
-        let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
@@ -471,6 +591,7 @@ async function depositVeYeti(qty: number) {
           masterchefABI.abi,
           signer
         );
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -486,6 +607,130 @@ async function depositVeYeti(qty: number) {
 =======
 =======
 >>>>>>> 9ff617c (dev: somes css changes)
+=======
+        const mainstaking = new ethers.Contract(
+          contractAddress.mainstakingAddress,
+          mainstakingABI.abi,
+          signer
+        );
+
+        if (masterchefContract) {
+          const depositTokenMasterchef = await masterchef.deposit(address, qty);
+          await depositTokenMasterchef.wait();
+        } else {
+          const depositTokenMainstaking = await mainstaking.deposit(
+            address,
+            qty,
+            String(accounts)
+          );
+          await depositTokenMainstaking.wait();
+        }
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error deposit-', err.message);
+    }
+  }
+
+  async function depositVeYeti(qty: number) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const mainstaking = new ethers.Contract(
+          contractAddress.mainstakingAddress,
+          mainstakingABI.abi,
+          signer
+        );
+
+        const depositVeYeti = await mainstaking.stakeYETI(qty);
+        await depositVeYeti.wait();
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error depositVeYeti-', err.message);
+    }
+  }
+
+  async function withdraw(
+    qty: number,
+    address: string,
+    masterchefContract: boolean
+  ) {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const mainstaking = new ethers.Contract(
+          contractAddress.mainstakingAddress,
+          mainstakingABI.abi,
+          signer
+        );
+
+        if (masterchefContract) {
+          const depositTokenMasterchef = await masterchef.withdraw(
+            address,
+            qty
+          );
+          await depositTokenMasterchef.wait();
+        } else {
+          const depositTokenMainstaking = await mainstaking.withdraw(
+            address,
+            qty,
+            String(accounts)
+          );
+          await depositTokenMainstaking.wait();
+        }
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error withdraw-', err.message);
+    }
+  }
+
+  async function fetchAprRGN() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const myDepositYUSD = await masterchef.depositInfo(
+          contractAddress.fakeYusdAddress,
+          String(accounts)
+        );
+        const myDepositYeti = await masterchef.depositInfo(
+          contractAddress.rgnYetiAddress,
+          String(accounts)
+        );
+        const myDepositRgn = await masterchef.depositInfo(
+          contractAddress.rgnAddress,
+          String(accounts)
+        );
+        const myDepositLpCurve = await masterchef.depositInfo(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts)
+        );
+
+        setMyStake({
+          ...myStake,
+          myYusd: myDepositYUSD / 10 ** 18,
+          myYeti: myDepositYeti / 10 ** 18,
+          myRgn: myDepositRgn / 10 ** 18,
+          myLpCurve: myDepositLpCurve / 10 ** 18,
+        });
+>>>>>>> 4560517 (dev: remove dirty console log)
         const rgnPerBlock = await masterchef.rgnPerSec();
         const allocPointYusd = await masterchef.getPoolInfo(
           contractAddress.fakeYusdAddress
@@ -528,7 +773,7 @@ async function depositVeYeti(qty: number) {
 >>>>>>> 9ff617c (dev: somes css changes)
       }
     } catch (err: any) {
-      appLogger(appTag, "- Error fetchAprRGN-", err.message);
+      appLogger(appTag, '- Error fetchAprRGN-', err.message);
     }
   }
 
@@ -536,7 +781,7 @@ async function depositVeYeti(qty: number) {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
+          method: 'eth_requestAccounts',
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -570,14 +815,16 @@ async function depositVeYeti(qty: number) {
         });
       }
     } catch (err: any) {
-      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
+      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
     }
   }
 
   async function fetchMyReward() {
     try {
       if (window.ethereum) {
-        let accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
@@ -644,25 +891,56 @@ async function depositVeYeti(qty: number) {
         );
         const priceRgnYeti = await coinGeckoService.getPrice(TOKEN_ID.yeti);
         const priceRGN = 0.3;
-        const myRewardYUSD = await masterchef.pendingTokens(contractAddress.fakeYusdAddress, String(accounts), contractAddress.yetiAddres);
-        const myRewardRgnYeti = await masterchef.pendingTokens(contractAddress.rgnYetiAddress, String(accounts), contractAddress.yetiAddres);
-        const myRewardLpCurve = await masterchef.pendingTokens(contractAddress.fakeLpCurveAddress, String(accounts), contractAddress.yetiAddres);
-        const myRewardRGN = await masterchef.pendingTokens(contractAddress.rgnAddress, String(accounts), contractAddress.yetiAddres);
+        const myRewardYUSD = await masterchef.pendingTokens(
+          contractAddress.fakeYusdAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
+        const myRewardRgnYeti = await masterchef.pendingTokens(
+          contractAddress.rgnYetiAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
+        const myRewardLpCurve = await masterchef.pendingTokens(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
+        const myRewardRGN = await masterchef.pendingTokens(
+          contractAddress.rgnAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
 
-        setReward({...reward, 
-          rewardYusd: (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardYUSD.pendingRGN) * priceRGN / 10**18)
-        , rewardYeti: (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRgnYeti.pendingRGN) * priceRGN / 10**18), 
-        rewardRgn:(Number(myRewardRGN.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardRGN.pendingRGN) * priceRGN / 10**18), 
-        rewardLpCurve: (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti / 10**18) + (Number(myRewardLpCurve.pendingRGN) * priceRGN / 10**18)});
+        setReward({
+          ...reward,
+          rewardYusd:
+            (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
+            (Number(myRewardYUSD.pendingRGN) * priceRGN) / 10 ** 18,
+          rewardYeti:
+            (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
+              10 ** 18 +
+            (Number(myRewardRgnYeti.pendingRGN) * priceRGN) / 10 ** 18,
+          rewardRgn:
+            (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
+            (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18,
+          rewardLpCurve:
+            (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti) /
+              10 ** 18 +
+            (Number(myRewardLpCurve.pendingRGN) * priceRGN) / 10 ** 18,
+        });
       }
     } catch (err: any) {
-      console.log(err.message);
+      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
     }
   }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
 
+=======
+>>>>>>> 4560517 (dev: remove dirty console log)
   async function fetchTVL() {
     try {
       if (window.ethereum) {
@@ -713,55 +991,55 @@ async function depositVeYeti(qty: number) {
 >>>>>>> 9ff617c (dev: somes css changes)
       }
     } catch (err: any) {
-      appLogger(appTag, "- Error fetchTVL-", err.message);
+      appLogger(appTag, '- Error fetchTVL-', err.message);
     }
   }
 
   return (
     <Box
       sx={{
-        width: "100%",
+        width: '100%',
       }}
     >
-      <Box sx={{ borderBottom: 1, paddingBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ borderBottom: 1, paddingBottom: 1, borderColor: 'divider' }}>
         <Tabs
           value={value}
-          variant="fullWidth"
+          variant='fullWidth'
           centered
           onChange={handleChange}
-          aria-label="basic tabs example"
+          aria-label='basic tabs example'
         >
           <Tab
-            label="Main Pools"
+            label='Main Pools'
             {...a11yProps(0)}
             style={{
-              color: value === 0 ? "#ddeaf2" : "#929ea6",
-              fontWeight: "bold",
-              textTransform: "none",
+              color: value === 0 ? '#ddeaf2' : '#929ea6',
+              fontWeight: 'bold',
+              textTransform: 'none',
             }}
             sx={{
               fontSize: {
-                lg: "1em",
-                md: "1em",
-                sm: "1em",
-                xs: "0.75em",
+                lg: '1em',
+                md: '1em',
+                sm: '1em',
+                xs: '0.75em',
               },
             }}
           />
           <Tab
-            label="Yeti Boosted Pools"
+            label='Yeti Boosted Pools'
             {...a11yProps(1)}
             style={{
-              color: value === 1 ? "#ddeaf2" : "#929ea6",
-              fontWeight: "bold",
-              textTransform: "none",
+              color: value === 1 ? '#ddeaf2' : '#929ea6',
+              fontWeight: 'bold',
+              textTransform: 'none',
             }}
             sx={{
               fontSize: {
-                lg: "1em",
-                md: "1em",
-                sm: "1em",
-                xs: "0.75em",
+                lg: '1em',
+                md: '1em',
+                sm: '1em',
+                xs: '0.75em',
               },
             }}
           />
