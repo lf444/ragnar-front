@@ -25,6 +25,7 @@ const avalancheChain: Chain = {
     testnet: false,
   };
 
+  // testnet
   const avalancheChainTestnet: Chain = {
     id: 43_113,
     name: 'Avalanche FUJI C-Chain',
