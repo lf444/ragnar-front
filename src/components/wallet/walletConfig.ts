@@ -8,7 +8,7 @@ const avalancheChain: Chain = {
     id: 43_114,
     name: 'Avalanche',
     network: 'avalanche',
-    iconUrl: 'https://example.com/icon.svg',
+    iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png',
     iconBackground: '#fff',
     nativeCurrency: {
       decimals: 18,
@@ -25,8 +25,29 @@ const avalancheChain: Chain = {
     testnet: false,
   };
 
+  const avalancheChainTestnet: Chain = {
+    id: 43_113,
+    name: 'Avalanche FUJI C-Chain',
+    network: 'Avalanche FUJI C-Chain',
+    iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png',
+    iconBackground: '#fff',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Avalanche',
+      symbol: 'AVAX',
+    },
+    rpcUrls: {
+      default: 'https://api.avax-test.network/ext/bc/C/rpc',
+    },
+    blockExplorers: {
+      default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io/' },
+      etherscan: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io/' },
+    },
+    testnet: false,
+  };
+
   export const { chains } = configureChains(
-    [avalancheChain],
+    [avalancheChainTestnet],
     [jsonRpcProvider({ rpc: chain => ({ http: chain.rpcUrls.default }) })]
   );
   
