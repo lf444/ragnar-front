@@ -42,7 +42,84 @@ function a11yProps(index: number) {
 }
 
 const ClaimRewardsScreen = () => {
+ 
+  async function fetchAprRGN() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const myDepositYUSD = await masterchef.depositInfo(
+          contractAddress.fakeYusdAddress,
+          String(accounts)
+        );
+        const myDepositYeti = await masterchef.depositInfo(
+          contractAddress.rgnYetiAddress,
+          String(accounts)
+        );
+        const myDepositRgn = await masterchef.depositInfo(
+          contractAddress.rgnAddress,
+          String(accounts)
+        );
+        const myDepositLpCurve = await masterchef.depositInfo(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts)
+        );
 
+        setMyStake({
+          ...myStake,
+          myYusd: myDepositYUSD / 10 ** 18,
+          myYeti: myDepositYeti / 10 ** 18,
+          myRgn: myDepositRgn / 10 ** 18,
+          myLpCurve: myDepositLpCurve / 10 ** 18,
+        });
+        const rgnPerBlock = await masterchef.rgnPerSec();
+        const allocPointYusd = await masterchef.getPoolInfo(
+          contractAddress.fakeYusdAddress
+        );
+        const allocPointYeti = await masterchef.getPoolInfo(
+          contractAddress.rgnYetiAddress
+        );
+        const allocPointLpCurve = await masterchef.getPoolInfo(
+          contractAddress.fakeLpCurveAddress
+        );
+        const allocPointRgn = await masterchef.getPoolInfo(
+          contractAddress.rgnAddress
+        );
+        const allocPointTotal = await masterchef.totalAllocPoint();
+        const rgnPerBlockYusd =
+          (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockYeti =
+          (allocPointYeti.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockLpCurve =
+          (allocPointLpCurve.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockRgn =
+          (allocPointRgn.allocpoint * rgnPerBlock) / allocPointTotal;
+        setAprRgn({
+          ...aprRgn,
+          aprYusd:
+            ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
+          aprLpCurve:
+            ((rgnPerBlockLpCurve * 28800 * 365) /
+              allocPointLpCurve.sizeOfPool) *
+            100,
+          aprRgn:
+            ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100,
+          aprYeti:
+            ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
+        });
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error fetchAprRGN-', err.message);
+    }
+  }
 
   return (
     <>
@@ -88,7 +165,7 @@ const ClaimRewardsScreen = () => {
         >
           <Grid container sx={{backgroundColor: (theme) => theme.palette.secondary.main, height: "60px", borderRadius: "5px 5px 0px 0px", marginLeft: "15px", borderBottom: 1, borderColor: "divider" }}>
             <Grid item xs={10} md={8} lg={4} sx={{fontWeight: "bold", fontSize: {xs: "15px", md: "16px"},  textAlign: 'center', marginTop: "18px", color: (theme) => theme.palette.text.primary}}>
-            Pools Rewards
+            Your Rewards
            </Grid>
            </Grid>          
            <Grid
@@ -159,7 +236,7 @@ const ClaimRewardsScreen = () => {
         >
           <Grid container sx={{backgroundColor: (theme) => theme.palette.secondary.main, height: "60px", borderRadius: "5px 5px 0px 0px", marginLeft: "15px", borderBottom: 1, borderColor: "divider" }}>
             <Grid item xs={10} md={8} lg={4} sx={{fontWeight: "bold", fontSize: {xs: "15px", md: "16px"},  textAlign: 'center', marginTop: "18px", color: (theme) => theme.palette.text.primary}}>
-            Pools Rewards
+            Your Rewards
            </Grid>
            </Grid>
           <Grid
@@ -199,7 +276,7 @@ const ClaimRewardsScreen = () => {
             <Grid xs={12} sx={{textAlign: 'center'}}>
             <Button 
               sx={{
-                width: {lg:'20%', xs:'30%'},
+                width: {lg:'20%', xs:'40%'},
                 backgroundColor: "#D0BA97",
                 fontWeight: 'bold',
                 color: (theme) => theme.palette.secondary.main,

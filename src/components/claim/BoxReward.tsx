@@ -81,16 +81,16 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
           <Grid 
             container
             sx={{
-              width: {lg:"400px", xs: "170px"}
+              width: "100px"
             }}
           >
-            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
               APR: 0%
             </Grid>
-            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
               Deposit: $0
             </Grid>
-            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
               Claimable: $0
             </Grid>
           </Grid>
@@ -99,16 +99,16 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
           <Grid 
             container
             sx={{
-              width: {lg:"400px", xs: "170px"}
+              width: "100px"
             }}
           >
-            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
               APR: 0%
             </Grid>
-            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
               Deposit: $0
             </Grid>
-            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
               Claimable: $0
             </Grid>
           </Grid>
