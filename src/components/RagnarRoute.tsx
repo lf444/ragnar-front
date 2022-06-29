@@ -6,8 +6,12 @@ import ClaimRewards from './claim/Claim';
 import LockRGN from './lock/Lock';
 import { coinGeckoService } from '../services/coinGeckoService';
 import { TOKEN_ID } from '../utils/constance';
+<<<<<<< HEAD
 import { useAccount } from 'wagmi'
 
+=======
+import Footer from './Footer';
+>>>>>>> 0098540 (Claim bientot fini + footer)
 
 const RagnarRoute = () => {
 

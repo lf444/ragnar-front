@@ -102,16 +102,28 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             src={logo1}
             alt={`${logo1} Logo`}
           />
-          <Typography
-            sx={{
-              fontSize: { xs: "0.5em", sm: "1.25em" },
-              fontWeight: "bold",
-              color: (theme) => theme.palette.text.primary,
-            }}
-          >
             {" "}
-            {pairName1}
-          </Typography>
+            {rgn ? (
+       <Typography
+        sx={{
+        fontSize: { xs: "0.5em", sm: "1.25em" },
+        fontWeight: "bold",
+        color: (theme) => theme.palette.text.primary,
+        }}
+        >
+          {pairName1} 
+        </Typography>
+            ) : (
+              <Typography
+         sx={{
+          fontSize: { xs: "0.5em", sm: "1.25em" },
+          fontWeight: "bold",
+          color: (theme) => theme.palette.text.primary,
+            }}
+            >
+           {pairName1} 
+        </Typography>
+            )}
         </Grid>
         <Grid item xs={2}>
           <Typography

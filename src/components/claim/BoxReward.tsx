@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, Tabs, Tab } from "@mui/material";
+import { Grid, Typography, Box, Tabs, Tab, Button } from "@mui/material";
 import { useState, FunctionComponent } from "react";
 
 const appTag: string = "ClaimRewardsScreen";
@@ -78,7 +78,40 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
             </Box>
           </Box>
           <TabPanel value={value} index={0}>
-            ghj
+          <Grid 
+            container
+            sx={{
+              width: {lg:"400px", xs: "170px"}
+            }}
+          >
+            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+              APR: 0%
+            </Grid>
+            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+              Deposit: $0
+            </Grid>
+            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+              Claimable: $0
+            </Grid>
+          </Grid>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+          <Grid 
+            container
+            sx={{
+              width: {lg:"400px", xs: "170px"}
+            }}
+          >
+            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+              APR: 0%
+            </Grid>
+            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+              Deposit: $0
+            </Grid>
+            <Grid item xs={4} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {lg: "13px", xs: "8px"}}} >
+              Claimable: $0
+            </Grid>
+          </Grid>
           </TabPanel>
     </>
   );
