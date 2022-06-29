@@ -194,10 +194,26 @@ const Funds = ({
     getMasterChefReward();
     getTVL();
   };
+  
+  // set all State at 0
+  const resetData = async () => {
+    setDeposit(0);
+    setReward(0);
+    setTotalValueLocked(0);
+    setTotalYeti(0);
+    setTotalVeYeti(0);
+    setTotalRGN(0);
+    setTotalRGNLocked(0);
+  }
 
   useEffect(() => {
-    fetchMasterChefData();
-    shouldDisplaySecondTabPrice && getMainsStakingData();
+    if(data){
+      fetchMasterChefData();
+      shouldDisplaySecondTabPrice && getMainsStakingData();
+    } else{
+      resetData();
+    }
+
   }, [data]);
 
   return (

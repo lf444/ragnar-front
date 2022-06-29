@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
 import * as React from 'react';
@@ -23,6 +24,8 @@ import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools'
 <<<<<<< HEAD
 import { TOKEN_ID } from "../../utils/constance";
 =======
+=======
+>>>>>>> aa8edd6 (dev: add auto connect to wallet)
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -33,6 +36,7 @@ import { contractAddress } from "../../abi/address";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+<<<<<<< HEAD
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
 >>>>>>> 96c243c (dev: reduce req call)
 =======
@@ -52,19 +56,26 @@ import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools';
 
 import { appLogger } from '../../utils/method';
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+import mainstakingABI from "../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import tokenABI from "../../abi/contracts/Tokens/RGN.sol/RGN.json";
+import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
+
+import { appLogger } from "../../utils/method";
+>>>>>>> aa8edd6 (dev: add auto connect to wallet)
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
-const appTag: string = 'StakeStablePoolComponent';
+const appTag: string = "StakeStablePoolComponent";
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -74,11 +85,11 @@ function TabPanel(props: TabPanelProps) {
         <Box
           sx={{
             paddingTop: 3,
-            overflowY: 'overlay',
+            overflowY: "overlay",
             paddingBottom: 10,
           }}
         >
-          <Typography component={'div'}>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -88,7 +99,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -164,7 +175,7 @@ export default function StakeStablePoolComponent({
 =======
   const RGN = (
     <PairTab
-      pairName1='RGN'
+      pairName1="RGN"
       logo1={rgnPool.logo}
       apr={Math.round(aprRgn.aprRgn)}
       stacked={Math.round(myStake.myRgn)}
@@ -178,14 +189,14 @@ export default function StakeStablePoolComponent({
       withdraw={withdraw}
       approve={approve}
       masterchef={true}
-      depositVeYeti=''
+      depositVeYeti=""
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
 
   const Yeti = (
     <PairTab
-      pairName1='YETI'
+      pairName1="YETI"
       logo1={YetiPool.logo}
       apr={Math.round(aprRgn.aprYeti)}
       stacked={Math.round(myStake.myYeti)}
@@ -194,7 +205,7 @@ export default function StakeStablePoolComponent({
       addressPool={YetiPool.addressPool}
       pairAddress={YetiPool.pairAddress}
       rgn={true}
-      info=''
+      info=""
       deposit={deposit}
       withdraw={withdraw}
       approve={approve}
@@ -254,7 +265,7 @@ export default function StakeStablePoolComponent({
 =======
   const Yusd = (
     <PairTab
-      pairName1='YUSD'
+      pairName1="YUSD"
       logo1={YusdPool.logo}
       apr={Math.round(aprRgn.aprYusd)}
       stacked={Number(myStake.myYusd)}
@@ -271,13 +282,18 @@ export default function StakeStablePoolComponent({
       withdraw={withdraw}
       approve={approve}
       masterchef={false}
+<<<<<<< HEAD
       depositVeYeti=''
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+      depositVeYeti=""
+>>>>>>> aa8edd6 (dev: add auto connect to wallet)
     />
   );
 
   const CurveLp = (
     <PairTab
+<<<<<<< HEAD
 <<<<<<< HEAD
       pairName1="LP CURVE"
       logo1={LpCurvePool.logo}
@@ -287,6 +303,9 @@ export default function StakeStablePoolComponent({
       claimable={0}
 =======
       pairName1='LP CURVE'
+=======
+      pairName1="LP CURVE"
+>>>>>>> aa8edd6 (dev: add auto connect to wallet)
       logo1={LpCurvePool.logo}
       apr={Math.round(aprRgn.aprLpCurve)}
       stacked={Math.round(myStake.myLpCurve)}
@@ -321,12 +340,37 @@ export default function StakeStablePoolComponent({
       withdraw={withdraw}
       approve={approve}
       masterchef={false}
-      depositVeYeti=''
+      depositVeYeti=""
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
 
+  const resetData = () => {
+    setMyStake({
+      ...myStake,
+      tvlYusd: 0,
+      tvlYeti: 0,
+      tvlRgn: 0,
+      tvlLpCurve: 0,
+    });
+    setReward({
+      ...reward,
+      rewardYusd: 0,
+      rewardYeti: 0,
+      rewardRgn: 0,
+      rewardLpCurve: 0,
+    });
+    setAprRgn({
+      ...aprRgn,
+      aprYusd: 0,
+      aprLpCurve: 0,
+      aprRgn: 0,
+      aprYeti: 0,
+    });
+  };
+
   useEffect(() => {
+<<<<<<< HEAD
     fetchMyDeposit();
     fetchTVL();
     fetchAprRGN();
@@ -355,6 +399,16 @@ export default function StakeStablePoolComponent({
   }, [userAccount]);
 >>>>>>> 4560517 (dev: remove dirty console log)
 =======
+=======
+    if (data) {
+      fetchMyDeposit();
+      fetchTVL();
+      fetchAprRGN();
+      fetchMyReward();
+    } else {
+      resetData();
+    }
+>>>>>>> aa8edd6 (dev: add auto connect to wallet)
   }, [data]);
 >>>>>>> 3e0e08f (dev: when connect sucfuless re-fetch data)
 
@@ -464,7 +518,7 @@ async function approve(qty: number, address: string, masterchefContract: boolean
           tokenApproveMainstaking.wait();
         }
       } catch (err: any) {
-        appLogger(appTag, '- Error approve-', err.message);
+        appLogger(appTag, "- Error approve-", err.message);
       }
     }
   }
@@ -586,7 +640,7 @@ async function depositVeYeti(qty: number) {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -631,7 +685,7 @@ async function depositVeYeti(qty: number) {
         }
       }
     } catch (err: any) {
-      appLogger(appTag, '- Error deposit-', err.message);
+      appLogger(appTag, "- Error deposit-", err.message);
     }
   }
 
@@ -650,7 +704,7 @@ async function depositVeYeti(qty: number) {
         await depositVeYeti.wait();
       }
     } catch (err: any) {
-      appLogger(appTag, '- Error depositVeYeti-', err.message);
+      appLogger(appTag, "- Error depositVeYeti-", err.message);
     }
   }
 
@@ -662,7 +716,7 @@ async function depositVeYeti(qty: number) {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -693,7 +747,7 @@ async function depositVeYeti(qty: number) {
         }
       }
     } catch (err: any) {
-      appLogger(appTag, '- Error withdraw-', err.message);
+      appLogger(appTag, "- Error withdraw-", err.message);
     }
   }
 
@@ -701,7 +755,7 @@ async function depositVeYeti(qty: number) {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -777,7 +831,7 @@ async function depositVeYeti(qty: number) {
 >>>>>>> 9ff617c (dev: somes css changes)
       }
     } catch (err: any) {
-      appLogger(appTag, '- Error fetchAprRGN-', err.message);
+      appLogger(appTag, "- Error fetchAprRGN-", err.message);
     }
   }
 
@@ -785,7 +839,7 @@ async function depositVeYeti(qty: number) {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -819,7 +873,7 @@ async function depositVeYeti(qty: number) {
         });
       }
     } catch (err: any) {
-      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
+      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
     }
   }
 
@@ -827,7 +881,7 @@ async function depositVeYeti(qty: number) {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -935,7 +989,7 @@ async function depositVeYeti(qty: number) {
         });
       }
     } catch (err: any) {
-      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
+      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
     }
   }
 
@@ -995,55 +1049,55 @@ async function depositVeYeti(qty: number) {
 >>>>>>> 9ff617c (dev: somes css changes)
       }
     } catch (err: any) {
-      appLogger(appTag, '- Error fetchTVL-', err.message);
+      appLogger(appTag, "- Error fetchTVL-", err.message);
     }
   }
 
   return (
     <Box
       sx={{
-        width: '100%',
+        width: "100%",
       }}
     >
-      <Box sx={{ borderBottom: 1, paddingBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ borderBottom: 1, paddingBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
-          variant='fullWidth'
+          variant="fullWidth"
           centered
           onChange={handleChange}
-          aria-label='basic tabs example'
+          aria-label="basic tabs example"
         >
           <Tab
-            label='Main Pools'
+            label="Main Pools"
             {...a11yProps(0)}
             style={{
-              color: value === 0 ? '#ddeaf2' : '#929ea6',
-              fontWeight: 'bold',
-              textTransform: 'none',
+              color: value === 0 ? "#ddeaf2" : "#929ea6",
+              fontWeight: "bold",
+              textTransform: "none",
             }}
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.75em',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
               },
             }}
           />
           <Tab
-            label='Yeti Boosted Pools'
+            label="Yeti Boosted Pools"
             {...a11yProps(1)}
             style={{
-              color: value === 1 ? '#ddeaf2' : '#929ea6',
-              fontWeight: 'bold',
-              textTransform: 'none',
+              color: value === 1 ? "#ddeaf2" : "#929ea6",
+              fontWeight: "bold",
+              textTransform: "none",
             }}
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.75em',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
               },
             }}
           />

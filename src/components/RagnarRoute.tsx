@@ -42,6 +42,8 @@ const RagnarRoute = () => {
     if(data) {
       console.log(data);
       setUserAccount(data);
+    } else{
+      setUserAccount(undefined);
     }
   }, [data]);
 

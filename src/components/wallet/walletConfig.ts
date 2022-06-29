@@ -64,5 +64,6 @@ const avalancheChain: Chain = {
   ]);
 
 export const wagmiClient = createClient({
+  autoConnect: true,
   connectors
 });

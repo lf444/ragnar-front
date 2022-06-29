@@ -11,7 +11,7 @@ import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 
 import {  WagmiConfig } from 'wagmi';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { chains, wagmiClient } from "./components/wallet/walletConfig";
 
 const container = document.getElementById("root");
@@ -21,7 +21,7 @@ root.render(
   <React.StrictMode>
     <HelmetProvider>
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider chains={chains} theme={darkTheme({accentColor:'#627f91',accentColorForeground:"#ddeaf2"})}>
       <BrowserRouter basename="/">
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

@@ -3,7 +3,9 @@ import { useState } from "react";
 import BoxReward from "./BoxReward";
 import rgn from "../../assets/images/pools/rgn.png"
 import yeti from "../../assets/images/pools/yeti.png"
-import { hover } from "@testing-library/user-event/dist/types/convenience";
+import { ethers } from "ethers";
+import { contractAddress } from "../../abi/address";
+import { appLogger } from "../../utils/method";
 
 const appTag: string = "ClaimRewardsScreen";
 
@@ -43,7 +45,7 @@ function a11yProps(index: number) {
 
 const ClaimRewardsScreen = () => {
  
-  async function fetchAprRGN() {
+/*   async function fetchAprRGN() {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
@@ -119,7 +121,7 @@ const ClaimRewardsScreen = () => {
     } catch (err: any) {
       appLogger(appTag, '- Error fetchAprRGN-', err.message);
     }
-  }
+  } */
 
   return (
     <>
