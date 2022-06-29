@@ -8,11 +8,11 @@ import theme from '../../theme';
 import PageHeader from '../shared/PageHeader';
 
 const LockRGN = ({
-  userAccount,
+  data,
   priceYusd,
   priceRgnYeti,
 }: {
-  userAccount: string;
+  data: any;
   priceYusd: number;
   priceRgnYeti: number;
 }) => {
@@ -52,7 +52,7 @@ const LockRGN = ({
         >
         LOCK RGN
           </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false}  userAccount={userAccount}/>
+            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false}  data={data}/>
           </Grid>
           <Grid item sx={{ width: '90%' }}>
             <StakeMainPoolComponent

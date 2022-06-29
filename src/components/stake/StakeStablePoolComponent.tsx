@@ -93,11 +93,11 @@ function a11yProps(index: number) {
 }
 
 export default function StakeStablePoolComponent({
-  userAccount,
+  data,
   priceYusd,
   priceRgnYeti,
 }: {
-  userAccount: string;
+  data: any;
   priceYusd: number;
   priceRgnYeti: number;
 }) {
@@ -336,6 +336,7 @@ export default function StakeStablePoolComponent({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   }, [])
 =======
   }, []);
@@ -353,6 +354,9 @@ export default function StakeStablePoolComponent({
 =======
   }, [userAccount]);
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+  }, [data]);
+>>>>>>> 3e0e08f (dev: when connect sucfuless re-fetch data)
 
   /*
 

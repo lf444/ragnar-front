@@ -11,12 +11,12 @@ import FundSecondTabs from "./SecondTab";
 const appTag: string = "Funds";
 
 const Funds = ({
-  userAccount,
+  data,
   priceYusd,
   priceRgnYeti,
   shouldDisplaySecondTabPrice,
 }: {
-  userAccount: string;
+  data: any;
   priceYusd: number;
   priceRgnYeti: number;
   shouldDisplaySecondTabPrice: boolean;
@@ -197,10 +197,8 @@ const Funds = ({
 
   useEffect(() => {
     fetchMasterChefData();
-    {
-      shouldDisplaySecondTabPrice && getMainsStakingData();
-    }
-  }, [userAccount]);
+    shouldDisplaySecondTabPrice && getMainsStakingData();
+  }, [data]);
 
   return (
     <>

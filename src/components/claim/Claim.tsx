@@ -6,11 +6,11 @@ import Funds from "../stake/funds/Funds";
 import ClaimRewardsScreen from "./ClaimRewardsScreen";
 
 const ClaimRewards = ({
-  userAccount,
+  data,
   priceYusd,
   priceRgnYeti,
 }: {
-  userAccount: string;
+  data: any;
   priceYusd: number;
   priceRgnYeti: number;
 }) => {
@@ -49,7 +49,7 @@ const ClaimRewards = ({
             >
               CLAIM REWARDS
             </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false}  userAccount={userAccount} />
+            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false}  data={data} />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
             <ClaimRewardsScreen />

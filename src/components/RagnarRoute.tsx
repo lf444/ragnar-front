@@ -6,6 +6,8 @@ import ClaimRewards from './claim/Claim';
 import LockRGN from './lock/Lock';
 import { coinGeckoService } from '../services/coinGeckoService';
 import { TOKEN_ID } from '../utils/constance';
+import { useAccount } from 'wagmi'
+
 
 const RagnarRoute = () => {
 
@@ -15,12 +17,10 @@ const RagnarRoute = () => {
   const [priceRgn, setPriceRgn] = useState(0);
 
   // Change of account will trigger render on each fetch for personnal data and update the state accordingly
-  const [userAccount, setUserAccount] = useState<string>("");
+  const [userAccount, setUserAccount] = useState<any>(undefined);
 
-  const handleChangeUserAccount = (newUserAccount: string): void => {
-    setUserAccount(newUserAccount);
-  };
 
+  const { data, isLoading, error } = useAccount();
   const getPrices = async () => {
     await coinGeckoService.getPrice(TOKEN_ID.yusd).then((r) => SetPriceYusd(r));
     await coinGeckoService
@@ -33,6 +33,13 @@ const RagnarRoute = () => {
   useEffect(() => {
     getPrices();
   }, []);
+
+  useEffect(() => {
+    if(data) {
+      console.log(data);
+      setUserAccount(data);
+    }
+  }, [data]);
 
   
   let navigate = useNavigate();
@@ -47,9 +54,9 @@ const RagnarRoute = () => {
     <>
       <Navbar priceYeti={priceYeti} priceRgn={priceRgn} />
       <Routes>
-        <Route path='/stake' element={<StakeScreen priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} userAccount={userAccount}/>} />
-        <Route path='/claim' element={<ClaimRewards priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} userAccount={userAccount}/>} />
-        <Route path='/lock' element={<LockRGN priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} userAccount={userAccount}/>  } />
+        <Route path='/stake' element={<StakeScreen priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} data={userAccount}/>} />
+        <Route path='/claim' element={<ClaimRewards priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} data={userAccount}/>} />
+        <Route path='/lock' element={<LockRGN priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} data={userAccount}/>  } />
       </Routes>
     </>
   );

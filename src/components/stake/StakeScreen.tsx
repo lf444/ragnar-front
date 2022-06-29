@@ -7,11 +7,11 @@ import PageHeader from "../shared/PageHeader";
 
 
 const StakeScreen = ({
-  userAccount,
+  data,
   priceYusd,
   priceRgnYeti,
 }: {
-  userAccount: string;
+  data: any;
   priceYusd: number;
   priceRgnYeti: number;
 }) => {
@@ -50,13 +50,13 @@ const StakeScreen = ({
             >
               STAKE FUNDS
             </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice userAccount={userAccount} />
+            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice data={data} />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
             <StakeStablePoolComponent
               priceYusd={priceYusd}
               priceRgnYeti={priceRgnYeti}
-              userAccount={userAccount}
+              data={data}
             />
           </Grid>
         </Grid>
