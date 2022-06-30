@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import StakeScreen from './stake/StakeScreen';
@@ -7,6 +10,7 @@ import ClaimRewards from './claim/Claim';
 import LockRGN from './lock/Lock';
 import { coinGeckoService } from '../services/coinGeckoService';
 import { TOKEN_ID } from '../utils/constance';
+<<<<<<< HEAD
 <<<<<<< HEAD
 import { useAccount } from 'wagmi'
 
@@ -25,6 +29,10 @@ import { TOKEN_ID } from "../utils/constance";
 import { useAccount } from "wagmi";
 import Footer from "./Footer";
 >>>>>>> 03050fe (dev: add loader when fetch)
+=======
+import { useAccount } from 'wagmi';
+import Footer from './Footer';
+>>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
 
 const RagnarRoute = () => {
   const [priceYusd, SetPriceYusd] = useState(0);
@@ -54,7 +62,6 @@ const RagnarRoute = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setUserAccount(data);
     } else {
       setUserAccount(undefined);
@@ -65,8 +72,8 @@ const RagnarRoute = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/") {
-      navigate("/stake");
+    if (location.pathname === '/') {
+      navigate('/stake');
     }
   }, [location]);
   return (
@@ -74,7 +81,7 @@ const RagnarRoute = () => {
       <Navbar priceYeti={priceYeti} priceRgn={priceRgn} />
       <Routes>
         <Route
-          path="/stake"
+          path='/stake'
           element={
             <StakeScreen
               priceYusd={priceYusd}
@@ -84,7 +91,7 @@ const RagnarRoute = () => {
           }
         />
         <Route
-          path="/claim"
+          path='/claim'
           element={
             <ClaimRewards
               priceYusd={priceYusd}
@@ -94,7 +101,7 @@ const RagnarRoute = () => {
           }
         />
         <Route
-          path="/lock"
+          path='/lock'
           element={
             <LockRGN
               priceYusd={priceYusd}

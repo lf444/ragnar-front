@@ -50,7 +50,6 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
     transition: 'transform 150ms ease', // smooth transition
     color: '#ddeaf2',
   };
-  console.log(isLoading);
   return (
     <Box
       sx={{

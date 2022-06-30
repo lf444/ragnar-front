@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { appLogger } from '../../../utils/method';
 import FundsFirstTabs from './FirstTab';
 import FundSecondTabs from './SecondTab';
+import { useProvider } from 'wagmi';
 
 const appTag: string = 'Funds';
 
@@ -30,6 +31,7 @@ const Funds = ({
   const [totalRGNLocked, setTotalRGNLocked] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
+  const provider = useProvider();
 
   const getMasterChefDeposit = async () => {
     try {
@@ -133,12 +135,10 @@ const Funds = ({
   const getTVL = async () => {
     try {
       if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
           contractAddress.masterchefAddress,
           masterchefABI.abi,
-          signer
+          provider
         );
         const priceLpCurve = 1;
         const priceRGN = 0.3;
@@ -198,29 +198,25 @@ const Funds = ({
   const fetchMasterChefData = async () => {
     await getMasterChefDeposit();
     await getMasterChefReward();
-    await getTVL();
   };
 
   const fetchAllData = async () => {
-    await fetchMasterChefData();
-    shouldDisplaySecondTabPrice && (await getMainsStakingData());
+    if (data) {
+      await fetchMasterChefData();
+      shouldDisplaySecondTabPrice && (await getMainsStakingData());
+    }
+    await getTVL();
   };
   // set all State at 0
   const resetData = async () => {
     setDeposit(0);
     setReward(0);
-    setTotalValueLocked(0);
-    setTotalYeti(0);
-    setTotalVeYeti(0);
-    setTotalRGN(0);
-    setTotalRGNLocked(0);
   };
 
   useEffect(() => {
-    if (data) {
-      setIsLoading(true);
-      fetchAllData().then(() => setIsLoading(false));
-    } else {
+    setIsLoading(true);
+    fetchAllData().then(() => setIsLoading(false));
+    if (!data) {
       setIsLoading(true);
       resetData();
       setTimeout(() => setIsLoading(false), 1000);

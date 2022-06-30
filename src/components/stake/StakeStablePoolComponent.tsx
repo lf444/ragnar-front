@@ -62,6 +62,7 @@ import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools';
 <<<<<<< HEAD
 
 import { appLogger } from '../../utils/method';
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
 =======
 import mainstakingABI from "../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
@@ -74,6 +75,9 @@ import { appLogger } from "../../utils/method";
 
 import { appLogger } from '../../utils/method';
 >>>>>>> c331051 (dev: right size for loader)
+=======
+import { useProvider } from 'wagmi';
+>>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -171,6 +175,8 @@ export default function StakeStablePoolComponent({
   });
 >>>>>>> 4560517 (dev: remove dirty console log)
   const [value, setValue] = useState(0);
+  const provider = useProvider();
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -375,7 +381,7 @@ export default function StakeStablePoolComponent({
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
 
-  async function fetchAprRGN() {
+  async function fetchAprRGNUser() {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
@@ -383,24 +389,24 @@ export default function StakeStablePoolComponent({
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const masterchef = new ethers.Contract(
+        const masterchefUser = new ethers.Contract(
           contractAddress.masterchefAddress,
           masterchefABI.abi,
           signer
         );
-        const myDepositYUSD = await masterchef.depositInfo(
+        const myDepositYUSD = await masterchefUser.depositInfo(
           contractAddress.fakeYusdAddress,
           String(accounts)
         );
-        const myDepositYeti = await masterchef.depositInfo(
+        const myDepositYeti = await masterchefUser.depositInfo(
           contractAddress.rgnYetiAddress,
           String(accounts)
         );
-        const myDepositRgn = await masterchef.depositInfo(
+        const myDepositRgn = await masterchefUser.depositInfo(
           contractAddress.rgnAddress,
           String(accounts)
         );
-        const myDepositLpCurve = await masterchef.depositInfo(
+        const myDepositLpCurve = await masterchefUser.depositInfo(
           contractAddress.fakeLpCurveAddress,
           String(accounts)
         );
@@ -412,6 +418,64 @@ export default function StakeStablePoolComponent({
           myRgn: myDepositRgn / 10 ** 18,
           myLpCurve: myDepositLpCurve / 10 ** 18,
         });
+
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          provider
+        );
+
+        const rgnPerBlock = await masterchef.rgnPerSec();
+        const allocPointYusd = await masterchef.getPoolInfo(
+          contractAddress.fakeYusdAddress
+        );
+        const allocPointYeti = await masterchef.getPoolInfo(
+          contractAddress.rgnYetiAddress
+        );
+        const allocPointLpCurve = await masterchef.getPoolInfo(
+          contractAddress.fakeLpCurveAddress
+        );
+        const allocPointRgn = await masterchef.getPoolInfo(
+          contractAddress.rgnAddress
+        );
+        const allocPointTotal = await masterchef.totalAllocPoint();
+        const rgnPerBlockYusd =
+          (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockYeti =
+          (allocPointYeti.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockLpCurve =
+          (allocPointLpCurve.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockRgn =
+          (allocPointRgn.allocpoint * rgnPerBlock) / allocPointTotal;
+        setAprRgn({
+          ...aprRgn,
+          aprYusd:
+            ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
+          aprLpCurve:
+            ((rgnPerBlockLpCurve * 28800 * 365) /
+              allocPointLpCurve.sizeOfPool) *
+            100,
+          aprRgn:
+            ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100,
+          aprYeti:
+            ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
+        });
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error fetchAprRGN-', err.message);
+      setIsLoading(false);
+    }
+  }
+
+  async function fetchAprRGN() {
+    try {
+      if (window.ethereum) {
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          provider
+        );
+
         const rgnPerBlock = await masterchef.rgnPerSec();
         const allocPointYusd = await masterchef.getPoolInfo(
           contractAddress.fakeYusdAddress
@@ -558,12 +622,10 @@ export default function StakeStablePoolComponent({
   async function fetchTVL() {
     try {
       if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
           contractAddress.masterchefAddress,
           masterchefABI.abi,
-          signer
+          provider
         );
         const priceLpCurve = 1;
         const priceRGN = 0.3;
@@ -592,13 +654,6 @@ export default function StakeStablePoolComponent({
   }
 
   const resetData = async () => {
-    setTVL({
-      ...TVL,
-      tvlYusd: 0,
-      tvlYeti: 0,
-      tvlRgn: 0,
-      tvlLpCurve: 0,
-    });
     setReward({
       ...reward,
       rewardYusd: 0,
@@ -606,23 +661,27 @@ export default function StakeStablePoolComponent({
       rewardRgn: 0,
       rewardLpCurve: 0,
     });
-    setAprRgn({
-      ...aprRgn,
-      aprYusd: 0,
-      aprLpCurve: 0,
-      aprRgn: 0,
-      aprYeti: 0,
+    setMyStake({
+      ...myStake,
+      myYusd: 0,
+      myYeti: 0,
+      myRgn: 0,
+      myLpCurve: 0,
     });
   };
 
   const fetchAllData = async () => {
-    await fetchMyDeposit();
     await fetchTVL();
     await fetchAprRGN();
-    await fetchMyReward();
+    if (data) {
+      await fetchMyReward();
+      await fetchMyDeposit();
+      await fetchAprRGNUser();
+    }
   };
 
   useEffect(() => {
+<<<<<<< HEAD
 <<<<<<< HEAD
     fetchMyDeposit();
     fetchTVL();
@@ -657,6 +716,11 @@ export default function StakeStablePoolComponent({
       setIsLoading(true);
       fetchAllData().then(() => setIsLoading(false));
     } else {
+=======
+    setIsLoading(true);
+    fetchAllData().then(() => setIsLoading(false));
+    if (!data) {
+>>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
       setIsLoading(true);
       resetData();
       setTimeout(() => setIsLoading(false), 1000);
