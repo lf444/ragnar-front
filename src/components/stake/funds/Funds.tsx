@@ -8,6 +8,7 @@ import { appLogger } from "../../../utils/method";
 import FundsFirstTabs from "./FirstTab";
 import FundSecondTabs from "./SecondTab";
 
+
 const appTag: string = "Funds";
 
 const Funds = ({
@@ -28,6 +29,8 @@ const Funds = ({
   const [totalVeYeti, setTotalVeYeti] = useState(0);
   const [totalRGN, setTotalRGN] = useState(0);
   const [totalRGNLocked, setTotalRGNLocked] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const getMasterChefDeposit = async () => {
     try {
@@ -208,10 +211,18 @@ const Funds = ({
 
   useEffect(() => {
     if(data){
+      setIsLoading(true);
       fetchMasterChefData();
       shouldDisplaySecondTabPrice && getMainsStakingData();
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
     } else{
+      setIsLoading(true);
       resetData();
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
     }
 
   }, [data]);
@@ -222,6 +233,7 @@ const Funds = ({
         deposit={deposit}
         reward={reward}
         valuelocked={valuelocked}
+        isLoading={isLoading}
       />
 
       {shouldDisplaySecondTabPrice && (
@@ -230,6 +242,7 @@ const Funds = ({
           totalVeYeti={totalVeYeti}
           totalRGN={totalRGN}
           totalRGNLocked={totalRGNLocked}
+          isLoading={isLoading}
         />
       )}
     </>

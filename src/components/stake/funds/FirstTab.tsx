@@ -1,13 +1,16 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography ,CircularProgress} from "@mui/material";
+
 
 const FundsFirstTabs = ({
     deposit,
     reward,
     valuelocked,
+    isLoading
   }: {
     deposit: number;
     reward: number;
     valuelocked: number;
+    isLoading: boolean;
   }) => {
     return (
       <Grid
@@ -59,7 +62,7 @@ const FundsFirstTabs = ({
                 color: (theme) => theme.palette.text.primary,
               }}
             >
-              ${deposit.toLocaleString('en')} USD
+            { !isLoading ? ( "$" + deposit.toLocaleString('en') + "USD") :   <CircularProgress   sx={{width:"1.25rem", marginLeft:"auto", marginRight:"auto"}}/>}
             </Typography>
           </Grid>
         </Grid>
@@ -106,7 +109,7 @@ const FundsFirstTabs = ({
                 color:"#D0BA97",
               }}
             >
-              ${reward.toLocaleString('en')} USD
+              { !isLoading ? ( "$" + reward.toLocaleString('en') + "USD") : <CircularProgress     sx={{width:"1.25rem", marginLeft:"auto", marginRight:"auto"}}/>}
             </Typography>
           </Grid>
         </Grid>
@@ -152,7 +155,7 @@ const FundsFirstTabs = ({
                 fontWeight: "bold",
               }}
             >
-              ${valuelocked.toLocaleString('en')} USD
+              { !isLoading ? ( "$" + valuelocked.toLocaleString('en') + "USD") :   <CircularProgress   sx={{width:"1.25rem", marginLeft:"auto", marginRight:"auto"}}/>}
             </Typography>
           </Grid>
         </Grid>

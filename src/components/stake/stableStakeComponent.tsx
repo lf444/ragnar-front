@@ -5,6 +5,8 @@ import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import StableTab from "./tab/stableTab";
 import theme from "../../theme";
 import RgnYetiStable from "./tab/RgnYetiTable";
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 interface StableStakeComponentProps {
   pairName1: string;
@@ -22,6 +24,7 @@ interface StableStakeComponentProps {
   approve: any;
   masterchef: boolean;
   depositVeYeti: any;
+  isLoading: boolean;
 }
 
 const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
@@ -40,6 +43,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
   approve,
   masterchef,
   depositVeYeti,
+  isLoading,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const style = {
@@ -101,29 +105,28 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             style={{ position: "relative", left: "-0.75em" }}
             src={logo1}
             alt={`${logo1} Logo`}
-          />
-            {" "}
-            {rgn ? (
-       <Typography
-        sx={{
-        fontSize: { xs: "0.5em", sm: "1.25em" },
-        fontWeight: "bold",
-        color: (theme) => theme.palette.text.primary,
-        }}
-        >
-          {pairName1} 
-        </Typography>
-            ) : (
-              <Typography
-         sx={{
-          fontSize: { xs: "0.5em", sm: "1.25em" },
-          fontWeight: "bold",
-          color: (theme) => theme.palette.text.primary,
-            }}
+          />{" "}
+          {rgn ? (
+            <Typography
+              sx={{
+                fontSize: { xs: "0.5em", sm: "1.25em" },
+                fontWeight: "bold",
+                color: (theme) => theme.palette.text.primary,
+              }}
             >
-           {pairName1} 
-        </Typography>
-            )}
+              {pairName1}
+            </Typography>
+          ) : (
+            <Typography
+              sx={{
+                fontSize: { xs: "0.5em", sm: "1.25em" },
+                fontWeight: "bold",
+                color: (theme) => theme.palette.text.primary,
+              }}
+            >
+              {pairName1}
+            </Typography>
+          )}
         </Grid>
         <Grid item xs={2}>
           <Typography
@@ -146,7 +149,11 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               display: { xs: "inline-block", sm: "block" },
             }}
           >
-            {apr}%
+            {!isLoading ? (
+              apr+"%"
+            ) : (
+              <LinearProgress sx={{width:"1.50rem", marginLeft:"auto", marginRight:"auto"}} />
+            )}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -167,7 +174,11 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            {stacked.toLocaleString('en')} {pairName1}
+            {!isLoading ? (
+              stacked.toLocaleString("en")+ pairName1
+            ) : (
+              <LinearProgress  sx={{width:"1.25rem", marginLeft:"auto", marginRight:"auto"}} />
+            )}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -188,7 +199,11 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${tvl.toLocaleString('en')}
+            {!isLoading ? (
+              "$"+tvl.toLocaleString("en")
+            ) : (
+              <LinearProgress  sx={{width:"1.25rem", marginLeft:"auto", marginRight:"auto"}} />
+            )}
           </Typography>
         </Grid>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
@@ -209,7 +224,11 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               color: (theme) => theme.palette.text.primary,
             }}
           >
-            ${claimable.toLocaleString('en')}
+            {!isLoading ? (
+              "$"+claimable.toLocaleString("en")
+            ) : (
+              <LinearProgress  sx={{width:"1.25rem", marginLeft:"auto", marginRight:"auto"}} />
+            )}
           </Typography>
         </Grid>
         <Grid

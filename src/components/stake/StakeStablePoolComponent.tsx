@@ -112,6 +112,9 @@ export default function StakeStablePoolComponent({
   priceYusd: number;
   priceRgnYeti: number;
 }) {
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const [myStake, setMyStake] = useState({
     myYusd: 0,
     myYeti: 0,
@@ -190,6 +193,7 @@ export default function StakeStablePoolComponent({
       approve={approve}
       masterchef={true}
       depositVeYeti=""
+      isLoading={isLoading}
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -211,6 +215,7 @@ export default function StakeStablePoolComponent({
       approve={approve}
       masterchef={true}
       depositVeYeti={depositVeYeti}
+      isLoading={isLoading}
     />
   );
 
@@ -287,7 +292,11 @@ export default function StakeStablePoolComponent({
 >>>>>>> 4560517 (dev: remove dirty console log)
 =======
       depositVeYeti=""
+<<<<<<< HEAD
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
+=======
+      isLoading={isLoading}
+>>>>>>> 03050fe (dev: add loader when fetch)
     />
   );
 
@@ -341,6 +350,7 @@ export default function StakeStablePoolComponent({
       approve={approve}
       masterchef={false}
       depositVeYeti=""
+      isLoading={isLoading}
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -401,12 +411,20 @@ export default function StakeStablePoolComponent({
 =======
 =======
     if (data) {
+      setIsLoading(true);
       fetchMyDeposit();
       fetchTVL();
       fetchAprRGN();
       fetchMyReward();
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
     } else {
+      setIsLoading(true);
       resetData();
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
     }
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
   }, [data]);
