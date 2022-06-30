@@ -54,6 +54,7 @@ const LockRGN = ({
           </Typography>
             <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false}  data={data}/>
           </Grid>
+          
           <Grid item sx={{ width: '90%' }}>
             <StakeMainPoolComponent
             pairName1={'RGN'}
@@ -82,8 +83,9 @@ const LockRGN = ({
         <MyNFT />
         </Box>
         </Grid>
-        </Grid>
-      </Zoom>
+        </Grid> 
+        
+      </Zoom> 
     </>
   );
 };

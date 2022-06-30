@@ -1,11 +1,12 @@
 import { Grid, Typography, Box, Tabs, Tab, Button } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BoxReward from "./BoxReward";
 import rgn from "../../assets/images/pools/rgn.png"
 import yeti from "../../assets/images/pools/yeti.png"
 import { ethers } from "ethers";
 import { contractAddress } from "../../abi/address";
 import { appLogger } from "../../utils/method";
+import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json"
 
 const appTag: string = "ClaimRewardsScreen";
 
@@ -44,7 +45,7 @@ function a11yProps(index: number) {
 }
 
 const ClaimRewardsScreen = () => {
- 
+
 /*   async function fetchAprRGN() {
     try {
       if (window.ethereum) {
@@ -123,6 +124,35 @@ const ClaimRewardsScreen = () => {
     }
   } */
 
+  async function claim(choise: number) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        let accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        if (choise === 1) {
+        const claimRagnarPools = await masterchef.multiclaim([contractAddress.rgnAddress, contractAddress.rgnYetiAddress], String(accounts));
+        await claimRagnarPools.wait();
+        } else if (choise === 2) {
+        const claimYetiPools = await masterchef.multiclaim([contractAddress.fakeLpCurveAddress, contractAddress.fakeYusdAddress], String(accounts));
+        await claimYetiPools.wait();
+        } else if (choise === 3) {
+        const claimAll = await masterchef.multiclaim([contractAddress.rgnAddress, contractAddress.rgnYetiAddress, contractAddress.fakeLpCurveAddress, contractAddress.fakeYusdAddress], String(accounts));
+        await claimAll.wait();
+        }
+      }
+    } catch (err: any) {
+      appLogger(appTag, "- Error depositVeYeti-", err.message);
+    }
+  }
+
   return (
     <>
       <Grid
@@ -184,14 +214,14 @@ const ClaimRewardsScreen = () => {
             }}
           >
             <Grid item xs={12} sx={{marginLeft: "15px", color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", marginTop: "15px"}} >
-              RGNYETI Pools: $0
+              RGNYETI Pools: $0 
             </Grid>
             <Grid item xs={12} sx={{borderBottom: 2, borderColor: "divider", marginLeft: "15px", color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px"}} >
               RGN Pools: $0
             </Grid>
             <Grid container sx={{height: "60px"}}>
             <Grid item xs={4} sx={{marginTop: "20px", marginLeft: "15px"}}>
-            <Button sx={{
+            <Button  onClick={() => claim(1)} sx={{
                 variant: "contained",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 color: (theme) => theme.palette.text.primary,
@@ -262,7 +292,7 @@ const ClaimRewardsScreen = () => {
             </Grid>
             <Grid container sx={{height: "60px"}}>
             <Grid item xs={4} sx={{marginTop: "20px", marginLeft: "15px"}}>
-            <Button sx={{
+            <Button onClick={() => claim(2)} sx={{
                 variant: "contained",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 color: (theme) => theme.palette.text.primary,
@@ -276,7 +306,7 @@ const ClaimRewardsScreen = () => {
         </Grid>
           <Grid container>
             <Grid xs={12} sx={{textAlign: 'center'}}>
-            <Button 
+            <Button onClick={() => claim(3)}
               sx={{
                 width: {lg:'20%', xs:'40%'},
                 backgroundColor: "#D0BA97",

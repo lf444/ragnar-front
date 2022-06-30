@@ -281,6 +281,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 =======
                 fontSize: { xs: '0.65em', sm: '1em' },
                 color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold"
               }}
             >
               {' '}
@@ -297,6 +298,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 fontSize: { xs: '0.65em', sm: '1em' },
 >>>>>>> 4560517 (dev: remove dirty console log)
                 color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold"
               }}
             >
               2

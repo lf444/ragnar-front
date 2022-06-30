@@ -120,11 +120,13 @@ export default function StakeStablePoolComponent({
     myYeti: 0,
     myRgn: 0,
     myLpCurve: 0,
+  });
+  const [TVL, setTVL] = useState({
     tvlYusd: 0,
     tvlYeti: 0,
     tvlRgn: 0,
     tvlLpCurve: 0,
-  });
+  })
   const [aprRgn, setAprRgn] = useState({
     aprYusd: 0,
     aprYeti: 0,
@@ -182,7 +184,7 @@ export default function StakeStablePoolComponent({
       logo1={rgnPool.logo}
       apr={Math.round(aprRgn.aprRgn)}
       stacked={Math.round(myStake.myRgn)}
-      tvl={Math.round(myStake.tvlRgn)}
+      tvl={Math.round(TVL.tvlRgn)}
       claimable={Math.round(reward.rewardRgn)}
       addressPool={rgnPool.addressPool}
       pairAddress={rgnPool.pairAddress}
@@ -204,7 +206,7 @@ export default function StakeStablePoolComponent({
       logo1={YetiPool.logo}
       apr={Math.round(aprRgn.aprYeti)}
       stacked={Math.round(myStake.myYeti)}
-      tvl={Math.round(myStake.tvlYeti)}
+      tvl={Math.round(TVL.tvlYeti)}
       claimable={Math.round(reward.rewardYeti)}
       addressPool={YetiPool.addressPool}
       pairAddress={YetiPool.pairAddress}
@@ -274,7 +276,7 @@ export default function StakeStablePoolComponent({
       logo1={YusdPool.logo}
       apr={Math.round(aprRgn.aprYusd)}
       stacked={Number(myStake.myYusd)}
-      tvl={Math.round(myStake.tvlYusd)}
+      tvl={Math.round(TVL.tvlYusd)}
       claimable={Math.round(reward.rewardYusd)}
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={YusdPool.addressPool}
@@ -318,7 +320,7 @@ export default function StakeStablePoolComponent({
       logo1={LpCurvePool.logo}
       apr={Math.round(aprRgn.aprLpCurve)}
       stacked={Math.round(myStake.myLpCurve)}
-      tvl={Math.round(myStake.tvlLpCurve)}
+      tvl={Math.round(TVL.tvlLpCurve)}
       claimable={Math.round(reward.rewardLpCurve)}
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={LpCurvePool.addressPool}
@@ -356,8 +358,8 @@ export default function StakeStablePoolComponent({
 >>>>>>> 4560517 (dev: remove dirty console log)
 
   const resetData = () => {
-    setMyStake({
-      ...myStake,
+    setTVL({
+      ...TVL,
       tvlYusd: 0,
       tvlYeti: 0,
       tvlRgn: 0,
@@ -1042,6 +1044,7 @@ async function depositVeYeti(qty: number) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
         setMyStake({...myStake, tvlYusd: Number(TVLYUSD.sizeOfPool) * priceYusd / 10**18, 
@@ -1054,10 +1057,14 @@ async function depositVeYeti(qty: number) {
 >>>>>>> 9ff617c (dev: somes css changes)
         setMyStake({
           ...myStake,
+=======
+        setTVL({
+          ...TVL,
+>>>>>>> 9e86397 (resolve useState bug + claim function)
           tvlYusd: (TVLYUSD.sizeOfPool * priceYusd) / 10 ** 18,
           tvlYeti: (TVLRgnYeti.sizeOfPool * priceRgnYeti) / 10 ** 18,
           tvlRgn: (TVLRGN.sizeOfPool * priceRGN) / 10 ** 18,
-          tvlLpCurve: (TVLLpCurve.sizeOfPool * priceLpCurve) / 10 ** 18,
+          tvlLpCurve: TVLLpCurve.sizeOfPool * priceLpCurve / 10 ** 18,
         });
 <<<<<<< HEAD
 >>>>>>> 96c243c (dev: reduce req call)
@@ -1086,7 +1093,7 @@ async function depositVeYeti(qty: number) {
           aria-label="basic tabs example"
         >
           <Tab
-            label="Main Pools"
+            label="All Pools"
             {...a11yProps(0)}
             style={{
               color: value === 0 ? "#ddeaf2" : "#929ea6",
@@ -1103,10 +1110,27 @@ async function depositVeYeti(qty: number) {
             }}
           />
           <Tab
-            label="Yeti Boosted Pools"
+            label="Main Pools"
             {...a11yProps(1)}
             style={{
               color: value === 1 ? "#ddeaf2" : "#929ea6",
+              fontWeight: "bold",
+              textTransform: "none",
+            }}
+            sx={{
+              fontSize: {
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
+              },
+            }}
+          />
+          <Tab
+            label="Yeti Boosted Pools"
+            {...a11yProps(2)}
+            style={{
+              color: value === 2 ? "#ddeaf2" : "#929ea6",
               fontWeight: "bold",
               textTransform: "none",
             }}
@@ -1124,8 +1148,14 @@ async function depositVeYeti(qty: number) {
       <TabPanel value={value} index={0}>
         {Yeti}
         {RGN}
+        {Yusd}
+        {CurveLp}
       </TabPanel>
       <TabPanel value={value} index={1}>
+        {Yeti}
+        {RGN}
+      </TabPanel>
+      <TabPanel value={value} index={2}>
         {Yusd}
         {CurveLp}
       </TabPanel>
