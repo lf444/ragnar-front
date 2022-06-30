@@ -316,6 +316,8 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 4560517 (dev: remove dirty console log)
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
+              address={contractAddress.yetiAddres}
+              stake={true}
             />
           </Grid>
 <<<<<<< HEAD
@@ -447,6 +449,8 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 4560517 (dev: remove dirty console log)
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
+              address={contractAddress.rgnYetiAddress}
+              stake={true}
             />
           </Grid>
 <<<<<<< HEAD
@@ -526,6 +530,8 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 4560517 (dev: remove dirty console log)
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
+              address={contractAddress.rgnYetiAddress}
+              stake={false}
             />
           </Grid>
 <<<<<<< HEAD

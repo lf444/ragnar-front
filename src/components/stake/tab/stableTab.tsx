@@ -11,7 +11,11 @@ import CustomInput from '../../shared/CustomInput';
 import CustomDisplay from '../../shared/CustomDisplay';
 import { ethers } from 'ethers';
 import { appLogger } from '../../../utils/method';
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+import { contractAddress } from '../../../abi/address';
+>>>>>>> 98af50a (button max OK)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -284,6 +288,8 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               poolName={'YETI'}
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
+              address={pairAddress}
+              stake={true}
             />
 >>>>>>> 4560517 (dev: remove dirty console log)
           </Grid>
@@ -332,7 +338,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       <TabPanel value={value} index={1}>
         <Grid container>
           <Grid sx={{ marginBottom: '5px' }} item container xs={6}>
-            <CustomDisplay poolName={'RGNYETI'} display='Unstake' />
+            <CustomDisplay poolName={pairName}  display='Unstake' />
           </Grid>
           <Grid
             item
@@ -381,6 +387,8 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               poolName={'YETI'}
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
+              address={pairAddress}
+              stake={false}
             />
           </Grid>
           <Grid item container xs={6} justifyContent='space-around'>
