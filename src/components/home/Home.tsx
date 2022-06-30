@@ -15,7 +15,6 @@ const Home = () => {
       >
         <Typography
           sx={{
-            color: '#3A4149',
             fontWeight: '700',
             fontSize: '22px',
             paddingTop: '3%',
@@ -26,7 +25,6 @@ const Home = () => {
 
         <Typography
           sx={{
-            color: '#3A4149',
             fontWeight: '700',
             fontSize: '24px',
             paddingTop: '3%',
@@ -35,9 +33,7 @@ const Home = () => {
           Deposit on Vector, the best yield booster on YETI & AVALANCHE
         </Typography>
 
-        <Typography
-          sx={{ color: '#3A4149', fontWeight: '700', fontSize: '18px' }}
-        >
+        <Typography sx={{ fontWeight: '700', fontSize: '18px' }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting .
         </Typography>
         <Button
