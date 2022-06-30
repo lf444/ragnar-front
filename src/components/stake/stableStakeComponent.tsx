@@ -50,7 +50,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
     transition: 'transform 150ms ease', // smooth transition
     color: '#ddeaf2',
   };
-
+  console.log(isLoading);
   return (
     <Box
       sx={{
@@ -154,8 +154,6 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
               <LinearProgress
                 color='inherit'
                 sx={{
-                  marginTop: '0.625em',
-                  marginBottom: '0.625em',
                   width: '1.50rem',
                   marginLeft: 'auto',
                   marginRight: 'auto',
@@ -187,8 +185,6 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             ) : (
               <LinearProgress
                 sx={{
-                  marginTop: '0.625em',
-                  marginBottom: '0.625em',
                   width: '1.25rem',
                   marginLeft: 'auto',
                   marginRight: 'auto',

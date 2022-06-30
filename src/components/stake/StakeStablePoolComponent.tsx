@@ -375,7 +375,223 @@ export default function StakeStablePoolComponent({
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
 
-  const resetData = () => {
+  async function fetchAprRGN() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const myDepositYUSD = await masterchef.depositInfo(
+          contractAddress.fakeYusdAddress,
+          String(accounts)
+        );
+        const myDepositYeti = await masterchef.depositInfo(
+          contractAddress.rgnYetiAddress,
+          String(accounts)
+        );
+        const myDepositRgn = await masterchef.depositInfo(
+          contractAddress.rgnAddress,
+          String(accounts)
+        );
+        const myDepositLpCurve = await masterchef.depositInfo(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts)
+        );
+
+        setMyStake({
+          ...myStake,
+          myYusd: myDepositYUSD / 10 ** 18,
+          myYeti: myDepositYeti / 10 ** 18,
+          myRgn: myDepositRgn / 10 ** 18,
+          myLpCurve: myDepositLpCurve / 10 ** 18,
+        });
+        const rgnPerBlock = await masterchef.rgnPerSec();
+        const allocPointYusd = await masterchef.getPoolInfo(
+          contractAddress.fakeYusdAddress
+        );
+        const allocPointYeti = await masterchef.getPoolInfo(
+          contractAddress.rgnYetiAddress
+        );
+        const allocPointLpCurve = await masterchef.getPoolInfo(
+          contractAddress.fakeLpCurveAddress
+        );
+        const allocPointRgn = await masterchef.getPoolInfo(
+          contractAddress.rgnAddress
+        );
+        const allocPointTotal = await masterchef.totalAllocPoint();
+        const rgnPerBlockYusd =
+          (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockYeti =
+          (allocPointYeti.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockLpCurve =
+          (allocPointLpCurve.allocpoint * rgnPerBlock) / allocPointTotal;
+        const rgnPerBlockRgn =
+          (allocPointRgn.allocpoint * rgnPerBlock) / allocPointTotal;
+        setAprRgn({
+          ...aprRgn,
+          aprYusd:
+            ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
+          aprLpCurve:
+            ((rgnPerBlockLpCurve * 28800 * 365) /
+              allocPointLpCurve.sizeOfPool) *
+            100,
+          aprRgn:
+            ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100,
+          aprYeti:
+            ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
+        });
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error fetchAprRGN-', err.message);
+      setIsLoading(false);
+    }
+  }
+
+  async function fetchMyDeposit() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const myDepositYUSD = await masterchef.depositInfo(
+          contractAddress.fakeYusdAddress,
+          String(accounts)
+        );
+        const myDepositYeti = await masterchef.depositInfo(
+          contractAddress.rgnYetiAddress,
+          String(accounts)
+        );
+        const myDepositRgn = await masterchef.depositInfo(
+          contractAddress.rgnAddress,
+          String(accounts)
+        );
+        const myDepositLpCurve = await masterchef.depositInfo(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts)
+        );
+        setMyStake({
+          ...myStake,
+          myYusd: myDepositYUSD,
+          myYeti: myDepositYeti,
+          myRgn: myDepositRgn,
+          myLpCurve: myDepositLpCurve,
+        });
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
+    }
+  }
+
+  async function fetchMyReward() {
+    try {
+      if (window.ethereum) {
+        let accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const priceRGN = 0.3;
+        const myRewardYUSD = await masterchef.pendingTokens(
+          contractAddress.fakeYusdAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
+        const myRewardRgnYeti = await masterchef.pendingTokens(
+          contractAddress.rgnYetiAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
+        const myRewardLpCurve = await masterchef.pendingTokens(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
+        const myRewardRGN = await masterchef.pendingTokens(
+          contractAddress.rgnAddress,
+          String(accounts),
+          contractAddress.yetiAddres
+        );
+
+        setReward({
+          ...reward,
+          rewardYusd:
+            (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
+            (Number(myRewardYUSD.pendingRGN) * priceRGN) / 10 ** 18,
+          rewardYeti:
+            (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
+              10 ** 18 +
+            (Number(myRewardRgnYeti.pendingRGN) * priceRGN) / 10 ** 18,
+          rewardRgn:
+            (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
+            (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18,
+          rewardLpCurve:
+            (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti) /
+              10 ** 18 +
+            (Number(myRewardLpCurve.pendingRGN) * priceRGN) / 10 ** 18,
+        });
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
+      setIsLoading(false);
+    }
+  }
+
+  async function fetchTVL() {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+        const priceLpCurve = 1;
+        const priceRGN = 0.3;
+        const TVLYUSD = await masterchef.getPoolInfo(
+          contractAddress.fakeYusdAddress
+        );
+        const TVLRgnYeti = await masterchef.getPoolInfo(
+          contractAddress.rgnYetiAddress
+        );
+        const TVLLpCurve = await masterchef.getPoolInfo(
+          contractAddress.fakeLpCurveAddress
+        );
+        const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
+        setTVL({
+          ...TVL,
+          tvlYusd: (TVLYUSD.sizeOfPool * priceYusd) / 10 ** 18,
+          tvlYeti: (TVLRgnYeti.sizeOfPool * priceRgnYeti) / 10 ** 18,
+          tvlRgn: (TVLRGN.sizeOfPool * priceRGN) / 10 ** 18,
+          tvlLpCurve: (TVLLpCurve.sizeOfPool * priceLpCurve) / 10 ** 18,
+        });
+      }
+    } catch (err: any) {
+      appLogger(appTag, '- Error fetchTVL-', err.message);
+      setIsLoading(false);
+    }
+  }
+
+  const resetData = async () => {
     setTVL({
       ...TVL,
       tvlYusd: 0,
@@ -397,6 +613,13 @@ export default function StakeStablePoolComponent({
       aprRgn: 0,
       aprYeti: 0,
     });
+  };
+
+  const fetchAllData = async () => {
+    await fetchMyDeposit();
+    await fetchTVL();
+    await fetchAprRGN();
+    await fetchMyReward();
   };
 
   useEffect(() => {
@@ -432,19 +655,11 @@ export default function StakeStablePoolComponent({
 =======
     if (data) {
       setIsLoading(true);
-      fetchMyDeposit();
-      fetchTVL();
-      fetchAprRGN();
-      fetchMyReward();
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
+      fetchAllData().then(() => setIsLoading(false));
     } else {
       setIsLoading(true);
       resetData();
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
+      setTimeout(() => setIsLoading(false), 1000);
     }
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
   }, [data]);
@@ -789,6 +1004,7 @@ async function depositVeYeti(qty: number) {
     }
   }
 
+<<<<<<< HEAD
   async function fetchAprRGN() {
     try {
       if (window.ethereum) {
@@ -1096,6 +1312,8 @@ async function depositVeYeti(qty: number) {
     }
   }
 
+=======
+>>>>>>> f182f03 (dev: loader gestion)
   return (
     <Box
       sx={{

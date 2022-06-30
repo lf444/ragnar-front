@@ -73,6 +73,7 @@ const Funds = ({
       }
     } catch (err: any) {
       appLogger(appTag, ' fetchMyDeposit masterChef', err.message);
+      setIsLoading(false);
     }
   };
 
@@ -125,6 +126,7 @@ const Funds = ({
       }
     } catch (err: any) {
       appLogger(appTag, ' fetchMyReward masterChef', err.message);
+      setIsLoading(false);
     }
   };
 
@@ -159,6 +161,7 @@ const Funds = ({
       }
     } catch (err: any) {
       appLogger(appTag, ' GetTVL masterChef', err.message);
+      setIsLoading(false);
     }
   };
 
@@ -188,15 +191,20 @@ const Funds = ({
       }
     } catch (err: any) {
       appLogger(appTag, '- Error getMainsStakingData-', err.message);
+      setIsLoading(false);
     }
   };
 
   const fetchMasterChefData = async () => {
-    getMasterChefDeposit();
-    getMasterChefReward();
-    getTVL();
+    await getMasterChefDeposit();
+    await getMasterChefReward();
+    await getTVL();
   };
 
+  const fetchAllData = async () => {
+    await fetchMasterChefData();
+    shouldDisplaySecondTabPrice && (await getMainsStakingData());
+  };
   // set all State at 0
   const resetData = async () => {
     setDeposit(0);
@@ -211,17 +219,11 @@ const Funds = ({
   useEffect(() => {
     if (data) {
       setIsLoading(true);
-      fetchMasterChefData();
-      shouldDisplaySecondTabPrice && getMainsStakingData();
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
+      fetchAllData().then(() => setIsLoading(false));
     } else {
       setIsLoading(true);
       resetData();
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
+      setTimeout(() => setIsLoading(false), 1000);
     }
   }, [data]);
 
