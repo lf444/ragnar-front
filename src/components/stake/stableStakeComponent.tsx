@@ -180,7 +180,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             }}
           >
             {!isLoading ? (
-              stacked.toLocaleString('en') + pairName1
+              stacked.toLocaleString('en') 
             ) : (
               <LinearProgress
                 sx={{

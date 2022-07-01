@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from "./components/home/Home";
 import RagnarRoute from "./components/RagnarRoute";
 
+
 function App() {
   let navigate = useNavigate();
 
@@ -15,6 +16,12 @@ function App() {
       navigate("/home");
     }
   }, []);
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> d8abe5b (font + minor change responsive)
   return (
     <React.Fragment>
       <Routes>

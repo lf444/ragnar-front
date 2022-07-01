@@ -3,6 +3,11 @@ import { red } from "@mui/material/colors";
 
 // A custom theme for this app
 const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Noto Sans'
+    ].join(','),
+  },
   palette: {
     primary: {
       main: "#535b63",

@@ -174,7 +174,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             }}
           />
           <Tab
-            label='INFO'
+            label='Info'
             {...a11yProps(2)}
             style={{
               color: value === 2 ? '#ddeaf2' : '#929ea6',
@@ -308,6 +308,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 width: '45%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+                fontSize: {xs: "10px", md: "0.875em"}
               }}
             >
               APPROVE
@@ -333,6 +334,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 width: '45%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+                fontSize: {xs: "10px", md: "0.875em"}
               }}
             >
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -406,6 +408,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 width: '50%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+                fontSize: {xs: "10px", md: "0.875em"}
               }}
             >
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -417,6 +420,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       <TabPanel value={value} index={2}>
         <Typography
           sx={{
+<<<<<<< HEAD
 <<<<<<< HEAD
             fontSize: "14px",
             color: (theme) => theme.palette.text.primary,
@@ -433,6 +437,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               fontWeight: "normal",
 =======
             fontSize: '14px',
+=======
+            fontSize: {xs: "10px", md: "14px"},
+>>>>>>> d8abe5b (font + minor change responsive)
             color: (theme) => theme.palette.text.primary,
             marginBottom: '10px',
             fontWeight: 'bold',
@@ -445,7 +452,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               color: (theme) => theme.palette.text.secondary,
               textDecoration: 'none',
               fontWeight: 'normal',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+              fontSize: {xs: "10px", md: "14px"}
+>>>>>>> d8abe5b (font + minor change responsive)
             }}
             href={`https://snowtrace.io/address/${pairAddress}`}
           >
@@ -454,6 +465,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
         </Typography>
         <Typography
           sx={{
+<<<<<<< HEAD
 <<<<<<< HEAD
             fontSize: "14px",
             color: (theme) => theme.palette.text.primary,
@@ -470,6 +482,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               fontWeight: "normal",
 =======
             fontSize: '14px',
+=======
+            fontSize: {xs: "10px", md: "14px"},
+>>>>>>> d8abe5b (font + minor change responsive)
             color: (theme) => theme.palette.text.primary,
             marginBottom: '10px',
             fontWeight: 'bold',
@@ -482,7 +497,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               color: (theme) => theme.palette.text.secondary,
               textDecoration: 'none',
               fontWeight: 'normal',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+              fontSize: {xs: "10px", md: "14px"}
+>>>>>>> d8abe5b (font + minor change responsive)
             }}
             href={`https://snowtrace.io/address/${addressPool}`}
           >

@@ -231,7 +231,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             }}
           />
           <Tab
-            label='INFO'
+            label='Info'
             {...a11yProps(3)}
             style={{
               color: value === 3 ? '#ddeaf2' : '#929ea6',
@@ -364,7 +364,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 width: '45%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+                fontSize: {xs: "10px", md: "0.875em"}
+>>>>>>> d8abe5b (font + minor change responsive)
               }}
             >
               APPROVE
@@ -383,7 +387,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 width: '45%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+                fontSize: {xs: "10px", md: "0.875em"} 
+>>>>>>> d8abe5b (font + minor change responsive)
               }}
             >
               DEPOSIT
@@ -497,7 +505,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 width: '45%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+                fontSize: {xs: "10px", md: "0.875em"}
+>>>>>>> d8abe5b (font + minor change responsive)
               }}
             >
               APPROVE
@@ -516,7 +528,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 width: '45%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+                fontSize: {xs: "10px", md: "0.875em"}
+>>>>>>> d8abe5b (font + minor change responsive)
               }}
             >
               DEPOSIT
@@ -578,7 +594,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 width: '55%',
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: 'bold',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+                fontSize: {xs: "10px", md: "0.875em"}
+>>>>>>> d8abe5b (font + minor change responsive)
               }}
             >
               WITHDRAW
@@ -589,6 +609,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       <TabPanel value={value} index={3}>
         <Typography
           sx={{
+<<<<<<< HEAD
 <<<<<<< HEAD
             fontSize: "14px",
             color: (theme) => theme.palette.text.primary,
@@ -605,6 +626,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               fontWeight: "normal",
 =======
             fontSize: '14px',
+=======
+            fontSize: {xs: "10px", md: "14px"},
+>>>>>>> d8abe5b (font + minor change responsive)
             color: (theme) => theme.palette.text.primary,
             marginBottom: '10px',
             fontWeight: 'bold',
@@ -617,7 +641,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               color: (theme) => theme.palette.text.secondary,
               textDecoration: 'none',
               fontWeight: 'normal',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+              fontSize: {xs: "10px", md: "14px"}
+>>>>>>> d8abe5b (font + minor change responsive)
             }}
             href={`https://snowtrace.io/address/${contractAddress.yetiAddres}`}
           >
@@ -626,6 +654,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
         </Typography>
         <Typography
           sx={{
+<<<<<<< HEAD
 <<<<<<< HEAD
             fontSize: "14px",
             color: (theme) => theme.palette.text.primary,
@@ -642,6 +671,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               fontWeight: "normal",
 =======
             fontSize: '14px',
+=======
+            fontSize: {xs: "10px", md: "14px"},
+>>>>>>> d8abe5b (font + minor change responsive)
             color: (theme) => theme.palette.text.primary,
             marginBottom: '10px',
             fontWeight: 'bold',
@@ -654,7 +686,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               color: (theme) => theme.palette.text.secondary,
               textDecoration: 'none',
               fontWeight: 'normal',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+              fontSize: {xs: "10px", md: "14px"}
+>>>>>>> d8abe5b (font + minor change responsive)
             }}
             href={`https://snowtrace.io/address/${contractAddress.rgnYetiAddress}`}
           >
@@ -663,6 +699,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
         </Typography>
         <Typography
           sx={{
+<<<<<<< HEAD
 <<<<<<< HEAD
             fontSize: "14px",
             color: (theme) => theme.palette.text.primary,
@@ -679,6 +716,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               fontWeight: "normal",
 =======
             fontSize: '14px',
+=======
+            fontSize: {xs: "10px", md: "14px"},
+>>>>>>> d8abe5b (font + minor change responsive)
             color: (theme) => theme.palette.text.primary,
             marginBottom: '10px',
             fontWeight: 'bold',
@@ -691,7 +731,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               color: (theme) => theme.palette.text.secondary,
               textDecoration: 'none',
               fontWeight: 'normal',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+              fontSize: {xs: "10px", md: "14px"}
+>>>>>>> d8abe5b (font + minor change responsive)
             }}
             href={`https://snowtrace.io/address/${contractAddress.masterchefAddress}`}
           >
@@ -700,6 +744,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
         </Typography>
         <Typography
           sx={{
+<<<<<<< HEAD
 <<<<<<< HEAD
             fontSize: "14px",
             color: (theme) => theme.palette.text.primary,
@@ -716,9 +761,12 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               fontWeight: "normal",
 =======
             fontSize: '14px',
+=======
+>>>>>>> d8abe5b (font + minor change responsive)
             color: (theme) => theme.palette.text.primary,
             marginBottom: '10px',
             fontWeight: 'bold',
+            fontSize: {xs: "10px", md: "14px"}
           }}
         >
           {' '}
@@ -728,7 +776,11 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               color: (theme) => theme.palette.text.secondary,
               textDecoration: 'none',
               fontWeight: 'normal',
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+              fontSize: {xs: "10px", md: "14px"}
+>>>>>>> d8abe5b (font + minor change responsive)
             }}
             href={`https://snowtrace.io/address/${contractAddress.mainstakingAddress}`}
           >
