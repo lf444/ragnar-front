@@ -10,10 +10,14 @@ import { FunctionComponent, useState } from 'react';
 import CustomInput from '../../shared/CustomInput';
 import CustomDisplay from '../../shared/CustomDisplay';
 import { ethers } from 'ethers';
+<<<<<<< HEAD
 import { appLogger } from '../../../utils/method';
 <<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
 =======
+=======
+import { appLogger, errorToast } from '../../../utils/method';
+>>>>>>> a69614b (dev: add toast first step)
 import { contractAddress } from '../../../abi/address';
 >>>>>>> 98af50a (button max OK)
 
@@ -92,6 +96,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       const amount = ethers.utils.parseEther(String(amountToStake));
       approve(String(amount), pairAddress, masterchef);
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, 'approveToken', err.message);
     }
   }
@@ -101,6 +106,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       const amount = ethers.utils.parseEther(String(amountToStake));
       deposit(String(amount), pairAddress, masterchef);
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, ' depositToken', err.message);
     }
   }
@@ -110,6 +116,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       const amount = ethers.utils.parseEther(String(amountToStake));
       withdraw(String(amount), pairAddress, masterchef);
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, ' withdrawToken', err.message);
     }
   }

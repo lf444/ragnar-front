@@ -14,8 +14,12 @@ import CustomDisplay from '../../shared/CustomDisplay';
 import CustomInput from '../../shared/CustomInput';
 import { contractAddress } from '../../../abi/address';
 import { BigNumber, ethers } from 'ethers';
+<<<<<<< HEAD
 import { appLogger } from '../../../utils/method';
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+import { appLogger, errorToast } from '../../../utils/method';
+>>>>>>> a69614b (dev: add toast first step)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -82,8 +86,12 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       approve(String(amount), contractAddress.rgnYetiAddress, true);
     } catch (err: any) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log(err.message);
 =======
+=======
+      errorToast(err.message);
+>>>>>>> a69614b (dev: add toast first step)
       appLogger(appTag, 'approveTokenRgnYETI', err.message);
 >>>>>>> 4560517 (dev: remove dirty console log)
     }
@@ -95,8 +103,12 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       approve(String(amount), contractAddress.yetiAddres, false);
     } catch (err: any) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log(err.message);
 =======
+=======
+      errorToast(err.message);
+>>>>>>> a69614b (dev: add toast first step)
       appLogger(appTag, 'approveYeti', err.message);
 >>>>>>> 4560517 (dev: remove dirty console log)
     }
@@ -108,8 +120,12 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       deposit(String(amount), contractAddress.rgnYetiAddress, true);
     } catch (err: any) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log(err.message);
 =======
+=======
+      errorToast(err.message);
+>>>>>>> a69614b (dev: add toast first step)
       appLogger(appTag, 'depositToken', err.message);
 >>>>>>> 4560517 (dev: remove dirty console log)
     }
@@ -121,8 +137,12 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       withdraw(String(amount), contractAddress.rgnYetiAddress, true);
     } catch (err: any) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log(err.message);
 =======
+=======
+      errorToast(err.message);
+>>>>>>> a69614b (dev: add toast first step)
       appLogger(appTag, 'withdrawToken', err.message);
 >>>>>>> 4560517 (dev: remove dirty console log)
     }
@@ -134,8 +154,12 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       depositVeYeti(amount);
     } catch (err: any) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log(err.message);
 =======
+=======
+      errorToast(err.message);
+>>>>>>> a69614b (dev: add toast first step)
       appLogger(appTag, 'depositVeYetiMain', err.message);
 >>>>>>> 4560517 (dev: remove dirty console log)
     }

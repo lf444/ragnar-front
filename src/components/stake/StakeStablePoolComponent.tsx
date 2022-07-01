@@ -61,6 +61,7 @@ import tokenABI from '../../abi/contracts/Tokens/RGN.sol/RGN.json';
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from '../../abi/pools';
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 import { appLogger } from '../../utils/method';
 <<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -76,6 +77,9 @@ import { appLogger } from "../../utils/method";
 import { appLogger } from '../../utils/method';
 >>>>>>> c331051 (dev: right size for loader)
 =======
+=======
+import { appLogger, errorToast } from '../../utils/method';
+>>>>>>> a69614b (dev: add toast first step)
 import { useProvider } from 'wagmi';
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
 
@@ -462,6 +466,7 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error fetchAprRGN-', err.message);
       setIsLoading(false);
     }
@@ -513,6 +518,7 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error fetchAprRGN-', err.message);
       setIsLoading(false);
     }
@@ -556,6 +562,7 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error fetchMyDeposit-', err.message);
     }
   }
@@ -614,6 +621,7 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error fetchMyDeposit-', err.message);
       setIsLoading(false);
     }
@@ -648,6 +656,7 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error fetchTVL-', err.message);
       setIsLoading(false);
     }
@@ -835,6 +844,7 @@ async function approve(qty: number, address: string, masterchefContract: boolean
           tokenApproveMainstaking.wait();
         }
       } catch (err: any) {
+        errorToast(err.message);
         appLogger(appTag, '- Error approve-', err.message);
       }
     }
@@ -1002,6 +1012,7 @@ async function depositVeYeti(qty: number) {
         }
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error deposit-', err.message);
     }
   }
@@ -1021,6 +1032,7 @@ async function depositVeYeti(qty: number) {
         await depositVeYeti.wait();
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error depositVeYeti-', err.message);
     }
   }
@@ -1064,6 +1076,7 @@ async function depositVeYeti(qty: number) {
         }
       }
     } catch (err: any) {
+      errorToast(err.message);
       appLogger(appTag, '- Error withdraw-', err.message);
     }
   }
