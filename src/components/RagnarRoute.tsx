@@ -39,8 +39,12 @@ import Footer from './Footer';
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
 =======
 import { useAccount, useWaitForTransaction } from "wagmi";
+<<<<<<< HEAD
 import Footer from "./Footer";
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+import Footer from "./shared/Footer";
+>>>>>>> b84f72d (dev: component re-organise)
 
 const RagnarRoute = () => {
   const [priceYusd, SetPriceYusd] = useState(0);
@@ -85,7 +89,6 @@ const RagnarRoute = () => {
     }
   }, [location]);
 
-  console.log(data);
   return (
     <>
       <Navbar priceYeti={priceYeti} priceRgn={priceRgn} />

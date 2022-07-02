@@ -129,7 +129,6 @@ const Funds = ({
       }
     } catch (err: any) {
       errorToast(err.code);
-      console.log({ err });
       appLogger(appTag, " fetchMyReward masterChef", err.message);
       setIsLoading(false);
     }

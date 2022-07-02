@@ -38,10 +38,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import PairTab from "./PairTab";
-import { contractAddress } from "../../abi/address";
+import { contractAddress } from "../../../abi/address";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
+<<<<<<< HEAD:src/components/stake/StakeStablePoolComponent.tsx
 import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -89,10 +89,19 @@ import { useProvider } from 'wagmi';
 =======
 import mainstakingABI from "../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
+=======
+import masterchefABI from "../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+import mainstakingABI from "../../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../../abi/pools";
+>>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/PoolTab.tsx
 
-import { appLogger, errorToast } from "../../utils/method";
+import { appLogger, errorToast } from "../../../utils/method";
 import { useProvider, useWaitForTransaction } from "wagmi";
+<<<<<<< HEAD:src/components/stake/StakeStablePoolComponent.tsx
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+import StableStakeComponent from "./stableStakeComponent";
+>>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/PoolTab.tsx
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -133,7 +142,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function StakeStablePoolComponent({
+export default function PoolTab({
   data,
   priceYusd,
   priceRgnYeti,
@@ -213,7 +222,7 @@ export default function StakeStablePoolComponent({
 =======
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
   const RGN = (
-    <PairTab
+    <StableStakeComponent
       pairName1="RGN"
       logo1={rgnPool.logo}
       apr={Math.round(aprRgn.aprRgn)}
@@ -232,7 +241,7 @@ export default function StakeStablePoolComponent({
 >>>>>>> 4560517 (dev: remove dirty console log)
 
   const Yeti = (
-    <PairTab
+    <StableStakeComponent
       pairName1="YETI"
       logo1={YetiPool.logo}
       apr={Math.round(aprRgn.aprYeti)}
@@ -299,7 +308,7 @@ export default function StakeStablePoolComponent({
       claimable={0}
 =======
   const Yusd = (
-    <PairTab
+    <StableStakeComponent
       pairName1="YUSD"
       logo1={YusdPool.logo}
       apr={Math.round(aprRgn.aprYusd)}
@@ -340,11 +349,15 @@ export default function StakeStablePoolComponent({
   );
 
   const CurveLp = (
+<<<<<<< HEAD:src/components/stake/StakeStablePoolComponent.tsx
     <PairTab
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+    <StableStakeComponent
+>>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/PoolTab.tsx
       pairName1="LP CURVE"
 =======
       pairName1='LP CURVE'

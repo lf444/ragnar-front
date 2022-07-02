@@ -3,7 +3,7 @@ import { FunctionComponent, useState } from "react";
 import Fade from "@mui/material/Fade";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import StableTab from "./tab/stableTab";
-import theme from "../../theme";
+import theme from "../../../theme";
 import RgnYetiStable from "./tab/RgnYetiTable";
 import LinearProgress from "@mui/material/LinearProgress";
 

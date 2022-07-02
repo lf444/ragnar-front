@@ -33,6 +33,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { FunctionComponent, useState } from "react";
+<<<<<<< HEAD:src/components/stake/tab/stableTab.tsx
 import CustomInput from "../../shared/CustomInput";
 import CustomDisplay from "../../shared/CustomDisplay";
 import { ethers } from "ethers";
@@ -40,6 +41,11 @@ import { appLogger, errorToast } from "../../../utils/method";
 import { contractAddress } from "../../../abi/address";
 import { approve, deposit, withdraw } from "../../../rpc/simple";
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+import CustomInput from "../../../shared/CustomInput";
+import CustomDisplay from "../../../shared/CustomDisplay";
+import { approve, deposit, withdraw } from "../../../../rpc/simple";
+>>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/tab/stableTab.tsx
 
 interface TabPanelProps {
   children?: React.ReactNode;

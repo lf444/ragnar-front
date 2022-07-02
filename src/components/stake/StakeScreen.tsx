@@ -1,10 +1,9 @@
 import { Grid } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import Funds from "./funds/Funds";
-import StakeStablePoolComponent from "./StakeStablePoolComponent";
+import StakeStablePoolComponent from "./pools/PoolTab";
 import { Typography } from "@mui/material";
 import PageHeader from "../shared/PageHeader";
-
 
 const StakeScreen = ({
   data,
@@ -15,11 +14,9 @@ const StakeScreen = ({
   priceYusd: number;
   priceRgnYeti: number;
 }) => {
-
   return (
     <>
-    <PageHeader pageTitle={`Ragnar finance - Stake`} />
-      {" "}
+      <PageHeader pageTitle={`Ragnar finance - Stake`} />{" "}
       <Zoom in={true}>
         <Grid
           container
@@ -33,7 +30,6 @@ const StakeScreen = ({
               xs: "100%",
               sm: "70%",
             },
-            borderRadius: { xs: "0px", sm: "20px" },
           }}
         >
           <Grid item sx={{ width: "90%", paddingBottom: 2 }}>
@@ -50,7 +46,12 @@ const StakeScreen = ({
             >
               STAKE FUNDS
             </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice data={data} />
+            <Funds
+              priceYusd={priceYusd}
+              priceRgnYeti={priceRgnYeti}
+              shouldDisplaySecondTabPrice
+              data={data}
+            />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
             <StakeStablePoolComponent
