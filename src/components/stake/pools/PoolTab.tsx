@@ -96,12 +96,17 @@ import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../../abi/pools";
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/PoolTab.tsx
 
 import { appLogger, errorToast } from "../../../utils/method";
+<<<<<<< HEAD
 import { useProvider, useWaitForTransaction } from "wagmi";
 <<<<<<< HEAD:src/components/stake/StakeStablePoolComponent.tsx
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 =======
 import StableStakeComponent from "./stableStakeComponent";
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/PoolTab.tsx
+=======
+import { useProvider } from "wagmi";
+import PoolComponent from "./PoolComponent";
+>>>>>>> d1d8a1a (dev: rename component)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -222,17 +227,13 @@ export default function PoolTab({
 =======
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
   const RGN = (
-    <StableStakeComponent
-      pairName1="RGN"
-      logo1={rgnPool.logo}
+    <PoolComponent
+      pool={rgnPool}
       apr={Math.round(aprRgn.aprRgn)}
       stacked={Math.round(myStake.myRgn)}
       tvl={Math.round(TVL.tvlRgn)}
       claimable={Math.round(reward.rewardRgn)}
-      addressPool={rgnPool.addressPool}
-      pairAddress={rgnPool.pairAddress}
       rgn={false}
-      info={rgnPool.info}
       masterchef={true}
       depositVeYeti=""
       isLoading={isLoading}
@@ -241,17 +242,13 @@ export default function PoolTab({
 >>>>>>> 4560517 (dev: remove dirty console log)
 
   const Yeti = (
-    <StableStakeComponent
-      pairName1="YETI"
-      logo1={YetiPool.logo}
+    <PoolComponent
+      pool={YetiPool}
       apr={Math.round(aprRgn.aprYeti)}
       stacked={Math.round(myStake.myYeti)}
       tvl={Math.round(TVL.tvlYeti)}
       claimable={Math.round(reward.rewardYeti)}
-      addressPool={YetiPool.addressPool}
-      pairAddress={YetiPool.pairAddress}
       rgn={true}
-      info=""
       masterchef={true}
       depositVeYeti={depositVeYeti}
       isLoading={isLoading}
@@ -308,13 +305,13 @@ export default function PoolTab({
       claimable={0}
 =======
   const Yusd = (
-    <StableStakeComponent
-      pairName1="YUSD"
-      logo1={YusdPool.logo}
+    <PoolComponent
+      pool={YusdPool}
       apr={Math.round(aprRgn.aprYusd)}
       stacked={Number(myStake.myYusd)}
       tvl={Math.round(TVL.tvlYusd)}
       claimable={Math.round(reward.rewardYusd)}
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={YusdPool.addressPool}
       pairAddress={YusdPool.pairAddress}
@@ -340,6 +337,9 @@ export default function PoolTab({
       depositVeYeti=''
 >>>>>>> c331051 (dev: right size for loader)
 =======
+=======
+      rgn={false}
+>>>>>>> d1d8a1a (dev: rename component)
       masterchef={false}
       depositVeYeti=""
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
@@ -349,6 +349,7 @@ export default function PoolTab({
   );
 
   const CurveLp = (
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/stake/StakeStablePoolComponent.tsx
     <PairTab
 <<<<<<< HEAD
@@ -376,10 +377,15 @@ export default function PoolTab({
       pairName1="LP CURVE"
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
       logo1={LpCurvePool.logo}
+=======
+    <PoolComponent
+      pool={LpCurvePool}
+>>>>>>> d1d8a1a (dev: rename component)
       apr={Math.round(aprRgn.aprLpCurve)}
       stacked={Math.round(myStake.myLpCurve)}
       tvl={Math.round(TVL.tvlLpCurve)}
       claimable={Math.round(reward.rewardLpCurve)}
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={LpCurvePool.addressPool}
       pairAddress={LpCurvePool.pairAddress}
@@ -411,6 +417,9 @@ export default function PoolTab({
       approve={approve}
 =======
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+      rgn={false}
+>>>>>>> d1d8a1a (dev: rename component)
       masterchef={false}
       depositVeYeti=""
       isLoading={isLoading}

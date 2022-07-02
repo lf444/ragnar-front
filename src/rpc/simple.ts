@@ -11,12 +11,13 @@ export const approve = async (
   masterchefContract: boolean,
   appTag: string
 ): Promise<void> => {
-  if (window.ethereum) {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const token = new ethers.Contract(address, tokenABI.abi, signer);
-    const amount = ethers.utils.parseEther(qty.toString());
-    try {
+  try {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const token = new ethers.Contract(address, tokenABI.abi, signer);
+      const amount = ethers.utils.parseEther(qty.toString());
+
       if (masterchefContract) {
         const tokenApproveMasterchef = await token.approve(
           contractAddress.masterchefAddress,
@@ -30,10 +31,10 @@ export const approve = async (
         );
         tokenApproveMainstaking.wait();
       }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error approve-", err.message);
     }
+  } catch (err: any) {
+    errorToast(err.code);
+    appLogger(appTag, "- Error approve-", err.message);
   }
 };
 

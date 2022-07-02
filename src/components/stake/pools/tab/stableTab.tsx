@@ -45,7 +45,11 @@ import { approve, deposit, withdraw } from "../../../rpc/simple";
 import CustomInput from "../../../shared/CustomInput";
 import CustomDisplay from "../../../shared/CustomDisplay";
 import { approve, deposit, withdraw } from "../../../../rpc/simple";
+<<<<<<< HEAD
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/tab/stableTab.tsx
+=======
+import { Pool } from "../../../../abi/pools";
+>>>>>>> d1d8a1a (dev: rename component)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -81,10 +85,7 @@ function a11yProps(index: number) {
 }
 
 interface StableTabProps {
-  addressPool: string;
-  pairAddress: string;
-  pairName: string;
-  info: string;
+  pool: Pool;
   masterchef: boolean;
 }
 
@@ -98,6 +99,7 @@ const appTag: string = 'StableTab';
 const appTag: string = "StableTab";
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 
+<<<<<<< HEAD
 const StableTab: FunctionComponent<StableTabProps> = ({
   addressPool,
   pairAddress,
@@ -106,6 +108,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
   masterchef,
 >>>>>>> 4560517 (dev: remove dirty console log)
 }) => {
+=======
+const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
+>>>>>>> d1d8a1a (dev: rename component)
   const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -119,17 +124,17 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 
   function approveToken() {
     setApproveTokenLoading(true);
-    approve(amountToStake, pairAddress, masterchef, appTag).then(() =>
+    approve(amountToStake, pool.pairAddress, masterchef, appTag).then(() =>
       setApproveTokenLoading(false)
     );
   }
 
   function depositToken() {
-    deposit(amountToStake, pairAddress, masterchef, appTag);
+    deposit(amountToStake, pool.pairAddress, masterchef, appTag);
   }
 
   function withdrawToken() {
-    withdraw(amountToStake, pairAddress, masterchef, appTag);
+    withdraw(amountToStake, pool.pairAddress, masterchef, appTag);
   }
 
   return (
@@ -230,11 +235,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
           }}
         >
-          {info}
+          {pool.info}
         </Typography>
         <Grid container>
           <Grid item container xs={6}>
-            <CustomDisplay poolName={pairName} display="Stake" />
+            <CustomDisplay poolName={pool.pairName} display="Stake" />
           </Grid>
           <Grid
             item
@@ -340,7 +345,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               poolName={"YETI"}
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
-              address={pairAddress}
+              address={pool.pairAddress}
               stake={true}
             />
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -403,7 +408,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       <TabPanel value={value} index={1}>
         <Grid container>
           <Grid sx={{ marginBottom: "5px" }} item container xs={6}>
-            <CustomDisplay poolName={pairName} display="Unstake" />
+            <CustomDisplay poolName={pool.pairName} display="Unstake" />
           </Grid>
           <Grid
             item
@@ -456,7 +461,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               poolName={"YETI"}
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
-              address={pairAddress}
+              address={pool.pairAddress}
               stake={false}
             />
           </Grid>
@@ -491,7 +496,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           }}
         >
           {" "}
-          {pairName} Contract: {"    "}
+          {pool.pairName} Contract: {"    "}
           <Link
             sx={{
               color: (theme) => theme.palette.text.secondary,
@@ -529,9 +534,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               fontSize: { xs: "10px", md: "14px" },
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             }}
-            href={`https://snowtrace.io/address/${pairAddress}`}
+            href={`https://snowtrace.io/address/${pool.pairAddress}`}
           >
-            {addressPool}
+            {pool.addressPool}
           </Link>
         </Typography>
         <Typography
@@ -584,9 +589,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               fontSize: { xs: "10px", md: "14px" },
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             }}
-            href={`https://snowtrace.io/address/${addressPool}`}
+            href={`https://snowtrace.io/address/${pool.addressPool}`}
           >
-            {addressPool}
+            {pool.addressPool}
           </Link>
         </Typography>
       </TabPanel>

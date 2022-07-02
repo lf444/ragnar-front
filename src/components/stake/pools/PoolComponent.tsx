@@ -6,34 +6,27 @@ import StableTab from "./tab/stableTab";
 import theme from "../../../theme";
 import RgnYetiStable from "./tab/RgnYetiTable";
 import LinearProgress from "@mui/material/LinearProgress";
+import { Pool } from "../../../abi/pools";
 
-interface StableStakeComponentProps {
-  pairName1: string;
-  logo1: string;
+interface PoolComponentProps {
+  pool: Pool;
   apr: number;
   stacked: number;
   tvl: number;
   claimable: number;
-  addressPool: string;
-  pairAddress: string;
   rgn: boolean;
-  info: string;
   masterchef: boolean;
   depositVeYeti: any;
   isLoading: boolean;
 }
 
-const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
-  pairName1,
-  logo1,
+const PoolComponent: FunctionComponent<PoolComponentProps> = ({
+  pool,
   apr,
   stacked,
   tvl,
   claimable,
-  addressPool,
-  pairAddress,
   rgn,
-  info,
   masterchef,
   depositVeYeti,
   isLoading,
@@ -95,30 +88,18 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
           <img
             height="35px"
             style={{ position: "relative", left: "-0.75em" }}
-            src={logo1}
-            alt={`${logo1} Logo`}
+            src={pool.logo}
+            alt={`${pool.pairName} Logo`}
           />{" "}
-          {rgn ? (
-            <Typography
-              sx={{
-                fontSize: { xs: "0.5em", sm: "1.25em" },
-                fontWeight: "bold",
-                color: (theme) => theme.palette.text.primary,
-              }}
-            >
-              {pairName1}
-            </Typography>
-          ) : (
-            <Typography
-              sx={{
-                fontSize: { xs: "0.5em", sm: "1.25em" },
-                fontWeight: "bold",
-                color: (theme) => theme.palette.text.primary,
-              }}
-            >
-              {pairName1}
-            </Typography>
-          )}
+          <Typography
+            sx={{
+              fontSize: { xs: "0.5em", sm: "1.25em" },
+              fontWeight: "bold",
+              color: (theme) => theme.palette.text.primary,
+            }}
+          >
+            {pool.pairName}
+          </Typography>
         </Grid>
         <Grid item xs={2}>
           <Typography
@@ -268,13 +249,7 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
             {rgn ? (
               <RgnYetiStable depositVeYeti={depositVeYeti} />
             ) : (
-              <StableTab
-                addressPool={addressPool}
-                pairAddress={pairAddress}
-                pairName={pairName1}
-                info={info}
-                masterchef={masterchef}
-              />
+              <StableTab pool={pool} masterchef={masterchef} />
             )}
           </Box>
         </Fade>
@@ -283,4 +258,4 @@ const StableStakeComponent: FunctionComponent<StableStakeComponentProps> = ({
   );
 };
 
-export default StableStakeComponent;
+export default PoolComponent;

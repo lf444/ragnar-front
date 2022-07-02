@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import StakeScreen from "./stake/StakeScreen";
 import Navbar from "./Navbar";
-import ClaimRewards from "./claim/Claim";
+import ClaimScreen from "./claim/ClaimScreen";
 import LockRGN from "./lock/Lock";
 import { coinGeckoService } from "../services/coinGeckoService";
 import { TOKEN_ID } from "../utils/constance";
@@ -106,7 +106,7 @@ const RagnarRoute = () => {
         <Route
           path="/claim"
           element={
-            <ClaimRewards
+            <ClaimScreen
               priceYusd={priceYusd}
               priceRgnYeti={priceRgnYeti}
               data={userAccount}

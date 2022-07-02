@@ -5,7 +5,7 @@ import PageHeader from "../shared/PageHeader";
 import Funds from "../stake/funds/Funds";
 import ClaimRewardsScreen from "./ClaimRewardsScreen";
 
-const ClaimRewards = ({
+const ClaimScreen = ({
   data,
   priceYusd,
   priceRgnYeti,
@@ -14,11 +14,9 @@ const ClaimRewards = ({
   priceYusd: number;
   priceRgnYeti: number;
 }) => {
-
   return (
     <>
-    <PageHeader pageTitle={`Ragnar finance - Claim`} />
-      {" "}
+      <PageHeader pageTitle={`Ragnar finance - Claim`} />{" "}
       <Zoom in={true}>
         <Grid
           container
@@ -49,7 +47,12 @@ const ClaimRewards = ({
             >
               CLAIM REWARDS
             </Typography>
-            <Funds priceYusd={priceYusd} priceRgnYeti={priceRgnYeti} shouldDisplaySecondTabPrice={false}  data={data} />
+            <Funds
+              priceYusd={priceYusd}
+              priceRgnYeti={priceRgnYeti}
+              shouldDisplaySecondTabPrice={false}
+              data={data}
+            />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
             <ClaimRewardsScreen />
@@ -60,4 +63,4 @@ const ClaimRewards = ({
   );
 };
 
-export default ClaimRewards;
+export default ClaimScreen;
