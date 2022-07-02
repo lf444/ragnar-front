@@ -39,6 +39,9 @@ export const errorToast = (errorCode: string) => {
     case "UNPREDICTABLE_GAS_LIMIT":
       toast.error("Error - Can't estimate the gas requirements");
       break;
+    case "TX_ERRROR":
+      toast.error("The transaction was rejected");
+      break;
 
     default:
       toast.error("Unknown error.");
@@ -48,12 +51,11 @@ export const errorToast = (errorCode: string) => {
 
 export const successToast = (successCode: string) => {
   switch (successCode) {
-    case "CALL_EXCEPTION":
-      toast.success("Error - Please check your network.");
+    case "TX_SUCCESS":
+      toast.success("The transaction was confirmed.");
       break;
-
     default:
-      toast.success("Unknown error.");
+      toast.success("SUCCES");
       break;
   }
 };

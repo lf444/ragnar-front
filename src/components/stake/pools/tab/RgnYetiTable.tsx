@@ -91,6 +91,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
     setAmountToStake(newValue);
   };
 
+<<<<<<< HEAD
   function approveTokenRgnYETI() {
 <<<<<<< HEAD
     try {
@@ -159,22 +160,25 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 4560517 (dev: remove dirty console log)
     }
 =======
+=======
+  /*   function approveTokenRgnYETI() {
+>>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
     approve(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
   }
 
   function approveYeti() {
     approve(amountToStake, contractAddress.yetiAddres, false, appTag);
-  }
+  } */
 
-  function depositToken() {
+  /*   function depositToken() {
     deposit(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
-  }
+  } */
 
-  function withdrawToken() {
+  /*   function withdrawToken() {
     withdraw(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
   }
-
+ */
   function depositVeYetiMain() {
     try {
       const amount = ethers.utils.parseEther(String(amountToStake));
@@ -422,7 +426,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              onClick={approveYeti}
+              /*  onClick={approveYeti} */
               variant="contained"
               sx={{
                 width: "45%",
@@ -609,7 +613,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              onClick={approveTokenRgnYETI}
+              /*  onClick={approveTokenRgnYETI} */
               variant="contained"
               sx={{
                 width: "45%",
@@ -644,9 +648,13 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               APPROVE
             </Button>
             <Button
+<<<<<<< HEAD
               onClick={depositToken}
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+              /* onClick={depositToken} */
+>>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
               variant="contained"
               sx={{
                 width: "45%",
@@ -723,7 +731,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              onClick={withdrawToken}
+              /* onClick={withdrawToken} */
               variant="contained"
               sx={{
                 width: "55%",

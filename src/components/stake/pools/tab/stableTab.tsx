@@ -32,6 +32,7 @@ import {
   Link,
   CircularProgress,
 } from "@mui/material";
+<<<<<<< HEAD
 import { FunctionComponent, useState } from "react";
 <<<<<<< HEAD:src/components/stake/tab/stableTab.tsx
 import CustomInput from "../../shared/CustomInput";
@@ -42,6 +43,9 @@ import { contractAddress } from "../../../abi/address";
 import { approve, deposit, withdraw } from "../../../rpc/simple";
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 =======
+=======
+import { FunctionComponent, useEffect, useState } from "react";
+>>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
 import CustomInput from "../../../shared/CustomInput";
 import CustomDisplay from "../../../shared/CustomDisplay";
 import { approve, deposit, withdraw } from "../../../../rpc/simple";
@@ -49,7 +53,12 @@ import { approve, deposit, withdraw } from "../../../../rpc/simple";
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/tab/stableTab.tsx
 =======
 import { Pool } from "../../../../abi/pools";
+<<<<<<< HEAD
 >>>>>>> d1d8a1a (dev: rename component)
+=======
+import { useWaitForTransaction } from "wagmi";
+import { errorToast, successToast } from "../../../../utils/method";
+>>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -116,26 +125,94 @@ const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
     setValue(newValue);
   };
 
-  const [approveTokenLoading, setApproveTokenLoading] = useState(false);
+  const [transaction, setTransaction] = useState("");
+  const [depositTX, setDepositTX] = useState("");
+  const [withdrawTX, setWithdrawTX] = useState("");
   const [amountToStake, setAmountToStake] = useState(0);
   const handleChangeAmount = (newValue: number) => {
     setAmountToStake(newValue);
   };
 
-  function approveToken() {
-    setApproveTokenLoading(true);
-    approve(amountToStake, pool.pairAddress, masterchef, appTag).then(() =>
-      setApproveTokenLoading(false)
+  const { data, isError, isLoading } = useWaitForTransaction({
+    hash: transaction,
+  });
+
+  const waitDepositTX = useWaitForTransaction({
+    hash: depositTX,
+  });
+
+  const waitWithdrawTX = useWaitForTransaction({
+    hash: withdrawTX,
+  });
+
+  const handleSetTx = (tx: string) => {
+    setTransaction(`${tx}`);
+  };
+
+  const handleSetDepositTx = (tx: string) => {
+    setDepositTX(`${tx}`);
+  };
+
+  const handleSetWithdrawTx = (tx: string) => {
+    setWithdrawTX(`${tx}`);
+  };
+
+  const approveToken = async () => {
+    await approve(
+      amountToStake,
+      pool.pairAddress,
+      masterchef,
+      appTag,
+      handleSetTx
     );
-  }
+  };
 
-  function depositToken() {
-    deposit(amountToStake, pool.pairAddress, masterchef, appTag);
-  }
+  const depositToken = async () => {
+    await deposit(
+      amountToStake,
+      pool.pairAddress,
+      masterchef,
+      appTag,
+      handleSetDepositTx
+    );
+  };
 
-  function withdrawToken() {
-    withdraw(amountToStake, pool.pairAddress, masterchef, appTag);
-  }
+  const withdrawToken = async () => {
+    await withdraw(
+      amountToStake,
+      pool.pairAddress,
+      masterchef,
+      appTag,
+      handleSetWithdrawTx
+    );
+  };
+
+  useEffect(() => {
+    if (!isLoading && transaction) {
+      successToast("TX_SUCCESS");
+    }
+    if (isError) {
+      errorToast("TX_ERRROR");
+    }
+  }, [isLoading, isError]);
+
+  useEffect(() => {
+    if (!waitDepositTX.isLoading && depositTX) {
+      successToast("TX_SUCCESS");
+    }
+    if (waitDepositTX.isError) {
+      errorToast("TX_ERRROR");
+    }
+  }, [waitDepositTX.isLoading, waitDepositTX.isError]);
+
+  useEffect(() => {
+    if (!waitWithdrawTX.isLoading && withdrawTX) {
+      successToast("TX_SUCCESS");
+    }
+    if (waitWithdrawTX.isError) {
+      errorToast("TX_ERRROR");
+    }
+  }, [waitWithdrawTX.isLoading, waitWithdrawTX.isError]);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -362,7 +439,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
                 fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
-              {!approveTokenLoading ? (
+              {!isLoading ? (
                 "APPROVE"
               ) : (
                 <CircularProgress
@@ -399,8 +476,23 @@ const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
                 fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
               DEPOSIT
+=======
+              {!waitDepositTX.isLoading ? (
+                "DEPOSIT"
+              ) : (
+                <CircularProgress
+                  size="0.95em"
+                  color="inherit"
+                  sx={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              )}
+>>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
             </Button>
           </Grid>
         </Grid>
@@ -477,8 +569,23 @@ const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
                 fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
               WITHDRAW
+=======
+              {!waitWithdrawTX.isLoading ? (
+                "WITHDRAW"
+              ) : (
+                <CircularProgress
+                  size="0.95em"
+                  color="inherit"
+                  sx={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              )}
+>>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
             </Button>
           </Grid>
         </Grid>

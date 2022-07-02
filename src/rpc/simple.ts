@@ -9,7 +9,8 @@ export const approve = async (
   qty: number,
   address: string,
   masterchefContract: boolean,
-  appTag: string
+  appTag: string,
+  handleSetTx: (tx: string) => void
 ): Promise<void> => {
   try {
     if (window.ethereum) {
@@ -17,19 +18,20 @@ export const approve = async (
       const signer = provider.getSigner();
       const token = new ethers.Contract(address, tokenABI.abi, signer);
       const amount = ethers.utils.parseEther(qty.toString());
-
       if (masterchefContract) {
         const tokenApproveMasterchef = await token.approve(
           contractAddress.masterchefAddress,
           amount
         );
         tokenApproveMasterchef.wait();
+        handleSetTx(tokenApproveMasterchef.hash);
       } else {
         const tokenApproveMainstaking = await token.approve(
           contractAddress.mainstakingAddress,
           amount
         );
         tokenApproveMainstaking.wait();
+        handleSetTx(tokenApproveMainstaking.hash);
       }
     }
   } catch (err: any) {
@@ -42,7 +44,8 @@ export const deposit = async (
   qty: number,
   address: string,
   masterchefContract: boolean,
-  appTag: string
+  appTag: string,
+  handleSetTx: (tx: string) => void
 ) => {
   try {
     if (window.ethereum) {
@@ -68,14 +71,16 @@ export const deposit = async (
           address,
           amount
         );
-        await depositTokenMasterchef.wait();
+        depositTokenMasterchef.wait();
+        handleSetTx(depositTokenMasterchef.hash);
       } else {
         const depositTokenMainstaking = await mainstaking.deposit(
           address,
           amount,
           String(accounts)
         );
-        await depositTokenMainstaking.wait();
+        depositTokenMainstaking.wait();
+        handleSetTx(depositTokenMainstaking.hash);
       }
     }
   } catch (err: any) {
@@ -88,7 +93,8 @@ export const withdraw = async (
   qty: number,
   address: string,
   masterchefContract: boolean,
-  appTag: string
+  appTag: string,
+  handleSetTx: (tx: string) => void
 ) => {
   try {
     if (window.ethereum) {
@@ -109,7 +115,8 @@ export const withdraw = async (
           address,
           amount
         );
-        await depositTokenMasterchef.wait();
+        depositTokenMasterchef.wait();
+        handleSetTx(depositTokenMasterchef.hash);
       } else {
         const mainstaking = new ethers.Contract(
           contractAddress.mainstakingAddress,
@@ -121,7 +128,8 @@ export const withdraw = async (
           amount,
           String(accounts)
         );
-        await depositTokenMainstaking.wait();
+        depositTokenMainstaking.wait();
+        handleSetTx(depositTokenMainstaking.hash);
       }
     }
   } catch (err: any) {
