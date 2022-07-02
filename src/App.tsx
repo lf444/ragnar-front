@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/home/Home";
 import RagnarRoute from "./components/RagnarRoute";
-
 
 function App() {
   let navigate = useNavigate();
@@ -16,12 +15,13 @@ function App() {
       navigate("/home");
     }
   }, []);
-<<<<<<< HEAD
-=======
 
+<<<<<<< HEAD
 
 
 >>>>>>> d8abe5b (font + minor change responsive)
+=======
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
   return (
     <React.Fragment>
       <Routes>

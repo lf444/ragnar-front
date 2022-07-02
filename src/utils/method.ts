@@ -5,7 +5,7 @@ export function appLogger(
   message: string,
   ...object: any[]
 ): void {
-  const DEBUG = process.env.NODE_ENV === 'development';
+  const DEBUG = process.env.NODE_ENV === "development";
   if (DEBUG) {
     // eslint-disable-next-line no-console
     console.group();
@@ -16,6 +16,44 @@ export function appLogger(
   }
 }
 
-export const errorToast = (message: string) => {
-  toast.error(message);
-}
+export const errorToast = (errorCode: string) => {
+  switch (errorCode) {
+    case "CALL_EXCEPTION":
+      toast.error("Error - Please check your network.");
+      break;
+
+    case "INSUFFICIENT_FUNDS":
+      toast.error(
+        "Error - The sending account does not have enough Avax to cover the cost of the transaction."
+      );
+      break;
+
+    case "NUMERIC_FAULT":
+      toast.error("Error - Illegal operation .");
+      break;
+
+    case "TRANSACTION_REPLACED":
+      toast.error("Error - Ttransaction which has been replaced by another.");
+      break;
+
+    case "UNPREDICTABLE_GAS_LIMIT":
+      toast.error("Error - Can't estimate the gas requirements");
+      break;
+
+    default:
+      toast.error("Unknown error.");
+      break;
+  }
+};
+
+export const successToast = (successCode: string) => {
+  switch (successCode) {
+    case "CALL_EXCEPTION":
+      toast.success("Error - Please check your network.");
+      break;
+
+    default:
+      toast.success("Unknown error.");
+      break;
+  }
+};

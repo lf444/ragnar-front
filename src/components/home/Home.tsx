@@ -1,5 +1,5 @@
-import { Button, Typography, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Button, Typography, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   let navigate = useNavigate();
@@ -8,16 +8,16 @@ const Home = () => {
     <>
       <Box
         sx={{
-          paddingLeft: '7%',
-          paddingRight: '7%',
-          paddingTop: '2%',
+          paddingLeft: "7%",
+          paddingRight: "7%",
+          paddingTop: "2%",
         }}
       >
         <Typography
           sx={{
-            fontWeight: '700',
-            fontSize: '22px',
-            paddingTop: '3%',
+            fontWeight: "700",
+            fontSize: "22px",
+            paddingTop: "3%",
           }}
         >
           Ragnar finance
@@ -25,52 +25,52 @@ const Home = () => {
 
         <Typography
           sx={{
-            fontWeight: '700',
-            fontSize: '24px',
-            paddingTop: '3%',
+            fontWeight: "700",
+            fontSize: "24px",
+            paddingTop: "3%",
           }}
         >
           Deposit on Vector, the best yield booster on YETI & AVALANCHE
         </Typography>
 
-        <Typography sx={{ fontWeight: '700', fontSize: '18px' }}>
+        <Typography sx={{ fontWeight: "700", fontSize: "18px" }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting .
         </Typography>
         <Button
-          variant='contained'
+          variant="contained"
           onClick={() => {
-            navigate('/stake');
+            navigate("/stake");
           }}
           sx={{
-            backgroundColor: '#627F91',
-            marginTop: '2%',
+            backgroundColor: "#627F91",
+            marginTop: "2%",
             /*    height: '50%',
             width: '10%', */
-            fontSize: '11px',
+            fontSize: "11px",
           }}
         >
           Start staking now !
         </Button>
         <Button
-          variant='contained'
+          variant="contained"
           onClick={() => {
-            navigate('/stake');
+            navigate("/stake");
           }}
           sx={{
-            marginTop: '2%',
+            marginTop: "2%",
             /*    height: '50%',
             width: '10%', */
-            fontSize: '11px',
-            marginLeft: '2rem',
+            fontSize: "11px",
+            marginLeft: "2rem",
           }}
         >
           How does it WORK ?
         </Button>
         <Box
           sx={{
-            position: 'relative',
-            left: '65%',
-            bottom: '45%',
+            position: "relative",
+            left: "65%",
+            bottom: "45%",
           }}
         ></Box>
       </Box>

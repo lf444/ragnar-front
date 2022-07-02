@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
 import { useEffect, useState } from 'react';
@@ -18,6 +19,8 @@ import { useAccount } from 'wagmi'
 import Footer from './Footer';
 >>>>>>> 0098540 (Claim bientot fini + footer)
 =======
+=======
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import StakeScreen from "./stake/StakeScreen";
@@ -26,6 +29,7 @@ import ClaimRewards from "./claim/Claim";
 import LockRGN from "./lock/Lock";
 import { coinGeckoService } from "../services/coinGeckoService";
 import { TOKEN_ID } from "../utils/constance";
+<<<<<<< HEAD
 import { useAccount } from "wagmi";
 import Footer from "./Footer";
 >>>>>>> 03050fe (dev: add loader when fetch)
@@ -33,6 +37,10 @@ import Footer from "./Footer";
 import { useAccount } from 'wagmi';
 import Footer from './Footer';
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
+=======
+import { useAccount, useWaitForTransaction } from "wagmi";
+import Footer from "./Footer";
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 
 const RagnarRoute = () => {
   const [priceYusd, SetPriceYusd] = useState(0);
@@ -72,16 +80,18 @@ const RagnarRoute = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/') {
-      navigate('/stake');
+    if (location.pathname === "/") {
+      navigate("/stake");
     }
   }, [location]);
+
+  console.log(data);
   return (
     <>
       <Navbar priceYeti={priceYeti} priceRgn={priceRgn} />
       <Routes>
         <Route
-          path='/stake'
+          path="/stake"
           element={
             <StakeScreen
               priceYusd={priceYusd}
@@ -91,7 +101,7 @@ const RagnarRoute = () => {
           }
         />
         <Route
-          path='/claim'
+          path="/claim"
           element={
             <ClaimRewards
               priceYusd={priceYusd}
@@ -101,7 +111,7 @@ const RagnarRoute = () => {
           }
         />
         <Route
-          path='/lock'
+          path="/lock"
           element={
             <LockRGN
               priceYusd={priceYusd}

@@ -1,15 +1,15 @@
-import { ethers } from 'ethers';
-import masterchefABI from '../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
-import mainstakingABI from '../../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json';
-import rgnABI from '../../../abi/contracts/Tokens/RGN.sol/RGN.json';
-import { contractAddress } from '../../../abi/address';
-import { useEffect, useState } from 'react';
-import { appLogger, errorToast } from '../../../utils/method';
-import FundsFirstTabs from './FirstTab';
-import FundSecondTabs from './SecondTab';
-import { useProvider } from 'wagmi';
+import { ethers } from "ethers";
+import masterchefABI from "../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+import mainstakingABI from "../../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import rgnABI from "../../../abi/contracts/Tokens/RGN.sol/RGN.json";
+import { contractAddress } from "../../../abi/address";
+import { useEffect, useState } from "react";
+import { appLogger, errorToast } from "../../../utils/method";
+import FundsFirstTabs from "./FirstTab";
+import FundSecondTabs from "./SecondTab";
+import { useProvider } from "wagmi";
 
-const appTag: string = 'Funds';
+const appTag: string = "Funds";
 
 const Funds = ({
   data,
@@ -37,7 +37,7 @@ const Funds = ({
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -74,8 +74,8 @@ const Funds = ({
         );
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, ' fetchMyDeposit masterChef', err.message);
+      errorToast(err.code);
+      appLogger(appTag, " fetchMyDeposit masterChef", err.message);
       setIsLoading(false);
     }
   };
@@ -84,7 +84,7 @@ const Funds = ({
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -128,9 +128,9 @@ const Funds = ({
         setReward(myTotalReward);
       }
     } catch (err: any) {
-      errorToast(err.message);
-      console.log({err});
-      appLogger(appTag, ' fetchMyReward masterChef', err.message);
+      errorToast(err.code);
+      console.log({ err });
+      appLogger(appTag, " fetchMyReward masterChef", err.message);
       setIsLoading(false);
     }
   };
@@ -163,8 +163,8 @@ const Funds = ({
         );
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, ' GetTVL masterChef', err.message);
+      errorToast(err.code);
+      appLogger(appTag, " GetTVL masterChef", err.message);
       setIsLoading(false);
     }
   };
@@ -194,8 +194,8 @@ const Funds = ({
         //setTotalRGNLocked(Number(rgnLocked) / 10**18)
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error getMainsStakingData-', err.message);
+      errorToast(err.code);
+      appLogger(appTag, "- Error getMainsStakingData-", err.message);
       setIsLoading(false);
     }
   };

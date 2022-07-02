@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7449a99 (all data + all function)
 =======
@@ -30,6 +31,8 @@ import { TOKEN_ID } from "../../utils/constance";
 =======
 =======
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
+=======
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -40,6 +43,7 @@ import { contractAddress } from "../../abi/address";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+<<<<<<< HEAD
 <<<<<<< HEAD
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
 >>>>>>> 96c243c (dev: reduce req call)
@@ -82,19 +86,26 @@ import { appLogger, errorToast } from '../../utils/method';
 >>>>>>> a69614b (dev: add toast first step)
 import { useProvider } from 'wagmi';
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
+=======
+import mainstakingABI from "../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
+
+import { appLogger, errorToast } from "../../utils/method";
+import { useProvider, useWaitForTransaction } from "wagmi";
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
-const appTag: string = 'StakeStablePoolComponent';
+const appTag: string = "StakeStablePoolComponent";
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -104,11 +115,11 @@ function TabPanel(props: TabPanelProps) {
         <Box
           sx={{
             paddingTop: 3,
-            overflowY: 'overlay',
+            overflowY: "overlay",
             paddingBottom: 10,
           }}
         >
-          <Typography component={'div'}>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -118,7 +129,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -184,6 +195,7 @@ export default function StakeStablePoolComponent({
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -198,9 +210,11 @@ export default function StakeStablePoolComponent({
    />
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
   const RGN = (
     <PairTab
-      pairName1='RGN'
+      pairName1="RGN"
       logo1={rgnPool.logo}
       apr={Math.round(aprRgn.aprRgn)}
       stacked={Math.round(myStake.myRgn)}
@@ -210,11 +224,8 @@ export default function StakeStablePoolComponent({
       pairAddress={rgnPool.pairAddress}
       rgn={false}
       info={rgnPool.info}
-      deposit={deposit}
-      withdraw={withdraw}
-      approve={approve}
       masterchef={true}
-      depositVeYeti=''
+      depositVeYeti=""
       isLoading={isLoading}
     />
   );
@@ -222,7 +233,7 @@ export default function StakeStablePoolComponent({
 
   const Yeti = (
     <PairTab
-      pairName1='YETI'
+      pairName1="YETI"
       logo1={YetiPool.logo}
       apr={Math.round(aprRgn.aprYeti)}
       stacked={Math.round(myStake.myYeti)}
@@ -231,10 +242,7 @@ export default function StakeStablePoolComponent({
       addressPool={YetiPool.addressPool}
       pairAddress={YetiPool.pairAddress}
       rgn={true}
-      info=''
-      deposit={deposit}
-      withdraw={withdraw}
-      approve={approve}
+      info=""
       masterchef={true}
       depositVeYeti={depositVeYeti}
       isLoading={isLoading}
@@ -292,7 +300,7 @@ export default function StakeStablePoolComponent({
 =======
   const Yusd = (
     <PairTab
-      pairName1='YUSD'
+      pairName1="YUSD"
       logo1={YusdPool.logo}
       apr={Math.round(aprRgn.aprYusd)}
       stacked={Number(myStake.myYusd)}
@@ -303,6 +311,7 @@ export default function StakeStablePoolComponent({
       pairAddress={YusdPool.pairAddress}
       rgn={false}
       info={YusdPool.info}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
       deposit={deposit}
@@ -321,6 +330,10 @@ export default function StakeStablePoolComponent({
 =======
       depositVeYeti=''
 >>>>>>> c331051 (dev: right size for loader)
+=======
+      masterchef={false}
+      depositVeYeti=""
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
       isLoading={isLoading}
 >>>>>>> 03050fe (dev: add loader when fetch)
     />
@@ -328,6 +341,7 @@ export default function StakeStablePoolComponent({
 
   const CurveLp = (
     <PairTab
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -345,6 +359,9 @@ export default function StakeStablePoolComponent({
 =======
       pairName1="LP CURVE"
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
+=======
+      pairName1="LP CURVE"
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
       logo1={LpCurvePool.logo}
       apr={Math.round(aprRgn.aprLpCurve)}
       stacked={Math.round(myStake.myLpCurve)}
@@ -355,6 +372,7 @@ export default function StakeStablePoolComponent({
       pairAddress={LpCurvePool.pairAddress}
       rgn={false}
       info={LpCurvePool.info}
+<<<<<<< HEAD
 <<<<<<< HEAD
     />
   );
@@ -378,8 +396,10 @@ export default function StakeStablePoolComponent({
       deposit={deposit}
       withdraw={withdraw}
       approve={approve}
+=======
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
       masterchef={false}
-      depositVeYeti=''
+      depositVeYeti=""
       isLoading={isLoading}
     />
   );
@@ -389,7 +409,7 @@ export default function StakeStablePoolComponent({
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -422,52 +442,10 @@ export default function StakeStablePoolComponent({
           myRgn: myDepositRgn / 10 ** 18,
           myLpCurve: myDepositLpCurve / 10 ** 18,
         });
-
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          provider
-        );
-
-        const rgnPerBlock = await masterchef.rgnPerSec();
-        const allocPointYusd = await masterchef.getPoolInfo(
-          contractAddress.fakeYusdAddress
-        );
-        const allocPointYeti = await masterchef.getPoolInfo(
-          contractAddress.rgnYetiAddress
-        );
-        const allocPointLpCurve = await masterchef.getPoolInfo(
-          contractAddress.fakeLpCurveAddress
-        );
-        const allocPointRgn = await masterchef.getPoolInfo(
-          contractAddress.rgnAddress
-        );
-        const allocPointTotal = await masterchef.totalAllocPoint();
-        const rgnPerBlockYusd =
-          (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockYeti =
-          (allocPointYeti.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockLpCurve =
-          (allocPointLpCurve.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockRgn =
-          (allocPointRgn.allocpoint * rgnPerBlock) / allocPointTotal;
-        setAprRgn({
-          ...aprRgn,
-          aprYusd:
-            ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
-          aprLpCurve:
-            ((rgnPerBlockLpCurve * 28800 * 365) /
-              allocPointLpCurve.sizeOfPool) *
-            100,
-          aprRgn:
-            ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100,
-          aprYeti:
-            ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
-        });
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error fetchAprRGN-', err.message);
+      errorToast(err.code);
+      appLogger(appTag, "- Error fetchAprRGN-", err.message);
       setIsLoading(false);
     }
   }
@@ -518,8 +496,8 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error fetchAprRGN-', err.message);
+      errorToast(err.code);
+      appLogger(appTag, "- Error fetchAprRGN-", err.message);
       setIsLoading(false);
     }
   }
@@ -528,7 +506,7 @@ export default function StakeStablePoolComponent({
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -562,8 +540,8 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
+      errorToast(err.code);
+      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
     }
   }
 
@@ -571,7 +549,7 @@ export default function StakeStablePoolComponent({
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -621,8 +599,8 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
+      errorToast(err.code);
+      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
       setIsLoading(false);
     }
   }
@@ -656,8 +634,8 @@ export default function StakeStablePoolComponent({
         });
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error fetchTVL-', err.message);
+      errorToast(err.code);
+      appLogger(appTag, "- Error fetchTVL-", err.message);
       setIsLoading(false);
     }
   }
@@ -752,6 +730,7 @@ Total valeur des staked token = Nombre de token stake * Prix d'un token stake
 
 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1017,6 +996,8 @@ async function depositVeYeti(qty: number) {
     }
   }
 
+=======
+>>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
   async function depositVeYeti(qty: number) {
     try {
       if (window.ethereum) {
@@ -1032,52 +1013,8 @@ async function depositVeYeti(qty: number) {
         await depositVeYeti.wait();
       }
     } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error depositVeYeti-', err.message);
-    }
-  }
-
-  async function withdraw(
-    qty: number,
-    address: string,
-    masterchefContract: boolean
-  ) {
-    try {
-      if (window.ethereum) {
-        let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-        const mainstaking = new ethers.Contract(
-          contractAddress.mainstakingAddress,
-          mainstakingABI.abi,
-          signer
-        );
-
-        if (masterchefContract) {
-          const depositTokenMasterchef = await masterchef.withdraw(
-            address,
-            qty
-          );
-          await depositTokenMasterchef.wait();
-        } else {
-          const depositTokenMainstaking = await mainstaking.withdraw(
-            address,
-            qty,
-            String(accounts)
-          );
-          await depositTokenMainstaking.wait();
-        }
-      }
-    } catch (err: any) {
-      errorToast(err.message);
-      appLogger(appTag, '- Error withdraw-', err.message);
+      errorToast(err.code);
+      appLogger(appTag, "- Error depositVeYeti-", err.message);
     }
   }
 
@@ -1394,65 +1331,65 @@ async function depositVeYeti(qty: number) {
   return (
     <Box
       sx={{
-        width: '100%',
+        width: "100%",
       }}
     >
-      <Box sx={{ borderBottom: 1, paddingBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ borderBottom: 1, paddingBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
-          variant='fullWidth'
+          variant="fullWidth"
           centered
           onChange={handleChange}
-          aria-label='basic tabs example'
+          aria-label="basic tabs example"
         >
           <Tab
-            label='All Pools'
+            label="All Pools"
             {...a11yProps(0)}
             style={{
-              color: value === 0 ? '#ddeaf2' : '#929ea6',
-              fontWeight: 'bold',
-              textTransform: 'none',
+              color: value === 0 ? "#ddeaf2" : "#929ea6",
+              fontWeight: "bold",
+              textTransform: "none",
             }}
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.75em',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
               },
             }}
           />
           <Tab
-            label='Main Pools'
+            label="Main Pools"
             {...a11yProps(1)}
             style={{
-              color: value === 1 ? '#ddeaf2' : '#929ea6',
-              fontWeight: 'bold',
-              textTransform: 'none',
+              color: value === 1 ? "#ddeaf2" : "#929ea6",
+              fontWeight: "bold",
+              textTransform: "none",
             }}
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.75em',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
               },
             }}
           />
           <Tab
-            label='Yeti Boosted Pools'
+            label="Yeti Boosted Pools"
             {...a11yProps(2)}
             style={{
-              color: value === 2 ? '#ddeaf2' : '#929ea6',
-              fontWeight: 'bold',
-              textTransform: 'none',
+              color: value === 2 ? "#ddeaf2" : "#929ea6",
+              fontWeight: "bold",
+              textTransform: "none",
             }}
             sx={{
               fontSize: {
-                lg: '1em',
-                md: '1em',
-                sm: '1em',
-                xs: '0.75em',
+                lg: "1em",
+                md: "1em",
+                sm: "1em",
+                xs: "0.75em",
               },
             }}
           />
