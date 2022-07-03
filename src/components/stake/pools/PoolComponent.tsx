@@ -14,7 +14,6 @@ interface PoolComponentProps {
   stacked: number;
   tvl: number;
   claimable: number;
-  rgn: boolean;
   masterchef: boolean;
   depositVeYeti: any;
   isLoading: boolean;
@@ -26,7 +25,6 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
   stacked,
   tvl,
   claimable,
-  rgn,
   masterchef,
   depositVeYeti,
   isLoading,
@@ -246,7 +244,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
       {open && (
         <Fade in={open}>
           <Box sx={{ color: "#000000" }}>
-            {rgn ? (
+            {pool.pairName === "rgn" ? (
               <RgnYetiStable depositVeYeti={depositVeYeti} />
             ) : (
               <StableTab pool={pool} masterchef={masterchef} />

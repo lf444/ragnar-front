@@ -66,28 +66,31 @@ export interface Pool {
   info: any;
 }
 
+// NEVER CHANGE PAIR NAME PREFER TO USE TEXT TRANSFORM CSS PROPERTIES
+
 export const rgnPool: Pool = {
-  pairName: "RGN",
+  pairName: "rgn",
   logo: rgn,
   addressPool: contractAddress.masterchefAddress,
   pairAddress: contractAddress.rgnAddress,
   info: "Stake RGN on Ragnar Finance to earn a portion of the platform's revenue, distributed as Yeti and RGN.",
 };
 export const YetiPool = {
-  pairName: "Yeti",
+  pairName: "yeti",
   logo: yeti,
   addressPool: contractAddress.masterchefAddress,
   pairAddress: contractAddress.yetiAddres,
   info: "",
 };
 export const YusdPool = {
-  pairName: "Yusd",
+  pairName: "yusd",
   logo: yusd,
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.yusdAddress,
   info: "Deposit your YUSD to enjoy the veYeti boost and receive bonus RGN !",
 };
 export const LpCurvePool = {
+<<<<<<< HEAD
 <<<<<<< HEAD
     pairName: "LpCurve",
     logo: curve,
@@ -98,6 +101,9 @@ export const LpCurvePool = {
 >>>>>>> 7449a99 (all data + all function)
 =======
   pairName: "LpCurve",
+=======
+  pairName: "lpcurve",
+>>>>>>> 4c8ce80 (dev: removed rgn boolean from poolComponent)
   logo: curve,
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.lpCurveAddress,

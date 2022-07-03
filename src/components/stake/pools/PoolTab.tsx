@@ -233,7 +233,6 @@ export default function PoolTab({
       stacked={Math.round(myStake.myRgn)}
       tvl={Math.round(TVL.tvlRgn)}
       claimable={Math.round(reward.rewardRgn)}
-      rgn={false}
       masterchef={true}
       depositVeYeti=""
       isLoading={isLoading}
@@ -248,7 +247,6 @@ export default function PoolTab({
       stacked={Math.round(myStake.myYeti)}
       tvl={Math.round(TVL.tvlYeti)}
       claimable={Math.round(reward.rewardYeti)}
-      rgn={true}
       masterchef={true}
       depositVeYeti={depositVeYeti}
       isLoading={isLoading}
@@ -308,9 +306,10 @@ export default function PoolTab({
     <PoolComponent
       pool={YusdPool}
       apr={Math.round(aprRgn.aprYusd)}
-      stacked={Number(myStake.myYusd)}
+      stacked={Math.round(myStake.myYusd)}
       tvl={Math.round(TVL.tvlYusd)}
       claimable={Math.round(reward.rewardYusd)}
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={YusdPool.addressPool}
@@ -340,6 +339,8 @@ export default function PoolTab({
 =======
       rgn={false}
 >>>>>>> d1d8a1a (dev: rename component)
+=======
+>>>>>>> 4c8ce80 (dev: removed rgn boolean from poolComponent)
       masterchef={false}
       depositVeYeti=""
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
@@ -386,6 +387,7 @@ export default function PoolTab({
       tvl={Math.round(TVL.tvlLpCurve)}
       claimable={Math.round(reward.rewardLpCurve)}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={LpCurvePool.addressPool}
       pairAddress={LpCurvePool.pairAddress}
@@ -420,6 +422,8 @@ export default function PoolTab({
 =======
       rgn={false}
 >>>>>>> d1d8a1a (dev: rename component)
+=======
+>>>>>>> 4c8ce80 (dev: removed rgn boolean from poolComponent)
       masterchef={false}
       depositVeYeti=""
       isLoading={isLoading}
