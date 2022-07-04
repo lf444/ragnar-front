@@ -1,14 +1,14 @@
-import { Box, Grid, Typography } from "@mui/material";
-import { FunctionComponent, useState } from "react";
-import Fade from "@mui/material/Fade";
-import LinearScaleIcon from "@mui/icons-material/LinearScale";
-import RGNTable from "../stake/pools/tab/RGNTable";
+import { Box, Grid, Typography } from '@mui/material';
+import { FunctionComponent, useState } from 'react';
+import Fade from '@mui/material/Fade';
+import LinearScaleIcon from '@mui/icons-material/LinearScale';
+import RGNTable from '../stake/pools/tab/RGNTable';
 
 interface StakeMainPoolComponenttProps {
   pairName1: string;
   addressPool: string;
   logo1: string;
-  type: "rgn" | "yeti";
+  type: 'rgn' | 'yeti';
   openForScreen: boolean;
 }
 
@@ -21,27 +21,26 @@ const StakeMainPoolComponent: FunctionComponent<
   const [claimable, setClaimable] = useState(0);
   const [open, setOpen] = useState<boolean>(openForScreen);
   const style = {
-    transform: open ? "" : "rotate(90deg)",
-    transition: "transform 150ms ease", // smooth transition
+    transform: open ? '' : 'rotate(90deg)',
+    transition: 'transform 150ms ease', // smooth transition
   };
 
   return (
     <Box
       sx={{
-        width: "100%",
+        width: '100%',
         backgroundColor: (theme) => theme.palette.secondary.main,
-        borderRadius: "5px 5px 5px 5px",
-        boxShadow: "none",
-        border: "2px solid red",
+        borderRadius: '5px 5px 5px 5px',
+        boxShadow: 'none',
       }}
     >
       <Grid
         container
-        justifyContent="center"
-        alignItems="center"
+        justifyContent='center'
+        alignItems='center'
         sx={{
-          textAlign: "center",
-          cursor: "pointer",
+          textAlign: 'center',
+          cursor: 'pointer',
         }}
         onClick={() => {
           setOpen(!open);
@@ -50,37 +49,63 @@ const StakeMainPoolComponent: FunctionComponent<
         <Grid
           item
           xs={2}
-          sx={{ marginTop: "13px", marginBottom: "5px", textAlign: "center" }}
+          sx={{ marginTop: '13px', marginBottom: '5px', textAlign: 'center' }}
         >
-          <img height="45px" src={logo1} alt={`${logo1} Logo`} />
+          <img height='45px' src={logo1} alt={`${logo1} Logo`} />
         </Grid>
         <Grid
           item
           xs={2}
           sx={{
             color: (theme) => theme.palette.text.primary,
-            fontWeight: "bold",
-            fontSize: { xs: "0.75em", sm: "0.75em", md: "1em" },
+            fontWeight: 'bold',
+            fontSize: { xs: '0.75em', sm: '0.75em', md: '1em' },
           }}
         >
           Lock RGN in a NFT
         </Grid>
         <Grid item xs={2}>
+<<<<<<< HEAD
+=======
+          <Typography
+            sx={{
+              fontSize: '11px',
+              marginTop: '5px',
+              color: (theme) => theme.palette.text.secondary,
+            }}
+          >
+            {' '}
+            APR
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: 'bold',
+              color: (theme) => theme.palette.text.primary,
+            }}
+          >
+            {aprValue}%
+          </Typography>
+>>>>>>> 719e4c8 (dev: remove border)
         </Grid>
         <Grid item xs={2}>
           <Typography
             sx={{
-              fontSize: "11px",
-              marginTop: "5px",
+              fontSize: '11px',
+              marginTop: '5px',
               color: (theme) => theme.palette.text.secondary,
             }}
           >
+<<<<<<< HEAD
             {" "}
             Deposit
+=======
+            {' '}
+            {pairName1}
+>>>>>>> 719e4c8 (dev: remove border)
           </Typography>
           <Typography
             sx={{
-              fontWeight: "bold",
+              fontWeight: 'bold',
               color: (theme) => theme.palette.text.primary,
             }}
           >
@@ -90,17 +115,17 @@ const StakeMainPoolComponent: FunctionComponent<
         <Grid item xs={1}>
           <Typography
             sx={{
-              fontSize: "11px",
-              marginTop: "5px",
+              fontSize: '11px',
+              marginTop: '5px',
               color: (theme) => theme.palette.text.secondary,
             }}
           >
-            {" "}
+            {' '}
             TVL
           </Typography>
           <Typography
             sx={{
-              fontWeight: "bold",
+              fontWeight: 'bold',
               color: (theme) => theme.palette.text.primary,
             }}
           >
@@ -110,17 +135,17 @@ const StakeMainPoolComponent: FunctionComponent<
         <Grid item xs={2}>
           <Typography
             sx={{
-              fontSize: "11px",
-              marginTop: "5px",
+              fontSize: '11px',
+              marginTop: '5px',
               color: (theme) => theme.palette.text.secondary,
             }}
           >
-            {" "}
+            {' '}
             Claimable
           </Typography>
           <Typography
             sx={{
-              fontWeight: "bold",
+              fontWeight: 'bold',
               color: (theme) => theme.palette.text.primary,
             }}
           >
@@ -130,9 +155,9 @@ const StakeMainPoolComponent: FunctionComponent<
         <Grid
           item
           xs={1}
-          sx={{ visibility: openForScreen ? "hidden" : "visible" }}
+          sx={{ visibility: openForScreen ? 'hidden' : 'visible' }}
         >
-          {" "}
+          {' '}
           <LinearScaleIcon style={style} />
         </Grid>
       </Grid>
