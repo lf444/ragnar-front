@@ -1,11 +1,21 @@
 import { Box, Typography, Tabs, Tab, Button, Grid } from "@mui/material";
 import React from "react";
-import { useState } from "react";
-import { contractAddress } from "../../../../abi/address";
+import { useState, FunctionComponent } from "react";
 import CustomDisplay from "../../../shared/CustomDisplay";
 import CustomInput from "../../../shared/CustomInput";
+import { ethers } from 'ethers';
+import { contractAddress } from "../../../../abi/address";
+import { useWaitForTransaction } from "wagmi";
+import { errorToast, successToast } from "../../../../utils/method";
+import RGNABI from '../../../../abi/contracts/Tokens/RGN.sol/RGN.json'
 
-export default function RGNTableLock() {
+interface RGNTableProps {
+  selectedIndex: any;
+}
+
+const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
+ 
+  
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -14,6 +24,28 @@ export default function RGNTableLock() {
   const handleChangeAmount = (newValue: number) => {
     setAmountToStake(newValue);
   };
+
+  async function approve(
+    qty: number,
+  ) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const rgn = new ethers.Contract(contractAddress.rgnAddress, RGNABI.abi, signer);
+        const amount = ethers.utils.parseEther(qty.toString());
+       
+          const tokenApproveMasterchef = await rgn.approve(
+            contractAddress.NFTAddress,
+            amount
+          );
+          tokenApproveMasterchef.wait();
+        } 
+      } catch (err: any) {
+    errorToast(err.code);
+  }
+}
+
 
   return (
     <Grid sx={{ width: "100%", pt: "1rem" }} direction="column">
@@ -32,7 +64,7 @@ export default function RGNTableLock() {
       </Grid>
       <Grid item container xs={6} justifyContent="flex-start">
         {" "}
-        <Button
+        <Button onClick={() => approve(amountToStake)}
           variant="contained"
           sx={{
             mr: "1rem",
@@ -393,3 +425,5 @@ export default function RGNTableLock() {
 >>>>>>> 2ab6f7c (dev: css top lock)
   );
 }
+
+export default RGNTable;

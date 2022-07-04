@@ -6,7 +6,7 @@ import rgn from '../assets/images/pools/rgn.png';
 import yeti from '../assets/images/pools/yeti.png';
 
 import Button from '@mui/material/Button';
-import { Box, Drawer, Grid, List, Typography } from '@mui/material';
+import { Box, Drawer, Grid, List, Typography, Modal } from '@mui/material';
 import NavItem from './NavItem';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
@@ -15,6 +15,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import theme from '../theme';
 
 const drawerWidth = 100;
 
@@ -34,6 +35,10 @@ const Navbar = ({
   const handleDrawerClose = () => {
     SetOpenDrawer(false);
   };
+
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -233,10 +238,47 @@ const Navbar = ({
                     fontSize: '20px',
                     fontWeight: '700',
                     lineHeight: '24px',
+                    left: "-10px"
                   }}
                 >
                   More <KeyboardArrowDownIcon />
                 </Button>
+                <Button sx={{left: '25px', fontSize: '20px', fontWeight: '700', textTransform: 'none', 
+                color: "#D0BA97"}} onClick={handleOpenModal}>Mint</Button>
+                  <Modal
+                  open={openModal}
+                  onClose={handleCloseModal}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                  >
+                 <Box sx={{
+                width: "50%",
+                color: "#000000",
+                marginBottom: "25px",
+                alignContent: "center",
+                backgroundColor: theme.palette.background.default,
+                borderRadius: "5px 5px 5px 5px",
+                paddingTop: 1,
+                marginTop: "15%",
+                marginLeft: "25%",
+                paddingBottom: 1,
+                paddingLeft: 3,
+                paddingRight: 3,
+              }}>
+                  <Typography sx={{textAlign: "center", color: (theme) => theme.palette.text.primary, fontWeight: 'bold', borderBottom: 1, borderColor: "divider" }} id="modal-modal-title" variant="h6" component="h2">
+                     YETI Fuji Testnet Faucet 
+                   </Typography>
+                   <Button sx={{width: "100%", alignContent: "center", marginTop: "25px", color: (theme) => theme.palette.text.primary}} onClick={() => window.open("https://faucet.avax-test.network/", "_blank")} id="modal-modal-description" >
+                   Click here to mint native testnet AVAX to pay for gas fee.
+                   </Button>
+                   <Button sx={{width: "100%", alignContent: "center", color: (theme) => theme.palette.text.primary}} onClick={() => window.open("https://faucet.avax-test.network/", "_blank")} id="modal-modal-description" >
+                   Click here to mint RGN.
+                   </Button>
+                   <Button sx={{width: "100%", alignContent: "center", marginBottom: "25px", color: (theme) => theme.palette.text.primary}} onClick={() => window.open("https://faucet.avax-test.network/", "_blank")} id="modal-modal-description" >
+                   Click here to mint LpCurve.
+                   </Button>
+                 </Box>
+              </Modal>
                 <Menu
                   id='fade-menu'
                   MenuListProps={{

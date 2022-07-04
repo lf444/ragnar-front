@@ -210,6 +210,7 @@ export default function PoolTab({
     setValue(newValue);
   };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -226,6 +227,14 @@ export default function PoolTab({
 =======
 =======
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+
+  const aprInfoRGN = `RGN: ${Math.round(aprRgn.aprRgn)}% , YETI: 0%`
+  const aprInfoYeti = `RGN: ${Math.round(aprRgn.aprYeti)}% , YETI: 0%`
+  const aprInfoYusd = `RGN: ${Math.round(aprRgn.aprYusd)}% , YETI: 0%`
+  const aprInfoLpCurve = `RGN: ${Math.round(aprRgn.aprLpCurve)}% , YETI: 0%`
+
+>>>>>>> 18b8302 (mint button navbar)
   const RGN = (
     <PoolComponent
       pool={rgnPool}
@@ -236,7 +245,7 @@ export default function PoolTab({
       masterchef={true}
       depositVeYeti=""
       isLoading={isLoading}
-      aprInfo="RGN : , YETI : "
+      aprInfo={aprInfoRGN}
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -251,7 +260,7 @@ export default function PoolTab({
       masterchef={true}
       depositVeYeti={depositVeYeti}
       isLoading={isLoading}
-      aprInfo="RGN : , YETI : "
+      aprInfo={aprInfoYeti}
     />
   );
 
@@ -348,10 +357,14 @@ export default function PoolTab({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
       isLoading={isLoading}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 03050fe (dev: add loader when fetch)
 =======
       aprInfo="RGN : , YETI : "
 >>>>>>> 17723e9 (claim page + info apr)
+=======
+      aprInfo={aprInfoYusd}
+>>>>>>> 18b8302 (mint button navbar)
     />
   );
 
@@ -433,7 +446,7 @@ export default function PoolTab({
       masterchef={false}
       depositVeYeti=""
       isLoading={isLoading}
-      aprInfo="RGN : , YETI : "
+      aprInfo={aprInfoLpCurve}
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)

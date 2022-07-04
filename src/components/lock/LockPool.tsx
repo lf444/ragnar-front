@@ -132,7 +132,7 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
             3 Years
           </Grid>
         </Grid>
-        <RGNTable />
+        <RGNTable selectedIndex={selectedIndex}/>
       </Grid>
     </Box>
   );

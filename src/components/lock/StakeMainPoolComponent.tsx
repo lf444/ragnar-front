@@ -165,7 +165,7 @@ const StakeMainPoolComponent: FunctionComponent<
       {open && (
         <Fade in={open}>
           <Box>
-            <RGNTable />
+            
           </Box>
         </Fade>
       )}

@@ -93,7 +93,7 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
               width: "100%"
             }}
           >
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  "13px", marginBottom: "10px"}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  {md:"13px", xs: "8px"}, marginBottom: "10px"}} >
               APR: {!isLoading ? (
               (apr1)
             ) : ( <LinearProgress
@@ -104,7 +104,7 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
             /> 
             )}%
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", marginBottom: "10px"}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"}, marginBottom: "10px"}} >
               Your deposit: {!isLoading ? (
               (deposit1) 
             ) : ( <LinearProgress
@@ -115,7 +115,7 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
             /> 
             )} {pool1}
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px",  marginBottom: "10px"}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"},  marginBottom: "10px"}} >
               TVL: ${!isLoading ? (
               (tvl1)
             ) : ( <LinearProgress
@@ -135,7 +135,7 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
               width: "100%"
             }}
           >
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  "13px", marginBottom: "10px"}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  {md:"13px", xs: "8px"}, marginBottom: "10px"}} >
               APR: {!isLoading ? (
               (apr2)
             ) : ( <LinearProgress
@@ -146,7 +146,7 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
             /> 
             )}%
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", marginBottom: "10px"}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"}, marginBottom: "10px"}} >
               Your deposit: {!isLoading ? (
               (deposit2) 
             ) : ( <LinearProgress
@@ -157,7 +157,7 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
             /> 
             )} {pool2}
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px",  marginBottom: "10px"}} >
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"},  marginBottom: "10px"}} >
               TVL: ${!isLoading ? (
               (tvl2)
             ) : ( <LinearProgress

@@ -7,5 +7,6 @@ export const contractAddress = {
   yetiAddres: "0x77777777777d4554c39223C354A05825b2E8Faa3",
   fakeYusdAddress: "0xE3Faf2FE4F5Be9c69ec1Ab1D6083A7CA431205Fd",
   fakeLpCurveAddress: "0x8f820Fc5dbEe7f74A6Aef4976Df57D5aDF3b84A6",
-  lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024"
+  lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024",
+  NFTAddress: ""
 };
