@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
-import StakeMainPoolComponent from "./StakeMainPoolComponent";
+import LockPool from "./LockPool";
 import rgn from "../../assets/images/pools/rgn.png";
 import Funds from "../stake/funds/Funds";
 import MyNFT from "./MyNFT";
@@ -52,13 +52,13 @@ const LockRGN = ({
             <Funds
               priceYusd={priceYusd}
               priceRgnYeti={priceRgnYeti}
-              shouldDisplaySecondTabPrice={false}
+              shouldDisplaySecondTabPrice={true}
               data={data}
             />
           </Grid>
 
           <Grid item sx={{ width: "90%" }}>
-            <StakeMainPoolComponent
+            <LockPool
               pairName1={"RGN"}
               addressPool={"0x5817d4f0b62a59b17f75207da1848c2ce75e7af4"}
               logo1={rgn}
