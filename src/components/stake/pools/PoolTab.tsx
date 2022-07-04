@@ -236,6 +236,7 @@ export default function PoolTab({
       masterchef={true}
       depositVeYeti=""
       isLoading={isLoading}
+      aprInfo="RGN : , YETI : "
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -250,6 +251,7 @@ export default function PoolTab({
       masterchef={true}
       depositVeYeti={depositVeYeti}
       isLoading={isLoading}
+      aprInfo="RGN : , YETI : "
     />
   );
 
@@ -345,7 +347,11 @@ export default function PoolTab({
       depositVeYeti=""
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
       isLoading={isLoading}
+<<<<<<< HEAD
 >>>>>>> 03050fe (dev: add loader when fetch)
+=======
+      aprInfo="RGN : , YETI : "
+>>>>>>> 17723e9 (claim page + info apr)
     />
   );
 
@@ -427,6 +433,7 @@ export default function PoolTab({
       masterchef={false}
       depositVeYeti=""
       isLoading={isLoading}
+      aprInfo="RGN : , YETI : "
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)

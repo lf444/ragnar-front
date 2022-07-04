@@ -262,7 +262,7 @@ const Navbar = ({
             <Grid item xs={0} sm={2} md={1.7} lg={0.8}></Grid>
             <Grid
               xs={7}
-              sm={2.2}
+              sm={1}
               md={2}
               lg={1.5}
               item

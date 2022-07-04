@@ -66,24 +66,6 @@ const StakeMainPoolComponent: FunctionComponent<
           Lock RGN in a NFT
         </Grid>
         <Grid item xs={2}>
-          <Typography
-            sx={{
-              fontSize: "11px",
-              marginTop: "5px",
-              color: (theme) => theme.palette.text.secondary,
-            }}
-          >
-            {" "}
-            APR
-          </Typography>
-          <Typography
-            sx={{
-              fontWeight: "bold",
-              color: (theme) => theme.palette.text.primary,
-            }}
-          >
-            {aprValue}%
-          </Typography>
         </Grid>
         <Grid item xs={2}>
           <Typography
@@ -94,7 +76,7 @@ const StakeMainPoolComponent: FunctionComponent<
             }}
           >
             {" "}
-            {pairName1}
+            Deposit
           </Typography>
           <Typography
             sx={{

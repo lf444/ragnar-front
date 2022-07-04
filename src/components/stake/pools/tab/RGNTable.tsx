@@ -139,6 +139,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Approve
@@ -149,6 +150,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Lock
@@ -195,6 +197,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Approve
@@ -205,6 +208,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Lock
@@ -251,6 +255,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Approve
@@ -261,6 +266,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Lock
@@ -307,9 +313,10 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
-              s
+              Approve
             </Button>
             <Button
               variant="contained"
@@ -317,6 +324,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Lock
@@ -363,6 +371,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Approve
@@ -373,6 +382,7 @@ export default function RGNTableLock() {
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 fontWeight: "bold",
+                fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
               Lock

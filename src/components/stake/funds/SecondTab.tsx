@@ -77,7 +77,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalRGN.toLocaleString('en') + 'RGN'
+              totalRGN.toLocaleString('en')
             ) : (
               <CircularProgress
                 size='0.95em'
@@ -365,7 +365,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {' '}
-                RAGNAR CIRCULATION SUPPLY
+                RAGNAR SUPPLY
               </Typography>
               <Typography
                 sx={{
@@ -375,7 +375,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  0
+                  totalRGN.toLocaleString('en')
                 ) : (
                   <CircularProgress
                     size='0.95em'
@@ -483,7 +483,7 @@ const FundSecondTabs = ({
                   color: (theme) => theme.palette.text.secondary,
                 }}
               >
-                RgnYETI BALANCE
+                TOTAL YETI CONVERTED
               </Typography>
               <Typography
                 sx={{
@@ -493,7 +493,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalRGN
+                  0
                 ) : (
                   <CircularProgress
                     size='0.95em'
@@ -527,7 +527,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {' '}
-                TOTAL REVENUE
+                veYETI BALANCE
               </Typography>
               <Typography
                 sx={{
@@ -537,7 +537,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalRGNLocked
+                  0
                 ) : (
                   <CircularProgress
                     size='0.95em'

@@ -1,4 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Tooltip, IconButton } from "@mui/material";
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import { FunctionComponent, useState } from "react";
 import Fade from "@mui/material/Fade";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
@@ -17,6 +18,7 @@ interface PoolComponentProps {
   masterchef: boolean;
   depositVeYeti: any;
   isLoading: boolean;
+  aprInfo: any;
 }
 
 const PoolComponent: FunctionComponent<PoolComponentProps> = ({
@@ -28,6 +30,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
   masterchef,
   depositVeYeti,
   isLoading,
+  aprInfo
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const style = {
@@ -35,6 +38,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
     transition: "transform 150ms ease", // smooth transition
     color: "#ddeaf2",
   };
+
   return (
     <Box
       sx={{
@@ -129,11 +133,16 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
                   width: "1.50rem",
                   marginLeft: "auto",
                   marginRight: "auto",
-                }}
+                }} 
               />
             )}
           </Typography>
         </Grid>
+        <Tooltip title={aprInfo}>
+      <IconButton>
+        <InfoRoundedIcon sx={{ color: (theme) => theme.palette.background.default }} />
+      </IconButton>
+    </Tooltip>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
           <Typography
             sx={{
@@ -244,7 +253,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
       {open && (
         <Fade in={open}>
           <Box sx={{ color: "#000000" }}>
-            {pool.pairName === "rgn" ? (
+            {pool.pairName === "yeti" ? (
               <RgnYetiStable depositVeYeti={depositVeYeti} />
             ) : (
               <StableTab pool={pool} masterchef={masterchef} />

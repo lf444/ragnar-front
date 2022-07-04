@@ -55,7 +55,9 @@ const ClaimScreen = ({
             />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
-            <ClaimRewardsScreen />
+            <ClaimRewardsScreen priceYusd={priceYusd} 
+            priceRgnYeti={priceRgnYeti} 
+            data={data}/>
           </Grid>
         </Grid>
       </Zoom>

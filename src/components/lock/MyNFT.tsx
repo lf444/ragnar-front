@@ -10,7 +10,7 @@ const MyNFT = () => {
 
     Je vais faire le fetch des data NFT ICI
       */
-     <Typography></Typography>
+     <Typography>Dont have NFT</Typography>
       );
 
 };

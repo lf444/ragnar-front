@@ -1,5 +1,6 @@
 import { Grid, Typography, Box, Tabs, Tab, Button } from "@mui/material";
 import { useState, FunctionComponent } from "react";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const appTag: string = "ClaimRewardsScreen";
 
@@ -36,14 +37,22 @@ function a11yProps(index: number) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
+
 interface BoxRewardProps {
     pool1: string;
     pool2: string;
+    apr1: number;
+    apr2: number;
+    deposit1: number;
+    deposit2: number;
+    tvl1: number;
+    tvl2: number;
+    isLoading: boolean;
 }
 
 const BoxReward: FunctionComponent<
 BoxRewardProps
-> = ({ pool1, pool2 }) => { 
+> = ({ pool1, pool2, apr1, apr2, deposit1, deposit2, tvl1, tvl2, isLoading }) => { 
 
 
 const [value, setValue] = useState(0);
@@ -81,17 +90,41 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
           <Grid 
             container
             sx={{
-              width: "100px"
+              width: "100%"
             }}
           >
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
-              APR: 0%
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  "13px", marginBottom: "10px"}} >
+              APR: {!isLoading ? (
+              (apr1)
+            ) : ( <LinearProgress
+              color="inherit"
+              sx={{
+                width: "1.50rem"
+              }} 
+            /> 
+            )}%
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
-              Deposit: $0
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", marginBottom: "10px"}} >
+              Your deposit: {!isLoading ? (
+              (deposit1) 
+            ) : ( <LinearProgress
+              color="inherit"
+              sx={{
+                width: "1.50rem"
+              }} 
+            /> 
+            )} {pool1}
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
-              Claimable: $0
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px",  marginBottom: "10px"}} >
+              TVL: ${!isLoading ? (
+              (tvl1)
+            ) : ( <LinearProgress
+              color="inherit"
+              sx={{
+                width: "1.50rem"
+              }} 
+            /> 
+            )}
             </Grid>
           </Grid>
           </TabPanel>
@@ -99,17 +132,41 @@ const handleChange = (event: React.SyntheticEvent, newValue: number) => {
           <Grid 
             container
             sx={{
-              width: "100px"
+              width: "100%"
             }}
           >
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
-              APR: 0%
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize:  "13px", marginBottom: "10px"}} >
+              APR: {!isLoading ? (
+              (apr2)
+            ) : ( <LinearProgress
+              color="inherit"
+              sx={{
+                width: "1.50rem"
+              }} 
+            /> 
+            )}%
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
-              Deposit: $0
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", marginBottom: "10px"}} >
+              Your deposit: {!isLoading ? (
+              (deposit2) 
+            ) : ( <LinearProgress
+              color="inherit"
+              sx={{
+                width: "1.50rem"
+              }} 
+            /> 
+            )} {pool2}
             </Grid>
-            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px", borderBottom: 2, borderColor: "divider", marginBottom: "10px"}} >
-              Claimable: $0
+            <Grid item xs={12} sx={{color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: "13px",  marginBottom: "10px"}} >
+              TVL: ${!isLoading ? (
+              (tvl2)
+            ) : ( <LinearProgress
+              color="inherit"
+              sx={{
+                width: "1.50rem"
+              }} 
+            /> 
+            )}
             </Grid>
           </Grid>
           </TabPanel>
