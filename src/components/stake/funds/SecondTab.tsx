@@ -129,7 +129,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalYeti
+              0
             ) : (
               <CircularProgress
                 size='0.95em'
@@ -180,7 +180,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalVeYeti
+              0
             ) : (
               <CircularProgress
                 size='0.95em'
@@ -231,7 +231,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              0
+              totalYeti
             ) : (
               <CircularProgress
                 size='0.95em'
@@ -283,7 +283,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalRGNLocked
+              totalVeYeti
             ) : (
               <CircularProgress
                 size='0.95em'
