@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, Tooltip, IconButton } from "@mui/material";
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import { FunctionComponent, useState } from "react";
 import Fade from "@mui/material/Fade";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
@@ -30,7 +30,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
   masterchef,
   depositVeYeti,
   isLoading,
-  aprInfo
+  aprInfo,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const style = {
@@ -111,6 +111,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
               pr: { xs: "15px", sm: 0 },
               color: (theme) => theme.palette.text.secondary,
               display: { xs: "inline-block", sm: "block" },
+              border: "1px solid transparent",
             }}
           >
             {" "}
@@ -122,10 +123,23 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
               fontWeight: "bold",
               color: "#D0BA97",
               display: { xs: "inline-block", sm: "block" },
+              minHeight: "2em",
+              border: "1px solid transparent",
             }}
           >
             {!isLoading ? (
-              apr + "%"
+              <>
+                {apr + "%"}
+                <Tooltip title={aprInfo}>
+                  <InfoRoundedIcon
+                    sx={{
+                      color: (theme) => theme.palette.background.default,
+                      fontSize: "1em",
+                      marginLeft: "0.5em",
+                    }}
+                  />
+                </Tooltip>
+              </>
             ) : (
               <LinearProgress
                 color="inherit"
@@ -133,22 +147,20 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
                   width: "1.50rem",
                   marginLeft: "auto",
                   marginRight: "auto",
-                }} 
+                  marginTop: "0.625em",
+                  marginBottom: "0.625em",
+                }}
               />
             )}
           </Typography>
         </Grid>
-        <Tooltip title={aprInfo}>
-      <IconButton>
-        <InfoRoundedIcon sx={{ color: (theme) => theme.palette.background.default }} />
-      </IconButton>
-    </Tooltip>
         <Grid item xs={0} sm={2} sx={{ display: { xs: "none", sm: "block" } }}>
           <Typography
             sx={{
               fontSize: { xs: "0.75em", sm: "1em" },
               marginTop: "2px",
               color: (theme) => theme.palette.text.secondary,
+              border: "1px solid transparent",
             }}
           >
             {" "}
@@ -159,6 +171,8 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
               fontSize: { xs: "0.75em", sm: "1em" },
               fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
+              border: "1px solid transparent",
+              minHeight: "2em",
             }}
           >
             {!isLoading ? (
@@ -169,6 +183,8 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
                   width: "1.25rem",
                   marginLeft: "auto",
                   marginRight: "auto",
+                  marginTop: "0.625em",
+                  marginBottom: "0.625em",
                 }}
               />
             )}
@@ -190,6 +206,8 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
               fontSize: { xs: "0.75em", sm: "1em" },
               fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
+              border: "1px solid transparent",
+              minHeight: "2em",
             }}
           >
             {!isLoading ? (
@@ -213,6 +231,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
               fontSize: { xs: "0.75em", sm: "1em" },
               marginTop: "2px",
               color: (theme) => theme.palette.text.secondary,
+              border: "1px solid transparent",
             }}
           >
             {" "}
@@ -223,6 +242,8 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
               fontSize: { xs: "0.75em", sm: "1em" },
               fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
+              minHeight: "2em",
+              border: "1px solid transparent",
             }}
           >
             {!isLoading ? (
@@ -230,11 +251,11 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
             ) : (
               <LinearProgress
                 sx={{
-                  marginTop: "0.625em",
-                  marginBottom: "0.625em",
                   width: "1.25rem",
                   marginLeft: "auto",
                   marginRight: "auto",
+                  marginTop: "0.625em",
+                  marginBottom: "0.625em",
                 }}
               />
             )}

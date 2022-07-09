@@ -15,6 +15,7 @@ interface CustomInputProps {
 }
 const CustomInput: FunctionComponent<CustomInputProps> = ({
 <<<<<<< HEAD
+<<<<<<< HEAD
   poolName,
   amountToStake,
   setAmountToStake,
@@ -32,46 +33,67 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
    }) => {
 
     const appTag: string = 'CustomInput';
+=======
+  poolName,
+  amountToStake,
+  setAmountToStake,
+  address,
+  stake,
+}) => {
+  const appTag: string = "CustomInput";
+>>>>>>> ca14544 (dev: adjustement on stak screen)
 
   const handleChangeAmount = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-   ) => {
-     setAmountToStake(+event.target.value)
-    }
-    
-    async function balanceOfMax() {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        const token = new ethers.Contract(address, tokenABI.abi, signer);
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );       
-        try {
-          if (stake) {
-            const balanceOfToken = await token.balanceOf(String(accounts));
-            const parseBalanceOf = ethers.utils.formatEther(String(balanceOfToken))
-            setAmountToStake(Math.round(Number(parseBalanceOf)));
-            } else {
-              const balanceOfTokenStaked = await masterchef.depositInfo(address, String(accounts));
-              const parseBalanceOfStaked = ethers.utils.formatEther(String(balanceOfTokenStaked))
-              setAmountToStake(Math.round(Number(parseBalanceOfStaked)));
-            }
-  
-        } catch (err: any) {
-          appLogger(appTag, '- Error approve-', err.message);
+  ) => {
+    setAmountToStake(+event.target.value);
+  };
+
+  async function balanceOfMax() {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      let accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const token = new ethers.Contract(address, tokenABI.abi, signer);
+      const masterchef = new ethers.Contract(
+        contractAddress.masterchefAddress,
+        masterchefABI.abi,
+        signer
+      );
+      try {
+        if (stake) {
+          const balanceOfToken = await token.balanceOf(String(accounts));
+          const parseBalanceOf = ethers.utils.formatEther(
+            String(balanceOfToken)
+          );
+          setAmountToStake(Math.round(Number(parseBalanceOf)));
+        } else {
+          const balanceOfTokenStaked = await masterchef.depositInfo(
+            address,
+            String(accounts)
+          );
+          const parseBalanceOfStaked = ethers.utils.formatEther(
+            String(balanceOfTokenStaked)
+          );
+          setAmountToStake(Math.round(Number(parseBalanceOfStaked)));
         }
+      } catch (err: any) {
+        appLogger(appTag, "- Error approve-", err.message);
       }
     }
+<<<<<<< HEAD
     
     return (
       <>
 >>>>>>> 98af50a (button max OK)
+=======
+  }
+
+  return (
+    <>
+>>>>>>> ca14544 (dev: adjustement on stak screen)
       <Grid
         item
         container
@@ -80,6 +102,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
           borderRadius: "5px",
           alignItems: "center",
         }}
+<<<<<<< HEAD
 <<<<<<< HEAD
       >
         {" "}
@@ -124,23 +147,68 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
 =======
 >>>>>>> 98af50a (button max OK)
         >
+=======
+      >
+>>>>>>> ca14544 (dev: adjustement on stak screen)
         {" "}
-        <Input sx={{marginLeft: 1, width: {xs: "40%", md:"65%" , sm: "30%"}}} onChange={(e) => handleChangeAmount(e)} disableUnderline placeholder="Enter an amount" defaultValue={0} value={amountToStake} type="number"></Input>
+        <Input
+          sx={{
+            marginLeft: 1,
+            width: { xs: "40%", md: "65%", sm: "30%" },
+            "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
+              {
+                display: "none",
+              },
+            "& input[type=number]": {
+              MozAppearance: "textfield",
+            },
+          }}
+          onChange={(e) => handleChangeAmount(e)}
+          disableUnderline
+          placeholder="Enter an amount"
+          defaultValue={0}
+          value={amountToStake}
+          type="number"
+        ></Input>
         {stake ? (
-          <Button onClick={() => balanceOfMax()}
-          variant="contained"
-        sx={{borderRadius:"5px", fontSize: { xs: "0.50rem", sm: "0.50em" }, position:"relative", marginRight:"0.25rem" ,fontWeight:"bold", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
-        >
-        MAX
-       </Button>
-            ) : (
-        <Button onClick={() => balanceOfMax()}
-              variant="contained"
-              sx={{borderRadius:"5px", fontSize: { xs: "0.50rem", sm: "0.50em" }, position:"relative", marginRight:"0.25rem" ,fontWeight:"bold", marginLeft:"auto",boxShadow: "none", textTransform: "none", backgroundColor: (theme) => theme.palette.secondary.main, color: (theme) => theme.palette.text.primary }}
-              >
-              MAX
-        </Button>
-            )}
+          <Button
+            onClick={() => balanceOfMax()}
+            variant="contained"
+            sx={{
+              borderRadius: "5px",
+              fontSize: { xs: "0.50rem", sm: "0.50em" },
+              position: "relative",
+              marginRight: "0.25rem",
+              fontWeight: "bold",
+              marginLeft: "auto",
+              boxShadow: "none",
+              textTransform: "none",
+              backgroundColor: (theme) => theme.palette.secondary.main,
+              color: (theme) => theme.palette.text.primary,
+            }}
+          >
+            MAX
+          </Button>
+        ) : (
+          <Button
+            onClick={() => balanceOfMax()}
+            variant="contained"
+            sx={{
+              borderRadius: "5px",
+              fontSize: { xs: "0.50rem", sm: "0.50em" },
+              position: "relative",
+              marginRight: "0.25rem",
+              fontWeight: "bold",
+              marginLeft: "auto",
+              boxShadow: "none",
+              textTransform: "none",
+              backgroundColor: (theme) => theme.palette.secondary.main,
+              color: (theme) => theme.palette.text.primary,
+            }}
+          >
+            MAX
+          </Button>
+        )}
       </Grid>
     </>
   );

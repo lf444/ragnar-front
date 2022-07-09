@@ -113,7 +113,7 @@ interface TabPanelProps {
   index: number;
   value: number;
 }
-const appTag: string = "StakeStablePoolComponent";
+const appTag: string = "PoolTab";
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -229,10 +229,10 @@ export default function PoolTab({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 =======
 
-  const aprInfoRGN = `RGN: ${Math.round(aprRgn.aprRgn)}% , YETI: 0%`
-  const aprInfoYeti = `RGN: ${Math.round(aprRgn.aprYeti)}% , YETI: 0%`
-  const aprInfoYusd = `RGN: ${Math.round(aprRgn.aprYusd)}% , YETI: 0%`
-  const aprInfoLpCurve = `RGN: ${Math.round(aprRgn.aprLpCurve)}% , YETI: 0%`
+  const aprInfoRGN = `RGN: ${Math.round(aprRgn.aprRgn)}% , YETI: 0%`;
+  const aprInfoYeti = `RGN: ${Math.round(aprRgn.aprYeti)}% , YETI: 0%`;
+  const aprInfoYusd = `RGN: ${Math.round(aprRgn.aprYusd)}% , YETI: 0%`;
+  const aprInfoLpCurve = `RGN: ${Math.round(aprRgn.aprLpCurve)}% , YETI: 0%`;
 
 >>>>>>> 18b8302 (mint button navbar)
   const RGN = (
@@ -707,6 +707,7 @@ export default function PoolTab({
     await fetchTVL();
     await fetchAprRGN();
     if (data) {
+      console.log("data: " + data);
       await fetchMyReward();
       await fetchMyDeposit();
       await fetchAprRGNUser();

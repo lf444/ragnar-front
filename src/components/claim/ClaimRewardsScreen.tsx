@@ -1,20 +1,26 @@
-import { Grid, Typography, Box, Tabs, Tab, Button, IconButton, Tooltip } from "@mui/material";
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
+import {
+  Grid,
+  Typography,
+  Box,
+  Tabs,
+  Tab,
+  Button,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import { useState, useEffect } from "react";
 import BoxReward from "./BoxReward";
-import rgn from "../../assets/images/pools/rgn.png"
-import yeti from "../../assets/images/pools/yeti.png"
+import rgn from "../../assets/images/pools/rgn.png";
+import yeti from "../../assets/images/pools/yeti.png";
 import { ethers } from "ethers";
 import { contractAddress } from "../../abi/address";
 import { appLogger, errorToast } from "../../utils/method";
-import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json"
+import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 import { useProvider } from "wagmi";
 import LinearProgress from "@mui/material/LinearProgress";
 
 const appTag: string = "ClaimRewardsScreen";
-
-
-
 
 export default function ClaimRewardsScreen({
   data,
@@ -25,7 +31,6 @@ export default function ClaimRewardsScreen({
   priceYusd: number;
   priceRgnYeti: number;
 }) {
-
   const [isLoading, setIsLoading] = useState(false);
 
   const [myStake, setMyStake] = useState({
@@ -86,7 +91,7 @@ export default function ClaimRewardsScreen({
       await fetchAprRGNUser();
     }
   };
-  
+
   const provider = useProvider();
 
   useEffect(() => {
@@ -265,26 +270,26 @@ export default function ClaimRewardsScreen({
           String(accounts),
           contractAddress.yetiAddres
         );
-        console.log((myRewardRGN))
+        console.log(myRewardRGN);
 
         setReward({
           ...reward,
           rewardYusdRGN:
             (Number(myRewardYUSD.pendingRGN) * priceRGN) / 10 ** 18,
           rewardYusdYETI:
-            (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18, 
+            (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18,
           rewardYetiRGN:
             (Number(myRewardRgnYeti.pendingRGN) * priceRGN) / 10 ** 18,
           rewardYetiYETI:
-            (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) / 10 ** 18, 
-          rewardRgnRGN:
-            (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18,
+            (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
+            10 ** 18,
+          rewardRgnRGN: (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18,
           rewardRgnYETI:
             (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti) / 10 ** 18,
           rewardLpCurveRGN:
             (Number(myRewardLpCurve.pendingRGN) * priceRGN) / 10 ** 18,
           rewardLpCurveYETI:
-            (Number(myRewardLpCurve.pendingBonusToken) * priceRGN) / 10 ** 18
+            (Number(myRewardLpCurve.pendingBonusToken) * priceRGN) / 10 ** 18,
         });
       }
     } catch (err: any) {
@@ -308,14 +313,31 @@ export default function ClaimRewardsScreen({
           signer
         );
         if (choise === 1) {
-        const claimRagnarPools = await masterchef.multiclaim([contractAddress.rgnAddress, contractAddress.rgnYetiAddress], String(accounts));
-        await claimRagnarPools.wait();
+          const claimRagnarPools = await masterchef.multiclaim(
+            [contractAddress.rgnAddress, contractAddress.rgnYetiAddress],
+            String(accounts)
+          );
+          await claimRagnarPools.wait();
         } else if (choise === 2) {
-        const claimYetiPools = await masterchef.multiclaim([contractAddress.fakeLpCurveAddress, contractAddress.fakeYusdAddress], String(accounts));
-        await claimYetiPools.wait();
+          const claimYetiPools = await masterchef.multiclaim(
+            [
+              contractAddress.fakeLpCurveAddress,
+              contractAddress.fakeYusdAddress,
+            ],
+            String(accounts)
+          );
+          await claimYetiPools.wait();
         } else if (choise === 3) {
-        const claimAll = await masterchef.multiclaim([contractAddress.rgnAddress, contractAddress.rgnYetiAddress, contractAddress.fakeLpCurveAddress, contractAddress.fakeYusdAddress], String(accounts));
-        await claimAll.wait();
+          const claimAll = await masterchef.multiclaim(
+            [
+              contractAddress.rgnAddress,
+              contractAddress.rgnYetiAddress,
+              contractAddress.fakeLpCurveAddress,
+              contractAddress.fakeYusdAddress,
+            ],
+            String(accounts)
+          );
+          await claimAll.wait();
         }
       }
     } catch (err: any) {
@@ -323,10 +345,18 @@ export default function ClaimRewardsScreen({
     }
   }
 
-  const InfoRgnYetiPools = `RGN: $${reward.rewardYetiRGN.toLocaleString('en')} , YETI: $${reward.rewardYetiYETI.toLocaleString('en')}`
-  const InfoRgnPools = `RGN: $${reward.rewardRgnRGN.toLocaleString('en')} , YETI: $${reward.rewardRgnYETI.toLocaleString('en')}`
-  const InfoYUSDPools = `RGN: $${reward.rewardYusdRGN.toLocaleString('en')} , YETI: $${reward.rewardYusdYETI.toLocaleString('en')}`
-  const InfoLpCurvePools = `RGN: $${reward.rewardLpCurveRGN.toLocaleString('en')} , YETI: $${reward.rewardLpCurveYETI.toLocaleString('en')}`
+  const InfoRgnYetiPools = `RGN: $${reward.rewardYetiRGN.toLocaleString(
+    "en"
+  )} , YETI: $${reward.rewardYetiYETI.toLocaleString("en")}`;
+  const InfoRgnPools = `RGN: $${reward.rewardRgnRGN.toLocaleString(
+    "en"
+  )} , YETI: $${reward.rewardRgnYETI.toLocaleString("en")}`;
+  const InfoYUSDPools = `RGN: $${reward.rewardYusdRGN.toLocaleString(
+    "en"
+  )} , YETI: $${reward.rewardYusdYETI.toLocaleString("en")}`;
+  const InfoLpCurvePools = `RGN: $${reward.rewardLpCurveRGN.toLocaleString(
+    "en"
+  )} , YETI: $${reward.rewardLpCurveYETI.toLocaleString("en")}`;
 
   return (
     <>
@@ -336,19 +366,44 @@ export default function ClaimRewardsScreen({
         alignItems="center"
         sx={{ height: "400px" }}
       >
-        <Grid
-          item
-          xs={6}
-          sx={{ height: "50%", pr:2, marginBottom:"5rem"}}
-        >
-          <Grid container sx={{backgroundColor: (theme) => theme.palette.secondary.main, height: "60px", borderRadius: "5px 5px 0px 0px"}}>
-            <Grid item xs={1.5} sx={{fontWeight: "bold", fontSize: "20px",  textAlign: 'center', marginTop: "10px", marginLeft: "8px"}}>
-            <img height='40px' src={rgn}></img>
+        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
+          <Grid
+            container
+            sx={{
+              backgroundColor: (theme) => theme.palette.secondary.main,
+              height: "60px",
+              borderRadius: "5px 5px 0px 0px",
+            }}
+          >
+            <Grid
+              item
+              xs={1.5}
+              sx={{
+                fontWeight: "bold",
+                fontSize: "20px",
+                textAlign: "center",
+                marginTop: "10px",
+                marginLeft: "8px",
+              }}
+            >
+              <img height="40px" src={rgn}></img>
             </Grid>
-            <Grid item xs={6}  lg={8} sx={{fontWeight: "bold", fontSize: {xs: "12px", md: "16px"} ,  textAlign: 'left', marginTop: {xs: "20px",md: "18px"}, color: (theme) => theme.palette.text.primary, marginLeft: {xs: "30px", md: "20px", lg: "10px"}}}>
-            Ragnar Pools
-           </Grid>
-           </Grid>
+            <Grid
+              item
+              xs={6}
+              lg={8}
+              sx={{
+                fontWeight: "bold",
+                fontSize: { xs: "12px", md: "16px" },
+                textAlign: "left",
+                marginTop: { xs: "20px", md: "18px" },
+                color: (theme) => theme.palette.text.primary,
+                marginLeft: { xs: "30px", md: "20px", lg: "10px" },
+              }}
+            >
+              Ragnar Pools
+            </Grid>
+          </Grid>
           <Grid
             item
             xs={12}
@@ -359,26 +414,51 @@ export default function ClaimRewardsScreen({
               borderRadius: "0px 0px 5px 5px",
               backgroundColor: (theme) => theme.palette.secondary.main,
               height: "100%",
-
             }}
-          >           
-          <BoxReward pool1="RGN" pool2="RGNYETI" 
-          apr1={Math.round(aprRgn.aprRgn)} apr2={Math.round(aprRgn.aprYeti)} 
-          deposit1={Math.round(myStake.myRgn)} deposit2={Math.round(myStake.myYeti)} 
-          tvl1={Math.round(TVL.tvlRgn)} tvl2={Math.round(TVL.tvlYeti)} isLoading={isLoading}/>
+          >
+            <BoxReward
+              pool1="RGN"
+              pool2="RGNYETI"
+              apr1={Math.round(aprRgn.aprRgn)}
+              apr2={Math.round(aprRgn.aprYeti)}
+              deposit1={Math.round(myStake.myRgn)}
+              deposit2={Math.round(myStake.myYeti)}
+              tvl1={Math.round(TVL.tvlRgn)}
+              tvl2={Math.round(TVL.tvlYeti)}
+              isLoading={isLoading}
+            />
           </Grid>
         </Grid>
-        <Grid
-          item
-          xs={6}
-          sx={{ height: "50%", pr:2, marginBottom:"5rem"}}
-        >
-          <Grid container sx={{backgroundColor: (theme) => theme.palette.secondary.main, height: "60px", borderRadius: "5px 5px 0px 0px", marginLeft: "15px", borderBottom: 1, borderColor: "divider" }}>
-            <Grid item xs={10} md={8} lg={12} sx={{fontWeight: "bold", fontSize: {xs: "12px", md: "16px"},  textAlign: 'left', marginTop: "22px", color: (theme) => theme.palette.text.primary, marginLeft: "19px"}}>
-            Your Rewards
-           </Grid>
-           </Grid>          
-           <Grid
+        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
+          <Grid
+            container
+            sx={{
+              backgroundColor: (theme) => theme.palette.secondary.main,
+              height: "60px",
+              borderRadius: "5px 5px 0px 0px",
+              marginLeft: "15px",
+              borderBottom: 1,
+              borderColor: "divider",
+            }}
+          >
+            <Grid
+              item
+              xs={10}
+              md={8}
+              lg={12}
+              sx={{
+                fontWeight: "bold",
+                fontSize: { xs: "12px", md: "16px" },
+                textAlign: "left",
+                marginTop: "22px",
+                color: (theme) => theme.palette.text.primary,
+                marginLeft: "19px",
+              }}
+            >
+              Your Rewards
+            </Grid>
+          </Grid>
+          <Grid
             item
             xs={12}
             container
@@ -388,107 +468,165 @@ export default function ClaimRewardsScreen({
               borderRadius: "0px 0px 5px 5px  ",
               backgroundColor: (theme) => theme.palette.secondary.main,
               height: "100%",
-              marginLeft: "15px"
+              marginLeft: "15px",
             }}
           >
-            <Grid item xs={12} sx={{marginLeft: "15px", color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"}, marginTop: "15px"}} >
-              RGNYETI Pools: ${!isLoading ? (
-              (reward.rewardYetiRGN + reward.rewardYetiYETI).toLocaleString('en')
-            ) : ( <LinearProgress
-              color="inherit"
+            <Grid
+              item
+              xs={12}
               sx={{
-                width: "1.50rem"
-              }} 
-            /> 
-            )}
-              <Tooltip title={InfoRgnYetiPools}>
-                <IconButton>
-                  <InfoRoundedIcon sx={{ color: (theme) => theme.palette.background.default, width: "20px" }} />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid item xs={12} sx={{borderBottom: 2, borderColor: "divider", marginLeft: "15px", color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"}}} >
-              RGN Pools: ${!isLoading ? (
-              (reward.rewardRgnRGN + reward.rewardRgnYETI).toLocaleString('en')
-            ) : (
-              <LinearProgress
-                color="inherit"
-                sx={{
-                  width: "1rem"
-                }} 
-              />
-            )}
-              <Tooltip title={InfoRgnPools}>
-                <IconButton>
-                  <InfoRoundedIcon sx={{ color: (theme) => theme.palette.background.default, width: "20px" }} />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid container sx={{height: "60px"}}>
-            <Grid item xs={4} sx={{marginTop: {xs:"15px", md:"20px"}, marginLeft: "15px"}}>
-            <Button  onClick={() => claim(1)} sx={{
-                variant: "contained",
-                backgroundColor: (theme) => theme.palette.primary.light,
+                marginLeft: "15px",
                 color: (theme) => theme.palette.text.primary,
-                width: {lg:'150px', xs:'100px'},
-                fontWeight: 'bold',
-                fontSize: "12px",
-                marginBottom: "20px"}}>Claim (${!isLoading ? (
-                  (reward.rewardYetiRGN + reward.rewardYetiYETI 
-                    + reward.rewardRgnRGN + reward.rewardRgnYETI).toLocaleString('en')
-                ) : (
-                  <LinearProgress
-                    color="inherit"
-                    sx={{
-                      width: "1rem"
-                    }} 
-                  />
-                )})</Button>
-           </Grid>
-           </Grid>
+                fontWeight: "bold",
+                fontSize: { md: "13px", xs: "8px" },
+                marginTop: "15px",
+              }}
+            >
+              RGNYETI Pools: $
+              {!isLoading ? (
+                <>
+                  {(
+                    reward.rewardYetiRGN + reward.rewardYetiYETI
+                  ).toLocaleString("en")}
+                  <Tooltip title={InfoRgnYetiPools}>
+                    <IconButton>
+                      <InfoRoundedIcon
+                        sx={{
+                          color: (theme) => theme.palette.background.default,
+                          width: "20px",
+                        }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                </>
+              ) : (
+                <LinearProgress
+                  color="inherit"
+                  sx={{
+                    width: "1.50rem",
+                  }}
+                />
+              )}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                borderBottom: 2,
+                borderColor: "divider",
+                marginLeft: "15px",
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                fontSize: { md: "13px", xs: "8px" },
+              }}
+            >
+              RGN Pools: $
+              {!isLoading ? (
+                <>
+                  {(reward.rewardRgnRGN + reward.rewardRgnYETI).toLocaleString(
+                    "en"
+                  )}
+                  <Tooltip title={InfoRgnPools}>
+                    <IconButton>
+                      <InfoRoundedIcon
+                        sx={{
+                          color: (theme) => theme.palette.background.default,
+                          width: "20px",
+                        }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                </>
+              ) : (
+                <LinearProgress
+                  color="inherit"
+                  sx={{
+                    width: "1rem",
+                  }}
+                />
+              )}
+            </Grid>
+            <Grid container sx={{ height: "60px" }}>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  marginTop: { xs: "15px", md: "20px" },
+                  marginLeft: "15px",
+                }}
+              >
+                <Button
+                  onClick={() => claim(1)}
+                  sx={{
+                    variant: "contained",
+                    backgroundColor: (theme) => theme.palette.primary.light,
+                    color: (theme) => theme.palette.text.primary,
+                    width: { lg: "150px", xs: "100px" },
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Claim ($
+                  {!isLoading ? (
+                    (
+                      reward.rewardYetiRGN +
+                      reward.rewardYetiYETI +
+                      reward.rewardRgnRGN +
+                      reward.rewardRgnYETI
+                    ).toLocaleString("en")
+                  ) : (
+                    <LinearProgress
+                      color="inherit"
+                      sx={{
+                        width: "1rem",
+                      }}
+                    />
+                  )}
+                  )
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-        <Grid
-          item
-          xs={6}
-          sx={{ height: "50%", pr:2, marginBottom:"5rem"}}
-        >
-          <Grid container sx={{backgroundColor: (theme) => theme.palette.secondary.main, height: "60px", borderRadius: "5px 5px 0px 0px"}}>
-          <Grid item xs={1.5} sx={{fontWeight: "bold", fontSize: "20px",  textAlign: 'center', marginTop: "10px", marginLeft: "8px"}}>
-            <img height='45px' src={yeti}></img>
-            </Grid>
-            <Grid item xs={6} lg={8} sx={{fontWeight: "bold", fontSize: {xs: "12px", md: "16px"} ,  textAlign: 'left', marginTop: {xs: "22px",md: "18px"}, color: (theme) => theme.palette.text.primary, marginLeft: {xs: "30px", md: "20px", lg: "10px"}}}>
-            Yeti Pools
-           </Grid>
-           </Grid>
-           <Grid
-            item
-            xs={12}
+        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
+          <Grid
             container
-            direction="row"
             sx={{
-              p: 1,
-              borderRadius: "0px 0px 5px 5px",
               backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "100%",
+              height: "60px",
+              borderRadius: "5px 5px 0px 0px",
             }}
           >
-          <BoxReward pool1="YUSD" pool2="LPCURVE" 
-          apr1={Math.round(aprRgn.aprYusd)} apr2={Math.round(aprRgn.aprLpCurve)} 
-          deposit1={Math.round(myStake.myYusd)} deposit2={Math.round(myStake.myLpCurve)} 
-          tvl1={Math.round(TVL.tvlYusd)} tvl2={Math.round(TVL.tvlLpCurve)} isLoading={isLoading}/>
+            <Grid
+              item
+              xs={1.5}
+              sx={{
+                fontWeight: "bold",
+                fontSize: "20px",
+                textAlign: "center",
+                marginTop: "10px",
+                marginLeft: "8px",
+              }}
+            >
+              <img height="45px" src={yeti}></img>
+            </Grid>
+            <Grid
+              item
+              xs={6}
+              lg={8}
+              sx={{
+                fontWeight: "bold",
+                fontSize: { xs: "12px", md: "16px" },
+                textAlign: "left",
+                marginTop: { xs: "22px", md: "18px" },
+                color: (theme) => theme.palette.text.primary,
+                marginLeft: { xs: "30px", md: "20px", lg: "10px" },
+              }}
+            >
+              Yeti Pools
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid
-          item
-          xs={6}
-          sx={{ height: "50%", pr:2, marginBottom:"5rem"}}
-        >
-          <Grid container sx={{backgroundColor: (theme) => theme.palette.secondary.main, height: "60px", borderRadius: "5px 5px 0px 0px", marginLeft: "15px", borderBottom: 1, borderColor: "divider" }}>
-          <Grid item xs={10} md={8} lg={12} sx={{fontWeight: "bold", fontSize: {xs: "12px", md: "16px"},  textAlign: 'left', marginTop: "22px", color: (theme) => theme.palette.text.primary, marginLeft: "19px"}}>
-            Your Rewards
-           </Grid>
-           </Grid>
           <Grid
             item
             xs={12}
@@ -499,94 +637,220 @@ export default function ClaimRewardsScreen({
               borderRadius: "0px 0px 5px 5px",
               backgroundColor: (theme) => theme.palette.secondary.main,
               height: "100%",
-              marginLeft: "15px"
             }}
           >
-            <Grid item xs={12} sx={{marginLeft: "15px", color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"}, marginTop: "15px"}} >
-              YUSD Pools: ${!isLoading ? (
-              (reward.rewardYusdRGN + reward.rewardYusdYETI).toLocaleString('en')
-            ) : (
-              <LinearProgress
-                color="inherit"
-                sx={{
-                  width: "1rem"
-                }} 
-              />
-            )}
-              <Tooltip title={InfoYUSDPools}>
-                <IconButton>
-                  <InfoRoundedIcon sx={{ color: (theme) => theme.palette.background.default, width: "20px" }} />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid item xs={12} sx={{borderBottom: 2, borderColor: "divider", marginLeft: "15px", color: (theme) => theme.palette.text.primary, fontWeight: "bold", fontSize: {md:"13px", xs: "8px"}}} >
-              LP CURVE Pools: ${!isLoading ? (
-              (reward.rewardLpCurveRGN + reward.rewardLpCurveYETI).toLocaleString('en')
-            ) : (
-              <LinearProgress
-                color="inherit"
-                sx={{
-                  width: "1rem"
-                }} 
-              />
-            )}
-              <Tooltip title={InfoLpCurvePools}>
-                <IconButton>
-                  <InfoRoundedIcon sx={{ color: (theme) => theme.palette.background.default, width: "20px" }} />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid container sx={{height: "60px"}}>
-            <Grid item xs={4} sx={{marginTop: {xs:"15px", md:"20px"}, marginLeft: "15px"}}>
-            <Button onClick={() => claim(2)} sx={{
-                variant: "contained",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                width: {lg:'150px', xs:'100px'},
-                fontWeight: 'bold',
-                fontSize: "12px",
-                marginBottom: "20px"}}>Claim (${!isLoading ? (
-                  (reward.rewardYusdRGN + reward.rewardYusdYETI + 
-                    reward.rewardLpCurveRGN + reward.rewardLpCurveYETI).toLocaleString('en')
-                ) : (
-                  <LinearProgress
-                    color="inherit"
-                    sx={{
-                      width: "1rem"
-                    }} 
-                  />
-                )})</Button>
-           </Grid>
-           </Grid>
+            <BoxReward
+              pool1="YUSD"
+              pool2="LPCURVE"
+              apr1={Math.round(aprRgn.aprYusd)}
+              apr2={Math.round(aprRgn.aprLpCurve)}
+              deposit1={Math.round(myStake.myYusd)}
+              deposit2={Math.round(myStake.myLpCurve)}
+              tvl1={Math.round(TVL.tvlYusd)}
+              tvl2={Math.round(TVL.tvlLpCurve)}
+              isLoading={isLoading}
+            />
           </Grid>
         </Grid>
-          <Grid container>
-            <Grid xs={12} sx={{textAlign: 'center'}}>
-            <Button onClick={() => claim(3)}
+        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
+          <Grid
+            container
+            sx={{
+              backgroundColor: (theme) => theme.palette.secondary.main,
+              height: "60px",
+              borderRadius: "5px 5px 0px 0px",
+              marginLeft: "15px",
+              borderBottom: 1,
+              borderColor: "divider",
+            }}
+          >
+            <Grid
+              item
+              xs={10}
+              md={8}
+              lg={12}
               sx={{
-                width: {lg:'20%', xs:'40%'},
+                fontWeight: "bold",
+                fontSize: { xs: "12px", md: "16px" },
+                textAlign: "left",
+                marginTop: "22px",
+                color: (theme) => theme.palette.text.primary,
+                marginLeft: "19px",
+              }}
+            >
+              Your Rewards
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            container
+            direction="row"
+            sx={{
+              p: 1,
+              borderRadius: "0px 0px 5px 5px",
+              backgroundColor: (theme) => theme.palette.secondary.main,
+              height: "100%",
+              marginLeft: "15px",
+            }}
+          >
+            <Grid
+              item
+              xs={12}
+              sx={{
+                marginLeft: "15px",
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                fontSize: { md: "13px", xs: "8px" },
+                marginTop: "15px",
+              }}
+            >
+              YUSD Pools: $
+              {!isLoading ? (
+                <>
+                  {(
+                    reward.rewardYusdRGN + reward.rewardYusdYETI
+                  ).toLocaleString("en")}
+                  <Tooltip title={InfoYUSDPools}>
+                    <IconButton>
+                      <InfoRoundedIcon
+                        sx={{
+                          color: (theme) => theme.palette.background.default,
+                          width: "20px",
+                        }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                </>
+              ) : (
+                <LinearProgress
+                  color="inherit"
+                  sx={{
+                    width: "1rem",
+                  }}
+                />
+              )}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                borderBottom: 2,
+                borderColor: "divider",
+                marginLeft: "15px",
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                fontSize: { md: "13px", xs: "8px" },
+              }}
+            >
+              LP CURVE Pools: $
+              {!isLoading ? (
+                <>
+                  {(
+                    reward.rewardLpCurveRGN + reward.rewardLpCurveYETI
+                  ).toLocaleString("en")}
+                  <Tooltip title={InfoLpCurvePools}>
+                    <IconButton>
+                      <InfoRoundedIcon
+                        sx={{
+                          color: (theme) => theme.palette.background.default,
+                          width: "20px",
+                        }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                </>
+              ) : (
+                <LinearProgress
+                  color="inherit"
+                  sx={{
+                    width: "1rem",
+                  }}
+                />
+              )}
+            </Grid>
+            <Grid container sx={{ height: "60px" }}>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  marginTop: { xs: "15px", md: "20px" },
+                  marginLeft: "15px",
+                }}
+              >
+                <Button
+                  onClick={() => claim(2)}
+                  sx={{
+                    variant: "contained",
+                    backgroundColor: (theme) => theme.palette.primary.light,
+                    color: (theme) => theme.palette.text.primary,
+                    width: { lg: "150px", xs: "100px" },
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Claim ($
+                  {!isLoading ? (
+                    (
+                      reward.rewardYusdRGN +
+                      reward.rewardYusdYETI +
+                      reward.rewardLpCurveRGN +
+                      reward.rewardLpCurveYETI
+                    ).toLocaleString("en")
+                  ) : (
+                    <LinearProgress
+                      color="inherit"
+                      sx={{
+                        width: "1rem",
+                      }}
+                    />
+                  )}
+                  )
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} sx={{ textAlign: "center" }}>
+            <Button
+              onClick={() => claim(3)}
+              sx={{
+                width: { lg: "20%", xs: "40%" },
                 backgroundColor: "#D0BA97",
-                fontWeight: 'bold',
+                fontWeight: "bold",
                 color: (theme) => theme.palette.secondary.main,
                 fontSize: "15px",
                 marginBottom: "20px",
-                marginTop: "20px"}}>
-                  Claim all (${!isLoading ? (
-              (reward.rewardYusdRGN + reward.rewardYusdYETI + reward.rewardLpCurveRGN + reward.rewardLpCurveYETI + 
-                reward.rewardYetiRGN + reward.rewardYetiYETI + reward.rewardRgnRGN + reward.rewardRgnYETI).toLocaleString('en')
-            ) : (
-              <LinearProgress
-                color="inherit"
-                sx={{
-                  width: "1rem"
-                }} 
-              />
-            )})
+                marginTop: "20px",
+              }}
+            >
+              Claim all ($
+              {!isLoading ? (
+                (
+                  reward.rewardYusdRGN +
+                  reward.rewardYusdYETI +
+                  reward.rewardLpCurveRGN +
+                  reward.rewardLpCurveYETI +
+                  reward.rewardYetiRGN +
+                  reward.rewardYetiYETI +
+                  reward.rewardRgnRGN +
+                  reward.rewardRgnYETI
+                ).toLocaleString("en")
+              ) : (
+                <LinearProgress
+                  color="inherit"
+                  sx={{
+                    width: "1rem",
+                  }}
+                />
+              )}
+              )
             </Button>
-           </Grid>
           </Grid>
         </Grid>
+      </Grid>
     </>
   );
-};
-
+}
