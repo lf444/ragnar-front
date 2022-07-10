@@ -353,11 +353,15 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 <<<<<<< HEAD
 <<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
-                color: (theme) => theme.palette.text.primary,
                 fontWeight: "bold",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                display: "flex",
+                pb: "4px",
               }}
             >
               {" "}
+<<<<<<< HEAD
 =======
                 fontSize: { xs: '0.65em', sm: '1em' },
 =======
@@ -374,6 +378,32 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               {" "}
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               1
+=======
+              <Typography
+                sx={{
+                  borderRadius: "50%",
+                  width: "25px",
+                  color: !Approved
+                    ? (theme) => theme.palette.text.primary
+                    : "#262A2F",
+                  backgroundColor: !Approved
+                    ? (theme) => theme.palette.primary.light
+                    : (theme) => "#2F343A",
+                }}
+              >
+                1
+              </Typography>
+              <Box
+                sx={{
+                  width: "50%",
+
+                  background: !Approved
+                    ? "linear-gradient(to right , #627f91, #868f96)"
+                    : "linear-gradient(to right, #262A2F, #868f96 )",
+                  height: "4px",
+                }}
+              ></Box>
+>>>>>>> 63b6b9f (dev: yata yata yata)
             </Grid>
             <Grid
               item
@@ -382,8 +412,8 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 <<<<<<< HEAD
 <<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
-                color: (theme) => theme.palette.text.primary,
                 fontWeight: "bold",
+<<<<<<< HEAD
 =======
                 fontSize: { xs: '0.65em', sm: '1em' },
                 color: (theme) => theme.palette.text.primary,
@@ -394,9 +424,37 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 color: (theme) => theme.palette.text.primary,
                 fontWeight: "bold",
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+                justifyContent: "flex-start",
+                alignItems: "center",
+                display: "flex",
+                pb: "4px",
+>>>>>>> 63b6b9f (dev: yata yata yata)
               }}
             >
-              2
+              <Box
+                sx={{
+                  width: "50%",
+                  background: Approved
+                    ? "linear-gradient(to right , #868f96, #627f91 )"
+                    : "linear-gradient(to right, #868f96, #262A2F)",
+                  height: "4px",
+                }}
+              ></Box>
+              <Typography
+                sx={{
+                  borderRadius: "50%",
+                  width: "25px",
+                  color: Approved
+                    ? (theme) => theme.palette.text.primary
+                    : "#262A2F",
+                  backgroundColor: Approved
+                    ? (theme) => theme.palette.primary.light
+                    : (theme) => "#2F343A",
+                }}
+              >
+                2
+              </Typography>
             </Grid>
           </Grid>
           <Grid item container xs={6}>
