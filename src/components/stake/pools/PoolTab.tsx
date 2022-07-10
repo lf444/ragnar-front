@@ -177,7 +177,7 @@ export default function PoolTab({
   shouldRefetchData: boolean;
   handleRefetchDeposit: () => void;
 }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [myStake, setMyStake] = useState({
     myYusd: 0,
     myYeti: 0,

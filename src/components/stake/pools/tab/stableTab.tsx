@@ -160,7 +160,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
   const waitWithdrawTX = useWaitForTransaction({
     hash: withdrawTX,
   });
-
   const handleSetTx = (tx: string) => {
     setTransaction(`${tx}`);
   };
@@ -180,7 +179,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       masterchef,
       appTag,
       handleSetTx
-    ).then(() => setApproved(true));
+    );
   };
 
   const depositToken = async () => {
@@ -206,6 +205,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
   useEffect(() => {
     if (!isLoading && transaction) {
       successToast("TX_SUCCESS");
+      setApproved(true);
     }
     if (isError) {
       errorToast("TX_ERRROR");
@@ -216,11 +216,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     if (!waitDepositTX.isLoading && depositTX) {
       successToast("TX_SUCCESS");
       handleRefetchDeposit();
-      setApproved(true);
+      setApproved(false);
     }
     if (waitDepositTX.isError) {
       errorToast("TX_ERRROR");
-      setApproved(true);
+      setApproved(false);
     }
   }, [waitDepositTX.isLoading, waitDepositTX.isError]);
 

@@ -48,10 +48,14 @@ import Footer from "./Footer";
 import { useAccount } from "wagmi";
 >>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
 import Footer from "./shared/Footer";
+<<<<<<< HEAD
 >>>>>>> b84f72d (dev: component re-organise)
+=======
+import { CircularProgress } from "@mui/material";
+>>>>>>> 2fe4e23 (dev: improve loading on landing)
 
 const RagnarRoute = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [tokensPrices, setTokensPrices] = useState({
     priceYeti: 0,
     priceYusd: 0,
@@ -77,12 +81,11 @@ const RagnarRoute = () => {
       priceLpCurve: lpCurvePrice,
       priceRgnYeti: 0,
     });
-    setIsLoading(false);
   };
 
   useEffect(() => {
     setIsLoading(true);
-    getPrices();
+    getPrices().then(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
@@ -102,7 +105,7 @@ const RagnarRoute = () => {
     }
   }, [location]);
 
-  return (
+  return !isLoading ? (
     <>
       <Navbar tokensPrices={tokensPrices} />
       <Routes>
@@ -123,6 +126,18 @@ const RagnarRoute = () => {
           element={<LockRGN tokensPrices={tokensPrices} data={userAccount} />}
         />
       </Routes>
+    </>
+  ) : (
+    <>
+      <Navbar tokensPrices={tokensPrices} />
+      <CircularProgress
+        size="6rem"
+        sx={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+        }}
+      />
     </>
   );
 };

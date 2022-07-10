@@ -34,7 +34,7 @@ export default function ClaimRewardsScreen({
   };
 }) {
   const provider = useProvider();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [myStake, setMyStake] = useState({
     myYusd: 0,

@@ -38,7 +38,7 @@ const Funds = ({
   const [totalRGN, setTotalRGN] = useState(0);
   const [totalRGNLocked, setTotalRGNLocked] = useState(0);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const provider = useProvider();
 
   const getMasterChefDeposit = async () => {
@@ -207,7 +207,7 @@ const Funds = ({
 
   useEffect(() => {
     setIsLoading(true);
-    fetchAllData().then(() => setIsLoading(false));
+    fetchAllData().then(() => setTimeout(() => setIsLoading(false), 1000));
     if (!data) {
       setIsLoading(true);
       resetData();
