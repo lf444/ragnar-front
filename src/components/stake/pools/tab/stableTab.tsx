@@ -216,11 +216,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     if (!waitDepositTX.isLoading && depositTX) {
       successToast("TX_SUCCESS");
       handleRefetchDeposit();
-      setApproved(false);
+      setApproved(true);
     }
     if (waitDepositTX.isError) {
       errorToast("TX_ERRROR");
-      setApproved(false);
+      setApproved(true);
     }
   }, [waitDepositTX.isLoading, waitDepositTX.isError]);
 
@@ -452,7 +452,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button
               onClick={approveToken}
               variant="contained"
-              disabled={!Approved}
+              disabled={Approved}
               sx={{
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
@@ -490,7 +490,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button
               onClick={depositToken}
               variant="contained"
-              disabled={Approved}
+              disabled={!Approved}
               sx={{
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
