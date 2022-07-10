@@ -510,10 +510,14 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button
               onClick={approveToken}
               variant="contained"
-              disabled={Approved}
               sx={{
                 width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
+                backgroundColor: !Approved
+                  ? (theme) => theme.palette.primary.light
+                  : "#262A2F",
+                color: !Approved
+                  ? (theme) => theme.palette.text.primary
+                  : "#868f96",
                 fontWeight: "bold",
                 fontSize: { xs: "10px", md: "0.875em" },
               }}
@@ -548,10 +552,14 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button
               onClick={depositToken}
               variant="contained"
-              disabled={!Approved}
               sx={{
                 width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
+                backgroundColor: Approved
+                  ? (theme) => theme.palette.primary.light
+                  : "#262A2F",
+                color: Approved
+                  ? (theme) => theme.palette.text.primary
+                  : "#868f96",
                 fontWeight: "bold",
                 fontSize: { xs: "10px", md: "0.875em" },
               }}

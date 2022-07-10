@@ -1,8 +1,21 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 import { Box, Typography, Tabs, Tab, Button, Grid, Link } from "@mui/material";
+=======
+import {
+  Box,
+  Typography,
+  Tabs,
+  Tab,
+  Button,
+  Grid,
+  Link,
+  CircularProgress,
+} from "@mui/material";
+>>>>>>> 797b602 (dev: remove disabled)
 import React from "react";
 import { useState, FunctionComponent } from "react";
 import CustomDisplay from "../../../shared/CustomDisplay";
@@ -90,6 +103,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  const [Approved, setApproved] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [amountToStake, setAmountToStake] = useState(0);
   const handleChangeAmount = (newValue: number) => {
     setAmountToStake(newValue);
@@ -355,6 +371,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             alignItems="center"
             textAlign="center"
           >
+            {" "}
             <Grid
               item
               xs={6}
@@ -362,6 +379,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 <<<<<<< HEAD
 <<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
+<<<<<<< HEAD
                 color: (theme) => theme.palette.text.primary,
               }}
             >
@@ -372,7 +390,13 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 fontSize: { xs: "0.65em", sm: "1em" },
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
                 color: (theme) => theme.palette.text.primary,
+=======
+>>>>>>> 797b602 (dev: remove disabled)
                 fontWeight: "bold",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                display: "flex",
+                pb: "4px",
               }}
             >
 <<<<<<< HEAD
@@ -380,8 +404,35 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 4560517 (dev: remove dirty console log)
 =======
               {" "}
+<<<<<<< HEAD
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               1
+=======
+              <Typography
+                sx={{
+                  borderRadius: "50%",
+                  width: "25px",
+                  color: !Approved
+                    ? (theme) => theme.palette.text.primary
+                    : "#262A2F",
+                  backgroundColor: !Approved
+                    ? (theme) => theme.palette.primary.light
+                    : (theme) => "#2F343A",
+                }}
+              >
+                1
+              </Typography>
+              <Box
+                sx={{
+                  width: "50%",
+
+                  background: !Approved
+                    ? "linear-gradient(to right , #627f91, #868f96)"
+                    : "linear-gradient(to right, #262A2F, #868f96 )",
+                  height: "4px",
+                }}
+              ></Box>
+>>>>>>> 797b602 (dev: remove disabled)
             </Grid>
             <Grid
               item
@@ -390,6 +441,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 <<<<<<< HEAD
 <<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
+<<<<<<< HEAD
 =======
                 fontSize: { xs: '0.65em', sm: '1em' },
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -397,10 +449,38 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 fontSize: { xs: "0.65em", sm: "1em" },
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
                 color: (theme) => theme.palette.text.primary,
+=======
+>>>>>>> 797b602 (dev: remove disabled)
                 fontWeight: "bold",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                display: "flex",
+                pb: "4px",
               }}
             >
-              2
+              <Box
+                sx={{
+                  width: "50%",
+                  background: Approved
+                    ? "linear-gradient(to right , #868f96, #627f91 )"
+                    : "linear-gradient(to right, #868f96, #262A2F)",
+                  height: "4px",
+                }}
+              ></Box>
+              <Typography
+                sx={{
+                  borderRadius: "50%",
+                  width: "25px",
+                  color: Approved
+                    ? (theme) => theme.palette.text.primary
+                    : "#262A2F",
+                  backgroundColor: Approved
+                    ? (theme) => theme.palette.primary.light
+                    : (theme) => "#2F343A",
+                }}
+              >
+                2
+              </Typography>
             </Grid>
           </Grid>
           <Grid item container xs={6}>
@@ -430,11 +510,16 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              /*  onClick={approveYeti} */
+              /*  onClick={approveToken} */
               variant="contained"
               sx={{
                 width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
+                backgroundColor: !Approved
+                  ? (theme) => theme.palette.primary.light
+                  : "#262A2F",
+                color: !Approved
+                  ? (theme) => theme.palette.text.primary
+                  : "#868f96",
                 fontWeight: "bold",
 =======
           <Grid item container xs={6} justifyContent='space-around'>
@@ -462,16 +547,36 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               }}
             >
-              APPROVE
+              {!isLoading ? (
+                "APPROVE"
+              ) : (
+                <CircularProgress
+                  size="0.95em"
+                  color="inherit"
+                  sx={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              )}
             </Button>
             <Button
+<<<<<<< HEAD
               onClick={depositVeYetiMain}
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+              /*     onClick={depositToken} */
+>>>>>>> 797b602 (dev: remove disabled)
               variant="contained"
               sx={{
                 width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
+                backgroundColor: Approved
+                  ? (theme) => theme.palette.primary.light
+                  : "#262A2F",
+                color: Approved
+                  ? (theme) => theme.palette.text.primary
+                  : "#868f96",
                 fontWeight: "bold",
 =======
               variant='contained'
@@ -494,7 +599,18 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               }}
             >
-              DEPOSIT
+              {!isLoading ? (
+                "DEPOSIT"
+              ) : (
+                <CircularProgress
+                  size="0.95em"
+                  color="inherit"
+                  sx={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              )}
             </Button>
           </Grid>
         </Grid>
@@ -544,11 +660,15 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 <<<<<<< HEAD
 <<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
-                color: (theme) => theme.palette.text.primary,
                 fontWeight: "bold",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                display: "flex",
+                pb: "4px",
               }}
             >
               {" "}
+<<<<<<< HEAD
 =======
                 fontSize: { xs: '0.65em', sm: '1em' },
 =======
@@ -565,6 +685,32 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               {" "}
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               1
+=======
+              <Typography
+                sx={{
+                  borderRadius: "50%",
+                  width: "25px",
+                  color: !Approved
+                    ? (theme) => theme.palette.text.primary
+                    : "#262A2F",
+                  backgroundColor: !Approved
+                    ? (theme) => theme.palette.primary.light
+                    : (theme) => "#2F343A",
+                }}
+              >
+                1
+              </Typography>
+              <Box
+                sx={{
+                  width: "50%",
+
+                  background: !Approved
+                    ? "linear-gradient(to right , #627f91, #868f96)"
+                    : "linear-gradient(to right, #262A2F, #868f96 )",
+                  height: "4px",
+                }}
+              ></Box>
+>>>>>>> 797b602 (dev: remove disabled)
             </Grid>
             <Grid
               item
@@ -573,8 +719,8 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 <<<<<<< HEAD
 <<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
-                color: (theme) => theme.palette.text.primary,
                 fontWeight: "bold",
+<<<<<<< HEAD
 =======
                 fontSize: { xs: '0.65em', sm: '1em' },
                 color: (theme) => theme.palette.text.primary,
@@ -585,9 +731,37 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
                 color: (theme) => theme.palette.text.primary,
                 fontWeight: "bold",
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+                justifyContent: "flex-start",
+                alignItems: "center",
+                display: "flex",
+                pb: "4px",
+>>>>>>> 797b602 (dev: remove disabled)
               }}
             >
-              2
+              <Box
+                sx={{
+                  width: "50%",
+                  background: Approved
+                    ? "linear-gradient(to right , #868f96, #627f91 )"
+                    : "linear-gradient(to right, #868f96, #262A2F)",
+                  height: "4px",
+                }}
+              ></Box>
+              <Typography
+                sx={{
+                  borderRadius: "50%",
+                  width: "25px",
+                  color: Approved
+                    ? (theme) => theme.palette.text.primary
+                    : "#262A2F",
+                  backgroundColor: Approved
+                    ? (theme) => theme.palette.primary.light
+                    : (theme) => "#2F343A",
+                }}
+              >
+                2
+              </Typography>
             </Grid>
           </Grid>
           <Grid item container xs={6}>
@@ -617,11 +791,16 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              /*  onClick={approveTokenRgnYETI} */
+              /*  onClick={approveToken} */
               variant="contained"
               sx={{
                 width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
+                backgroundColor: !Approved
+                  ? (theme) => theme.palette.primary.light
+                  : "#262A2F",
+                color: !Approved
+                  ? (theme) => theme.palette.text.primary
+                  : "#868f96",
                 fontWeight: "bold",
 =======
           <Grid item container xs={6} justifyContent='space-around'>
@@ -649,9 +828,21 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               }}
             >
-              APPROVE
+              {!isLoading ? (
+                "APPROVE"
+              ) : (
+                <CircularProgress
+                  size="0.95em"
+                  color="inherit"
+                  sx={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              )}
             </Button>
             <Button
+<<<<<<< HEAD
 <<<<<<< HEAD
               onClick={depositToken}
 <<<<<<< HEAD
@@ -659,10 +850,18 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 =======
               /* onClick={depositToken} */
 >>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
+=======
+              /*     onClick={depositToken} */
+>>>>>>> 797b602 (dev: remove disabled)
               variant="contained"
               sx={{
                 width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
+                backgroundColor: Approved
+                  ? (theme) => theme.palette.primary.light
+                  : "#262A2F",
+                color: Approved
+                  ? (theme) => theme.palette.text.primary
+                  : "#868f96",
                 fontWeight: "bold",
 =======
               variant='contained'
@@ -685,7 +884,18 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               }}
             >
-              DEPOSIT
+              {!isLoading ? (
+                "DEPOSIT"
+              ) : (
+                <CircularProgress
+                  size="0.95em"
+                  color="inherit"
+                  sx={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              )}
             </Button>
           </Grid>
         </Grid>
