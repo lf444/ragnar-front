@@ -1,4 +1,6 @@
 export const TOKEN_ID = {
-    yeti: "yeti-finance",
-    yusd:"yusd-stablecoin"
+  yeti: "yeti-finance",
+  rgn: "ragnar-finance",
+  yusd: "yusd-stablecoin",
+  lpCurve: "curve-dao-token",
 };

@@ -110,7 +110,16 @@ import PoolComponent from "./PoolComponent";
 >>>>>>> d1d8a1a (dev: rename component)
 =======
 import { formatEther } from "ethers/lib/utils";
+<<<<<<< HEAD
 >>>>>>> 38adba2 (dev: bigNumber format using etherjs)
+=======
+import {
+  fetchAllApr,
+  fetchAllTvl,
+  fetchDeposit,
+  fetchReward,
+} from "../../../rpc/PoolFunc";
+>>>>>>> edf8c65 (dev: refactor rpc call)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -153,14 +162,18 @@ function a11yProps(index: number) {
 
 export default function PoolTab({
   data,
-  priceYusd,
-  priceRgnYeti,
+  tokensPrices,
   shouldRefetchData,
   handleRefetchDeposit,
 }: {
   data: any;
-  priceYusd: number;
-  priceRgnYeti: number;
+  tokensPrices: {
+    priceYeti: number;
+    priceYusd: number;
+    priceRgn: number;
+    priceLpCurve: number;
+    priceRgnYeti: number;
+  };
   shouldRefetchData: boolean;
   handleRefetchDeposit: () => void;
 }) {
@@ -465,238 +478,79 @@ export default function PoolTab({
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
 
-  async function fetchAprRGNUser() {
-    try {
-      if (window.ethereum) {
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const masterchefUser = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-        const myDepositYUSD = await masterchefUser.depositInfo(
-          contractAddress.fakeYusdAddress,
-          String(accounts)
-        );
-        const myDepositYeti = await masterchefUser.depositInfo(
-          contractAddress.rgnYetiAddress,
-          String(accounts)
-        );
-        const myDepositRgn = await masterchefUser.depositInfo(
-          contractAddress.rgnAddress,
-          String(accounts)
-        );
-        const myDepositLpCurve = await masterchefUser.depositInfo(
-          contractAddress.fakeLpCurveAddress,
-          String(accounts)
-        );
+  const handleChangeStake = (
+    myDepositYUSD: number,
+    myDepositYeti: number,
+    myDepositRgn: number,
+    myDepositLpCurve: number
+  ) => {
+    setMyStake({
+      ...myStake,
+      myYusd: +formatEther(myDepositYUSD),
+      myYeti: +formatEther(myDepositYeti),
+      myRgn: +formatEther(myDepositRgn),
+      myLpCurve: +formatEther(myDepositLpCurve),
+    });
+  };
+  const fetchMyStake = async () => {
+    fetchDeposit(handleChangeStake, appTag);
+  };
 
-        setMyStake({
-          ...myStake,
-          myYusd: +formatEther(myDepositYUSD),
-          myYeti: +formatEther(myDepositYeti),
-          myRgn: +formatEther(myDepositRgn),
-          myLpCurve: +formatEther(myDepositLpCurve),
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchAprRGN-", err.message);
-      setIsLoading(false);
-    }
-  }
+  const handleChangeAPR = (
+    Yusd: number,
+    LpCurve: number,
+    Rgn: number,
+    Yeti: number
+  ) => {
+    setAprRgn({
+      ...aprRgn,
+      aprYusd: Yusd,
+      aprLpCurve: LpCurve,
+      aprRgn: Rgn,
+      aprYeti: Yeti,
+    });
+  };
+  const getApr = async () => {
+    await fetchAllApr(provider, handleChangeAPR, appTag);
+  };
 
-  async function fetchAprRGN() {
-    try {
-      if (window.ethereum) {
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          provider
-        );
+  const handleChangeReward = (
+    Yusd: number,
+    Yeti: number,
+    Rgn: number,
+    LpCurve: number
+  ) => {
+    setReward({
+      ...reward,
+      rewardYusd: Yusd,
+      rewardYeti: Yeti,
+      rewardRgn: Rgn,
+      rewardLpCurve: LpCurve,
+    });
+  };
 
-        const rgnPerBlock = await masterchef.rgnPerSec();
-        const allocPointYusd = await masterchef.getPoolInfo(
-          contractAddress.fakeYusdAddress
-        );
-        const allocPointYeti = await masterchef.getPoolInfo(
-          contractAddress.rgnYetiAddress
-        );
-        const allocPointLpCurve = await masterchef.getPoolInfo(
-          contractAddress.fakeLpCurveAddress
-        );
-        const allocPointRgn = await masterchef.getPoolInfo(
-          contractAddress.rgnAddress
-        );
-        const allocPointTotal = await masterchef.totalAllocPoint();
-        const rgnPerBlockYusd =
-          (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockYeti =
-          (allocPointYeti.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockLpCurve =
-          (allocPointLpCurve.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockRgn =
-          (allocPointRgn.allocpoint * rgnPerBlock) / allocPointTotal;
-        setAprRgn({
-          ...aprRgn,
-          aprYusd:
-            ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
-          aprLpCurve:
-            ((rgnPerBlockLpCurve * 28800 * 365) /
-              allocPointLpCurve.sizeOfPool) *
-            100,
-          aprRgn:
-            ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100,
-          aprYeti:
-            ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchAprRGN-", err.message);
-      setIsLoading(false);
-    }
-  }
+  const fetchMyReward = async () => {
+    fetchReward(tokensPrices, handleChangeReward, appTag);
+  };
 
-  async function fetchMyDeposit() {
-    try {
-      if (window.ethereum) {
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-        const myDepositYUSD = await masterchef.depositInfo(
-          contractAddress.fakeYusdAddress,
-          String(accounts)
-        );
-        const myDepositYeti = await masterchef.depositInfo(
-          contractAddress.rgnYetiAddress,
-          String(accounts)
-        );
-        const myDepositRgn = await masterchef.depositInfo(
-          contractAddress.rgnAddress,
-          String(accounts)
-        );
-        const myDepositLpCurve = await masterchef.depositInfo(
-          contractAddress.fakeLpCurveAddress,
-          String(accounts)
-        );
-        setMyStake({
-          ...myStake,
-          myYusd: myDepositYUSD,
-          myYeti: myDepositYeti,
-          myRgn: myDepositRgn,
-          myLpCurve: myDepositLpCurve,
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
-    }
-  }
+  const handleChangeTVL = (
+    tvlYusd: number,
+    tvlYeti: number,
+    tvlRgn: number,
+    tvlLpCurve: number
+  ) => {
+    setTVL({
+      ...TVL,
+      tvlYusd: tvlYusd * tokensPrices.priceYusd,
+      tvlYeti: tvlYeti * tokensPrices.priceYeti,
+      tvlRgn: tvlRgn * tokensPrices.priceRgn,
+      tvlLpCurve: tvlLpCurve * tokensPrices.priceLpCurve,
+    });
+  };
 
-  async function fetchMyReward() {
-    try {
-      if (window.ethereum) {
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-        const priceRGN = 0.3;
-        const myRewardYUSD = await masterchef.pendingTokens(
-          contractAddress.fakeYusdAddress,
-          String(accounts),
-          contractAddress.yetiAddres
-        );
-        const myRewardRgnYeti = await masterchef.pendingTokens(
-          contractAddress.rgnYetiAddress,
-          String(accounts),
-          contractAddress.yetiAddres
-        );
-        const myRewardLpCurve = await masterchef.pendingTokens(
-          contractAddress.fakeLpCurveAddress,
-          String(accounts),
-          contractAddress.yetiAddres
-        );
-        const myRewardRGN = await masterchef.pendingTokens(
-          contractAddress.rgnAddress,
-          String(accounts),
-          contractAddress.yetiAddres
-        );
-
-        setReward({
-          ...reward,
-          rewardYusd:
-            +formatEther(myRewardYUSD.pendingBonusToken) * priceRgnYeti +
-            +formatEther(myRewardYUSD.pendingRGN) * priceRGN,
-          rewardYeti:
-            +formatEther(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti +
-            +formatEther(myRewardRgnYeti.pendingRGN) * priceRGN,
-          rewardRgn:
-            +formatEther(myRewardRGN.pendingBonusToken) * priceRgnYeti +
-            +formatEther(myRewardRGN.pendingRGN) * priceRGN,
-          rewardLpCurve:
-            +formatEther(myRewardLpCurve.pendingBonusToken) * priceRgnYeti +
-            +formatEther(myRewardLpCurve.pendingRGN) * priceRGN,
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
-      setIsLoading(false);
-    }
-  }
-
-  async function fetchTVL() {
-    try {
-      if (window.ethereum) {
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          provider
-        );
-        const priceLpCurve = 1;
-        const priceRGN = 0.3;
-        const TVLYUSD = await masterchef.getPoolInfo(
-          contractAddress.fakeYusdAddress
-        );
-        const TVLRgnYeti = await masterchef.getPoolInfo(
-          contractAddress.rgnYetiAddress
-        );
-        const TVLLpCurve = await masterchef.getPoolInfo(
-          contractAddress.fakeLpCurveAddress
-        );
-        const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
-        setTVL({
-          ...TVL,
-          tvlYusd: +formatEther(TVLYUSD.sizeOfPool) * priceYusd,
-          tvlYeti: +formatEther(TVLRgnYeti.sizeOfPool) * priceRgnYeti,
-          tvlRgn: +formatEther(TVLRGN.sizeOfPool) * priceRGN,
-          tvlLpCurve: +formatEther(TVLLpCurve.sizeOfPool) * priceLpCurve,
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchTVL-", err.message);
-      setIsLoading(false);
-    }
-  }
+  const fetchTVL = async () => {
+    await fetchAllTvl(provider, appTag, handleChangeTVL);
+  };
 
   const resetData = async () => {
     setReward({
@@ -717,12 +571,11 @@ export default function PoolTab({
 
   const fetchAllData = async () => {
     await fetchTVL();
-    await fetchAprRGN();
+    await getApr();
     if (data) {
       console.log("data: " + data);
       await fetchMyReward();
-      await fetchMyDeposit();
-      await fetchAprRGNUser();
+      await fetchMyStake();
     }
   };
 

@@ -9,19 +9,24 @@ import FundsFirstTabs from "./FirstTab";
 import FundSecondTabs from "./SecondTab";
 import { useProvider } from "wagmi";
 import { formatEther } from "ethers/lib/utils";
+import { fetchAllTvl } from "../../../rpc/PoolFunc";
 
 const appTag: string = "Funds";
 
 const Funds = ({
   data,
-  priceYusd,
-  priceRgnYeti,
   shouldDisplaySecondTabPrice,
   shouldRefetchData,
+  tokensPrices,
 }: {
   data: any;
-  priceYusd: number;
-  priceRgnYeti: number;
+  tokensPrices: {
+    priceYeti: number;
+    priceYusd: number;
+    priceRgn: number;
+    priceLpCurve: number;
+    priceRgnYeti: number;
+  };
   shouldDisplaySecondTabPrice: boolean;
   shouldRefetchData: boolean;
 }) => {
@@ -49,32 +54,28 @@ const Funds = ({
           masterchefABI.abi,
           signer
         );
-        const priceLpCurve = 1;
-        const priceRGN = 0.3;
-        const myDepositYUSD =
-          (await masterchef.depositInfo(
-            contractAddress.fakeYusdAddress,
-            String(accounts)
-          )) * priceYusd;
-        const myDepositRgnYeti =
-          (await masterchef.depositInfo(
-            contractAddress.rgnYetiAddress,
-            String(accounts)
-          )) * priceRgnYeti;
-        const myDepositLpCurve =
-          (await masterchef.depositInfo(
-            contractAddress.fakeLpCurveAddress,
-            String(accounts)
-          )) * priceLpCurve;
-        const myDepositRGN =
-          (await masterchef.depositInfo(
-            contractAddress.rgnAddress,
-            String(accounts)
-          )) * priceRGN;
+
+        const myDepositYUSD = await masterchef.depositInfo(
+          contractAddress.fakeYusdAddress,
+          String(accounts)
+        );
+        const myDepositRgnYeti = await masterchef.depositInfo(
+          contractAddress.rgnYetiAddress,
+          String(accounts)
+        );
+        const myDepositLpCurve = await masterchef.depositInfo(
+          contractAddress.fakeLpCurveAddress,
+          String(accounts)
+        );
+        const myDepositRGN = await masterchef.depositInfo(
+          contractAddress.rgnAddress,
+          String(accounts)
+        );
         setDeposit(
-          +formatEther(
-            myDepositYUSD + myDepositLpCurve + myDepositRgnYeti + myDepositRGN
-          )
+          +formatEther(myDepositYUSD) * tokensPrices.priceYusd +
+            +formatEther(myDepositRgnYeti) * tokensPrices.priceRgnYeti +
+            +formatEther(myDepositLpCurve) * tokensPrices.priceLpCurve +
+            +formatEther(myDepositRGN) * tokensPrices.priceRgn
         );
       }
     } catch (err: any) {
@@ -97,7 +98,6 @@ const Funds = ({
           masterchefABI.abi,
           signer
         );
-        const priceRGN = 0.3;
         const myRewardYUSD = await masterchef.pendingTokens(
           contractAddress.fakeYusdAddress,
           String(accounts),
@@ -119,15 +119,18 @@ const Funds = ({
           contractAddress.yetiAddres
         );
         const myTotalReward =
-          +formatEther(myRewardYUSD.pendingBonusToken) * priceRgnYeti +
-          +formatEther(myRewardYUSD.pendingRGN) * priceRGN +
-          ((+formatEther(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
-            +(+formatEther(myRewardRgnYeti.pendingRGN))) *
-            priceRGN +
-          +formatEther(myRewardLpCurve.pendingBonusToken) * priceRgnYeti +
-          +formatEther(myRewardLpCurve.pendingRGN) * priceRGN +
-          +formatEther(myRewardRGN.pendingBonusToken) * priceRgnYeti +
-          +formatEther(myRewardRGN.pendingRGN) * priceRGN;
+          +formatEther(myRewardYUSD.pendingBonusToken) *
+            tokensPrices.priceRgnYeti +
+          +formatEther(myRewardYUSD.pendingRGN) * tokensPrices.priceRgn +
+          +formatEther(myRewardRgnYeti.pendingBonusToken) *
+            tokensPrices.priceRgnYeti +
+          +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn +
+          +formatEther(myRewardLpCurve.pendingBonusToken) *
+            tokensPrices.priceRgnYeti +
+          +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn +
+          +formatEther(myRewardRGN.pendingBonusToken) *
+            tokensPrices.priceRgnYeti +
+          +formatEther(myRewardRGN.pendingRGN) * tokensPrices.priceRgn;
         setReward(myTotalReward);
       }
     } catch (err: any) {
@@ -137,38 +140,22 @@ const Funds = ({
     }
   };
 
-  const getTVL = async () => {
-    try {
-      if (window.ethereum) {
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          provider
-        );
-        const priceLpCurve = 1;
-        const priceRGN = 0.3;
-        const TVLYUSD = await masterchef.getPoolInfo(
-          contractAddress.fakeYusdAddress
-        );
-        const TVLRgnYeti = await masterchef.getPoolInfo(
-          contractAddress.rgnYetiAddress
-        );
-        const TVLLpCurve = await masterchef.getPoolInfo(
-          contractAddress.fakeLpCurveAddress
-        );
-        const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
-        setTotalValueLocked(
-          +formatEther(TVLYUSD.sizeOfPool) * priceYusd +
-            +formatEther(TVLRgnYeti.sizeOfPool) * priceRgnYeti +
-            +formatEther(TVLLpCurve.sizeOfPool) * priceLpCurve +
-            +formatEther(TVLRGN.sizeOfPool) * priceRGN
-        );
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, " GetTVL masterChef", err.message);
-      setIsLoading(false);
-    }
+  const handleChangeTVL = (
+    tvlYusd: number,
+    tvlYeti: number,
+    tvlRgn: number,
+    tvlLpCurve: number
+  ) => {
+    setTotalValueLocked(
+      tvlYusd * tokensPrices.priceYusd +
+        tvlYeti * tokensPrices.priceYeti +
+        tvlRgn * tokensPrices.priceRgn +
+        tvlLpCurve * tokensPrices.priceLpCurve
+    );
+  };
+
+  const fetchTVL = async () => {
+    await fetchAllTvl(provider, appTag, handleChangeTVL);
   };
 
   const getMainsStakingData = async () => {
@@ -187,7 +174,7 @@ const Funds = ({
         const getStackedYETI = await mainstaking.getStakedYeti();
         const getStackedVeYeti = await mainstaking.getVeYETI();
         const rgnSupply = await rgn.totalSupply();
-        //const rgnLocked = await
+
         setTotalYeti(+formatEther(getStackedYETI));
         setTotalVeYeti(+formatEther(getStackedVeYeti));
         setTotalRGN(+formatEther(rgnSupply));
@@ -210,7 +197,7 @@ const Funds = ({
       await fetchMasterChefData();
     }
     shouldDisplaySecondTabPrice && (await getMainsStakingData());
-    await getTVL();
+    await fetchTVL();
   };
   // set all State at 0
   const resetData = async () => {

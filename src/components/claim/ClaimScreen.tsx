@@ -7,14 +7,16 @@ import ClaimRewardsScreen from "./ClaimRewardsScreen";
 
 const ClaimScreen = ({
   data,
-  priceYusd,
-  priceRgnYeti,
-  priceRgn,
+  tokensPrices,
 }: {
   data: any;
-  priceYusd: number;
-  priceRgnYeti: number;
-  priceRgn: number;
+  tokensPrices: {
+    priceYeti: number;
+    priceYusd: number;
+    priceRgn: number;
+    priceLpCurve: number;
+    priceRgnYeti: number;
+  };
 }) => {
   return (
     <>
@@ -50,20 +52,14 @@ const ClaimScreen = ({
               CLAIM REWARDS
             </Typography>
             <Funds
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
+              tokensPrices={tokensPrices}
               shouldDisplaySecondTabPrice={false}
               data={data}
               shouldRefetchData={false}
             />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
-            <ClaimRewardsScreen
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
-              data={data}
-              priceRgn={priceRgn}
-            />
+            <ClaimRewardsScreen tokensPrices={tokensPrices} data={data} />
           </Grid>
         </Grid>
       </Zoom>

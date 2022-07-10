@@ -1,19 +1,23 @@
 import { Grid } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import Funds from "./funds/Funds";
-import StakeStablePoolComponent from "./pools/PoolTab";
+import PoolTab from "./pools/PoolTab";
 import { Typography } from "@mui/material";
 import PageHeader from "../shared/PageHeader";
 import { useState } from "react";
 
 const StakeScreen = ({
   data,
-  priceYusd,
-  priceRgnYeti,
+  tokensPrices,
 }: {
   data: any;
-  priceYusd: number;
-  priceRgnYeti: number;
+  tokensPrices: {
+    priceYeti: number;
+    priceYusd: number;
+    priceRgn: number;
+    priceLpCurve: number;
+    priceRgnYeti: number;
+  };
 }) => {
   const [shouldRefetchData, setShouldRefetchData] = useState(false);
   const handleRefetchDeposit = () => {
@@ -52,17 +56,15 @@ const StakeScreen = ({
               STAKE FUNDS
             </Typography>
             <Funds
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
+              tokensPrices={tokensPrices}
               shouldDisplaySecondTabPrice
               data={data}
               shouldRefetchData={shouldRefetchData}
             />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
-            <StakeStablePoolComponent
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
+            <PoolTab
+              tokensPrices={tokensPrices}
               data={data}
               shouldRefetchData={shouldRefetchData}
               handleRefetchDeposit={handleRefetchDeposit}

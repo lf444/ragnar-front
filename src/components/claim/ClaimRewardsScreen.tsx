@@ -11,20 +11,29 @@ import { useProvider } from "wagmi";
 import LinearProgress from "@mui/material/LinearProgress";
 import ClaimRewards from "./ClaimRewards";
 import { formatEther } from "ethers/lib/utils";
+import { fetchAllTvl, fetchAllApr, fetchDeposit } from "../../rpc/PoolFunc";
+import {
+  claimAll,
+  claimRagnarPools,
+  claimYetiPools,
+} from "../../rpc/rewardInteraction";
 
 const appTag: string = "ClaimRewardsScreen";
 
 export default function ClaimRewardsScreen({
   data,
-  priceYusd,
-  priceRgnYeti,
-  priceRgn,
+  tokensPrices,
 }: {
   data: any;
-  priceYusd: number;
-  priceRgnYeti: number;
-  priceRgn: number;
+  tokensPrices: {
+    priceYeti: number;
+    priceYusd: number;
+    priceRgn: number;
+    priceLpCurve: number;
+    priceRgnYeti: number;
+  };
 }) {
+  const provider = useProvider();
   const [isLoading, setIsLoading] = useState(false);
 
   const [myStake, setMyStake] = useState({
@@ -56,178 +65,60 @@ export default function ClaimRewardsScreen({
     rewardLpCurveYETI: 0,
   });
 
-  const resetData = async () => {
-    setReward({
-      ...reward,
-      rewardYusdRGN: 0,
-      rewardYusdYETI: 0,
-      rewardYetiRGN: 0,
-      rewardYetiYETI: 0,
-      rewardRgnRGN: 0,
-      rewardRgnYETI: 0,
-      rewardLpCurveRGN: 0,
-      rewardLpCurveYETI: 0,
-    });
+  const handleChangeStake = (
+    myDepositYUSD: number,
+    myDepositYeti: number,
+    myDepositRgn: number,
+    myDepositLpCurve: number
+  ) => {
     setMyStake({
       ...myStake,
-      myYusd: 0,
-      myYeti: 0,
-      myRgn: 0,
-      myLpCurve: 0,
+      myYusd: +formatEther(myDepositYUSD),
+      myYeti: +formatEther(myDepositYeti),
+      myRgn: +formatEther(myDepositRgn),
+      myLpCurve: +formatEther(myDepositLpCurve),
+    });
+  };
+  const fetchMyStake = async () => {
+    fetchDeposit(handleChangeStake, appTag);
+  };
+
+  const handleChangeAPR = (
+    Yusd: number,
+    LpCurve: number,
+    Rgn: number,
+    Yeti: number
+  ) => {
+    setAprRgn({
+      ...aprRgn,
+      aprYusd: Yusd,
+      aprLpCurve: LpCurve,
+      aprRgn: Rgn,
+      aprYeti: Yeti,
+    });
+  };
+  const getApr = async () => {
+    await fetchAllApr(provider, handleChangeAPR, appTag);
+  };
+
+  const handleChangeTVL = (
+    tvlYusd: number,
+    tvlYeti: number,
+    tvlRgn: number,
+    tvlLpCurve: number
+  ) => {
+    setTVL({
+      ...TVL,
+      tvlYusd: tvlYusd * tokensPrices.priceYusd,
+      tvlYeti: tvlYeti * tokensPrices.priceYeti,
+      tvlRgn: tvlRgn * tokensPrices.priceRgn,
+      tvlLpCurve: tvlLpCurve * tokensPrices.priceLpCurve,
     });
   };
 
-  const fetchAllData = async () => {
-    await fetchTVL();
-    await fetchAprRGN();
-    if (data) {
-      await fetchMyReward();
-      await fetchAprRGNUser();
-    }
+  const fetchTVL = async () => {
+    await fetchAllTvl(provider, appTag, handleChangeTVL);
   };
-
-  const provider = useProvider();
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetchAllData().then(() => setIsLoading(false));
-    if (!data) {
-      setIsLoading(true);
-      resetData();
-      setTimeout(() => setIsLoading(false), 1000);
-    }
-  }, [data]);
-
-  async function fetchAprRGNUser() {
-    try {
-      if (window.ethereum) {
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const masterchefUser = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-        const myDepositYUSD = await masterchefUser.depositInfo(
-          contractAddress.fakeYusdAddress,
-          String(accounts)
-        );
-        const myDepositYeti = await masterchefUser.depositInfo(
-          contractAddress.rgnYetiAddress,
-          String(accounts)
-        );
-        const myDepositRgn = await masterchefUser.depositInfo(
-          contractAddress.rgnAddress,
-          String(accounts)
-        );
-        const myDepositLpCurve = await masterchefUser.depositInfo(
-          contractAddress.fakeLpCurveAddress,
-          String(accounts)
-        );
-
-        setMyStake({
-          ...myStake,
-          myYusd: +formatEther(myDepositYUSD),
-          myYeti: +formatEther(myDepositYeti),
-          myRgn: +formatEther(myDepositRgn),
-          myLpCurve: +formatEther(myDepositLpCurve),
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchAprRGN-", err.message);
-      setIsLoading(false);
-    }
-  }
-
-  async function fetchAprRGN() {
-    try {
-      if (window.ethereum) {
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          provider
-        );
-
-        const rgnPerBlock = await masterchef.rgnPerSec();
-        const allocPointYusd = await masterchef.getPoolInfo(
-          contractAddress.fakeYusdAddress
-        );
-        const allocPointYeti = await masterchef.getPoolInfo(
-          contractAddress.rgnYetiAddress
-        );
-        const allocPointLpCurve = await masterchef.getPoolInfo(
-          contractAddress.fakeLpCurveAddress
-        );
-        const allocPointRgn = await masterchef.getPoolInfo(
-          contractAddress.rgnAddress
-        );
-        const allocPointTotal = await masterchef.totalAllocPoint();
-        const rgnPerBlockYusd =
-          (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockYeti =
-          (allocPointYeti.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockLpCurve =
-          (allocPointLpCurve.allocpoint * rgnPerBlock) / allocPointTotal;
-        const rgnPerBlockRgn =
-          (allocPointRgn.allocpoint * rgnPerBlock) / allocPointTotal;
-        setAprRgn({
-          ...aprRgn,
-          aprYusd:
-            ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
-          aprLpCurve:
-            ((rgnPerBlockLpCurve * 28800 * 365) /
-              allocPointLpCurve.sizeOfPool) *
-            100,
-          aprRgn:
-            ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100,
-          aprYeti:
-            ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchAprRGN-", err.message);
-      setIsLoading(false);
-    }
-  }
-
-  async function fetchTVL() {
-    try {
-      if (window.ethereum) {
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          provider
-        );
-        const priceLpCurve = 1;
-        const TVLYUSD = await masterchef.getPoolInfo(
-          contractAddress.fakeYusdAddress
-        );
-        const TVLRgnYeti = await masterchef.getPoolInfo(
-          contractAddress.rgnYetiAddress
-        );
-        const TVLLpCurve = await masterchef.getPoolInfo(
-          contractAddress.fakeLpCurveAddress
-        );
-        const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
-        setTVL({
-          ...TVL,
-          tvlYusd: +formatEther(TVLYUSD.sizeOfPool) * priceYusd,
-          tvlYeti: +formatEther(TVLRgnYeti.sizeOfPool) * priceRgnYeti,
-          tvlRgn: +formatEther(TVLRGN.sizeOfPool) * priceRgn,
-          tvlLpCurve: +formatEther(TVLLpCurve.sizeOfPool) * priceLpCurve,
-        });
-      }
-    } catch (err: any) {
-      errorToast(err.code);
-      appLogger(appTag, "- Error fetchTVL-", err.message);
-      setIsLoading(false);
-    }
-  }
 
   async function fetchMyReward() {
     try {
@@ -266,103 +157,32 @@ export default function ClaimRewardsScreen({
 
         setReward({
           ...reward,
-          rewardYusdRGN: +formatEther(myRewardYUSD.pendingRGN) * priceRgn,
+          rewardYusdRGN:
+            +formatEther(myRewardYUSD.pendingRGN) * tokensPrices.priceRgn,
           rewardYusdYETI:
-            +formatEther(myRewardYUSD.pendingBonusToken) * priceRgnYeti,
-          rewardYetiRGN: +formatEther(myRewardRgnYeti.pendingRGN) * priceRgn,
+            +formatEther(myRewardYUSD.pendingBonusToken) *
+            tokensPrices.priceRgnYeti,
+          rewardYetiRGN:
+            +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn,
           rewardYetiYETI:
-            +formatEther(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti,
-          rewardRgnRGN: +formatEther(myRewardRGN.pendingRGN) * priceRgn,
+            +formatEther(myRewardRgnYeti.pendingBonusToken) *
+            tokensPrices.priceRgnYeti,
+          rewardRgnRGN:
+            +formatEther(myRewardRGN.pendingRGN) * tokensPrices.priceRgn,
           rewardRgnYETI:
-            +formatEther(myRewardRGN.pendingBonusToken) * priceRgnYeti,
-          rewardLpCurveRGN: +formatEther(myRewardLpCurve.pendingRGN) * priceRgn,
+            +formatEther(myRewardRGN.pendingBonusToken) *
+            tokensPrices.priceRgnYeti,
+          rewardLpCurveRGN:
+            +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn,
           rewardLpCurveYETI:
-            +formatEther(myRewardLpCurve.pendingBonusToken) * priceRgn,
+            +formatEther(myRewardLpCurve.pendingBonusToken) *
+            tokensPrices.priceRgn,
         });
       }
     } catch (err: any) {
       errorToast(err.code);
       appLogger(appTag, "- Error fetchMyDeposit-", err.message);
       setIsLoading(false);
-    }
-  }
-
-  async function claimAll() {
-    try {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-        const claimAll = await masterchef.multiclaim(
-          [
-            contractAddress.rgnAddress,
-            contractAddress.rgnYetiAddress,
-            contractAddress.fakeLpCurveAddress,
-            contractAddress.fakeYusdAddress,
-          ],
-          String(accounts)
-        );
-        await claimAll.wait();
-      }
-    } catch (err: any) {
-      appLogger(appTag, "- Error depositVeYeti-", err.message);
-    }
-  }
-
-  async function claimRagnarPools() {
-    try {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-
-        const claimRagnarPools = await masterchef.multiclaim(
-          [contractAddress.rgnAddress, contractAddress.rgnYetiAddress],
-          String(accounts)
-        );
-        await claimRagnarPools.wait();
-      }
-    } catch (err: any) {
-      appLogger(appTag, "- Error depositVeYeti-", err.message);
-    }
-  }
-
-  async function claimYetiPools() {
-    try {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const masterchef = new ethers.Contract(
-          contractAddress.masterchefAddress,
-          masterchefABI.abi,
-          signer
-        );
-
-        const claimYetiPools = await masterchef.multiclaim(
-          [contractAddress.fakeLpCurveAddress, contractAddress.fakeYusdAddress],
-          String(accounts)
-        );
-        await claimYetiPools.wait();
-      }
-    } catch (err: any) {
-      appLogger(appTag, "- Error depositVeYeti-", err.message);
     }
   }
 
@@ -378,6 +198,46 @@ export default function ClaimRewardsScreen({
   const InfoLpCurvePools = `RGN: $${reward.rewardLpCurveRGN.toLocaleString(
     "en"
   )} , YETI: $${reward.rewardLpCurveYETI.toLocaleString("en")}`;
+
+  const resetData = async () => {
+    setReward({
+      ...reward,
+      rewardYusdRGN: 0,
+      rewardYusdYETI: 0,
+      rewardYetiRGN: 0,
+      rewardYetiYETI: 0,
+      rewardRgnRGN: 0,
+      rewardRgnYETI: 0,
+      rewardLpCurveRGN: 0,
+      rewardLpCurveYETI: 0,
+    });
+    setMyStake({
+      ...myStake,
+      myYusd: 0,
+      myYeti: 0,
+      myRgn: 0,
+      myLpCurve: 0,
+    });
+  };
+
+  const fetchAllData = async () => {
+    await fetchTVL();
+    await getApr();
+    if (data) {
+      await fetchMyReward();
+      await fetchMyStake();
+    }
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchAllData().then(() => setIsLoading(false));
+    if (!data) {
+      setIsLoading(true);
+      resetData();
+      setTimeout(() => setIsLoading(false), 1000);
+    }
+  }, [data]);
 
   return (
     <>
@@ -552,7 +412,7 @@ export default function ClaimRewardsScreen({
         <Grid container>
           <Grid item xs={12} sx={{ textAlign: "center" }}>
             <Button
-              onClick={() => claimAll}
+              onClick={() => claimAll(appTag)}
               sx={{
                 width: { lg: "20%", xs: "40%" },
                 backgroundColor: "#D0BA97",

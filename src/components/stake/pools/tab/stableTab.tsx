@@ -48,10 +48,14 @@ import { FunctionComponent, useEffect, useState } from "react";
 >>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
 import CustomInput from "../../../shared/CustomInput";
 import CustomDisplay from "../../../shared/CustomDisplay";
+<<<<<<< HEAD
 import { approve, deposit, withdraw } from "../../../../rpc/simple";
 <<<<<<< HEAD
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/tab/stableTab.tsx
 =======
+=======
+import { approve, deposit, withdraw } from "../../../../rpc/tokenInterraction";
+>>>>>>> edf8c65 (dev: refactor rpc call)
 import { Pool } from "../../../../abi/pools";
 <<<<<<< HEAD
 >>>>>>> d1d8a1a (dev: rename component)
@@ -138,6 +142,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
   const [depositTX, setDepositTX] = useState("");
   const [withdrawTX, setWithdrawTX] = useState("");
   const [amountToStake, setAmountToStake] = useState(0);
+
+  const [Approved, setApproved] = useState(false);
+
   const handleChangeAmount = (newValue: number) => {
     setAmountToStake(newValue);
   };
@@ -173,7 +180,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       masterchef,
       appTag,
       handleSetTx
-    );
+    ).then(() => setApproved(true));
   };
 
   const depositToken = async () => {
@@ -209,9 +216,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     if (!waitDepositTX.isLoading && depositTX) {
       successToast("TX_SUCCESS");
       handleRefetchDeposit();
+      setApproved(false);
     }
     if (waitDepositTX.isError) {
       errorToast("TX_ERRROR");
+      setApproved(false);
     }
   }, [waitDepositTX.isLoading, waitDepositTX.isError]);
 
@@ -443,6 +452,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button
               onClick={approveToken}
               variant="contained"
+              disabled={!Approved}
               sx={{
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,
@@ -480,6 +490,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Button
               onClick={depositToken}
               variant="contained"
+              disabled={Approved}
               sx={{
                 width: "45%",
                 backgroundColor: (theme) => theme.palette.primary.light,

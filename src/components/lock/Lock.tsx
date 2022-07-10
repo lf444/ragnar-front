@@ -10,12 +10,16 @@ import { useState } from "react";
 
 const LockRGN = ({
   data,
-  priceYusd,
-  priceRgnYeti,
+  tokensPrices,
 }: {
   data: any;
-  priceYusd: number;
-  priceRgnYeti: number;
+  tokensPrices: {
+    priceYeti: number;
+    priceYusd: number;
+    priceRgn: number;
+    priceLpCurve: number;
+    priceRgnYeti: number;
+  };
 }) => {
   return (
     <>
@@ -51,11 +55,10 @@ const LockRGN = ({
               LOCK RGN
             </Typography>
             <Funds
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
               shouldDisplaySecondTabPrice={true}
               data={data}
               shouldRefetchData={false}
+              tokensPrices={tokensPrices}
             />
           </Grid>
 

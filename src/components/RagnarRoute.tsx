@@ -51,23 +51,32 @@ import Footer from "./shared/Footer";
 >>>>>>> b84f72d (dev: component re-organise)
 
 const RagnarRoute = () => {
-  const [priceYusd, SetPriceYusd] = useState(0);
-  const [priceRgnYeti, SetPriceRgnYeti] = useState(0);
-  const [priceYeti, setPriceYeti] = useState(0);
-  const [priceRgn, setPriceRgn] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [tokensPrices, setTokensPrices] = useState({
+    priceYeti: 0,
+    priceYusd: 0,
+    priceRgn: 0,
+    priceLpCurve: 0,
+    priceRgnYeti: 0,
+  });
 
   // Change of account will trigger render on each fetch for personnal data and update the state accordingly
   const [userAccount, setUserAccount] = useState<any>(undefined);
 
   const { data, error } = useAccount();
   const getPrices = async () => {
-    await coinGeckoService.getPrice(TOKEN_ID.yusd).then((r) => SetPriceYusd(r));
-    await coinGeckoService
-      .getPrice(TOKEN_ID.yeti)
-      .then((r) => SetPriceRgnYeti(r));
-    await coinGeckoService.getPrice(TOKEN_ID.yeti).then((r) => setPriceYeti(r));
-    await coinGeckoService.getPrice(TOKEN_ID.yeti).then((r) => setPriceRgn(r));
+    const yusdPrice = await coinGeckoService.getPrice(TOKEN_ID.yusd);
+    const yetiprice = await coinGeckoService.getPrice(TOKEN_ID.yeti);
+    const rgnPrice = await coinGeckoService.getPrice(TOKEN_ID.yeti);
+    const lpCurvePrice = await coinGeckoService.getPrice(TOKEN_ID.lpCurve);
+    setTokensPrices({
+      ...tokensPrices,
+      priceYeti: yetiprice,
+      priceYusd: yusdPrice,
+      priceRgn: rgnPrice,
+      priceLpCurve: lpCurvePrice,
+      priceRgnYeti: 0,
+    });
     setIsLoading(false);
   };
 
@@ -95,38 +104,23 @@ const RagnarRoute = () => {
 
   return (
     <>
-      <Navbar priceYeti={priceYeti} priceRgn={priceRgn} />
+      <Navbar tokensPrices={tokensPrices} />
       <Routes>
         <Route
           path="/stake"
           element={
-            <StakeScreen
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
-              data={userAccount}
-            />
+            <StakeScreen data={userAccount} tokensPrices={tokensPrices} />
           }
         />
         <Route
           path="/claim"
           element={
-            <ClaimScreen
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
-              priceRgn={priceRgn}
-              data={userAccount}
-            />
+            <ClaimScreen tokensPrices={tokensPrices} data={userAccount} />
           }
         />
         <Route
           path="/lock"
-          element={
-            <LockRGN
-              priceYusd={priceYusd}
-              priceRgnYeti={priceRgnYeti}
-              data={userAccount}
-            />
-          }
+          element={<LockRGN tokensPrices={tokensPrices} data={userAccount} />}
         />
       </Routes>
     </>

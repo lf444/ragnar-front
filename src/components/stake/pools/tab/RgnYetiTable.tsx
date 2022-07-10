@@ -31,8 +31,12 @@ import { approve, deposit, withdraw } from "../../../rpc/simple";
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 =======
 import { appLogger, errorToast } from "../../../../utils/method";
+<<<<<<< HEAD
 import { approve, deposit, withdraw } from "../../../../rpc/simple";
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/tab/RgnYetiTable.tsx
+=======
+import { approve, deposit, withdraw } from "../../../../rpc/tokenInterraction";
+>>>>>>> edf8c65 (dev: refactor rpc call)
 
 interface TabPanelProps {
   children?: React.ReactNode;

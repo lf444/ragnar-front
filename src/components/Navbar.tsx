@@ -20,11 +20,15 @@ import theme from "../theme";
 const drawerWidth = 100;
 
 const Navbar = ({
-  priceYeti,
-  priceRgn,
+  tokensPrices,
 }: {
-  priceYeti: number;
-  priceRgn: number;
+  tokensPrices: {
+    priceYeti: number;
+    priceYusd: number;
+    priceRgn: number;
+    priceLpCurve: number;
+    priceRgnYeti: number;
+  };
 }) => {
   const [openDrawer, SetOpenDrawer] = useState(false);
 
@@ -408,6 +412,7 @@ const Navbar = ({
 =======
                   alt="Ragnar Logo"
                 />{" "}
+<<<<<<< HEAD
                 0.30$
 >>>>>>> 96c243c (dev: reduce req call)
 =======
@@ -423,6 +428,9 @@ const Navbar = ({
 >>>>>>> 57a5cf2 (dev trigger cio)
                 {priceRgn.toFixed(3)}$
 >>>>>>> 53dd8be (minor change)
+=======
+                {tokensPrices.priceRgn.toFixed(3)}$
+>>>>>>> edf8c65 (dev: refactor rpc call)
               </Typography>
 
               <Typography
@@ -448,7 +456,7 @@ const Navbar = ({
                   src={yeti}
                   alt="YETI Logo"
                 />{" "}
-                {priceYeti.toFixed(3)}$
+                {tokensPrices.priceYeti.toFixed(3)}$
               </Typography>
             </Grid>
             <Grid item xs={2} sm={2} md={2} lg={2}>
