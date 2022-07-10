@@ -1,10 +1,11 @@
-import { Grid, Input, Button, Typography } from "@mui/material";
+import { Grid, Input, Button } from "@mui/material";
 import { FunctionComponent } from "react";
 import { appLogger } from "../../utils/method";
 import { ethers } from "ethers";
 import tokenABI from "../../abi/contracts/Tokens/RGN.sol/RGN.json";
 import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 import { contractAddress } from "../../abi/address";
+import { formatEther } from "ethers/lib/utils";
 
 interface CustomInputProps {
   poolName: string;
@@ -65,10 +66,8 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
       try {
         if (stake) {
           const balanceOfToken = await token.balanceOf(String(accounts));
-          const parseBalanceOf = ethers.utils.formatEther(
-            String(balanceOfToken)
-          );
-          setAmountToStake(Math.round(Number(parseBalanceOf)));
+          const parseBalanceOf = formatEther(String(balanceOfToken));
+          setAmountToStake(Math.round(+parseBalanceOf));
         } else {
           const balanceOfTokenStaked = await masterchef.depositInfo(
             address,
@@ -77,7 +76,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
           const parseBalanceOfStaked = ethers.utils.formatEther(
             String(balanceOfTokenStaked)
           );
-          setAmountToStake(Math.round(Number(parseBalanceOfStaked)));
+          setAmountToStake(Math.round(+parseBalanceOfStaked));
         }
       } catch (err: any) {
         appLogger(appTag, "- Error approve-", err.message);

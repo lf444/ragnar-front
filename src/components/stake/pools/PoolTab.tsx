@@ -106,7 +106,11 @@ import StableStakeComponent from "./stableStakeComponent";
 =======
 import { useProvider } from "wagmi";
 import PoolComponent from "./PoolComponent";
+<<<<<<< HEAD
 >>>>>>> d1d8a1a (dev: rename component)
+=======
+import { formatEther } from "ethers/lib/utils";
+>>>>>>> 38adba2 (dev: bigNumber format using etherjs)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -493,10 +497,10 @@ export default function PoolTab({
 
         setMyStake({
           ...myStake,
-          myYusd: myDepositYUSD / 10 ** 18,
-          myYeti: myDepositYeti / 10 ** 18,
-          myRgn: myDepositRgn / 10 ** 18,
-          myLpCurve: myDepositLpCurve / 10 ** 18,
+          myYusd: +formatEther(myDepositYUSD),
+          myYeti: +formatEther(myDepositYeti),
+          myRgn: +formatEther(myDepositRgn),
+          myLpCurve: +formatEther(myDepositLpCurve),
         });
       }
     } catch (err: any) {
@@ -639,19 +643,17 @@ export default function PoolTab({
         setReward({
           ...reward,
           rewardYusd:
-            (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
-            (Number(myRewardYUSD.pendingRGN) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardYUSD.pendingBonusToken) * priceRgnYeti +
+            +formatEther(myRewardYUSD.pendingRGN) * priceRGN,
           rewardYeti:
-            (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
-              10 ** 18 +
-            (Number(myRewardRgnYeti.pendingRGN) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti +
+            +formatEther(myRewardRgnYeti.pendingRGN) * priceRGN,
           rewardRgn:
-            (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
-            (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardRGN.pendingBonusToken) * priceRgnYeti +
+            +formatEther(myRewardRGN.pendingRGN) * priceRGN,
           rewardLpCurve:
-            (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti) /
-              10 ** 18 +
-            (Number(myRewardLpCurve.pendingRGN) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardLpCurve.pendingBonusToken) * priceRgnYeti +
+            +formatEther(myRewardLpCurve.pendingRGN) * priceRGN,
         });
       }
     } catch (err: any) {
@@ -683,10 +685,10 @@ export default function PoolTab({
         const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
         setTVL({
           ...TVL,
-          tvlYusd: (TVLYUSD.sizeOfPool * priceYusd) / 10 ** 18,
-          tvlYeti: (TVLRgnYeti.sizeOfPool * priceRgnYeti) / 10 ** 18,
-          tvlRgn: (TVLRGN.sizeOfPool * priceRGN) / 10 ** 18,
-          tvlLpCurve: (TVLLpCurve.sizeOfPool * priceLpCurve) / 10 ** 18,
+          tvlYusd: +formatEther(TVLYUSD.sizeOfPool) * priceYusd,
+          tvlYeti: +formatEther(TVLRgnYeti.sizeOfPool) * priceRgnYeti,
+          tvlRgn: +formatEther(TVLRGN.sizeOfPool) * priceRGN,
+          tvlLpCurve: +formatEther(TVLLpCurve.sizeOfPool) * priceLpCurve,
         });
       }
     } catch (err: any) {

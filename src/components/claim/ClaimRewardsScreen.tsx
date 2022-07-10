@@ -130,10 +130,10 @@ export default function ClaimRewardsScreen({
 
         setMyStake({
           ...myStake,
-          myYusd: myDepositYUSD / 10 ** 18,
-          myYeti: myDepositYeti / 10 ** 18,
-          myRgn: myDepositRgn / 10 ** 18,
-          myLpCurve: myDepositLpCurve / 10 ** 18,
+          myYusd: +formatEther(myDepositYUSD),
+          myYeti: +formatEther(myDepositYeti),
+          myRgn: +formatEther(myDepositRgn),
+          myLpCurve: +formatEther(myDepositLpCurve),
         });
       }
     } catch (err: any) {
@@ -216,10 +216,10 @@ export default function ClaimRewardsScreen({
         const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
         setTVL({
           ...TVL,
-          tvlYusd: (TVLYUSD.sizeOfPool * priceYusd) / 10 ** 18,
-          tvlYeti: (TVLRgnYeti.sizeOfPool * priceRgnYeti) / 10 ** 18,
-          tvlRgn: (TVLRGN.sizeOfPool * priceRgn) / 10 ** 18,
-          tvlLpCurve: (TVLLpCurve.sizeOfPool * priceLpCurve) / 10 ** 18,
+          tvlYusd: +formatEther(TVLYUSD.sizeOfPool) * priceYusd,
+          tvlYeti: +formatEther(TVLRgnYeti.sizeOfPool) * priceRgnYeti,
+          tvlRgn: +formatEther(TVLRGN.sizeOfPool) * priceRgn,
+          tvlLpCurve: +formatEther(TVLLpCurve.sizeOfPool) * priceLpCurve,
         });
       }
     } catch (err: any) {
@@ -407,7 +407,7 @@ export default function ClaimRewardsScreen({
                 marginLeft: "8px",
               }}
             >
-              <img height="40px" src={rgn}></img>
+              <img height="40px" src={rgn} alt="Ragnar Logo"></img>
             </Grid>
             <Grid
               item
@@ -488,7 +488,7 @@ export default function ClaimRewardsScreen({
                 marginLeft: "8px",
               }}
             >
-              <img height="45px" src={yeti}></img>
+              <img height="45px" src={yeti} alt="yeti logo"></img>
             </Grid>
             <Grid
               item

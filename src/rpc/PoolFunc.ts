@@ -44,21 +44,20 @@ export const fetchMyReward = async () => {
       /*        setReward({
           ...reward,
           rewardYusdRGN:
-            (Number(myRewardYUSD.pendingRGN) * priceRGN) / 10 ** 18,
+            (+formatEther(myRewardYUSD.pendingRGN) * priceRGN) ,
           rewardYusdYETI:
-            (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18,
+            (+formatEther(myRewardYUSD.pendingBonusToken) * priceRgnYeti) ,
           rewardYetiRGN:
-            (Number(myRewardRgnYeti.pendingRGN) * priceRGN) / 10 ** 18,
+            (+formatEther(myRewardRgnYeti.pendingRGN) * priceRGN) ,
           rewardYetiYETI:
-            (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
-            10 ** 18,
-          rewardRgnRGN: (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18,
+            (+formatEther(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) ,
+          rewardRgnRGN: (+formatEther(myRewardRGN.pendingRGN) * priceRGN) ,
           rewardRgnYETI:
-            (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti) / 10 ** 18,
+            (+formatEther(myRewardRGN.pendingBonusToken) * priceRgnYeti) ,
           rewardLpCurveRGN:
-            (Number(myRewardLpCurve.pendingRGN) * priceRGN) / 10 ** 18,
+            (+formatEther(myRewardLpCurve.pendingRGN) * priceRGN) ,
           rewardLpCurveYETI:
-            (Number(myRewardLpCurve.pendingBonusToken) * priceRGN) / 10 ** 18,
+            (+formatEther(myRewardLpCurve.pendingBonusToken) * priceRGN) ,
         }); */
     }
   } catch (err: any) {

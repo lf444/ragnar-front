@@ -8,6 +8,7 @@ import { appLogger, errorToast } from "../../../utils/method";
 import FundsFirstTabs from "./FirstTab";
 import FundSecondTabs from "./SecondTab";
 import { useProvider } from "wagmi";
+import { formatEther } from "ethers/lib/utils";
 
 const appTag: string = "Funds";
 
@@ -71,8 +72,9 @@ const Funds = ({
             String(accounts)
           )) * priceRGN;
         setDeposit(
-          (myDepositYUSD + myDepositLpCurve + myDepositRgnYeti + myDepositRGN) /
-            10 ** 18
+          +formatEther(
+            myDepositYUSD + myDepositLpCurve + myDepositRgnYeti + myDepositRGN
+          )
         );
       }
     } catch (err: any) {
@@ -117,16 +119,15 @@ const Funds = ({
           contractAddress.yetiAddres
         );
         const myTotalReward =
-          (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
-          (Number(myRewardYUSD.pendingRGN) * priceRGN) / 10 ** 18 +
-          (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
-            10 ** 18 +
-          (Number(myRewardRgnYeti.pendingRGN) * priceRGN) / 10 ** 18 +
-          (Number(myRewardLpCurve.pendingBonusToken) * priceRgnYeti) /
-            10 ** 18 +
-          (Number(myRewardLpCurve.pendingRGN) * priceRGN) / 10 ** 18 +
-          (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti) / 10 ** 18 +
-          (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18;
+          +formatEther(myRewardYUSD.pendingBonusToken) * priceRgnYeti +
+          +formatEther(myRewardYUSD.pendingRGN) * priceRGN +
+          ((+formatEther(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
+            +(+formatEther(myRewardRgnYeti.pendingRGN))) *
+            priceRGN +
+          +formatEther(myRewardLpCurve.pendingBonusToken) * priceRgnYeti +
+          +formatEther(myRewardLpCurve.pendingRGN) * priceRGN +
+          +formatEther(myRewardRGN.pendingBonusToken) * priceRgnYeti +
+          +formatEther(myRewardRGN.pendingRGN) * priceRGN;
         setReward(myTotalReward);
       }
     } catch (err: any) {
@@ -157,10 +158,10 @@ const Funds = ({
         );
         const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
         setTotalValueLocked(
-          (Number(TVLYUSD.sizeOfPool) * priceYusd) / 10 ** 18 +
-            (Number(TVLRgnYeti.sizeOfPool) * priceRgnYeti) / 10 ** 18 +
-            (Number(TVLLpCurve.sizeOfPool) * priceLpCurve) / 10 ** 18 +
-            (Number(TVLRGN.sizeOfPool) * priceRGN) / 10 ** 18
+          +formatEther(TVLYUSD.sizeOfPool) * priceYusd +
+            +formatEther(TVLRgnYeti.sizeOfPool) * priceRgnYeti +
+            +formatEther(TVLLpCurve.sizeOfPool) * priceLpCurve +
+            +formatEther(TVLRGN.sizeOfPool) * priceRGN
         );
       }
     } catch (err: any) {
@@ -187,10 +188,10 @@ const Funds = ({
         const getStackedVeYeti = await mainstaking.getVeYETI();
         const rgnSupply = await rgn.totalSupply();
         //const rgnLocked = await
-        setTotalYeti(Number(getStackedYETI) / 10 ** 18);
-        setTotalVeYeti(Number(getStackedVeYeti) / 10 ** 18);
-        setTotalRGN(Number(rgnSupply) / 10 ** 18);
-        //setTotalRGNLocked(Number(rgnLocked) / 10**18)
+        setTotalYeti(+formatEther(getStackedYETI));
+        setTotalVeYeti(+formatEther(getStackedVeYeti));
+        setTotalRGN(+formatEther(rgnSupply));
+        //setTotalRGNLocked(+formatEther(rgnLocked))
       }
     } catch (err: any) {
       errorToast(err.code);
