@@ -59,3 +59,11 @@ export const successToast = (successCode: string) => {
       break;
   }
 };
+
+// Format a give number to a price with currency using Intl.NumberFormat
+export const formatPrice = (amount: number, currency: string) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency,
+  }).format(amount);
+};

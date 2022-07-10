@@ -1,16 +1,6 @@
-import {
-  Grid,
-  Typography,
-  Box,
-  Tabs,
-  Tab,
-  Button,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
-import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
+import { Grid, Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import BoxReward from "./BoxReward";
+import ClaimTable from "./ClaimTable";
 import rgn from "../../assets/images/pools/rgn.png";
 import yeti from "../../assets/images/pools/yeti.png";
 import { ethers } from "ethers";
@@ -19,6 +9,8 @@ import { appLogger, errorToast } from "../../utils/method";
 import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 import { useProvider } from "wagmi";
 import LinearProgress from "@mui/material/LinearProgress";
+import ClaimRewards from "./ClaimRewards";
+import { formatEther } from "ethers/lib/utils";
 
 const appTag: string = "ClaimRewardsScreen";
 
@@ -26,10 +18,12 @@ export default function ClaimRewardsScreen({
   data,
   priceYusd,
   priceRgnYeti,
+  priceRgn,
 }: {
   data: any;
   priceYusd: number;
   priceRgnYeti: number;
+  priceRgn: number;
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -210,7 +204,6 @@ export default function ClaimRewardsScreen({
           provider
         );
         const priceLpCurve = 1;
-        const priceRGN = 0.3;
         const TVLYUSD = await masterchef.getPoolInfo(
           contractAddress.fakeYusdAddress
         );
@@ -225,7 +218,7 @@ export default function ClaimRewardsScreen({
           ...TVL,
           tvlYusd: (TVLYUSD.sizeOfPool * priceYusd) / 10 ** 18,
           tvlYeti: (TVLRgnYeti.sizeOfPool * priceRgnYeti) / 10 ** 18,
-          tvlRgn: (TVLRGN.sizeOfPool * priceRGN) / 10 ** 18,
+          tvlRgn: (TVLRGN.sizeOfPool * priceRgn) / 10 ** 18,
           tvlLpCurve: (TVLLpCurve.sizeOfPool * priceLpCurve) / 10 ** 18,
         });
       }
@@ -249,7 +242,7 @@ export default function ClaimRewardsScreen({
           masterchefABI.abi,
           signer
         );
-        const priceRGN = 0.3;
+
         const myRewardYUSD = await masterchef.pendingTokens(
           contractAddress.fakeYusdAddress,
           String(accounts),
@@ -270,26 +263,21 @@ export default function ClaimRewardsScreen({
           String(accounts),
           contractAddress.yetiAddres
         );
-        console.log(myRewardRGN);
 
         setReward({
           ...reward,
-          rewardYusdRGN:
-            (Number(myRewardYUSD.pendingRGN) * priceRGN) / 10 ** 18,
+          rewardYusdRGN: +formatEther(myRewardYUSD.pendingRGN) * priceRgn,
           rewardYusdYETI:
-            (Number(myRewardYUSD.pendingBonusToken) * priceRgnYeti) / 10 ** 18,
-          rewardYetiRGN:
-            (Number(myRewardRgnYeti.pendingRGN) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardYUSD.pendingBonusToken) * priceRgnYeti,
+          rewardYetiRGN: +formatEther(myRewardRgnYeti.pendingRGN) * priceRgn,
           rewardYetiYETI:
-            (Number(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti) /
-            10 ** 18,
-          rewardRgnRGN: (Number(myRewardRGN.pendingRGN) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardRgnYeti.pendingBonusToken) * priceRgnYeti,
+          rewardRgnRGN: +formatEther(myRewardRGN.pendingRGN) * priceRgn,
           rewardRgnYETI:
-            (Number(myRewardRGN.pendingBonusToken) * priceRgnYeti) / 10 ** 18,
-          rewardLpCurveRGN:
-            (Number(myRewardLpCurve.pendingRGN) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardRGN.pendingBonusToken) * priceRgnYeti,
+          rewardLpCurveRGN: +formatEther(myRewardLpCurve.pendingRGN) * priceRgn,
           rewardLpCurveYETI:
-            (Number(myRewardLpCurve.pendingBonusToken) * priceRGN) / 10 ** 18,
+            +formatEther(myRewardLpCurve.pendingBonusToken) * priceRgn,
         });
       }
     } catch (err: any) {
@@ -299,7 +287,7 @@ export default function ClaimRewardsScreen({
     }
   }
 
-  async function claim(choise: number) {
+  async function claimAll() {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -312,33 +300,66 @@ export default function ClaimRewardsScreen({
           masterchefABI.abi,
           signer
         );
-        if (choise === 1) {
-          const claimRagnarPools = await masterchef.multiclaim(
-            [contractAddress.rgnAddress, contractAddress.rgnYetiAddress],
-            String(accounts)
-          );
-          await claimRagnarPools.wait();
-        } else if (choise === 2) {
-          const claimYetiPools = await masterchef.multiclaim(
-            [
-              contractAddress.fakeLpCurveAddress,
-              contractAddress.fakeYusdAddress,
-            ],
-            String(accounts)
-          );
-          await claimYetiPools.wait();
-        } else if (choise === 3) {
-          const claimAll = await masterchef.multiclaim(
-            [
-              contractAddress.rgnAddress,
-              contractAddress.rgnYetiAddress,
-              contractAddress.fakeLpCurveAddress,
-              contractAddress.fakeYusdAddress,
-            ],
-            String(accounts)
-          );
-          await claimAll.wait();
-        }
+        const claimAll = await masterchef.multiclaim(
+          [
+            contractAddress.rgnAddress,
+            contractAddress.rgnYetiAddress,
+            contractAddress.fakeLpCurveAddress,
+            contractAddress.fakeYusdAddress,
+          ],
+          String(accounts)
+        );
+        await claimAll.wait();
+      }
+    } catch (err: any) {
+      appLogger(appTag, "- Error depositVeYeti-", err.message);
+    }
+  }
+
+  async function claimRagnarPools() {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        let accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+
+        const claimRagnarPools = await masterchef.multiclaim(
+          [contractAddress.rgnAddress, contractAddress.rgnYetiAddress],
+          String(accounts)
+        );
+        await claimRagnarPools.wait();
+      }
+    } catch (err: any) {
+      appLogger(appTag, "- Error depositVeYeti-", err.message);
+    }
+  }
+
+  async function claimYetiPools() {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        let accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const masterchef = new ethers.Contract(
+          contractAddress.masterchefAddress,
+          masterchefABI.abi,
+          signer
+        );
+
+        const claimYetiPools = await masterchef.multiclaim(
+          [contractAddress.fakeLpCurveAddress, contractAddress.fakeYusdAddress],
+          String(accounts)
+        );
+        await claimYetiPools.wait();
       }
     } catch (err: any) {
       appLogger(appTag, "- Error depositVeYeti-", err.message);
@@ -416,7 +437,7 @@ export default function ClaimRewardsScreen({
               height: "100%",
             }}
           >
-            <BoxReward
+            <ClaimTable
               pool1="RGN"
               pool2="RGNYETI"
               apr1={Math.round(aprRgn.aprRgn)}
@@ -430,164 +451,22 @@ export default function ClaimRewardsScreen({
           </Grid>
         </Grid>
         <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
-          <Grid
-            container
-            sx={{
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "60px",
-              borderRadius: "5px 5px 0px 0px",
-              marginLeft: "15px",
-              borderBottom: 1,
-              borderColor: "divider",
-            }}
-          >
-            <Grid
-              item
-              xs={10}
-              md={8}
-              lg={12}
-              sx={{
-                fontWeight: "bold",
-                fontSize: { xs: "12px", md: "16px" },
-                textAlign: "left",
-                marginTop: "22px",
-                color: (theme) => theme.palette.text.primary,
-                marginLeft: "19px",
-              }}
-            >
-              Your Rewards
-            </Grid>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            container
-            direction="row"
-            sx={{
-              p: 1,
-              borderRadius: "0px 0px 5px 5px  ",
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "100%",
-              marginLeft: "15px",
-            }}
-          >
-            <Grid
-              item
-              xs={12}
-              sx={{
-                marginLeft: "15px",
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                fontSize: { md: "13px", xs: "8px" },
-                marginTop: "15px",
-              }}
-            >
-              RGNYETI Pools: $
-              {!isLoading ? (
-                <>
-                  {(
-                    reward.rewardYetiRGN + reward.rewardYetiYETI
-                  ).toLocaleString("en")}
-                  <Tooltip title={InfoRgnYetiPools}>
-                    <IconButton>
-                      <InfoRoundedIcon
-                        sx={{
-                          color: (theme) => theme.palette.background.default,
-                          width: "20px",
-                        }}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                </>
-              ) : (
-                <LinearProgress
-                  color="inherit"
-                  sx={{
-                    width: "1.50rem",
-                  }}
-                />
-              )}
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{
-                borderBottom: 2,
-                borderColor: "divider",
-                marginLeft: "15px",
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                fontSize: { md: "13px", xs: "8px" },
-              }}
-            >
-              RGN Pools: $
-              {!isLoading ? (
-                <>
-                  {(reward.rewardRgnRGN + reward.rewardRgnYETI).toLocaleString(
-                    "en"
-                  )}
-                  <Tooltip title={InfoRgnPools}>
-                    <IconButton>
-                      <InfoRoundedIcon
-                        sx={{
-                          color: (theme) => theme.palette.background.default,
-                          width: "20px",
-                        }}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                </>
-              ) : (
-                <LinearProgress
-                  color="inherit"
-                  sx={{
-                    width: "1rem",
-                  }}
-                />
-              )}
-            </Grid>
-            <Grid container sx={{ height: "60px" }}>
-              <Grid
-                item
-                xs={4}
-                sx={{
-                  marginTop: { xs: "15px", md: "20px" },
-                  marginLeft: "15px",
-                }}
-              >
-                <Button
-                  onClick={() => claim(1)}
-                  sx={{
-                    variant: "contained",
-                    backgroundColor: (theme) => theme.palette.primary.light,
-                    color: (theme) => theme.palette.text.primary,
-                    width: { lg: "150px", xs: "100px" },
-                    fontWeight: "bold",
-                    fontSize: "12px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  Claim ($
-                  {!isLoading ? (
-                    (
-                      reward.rewardYetiRGN +
-                      reward.rewardYetiYETI +
-                      reward.rewardRgnRGN +
-                      reward.rewardRgnYETI
-                    ).toLocaleString("en")
-                  ) : (
-                    <LinearProgress
-                      color="inherit"
-                      sx={{
-                        width: "1rem",
-                      }}
-                    />
-                  )}
-                  )
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
+          <ClaimRewards
+            claim={claimRagnarPools}
+            title={InfoRgnYetiPools}
+            title2={InfoRgnPools}
+            text1={"RGNYETI Pools:"}
+            text2={"RGN Pools:"}
+            price1={reward.rewardYetiRGN + reward.rewardYetiYETI}
+            price2={reward.rewardRgnRGN + reward.rewardRgnYETI}
+            price3={
+              reward.rewardYetiRGN +
+              reward.rewardYetiYETI +
+              reward.rewardRgnRGN +
+              reward.rewardRgnYETI
+            }
+            isLoading={isLoading}
+          />
         </Grid>
         <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
           <Grid
@@ -639,7 +518,7 @@ export default function ClaimRewardsScreen({
               height: "100%",
             }}
           >
-            <BoxReward
+            <ClaimTable
               pool1="YUSD"
               pool2="LPCURVE"
               apr1={Math.round(aprRgn.aprYusd)}
@@ -653,169 +532,27 @@ export default function ClaimRewardsScreen({
           </Grid>
         </Grid>
         <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
-          <Grid
-            container
-            sx={{
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "60px",
-              borderRadius: "5px 5px 0px 0px",
-              marginLeft: "15px",
-              borderBottom: 1,
-              borderColor: "divider",
-            }}
-          >
-            <Grid
-              item
-              xs={10}
-              md={8}
-              lg={12}
-              sx={{
-                fontWeight: "bold",
-                fontSize: { xs: "12px", md: "16px" },
-                textAlign: "left",
-                marginTop: "22px",
-                color: (theme) => theme.palette.text.primary,
-                marginLeft: "19px",
-              }}
-            >
-              Your Rewards
-            </Grid>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            container
-            direction="row"
-            sx={{
-              p: 1,
-              borderRadius: "0px 0px 5px 5px",
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "100%",
-              marginLeft: "15px",
-            }}
-          >
-            <Grid
-              item
-              xs={12}
-              sx={{
-                marginLeft: "15px",
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                fontSize: { md: "13px", xs: "8px" },
-                marginTop: "15px",
-              }}
-            >
-              YUSD Pools: $
-              {!isLoading ? (
-                <>
-                  {(
-                    reward.rewardYusdRGN + reward.rewardYusdYETI
-                  ).toLocaleString("en")}
-                  <Tooltip title={InfoYUSDPools}>
-                    <IconButton>
-                      <InfoRoundedIcon
-                        sx={{
-                          color: (theme) => theme.palette.background.default,
-                          width: "20px",
-                        }}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                </>
-              ) : (
-                <LinearProgress
-                  color="inherit"
-                  sx={{
-                    width: "1rem",
-                  }}
-                />
-              )}
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{
-                borderBottom: 2,
-                borderColor: "divider",
-                marginLeft: "15px",
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                fontSize: { md: "13px", xs: "8px" },
-              }}
-            >
-              LP CURVE Pools: $
-              {!isLoading ? (
-                <>
-                  {(
-                    reward.rewardLpCurveRGN + reward.rewardLpCurveYETI
-                  ).toLocaleString("en")}
-                  <Tooltip title={InfoLpCurvePools}>
-                    <IconButton>
-                      <InfoRoundedIcon
-                        sx={{
-                          color: (theme) => theme.palette.background.default,
-                          width: "20px",
-                        }}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                </>
-              ) : (
-                <LinearProgress
-                  color="inherit"
-                  sx={{
-                    width: "1rem",
-                  }}
-                />
-              )}
-            </Grid>
-            <Grid container sx={{ height: "60px" }}>
-              <Grid
-                item
-                xs={4}
-                sx={{
-                  marginTop: { xs: "15px", md: "20px" },
-                  marginLeft: "15px",
-                }}
-              >
-                <Button
-                  onClick={() => claim(2)}
-                  sx={{
-                    variant: "contained",
-                    backgroundColor: (theme) => theme.palette.primary.light,
-                    color: (theme) => theme.palette.text.primary,
-                    width: { lg: "150px", xs: "100px" },
-                    fontWeight: "bold",
-                    fontSize: "12px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  Claim ($
-                  {!isLoading ? (
-                    (
-                      reward.rewardYusdRGN +
-                      reward.rewardYusdYETI +
-                      reward.rewardLpCurveRGN +
-                      reward.rewardLpCurveYETI
-                    ).toLocaleString("en")
-                  ) : (
-                    <LinearProgress
-                      color="inherit"
-                      sx={{
-                        width: "1rem",
-                      }}
-                    />
-                  )}
-                  )
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
+          <ClaimRewards
+            claim={claimYetiPools}
+            title={InfoYUSDPools}
+            title2={InfoLpCurvePools}
+            text1={"YUSD Pools:"}
+            text2={"LP CURVE Pools:"}
+            price1={reward.rewardYusdRGN + reward.rewardYusdYETI}
+            price2={reward.rewardLpCurveRGN + reward.rewardLpCurveYETI}
+            price3={
+              reward.rewardYusdRGN +
+              reward.rewardYusdYETI +
+              reward.rewardLpCurveRGN +
+              reward.rewardLpCurveYETI
+            }
+            isLoading={isLoading}
+          />
         </Grid>
         <Grid container>
           <Grid item xs={12} sx={{ textAlign: "center" }}>
             <Button
-              onClick={() => claim(3)}
+              onClick={() => claimAll}
               sx={{
                 width: { lg: "20%", xs: "40%" },
                 backgroundColor: "#D0BA97",

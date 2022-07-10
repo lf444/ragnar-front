@@ -6,6 +6,7 @@ import Funds from "../stake/funds/Funds";
 import MyNFT from "./MyNFT";
 import theme from "../../theme";
 import PageHeader from "../shared/PageHeader";
+import { useState } from "react";
 
 const LockRGN = ({
   data,
@@ -54,6 +55,7 @@ const LockRGN = ({
               priceRgnYeti={priceRgnYeti}
               shouldDisplaySecondTabPrice={true}
               data={data}
+              shouldRefetchData={false}
             />
           </Grid>
 

@@ -96,6 +96,7 @@ function a11yProps(index: number) {
 interface StableTabProps {
   pool: Pool;
   masterchef: boolean;
+  handleRefetchDeposit: () => void;
 }
 
 <<<<<<< HEAD
@@ -109,6 +110,7 @@ const appTag: string = "StableTab";
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const StableTab: FunctionComponent<StableTabProps> = ({
   addressPool,
   pairAddress,
@@ -120,6 +122,13 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 =======
 const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
 >>>>>>> d1d8a1a (dev: rename component)
+=======
+const StableTab: FunctionComponent<StableTabProps> = ({
+  pool,
+  masterchef,
+  handleRefetchDeposit,
+}) => {
+>>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
   const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -199,6 +208,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
   useEffect(() => {
     if (!waitDepositTX.isLoading && depositTX) {
       successToast("TX_SUCCESS");
+      handleRefetchDeposit();
     }
     if (waitDepositTX.isError) {
       errorToast("TX_ERRROR");
@@ -208,6 +218,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
   useEffect(() => {
     if (!waitWithdrawTX.isLoading && withdrawTX) {
       successToast("TX_SUCCESS");
+      handleRefetchDeposit();
     }
     if (waitWithdrawTX.isError) {
       errorToast("TX_ERRROR");

@@ -30,6 +30,7 @@ import LockRGN from "./lock/Lock";
 import { coinGeckoService } from "../services/coinGeckoService";
 import { TOKEN_ID } from "../utils/constance";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useAccount } from "wagmi";
 import Footer from "./Footer";
 >>>>>>> 03050fe (dev: add loader when fetch)
@@ -43,6 +44,9 @@ import { useAccount, useWaitForTransaction } from "wagmi";
 import Footer from "./Footer";
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 =======
+=======
+import { useAccount } from "wagmi";
+>>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
 import Footer from "./shared/Footer";
 >>>>>>> b84f72d (dev: component re-organise)
 
@@ -109,6 +113,7 @@ const RagnarRoute = () => {
             <ClaimScreen
               priceYusd={priceYusd}
               priceRgnYeti={priceRgnYeti}
+              priceRgn={priceRgn}
               data={userAccount}
             />
           }

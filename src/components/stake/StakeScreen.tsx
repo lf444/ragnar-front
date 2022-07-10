@@ -4,6 +4,7 @@ import Funds from "./funds/Funds";
 import StakeStablePoolComponent from "./pools/PoolTab";
 import { Typography } from "@mui/material";
 import PageHeader from "../shared/PageHeader";
+import { useState } from "react";
 
 const StakeScreen = ({
   data,
@@ -14,6 +15,10 @@ const StakeScreen = ({
   priceYusd: number;
   priceRgnYeti: number;
 }) => {
+  const [shouldRefetchData, setShouldRefetchData] = useState(false);
+  const handleRefetchDeposit = () => {
+    setShouldRefetchData(!shouldRefetchData);
+  };
   return (
     <>
       <PageHeader pageTitle={`Ragnar finance - Stake`} />{" "}
@@ -51,6 +56,7 @@ const StakeScreen = ({
               priceRgnYeti={priceRgnYeti}
               shouldDisplaySecondTabPrice
               data={data}
+              shouldRefetchData={shouldRefetchData}
             />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
@@ -58,6 +64,8 @@ const StakeScreen = ({
               priceYusd={priceYusd}
               priceRgnYeti={priceRgnYeti}
               data={data}
+              shouldRefetchData={shouldRefetchData}
+              handleRefetchDeposit={handleRefetchDeposit}
             />
           </Grid>
         </Grid>

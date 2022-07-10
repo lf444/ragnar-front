@@ -151,13 +151,16 @@ export default function PoolTab({
   data,
   priceYusd,
   priceRgnYeti,
+  shouldRefetchData,
+  handleRefetchDeposit,
 }: {
   data: any;
   priceYusd: number;
   priceRgnYeti: number;
+  shouldRefetchData: boolean;
+  handleRefetchDeposit: () => void;
 }) {
   const [isLoading, setIsLoading] = useState(false);
-
   const [myStake, setMyStake] = useState({
     myYusd: 0,
     myYeti: 0,
@@ -246,6 +249,7 @@ export default function PoolTab({
       depositVeYeti=""
       isLoading={isLoading}
       aprInfo={aprInfoRGN}
+      handleRefetchDeposit={handleRefetchDeposit}
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -261,6 +265,7 @@ export default function PoolTab({
       depositVeYeti={depositVeYeti}
       isLoading={isLoading}
       aprInfo={aprInfoYeti}
+      handleRefetchDeposit={handleRefetchDeposit}
     />
   );
 
@@ -364,7 +369,11 @@ export default function PoolTab({
 >>>>>>> 17723e9 (claim page + info apr)
 =======
       aprInfo={aprInfoYusd}
+<<<<<<< HEAD
 >>>>>>> 18b8302 (mint button navbar)
+=======
+      handleRefetchDeposit={handleRefetchDeposit}
+>>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
     />
   );
 
@@ -447,6 +456,7 @@ export default function PoolTab({
       depositVeYeti=""
       isLoading={isLoading}
       aprInfo={aprInfoLpCurve}
+      handleRefetchDeposit={handleRefetchDeposit}
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -752,7 +762,7 @@ export default function PoolTab({
     } else {
 =======
     setIsLoading(true);
-    fetchAllData().then(() => setIsLoading(false));
+    fetchAllData().then(() => setTimeout(() => setIsLoading(false), 1000));
     if (!data) {
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
       setIsLoading(true);
@@ -762,6 +772,13 @@ export default function PoolTab({
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
   }, [data]);
 >>>>>>> 3e0e08f (dev: when connect sucfuless re-fetch data)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(true);
+      fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
+    }, 3000);
+  }, [shouldRefetchData]);
 
   /*
 

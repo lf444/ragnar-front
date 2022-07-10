@@ -19,6 +19,7 @@ interface PoolComponentProps {
   depositVeYeti: any;
   isLoading: boolean;
   aprInfo: any;
+  handleRefetchDeposit: () => void;
 }
 
 const PoolComponent: FunctionComponent<PoolComponentProps> = ({
@@ -31,6 +32,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
   depositVeYeti,
   isLoading,
   aprInfo,
+  handleRefetchDeposit,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const style = {
@@ -277,7 +279,11 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
             {pool.pairName === "yeti" ? (
               <RgnYetiStable depositVeYeti={depositVeYeti} />
             ) : (
-              <StableTab pool={pool} masterchef={masterchef} />
+              <StableTab
+                pool={pool}
+                masterchef={masterchef}
+                handleRefetchDeposit={handleRefetchDeposit}
+              />
             )}
           </Box>
         </Fade>

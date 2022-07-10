@@ -9,10 +9,12 @@ const ClaimScreen = ({
   data,
   priceYusd,
   priceRgnYeti,
+  priceRgn,
 }: {
   data: any;
   priceYusd: number;
   priceRgnYeti: number;
+  priceRgn: number;
 }) => {
   return (
     <>
@@ -52,12 +54,16 @@ const ClaimScreen = ({
               priceRgnYeti={priceRgnYeti}
               shouldDisplaySecondTabPrice={false}
               data={data}
+              shouldRefetchData={false}
             />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
-            <ClaimRewardsScreen priceYusd={priceYusd} 
-            priceRgnYeti={priceRgnYeti} 
-            data={data}/>
+            <ClaimRewardsScreen
+              priceYusd={priceYusd}
+              priceRgnYeti={priceRgnYeti}
+              data={data}
+              priceRgn={priceRgn}
+            />
           </Grid>
         </Grid>
       </Zoom>
