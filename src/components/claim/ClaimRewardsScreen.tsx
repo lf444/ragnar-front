@@ -72,7 +72,6 @@ export default function ClaimRewardsScreen({
     myDepositLpCurve: number
   ) => {
     setMyStake({
-      ...myStake,
       myYusd: +formatEther(myDepositYUSD),
       myYeti: +formatEther(myDepositYeti),
       myRgn: +formatEther(myDepositRgn),
@@ -90,7 +89,6 @@ export default function ClaimRewardsScreen({
     Yeti: number
   ) => {
     setAprRgn({
-      ...aprRgn,
       aprYusd: Yusd,
       aprLpCurve: LpCurve,
       aprRgn: Rgn,
@@ -108,7 +106,6 @@ export default function ClaimRewardsScreen({
     tvlLpCurve: number
   ) => {
     setTVL({
-      ...TVL,
       tvlYusd: tvlYusd * tokensPrices.priceYusd,
       tvlYeti: tvlYeti * tokensPrices.priceYeti,
       tvlRgn: tvlRgn * tokensPrices.priceRgn,

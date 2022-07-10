@@ -68,6 +68,9 @@ const RagnarRoute = () => {
   const [userAccount, setUserAccount] = useState<any>(undefined);
 
   const { data, error } = useAccount();
+  let navigate = useNavigate();
+  const location = useLocation();
+
   const getPrices = async () => {
     const yusdPrice = await coinGeckoService.getPrice(TOKEN_ID.yusd);
     const yetiprice = await coinGeckoService.getPrice(TOKEN_ID.yeti);
@@ -95,9 +98,6 @@ const RagnarRoute = () => {
       setUserAccount(undefined);
     }
   }, [data]);
-
-  let navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     if (location.pathname === "/") {

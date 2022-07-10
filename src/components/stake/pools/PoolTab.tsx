@@ -485,11 +485,10 @@ export default function PoolTab({
     myDepositLpCurve: number
   ) => {
     setMyStake({
-      ...myStake,
-      myYusd: +formatEther(myDepositYUSD),
-      myYeti: +formatEther(myDepositYeti),
-      myRgn: +formatEther(myDepositRgn),
-      myLpCurve: +formatEther(myDepositLpCurve),
+      myYusd: myDepositYUSD,
+      myYeti: myDepositYeti,
+      myRgn: myDepositRgn,
+      myLpCurve: myDepositLpCurve,
     });
   };
   const fetchMyStake = async () => {
@@ -503,7 +502,6 @@ export default function PoolTab({
     Yeti: number
   ) => {
     setAprRgn({
-      ...aprRgn,
       aprYusd: Yusd,
       aprLpCurve: LpCurve,
       aprRgn: Rgn,
@@ -521,7 +519,6 @@ export default function PoolTab({
     LpCurve: number
   ) => {
     setReward({
-      ...reward,
       rewardYusd: Yusd,
       rewardYeti: Yeti,
       rewardRgn: Rgn,
@@ -629,10 +626,8 @@ export default function PoolTab({
 >>>>>>> 3e0e08f (dev: when connect sucfuless re-fetch data)
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(true);
-      fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
-    }, 3000);
+    setIsLoading(true);
+    fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
   }, [shouldRefetchData]);
 
   /*

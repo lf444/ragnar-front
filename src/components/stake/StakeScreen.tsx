@@ -23,6 +23,7 @@ const StakeScreen = ({
   const handleRefetchDeposit = () => {
     setShouldRefetchData(!shouldRefetchData);
   };
+
   return (
     <>
       <PageHeader pageTitle={`Ragnar finance - Stake`} />{" "}
