@@ -227,8 +227,14 @@ export default function ClaimRewardsScreen({
   };
 
   useEffect(() => {
-    setIsLoading(true);
     fetchAllData().then(() => setIsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setIsLoading(true);
+      fetchAllData().then(() => setIsLoading(false));
+    }
     if (!data) {
       setIsLoading(true);
       resetData();

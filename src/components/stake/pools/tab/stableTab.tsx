@@ -508,7 +508,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              onClick={approveToken}
+              onClick={() => approveToken()}
               variant="contained"
               sx={{
                 width: "45%",
@@ -550,7 +550,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
 >>>>>>> 53dd8be (minor change)
 =======
             <Button
-              onClick={depositToken}
+              onClick={() => depositToken()}
               variant="contained"
               sx={{
                 width: "45%",
@@ -648,7 +648,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
             <Button
-              onClick={withdrawToken}
+              onClick={() => withdrawToken()}
               variant="contained"
               sx={{
                 width: "50%",

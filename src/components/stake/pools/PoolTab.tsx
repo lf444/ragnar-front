@@ -570,13 +570,13 @@ export default function PoolTab({
     await fetchTVL();
     await getApr();
     if (data) {
-      console.log("data: " + data);
       await fetchMyReward();
       await fetchMyStake();
     }
   };
 
   useEffect(() => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     fetchMyDeposit();
@@ -614,7 +614,16 @@ export default function PoolTab({
     } else {
 =======
     setIsLoading(true);
+=======
+>>>>>>> c1bc616 (dev reduce rpc call)
     fetchAllData().then(() => setTimeout(() => setIsLoading(false), 1000));
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setIsLoading(true);
+      fetchAllData().then(() => setTimeout(() => setIsLoading(false), 1000));
+    }
     if (!data) {
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
       setIsLoading(true);
@@ -626,8 +635,10 @@ export default function PoolTab({
 >>>>>>> 3e0e08f (dev: when connect sucfuless re-fetch data)
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
+    if (shouldRefetchData) {
+      setIsLoading(true);
+      fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
+    }
   }, [shouldRefetchData]);
 
   /*

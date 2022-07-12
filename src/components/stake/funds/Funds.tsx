@@ -207,16 +207,26 @@ const Funds = ({
 
   useEffect(() => {
     fetchAllData().then(() => setIsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    console.log(data);
+    if (data) {
+      setIsLoading(true);
+      fetchAllData().then(() => setIsLoading(false));
+    }
+
     if (!data) {
-      console.log("-" + isLoading);
       resetData();
       setTimeout(() => setIsLoading(false), 1000);
     }
-  }, [data && data.connector]);
+  }, [data]);
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
+    if (shouldRefetchData) {
+      setIsLoading(true);
+      fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
+    }
   }, [shouldRefetchData]);
 
   return (

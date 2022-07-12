@@ -21,7 +21,8 @@ const StakeScreen = ({
 }) => {
   const [shouldRefetchData, setShouldRefetchData] = useState(false);
   const handleRefetchDeposit = () => {
-    setShouldRefetchData(!shouldRefetchData);
+    setShouldRefetchData(true);
+    setTimeout(() => setShouldRefetchData(false), 1500);
   };
 
   return (
