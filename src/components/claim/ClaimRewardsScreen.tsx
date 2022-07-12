@@ -220,7 +220,7 @@ export default function ClaimRewardsScreen({
   const fetchAllData = async () => {
     await fetchTVL();
     await getApr();
-    if (data) {
+    if (data && data.isConnected) {
       await fetchMyReward();
       await fetchMyStake();
     }
@@ -231,7 +231,7 @@ export default function ClaimRewardsScreen({
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.isConnected) {
       setIsLoading(true);
       fetchAllData().then(() => setIsLoading(false));
     }

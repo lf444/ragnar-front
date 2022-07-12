@@ -620,7 +620,7 @@ export default function PoolTab({
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.isConnected) {
       setIsLoading(true);
       fetchAllData().then(() => setTimeout(() => setIsLoading(false), 1000));
     }

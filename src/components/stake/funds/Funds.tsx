@@ -118,20 +118,21 @@ const Funds = ({
           String(accounts),
           contractAddress.yetiAddres
         );
-        const myTotalReward =
+
+        setReward(
           +formatEther(myRewardYUSD.pendingBonusToken) *
             tokensPrices.priceRgnYeti +
-          +formatEther(myRewardYUSD.pendingRGN) * tokensPrices.priceRgn +
-          +formatEther(myRewardRgnYeti.pendingBonusToken) *
-            tokensPrices.priceRgnYeti +
-          +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn +
-          +formatEther(myRewardLpCurve.pendingBonusToken) *
-            tokensPrices.priceRgnYeti +
-          +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn +
-          +formatEther(myRewardRGN.pendingBonusToken) *
-            tokensPrices.priceRgnYeti +
-          +formatEther(myRewardRGN.pendingRGN) * tokensPrices.priceRgn;
-        setReward(myTotalReward);
+            +formatEther(myRewardYUSD.pendingRGN) * tokensPrices.priceRgn +
+            +formatEther(myRewardRgnYeti.pendingBonusToken) *
+              tokensPrices.priceRgnYeti +
+            +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn +
+            +formatEther(myRewardLpCurve.pendingBonusToken) *
+              tokensPrices.priceRgnYeti +
+            +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn +
+            +formatEther(myRewardRGN.pendingBonusToken) *
+              tokensPrices.priceRgnYeti +
+            +formatEther(myRewardRGN.pendingRGN) * tokensPrices.priceRgn
+        );
       }
     } catch (err: any) {
       errorToast(err.code);
@@ -210,13 +211,13 @@ const Funds = ({
   }, []);
 
   useEffect(() => {
-    console.log(data);
     if (data) {
       setIsLoading(true);
       fetchAllData().then(() => setIsLoading(false));
     }
 
     if (!data) {
+      setIsLoading(true);
       resetData();
       setTimeout(() => setIsLoading(false), 1000);
     }
