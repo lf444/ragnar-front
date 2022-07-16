@@ -272,7 +272,18 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
    function approveTokenRgnYETI() {
     await approve(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
   }
+*/
+  const approveYeti = async () => {
+    await approve(
+      amountToStake,
+      contractAddress.yetiAddres,
+      false,
+      appTag,
+      handleSetTx
+    );
+  };
 
+<<<<<<< HEAD
   function approveYeti() {
     await approve(amountToStake, contractAddress.yetiAddres, false, appTag);
 >>>>>>> 9a339f0 (dev: rtest)
@@ -281,10 +292,27 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
   /*   function depositToken() {
     await deposit(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
   }
+=======
+  const depositToken = async () => {
+    await deposit(
+      amountToStake,
+      contractAddress.rgnYetiAddress,
+      true,
+      appTag,
+      handleSetDepositTx
+    );
+  };
+>>>>>>> c324d69 (dev: test)
 
-  function withdrawToken() {
-    await withdraw(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
-  } */
+  const withdrawToken = async () => {
+    await withdraw(
+      amountToStake,
+      contractAddress.rgnYetiAddress,
+      true,
+      appTag,
+      handleSetWithdrawTx
+    );
+  };
 
   function depositVeYetiMain() {
     try {
