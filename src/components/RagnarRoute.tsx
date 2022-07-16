@@ -81,8 +81,8 @@ const RagnarRoute = () => {
       priceYeti: yetiprice,
       priceYusd: yusdPrice,
       priceRgn: rgnPrice,
-      priceLpCurve: lpCurvePrice,
-      priceRgnYeti: 0,
+      priceLpCurve: 1,
+      priceRgnYeti: 1,
     });
   };
 

@@ -15,13 +15,18 @@ import {
   Link,
   CircularProgress,
 } from "@mui/material";
+<<<<<<< HEAD
 >>>>>>> 797b602 (dev: remove disabled)
 import React from "react";
+=======
+import React, { useEffect } from "react";
+>>>>>>> 9a339f0 (dev: rtest)
 import { useState, FunctionComponent } from "react";
 import CustomDisplay from "../../../shared/CustomDisplay";
 import CustomInput from "../../../shared/CustomInput";
 import { contractAddress } from "../../../../abi/address";
 import { BigNumber, ethers } from "ethers";
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/stake/tab/RgnYetiTable.tsx
 <<<<<<< HEAD
 =======
@@ -50,6 +55,11 @@ import { approve, deposit, withdraw } from "../../../../rpc/simple";
 =======
 import { approve, deposit, withdraw } from "../../../../rpc/tokenInterraction";
 >>>>>>> edf8c65 (dev: refactor rpc call)
+=======
+import { appLogger, errorToast, successToast } from "../../../../utils/method";
+import { approve, deposit, withdraw } from "../../../../rpc/tokenInterraction";
+import { useWaitForTransaction } from "wagmi";
+>>>>>>> 9a339f0 (dev: rtest)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -94,23 +104,28 @@ function a11yProps(index: number) {
 
 interface RgnYetiTableProps {
   depositVeYeti: any;
+  handleRefetchDeposit: () => void;
 }
 const appTag: string = "RgnYetiTable";
 const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
   depositVeYeti,
+  handleRefetchDeposit,
 }) => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   const [Approved, setApproved] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
+  const [transaction, setTransaction] = useState("");
+  const [depositTX, setDepositTX] = useState("");
+  const [withdrawTX, setWithdrawTX] = useState("");
   const [amountToStake, setAmountToStake] = useState(0);
   const handleChangeAmount = (newValue: number) => {
     setAmountToStake(newValue);
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   function approveTokenRgnYETI() {
 <<<<<<< HEAD
@@ -197,8 +212,80 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
   /*   function withdrawToken() {
     withdraw(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+  const { data, isError, isLoading } = useWaitForTransaction({
+    hash: transaction,
+  });
+
+  const waitDepositTX = useWaitForTransaction({
+    hash: depositTX,
+  });
+
+  const waitWithdrawTX = useWaitForTransaction({
+    hash: withdrawTX,
+  });
+
+  const handleSetTx = (tx: string) => {
+    setTransaction(`${tx}`);
+  };
+
+  const handleSetDepositTx = (tx: string) => {
+    setDepositTX(`${tx}`);
+  };
+
+  const handleSetWithdrawTx = (tx: string) => {
+    setWithdrawTX(`${tx}`);
+  };
+
+  useEffect(() => {
+    if (!isLoading && transaction) {
+      successToast("TX_SUCCESS");
+      setApproved(true);
+    }
+    if (isError) {
+      errorToast("TX_ERRROR");
+    }
+  }, [isLoading, isError]);
+
+  useEffect(() => {
+    if (!waitDepositTX.isLoading && depositTX) {
+      successToast("TX_SUCCESS");
+      handleRefetchDeposit();
+      setApproved(false);
+    }
+    if (waitDepositTX.isError) {
+      errorToast("TX_ERRROR");
+      setApproved(false);
+    }
+  }, [waitDepositTX.isLoading, waitDepositTX.isError]);
+
+  useEffect(() => {
+    if (!waitWithdrawTX.isLoading && withdrawTX) {
+      successToast("TX_SUCCESS");
+      handleRefetchDeposit();
+    }
+    if (waitWithdrawTX.isError) {
+      errorToast("TX_ERRROR");
+    }
+  }, [waitWithdrawTX.isLoading, waitWithdrawTX.isError]);
+  /* 
+   function approveTokenRgnYETI() {
+    await approve(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
+  }
+
+  function approveYeti() {
+    await approve(amountToStake, contractAddress.yetiAddres, false, appTag);
+>>>>>>> 9a339f0 (dev: rtest)
   }
  */
+  /*   function depositToken() {
+    await deposit(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
+  }
+
+  function withdrawToken() {
+    await withdraw(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
+  } */
+
   function depositVeYetiMain() {
     try {
       const amount = ethers.utils.parseEther(String(amountToStake));
@@ -599,7 +686,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               }}
             >
-              {!isLoading ? (
+              {!waitDepositTX.isLoading ? (
                 "DEPOSIT"
               ) : (
                 <CircularProgress
@@ -884,7 +971,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               }}
             >
-              {!isLoading ? (
+              {!waitDepositTX.isLoading ? (
                 "DEPOSIT"
               ) : (
                 <CircularProgress
@@ -977,7 +1064,18 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
               }}
             >
-              WITHDRAW
+              {!waitWithdrawTX.isLoading ? (
+                "WITHDRAW"
+              ) : (
+                <CircularProgress
+                  size="0.95em"
+                  color="inherit"
+                  sx={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
+              )}
             </Button>
           </Grid>
         </Grid>

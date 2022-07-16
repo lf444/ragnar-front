@@ -34,6 +34,7 @@ function App() {
         <Route path="*" element={<RagnarRoute />} />
       </Routes>
       <ToastContainer
+        style={{ backgroundColor: "#535b63" }}
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}

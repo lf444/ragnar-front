@@ -160,6 +160,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
   const waitWithdrawTX = useWaitForTransaction({
     hash: withdrawTX,
   });
+
   const handleSetTx = (tx: string) => {
     setTransaction(`${tx}`);
   };

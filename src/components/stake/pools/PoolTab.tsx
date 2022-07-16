@@ -492,7 +492,7 @@ export default function PoolTab({
     });
   };
   const fetchMyStake = async () => {
-    fetchDeposit(handleChangeStake, appTag);
+    await fetchDeposit(handleChangeStake, appTag);
   };
 
   const handleChangeAPR = (
@@ -527,7 +527,7 @@ export default function PoolTab({
   };
 
   const fetchMyReward = async () => {
-    fetchReward(tokensPrices, handleChangeReward, appTag);
+    await fetchReward(tokensPrices, handleChangeReward, appTag);
   };
 
   const handleChangeTVL = (

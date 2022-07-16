@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { contractAddress } from "../abi/address";
-import { appLogger } from "../utils/method";
+import { appLogger, errorToast } from "../utils/method";
 import masterchefABI from "../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 
 export const claimAll = async (appTag: string) => {
@@ -28,6 +28,7 @@ export const claimAll = async (appTag: string) => {
       await claimAll.wait();
     }
   } catch (err: any) {
+    errorToast(err.code);
     appLogger(appTag, "- Error depositVeYeti-", err.message);
   }
 };
@@ -53,6 +54,7 @@ export const claimRagnarPools = async () => {
       await claimRagnarPools.wait();
     }
   } catch (err: any) {
+    errorToast(err.code);
     appLogger("deposit", "- Error depositVeYeti-", err.message);
   }
 };
@@ -78,6 +80,7 @@ export const claimYetiPools = async () => {
       await claimYetiPools.wait();
     }
   } catch (err: any) {
+    errorToast(err.code);
     appLogger("deposit", "- Error depositVeYeti-", err.message);
   }
 };
