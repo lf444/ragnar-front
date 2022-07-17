@@ -277,7 +277,10 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
         <Fade in={open}>
           <Box sx={{ color: "#000000" }}>
             {pool.pairName === "yeti" ? (
-              <RgnYetiStable depositVeYeti={depositVeYeti} />
+              <RgnYetiStable
+                depositVeYeti={depositVeYeti}
+                handleRefetchDeposit={handleRefetchDeposit}
+              />
             ) : (
               <StableTab
                 pool={pool}
