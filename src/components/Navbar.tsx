@@ -56,7 +56,11 @@ const Navbar = ({
   const menuItems = [
     {
       menuTitle: "Farm",
+<<<<<<< HEAD
       pageURL: "/stake",
+=======
+      pageURL: "/farm",
+>>>>>>> ab5a614 (edev: minor change)
     },
     {
       menuTitle: "Claim",
