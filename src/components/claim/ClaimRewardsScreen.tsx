@@ -173,7 +173,7 @@ export default function ClaimRewardsScreen({
             +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn,
           rewardLpCurveYETI:
             +formatEther(myRewardLpCurve.pendingBonusToken) *
-            tokensPrices.priceRgn,
+            tokensPrices.priceRgnYeti,
         });
       }
     } catch (err: any) {

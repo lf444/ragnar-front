@@ -8,5 +8,5 @@ export const contractAddress = {
   fakeYusdAddress: "0xE3Faf2FE4F5Be9c69ec1Ab1D6083A7CA431205Fd",
   fakeLpCurveAddress: "0x8f820Fc5dbEe7f74A6Aef4976Df57D5aDF3b84A6",
   lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024",
-  NFTAddress: ""
+  NFTAddress: "0x1E3E01C11817E2a70Ef5c329E64ECFb7D2218C67"
 };

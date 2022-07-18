@@ -8,6 +8,7 @@ import { contractAddress } from "../../../../abi/address";
 import { useWaitForTransaction } from "wagmi";
 import { errorToast, successToast } from "../../../../utils/method";
 import RGNABI from '../../../../abi/contracts/Tokens/RGN.sol/RGN.json'
+import LOCKABI from '../../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json'
 
 interface RGNTableProps {
   selectedIndex: any;
@@ -43,6 +44,63 @@ const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
         } 
       } catch (err: any) {
     errorToast(err.code);
+  }
+}
+  async function lock(
+    qty: number,
+  ) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lock = new ethers.Contract(contractAddress.NFTAddress, LOCKABI.abi, signer);
+        const amount = ethers.utils.parseEther(qty.toString());
+        let accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+
+        if (selectedIndex === 0) {
+          const lockNFT3month = await lock.mint(
+            String(accounts),
+            amount,
+            3
+          );
+          lockNFT3month.wait();
+
+        } else if (selectedIndex === 1) {
+          const lockNFT6month = await lock.mint(
+            accounts,
+            amount,
+            6
+          );
+          lockNFT6month.wait();
+        } else if (selectedIndex === 2) {
+          const lockNFT12month = await lock.mint(
+            accounts,
+            amount,
+            12
+          );
+          lockNFT12month.wait();
+        } else if (selectedIndex === 3) {
+          const lockNFT24month = await lock.mint(
+            accounts,
+            amount,
+            24
+          );
+          lockNFT24month.wait();
+        } else if (selectedIndex === 4) {
+          const lockNFT36month = await lock.mint(
+            accounts,
+            amount,
+            36
+          );
+          lockNFT36month.wait();
+        } 
+       
+        } 
+      } catch (err: any) {
+    errorToast(err.code);
+    console.log(err)
   }
 }
 
@@ -410,7 +468,7 @@ const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
 =======
           Approve
         </Button>
-        <Button
+        <Button onClick={() => lock(amountToStake)}
           variant="contained"
           sx={{
             width: "20%",

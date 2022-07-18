@@ -100,6 +100,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
               fontSize: { xs: "0.5em", sm: "1.25em" },
               fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
+              textTransform: "uppercase"
             }}
           >
             {pool.pairName}

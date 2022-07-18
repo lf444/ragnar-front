@@ -55,7 +55,7 @@ const Navbar = ({
 
   const menuItems = [
     {
-      menuTitle: "Stake",
+      menuTitle: "Farm",
       pageURL: "/stake",
     },
     {
@@ -63,7 +63,7 @@ const Navbar = ({
       pageURL: "/claim",
     },
     {
-      menuTitle: "Lock",
+      menuTitle: "Stake",
       pageURL: "/lock",
     },
     // SOMES CHANGES
