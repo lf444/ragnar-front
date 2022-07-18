@@ -15,10 +15,8 @@ interface PoolComponentProps {
   stacked: number;
   tvl: number;
   claimable: number;
-  masterchef: boolean;
   depositVeYeti: any;
   isLoading: boolean;
-  aprInfo: any;
   handleRefetchDeposit: () => void;
 }
 
@@ -28,10 +26,8 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
   stacked,
   tvl,
   claimable,
-  masterchef,
   depositVeYeti,
   isLoading,
-  aprInfo,
   handleRefetchDeposit,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -133,7 +129,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
             {!isLoading ? (
               <>
                 {apr + "%"}
-                <Tooltip title={aprInfo}>
+                <Tooltip title={`RGN: ${Math.round(apr)}% , YETI: 0%`}>
                   <InfoRoundedIcon
                     sx={{
                       color: (theme) => theme.palette.background.default,
@@ -285,7 +281,6 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
             ) : (
               <StableTab
                 pool={pool}
-                masterchef={masterchef}
                 handleRefetchDeposit={handleRefetchDeposit}
               />
             )}

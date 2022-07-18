@@ -249,12 +249,15 @@ export default function PoolTab({
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 =======
 
+<<<<<<< HEAD
   const aprInfoRGN = `RGN: ${Math.round(aprRgn.aprRgn)}% , YETI: 0%`;
   const aprInfoYeti = `RGN: ${Math.round(aprRgn.aprYeti)}% , YETI: 0%`;
   const aprInfoYusd = `RGN: ${Math.round(aprRgn.aprYusd)}% , YETI: 0%`;
   const aprInfoLpCurve = `RGN: ${Math.round(aprRgn.aprLpCurve)}% , YETI: 0%`;
 
 >>>>>>> 18b8302 (mint button navbar)
+=======
+>>>>>>> 68542a6 (dev: minor change on pool)
   const RGN = (
     <PoolComponent
       pool={rgnPool}
@@ -262,10 +265,8 @@ export default function PoolTab({
       stacked={Math.round(myStake.myRgn)}
       tvl={Math.round(TVL.tvlRgn)}
       claimable={Math.round(reward.rewardRgn)}
-      masterchef={true}
       depositVeYeti=""
       isLoading={isLoading}
-      aprInfo={aprInfoRGN}
       handleRefetchDeposit={handleRefetchDeposit}
     />
   );
@@ -278,10 +279,8 @@ export default function PoolTab({
       stacked={Math.round(myStake.myYeti)}
       tvl={Math.round(TVL.tvlYeti)}
       claimable={Math.round(reward.rewardYeti)}
-      masterchef={true}
       depositVeYeti={depositVeYeti}
       isLoading={isLoading}
-      aprInfo={aprInfoYeti}
       handleRefetchDeposit={handleRefetchDeposit}
     />
   );
@@ -344,6 +343,7 @@ export default function PoolTab({
       claimable={Math.round(reward.rewardYusd)}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={YusdPool.addressPool}
       pairAddress={YusdPool.pairAddress}
@@ -375,9 +375,12 @@ export default function PoolTab({
 =======
 >>>>>>> 4c8ce80 (dev: removed rgn boolean from poolComponent)
       masterchef={false}
+=======
+>>>>>>> 68542a6 (dev: minor change on pool)
       depositVeYeti=""
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
       isLoading={isLoading}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 03050fe (dev: add loader when fetch)
@@ -389,6 +392,8 @@ export default function PoolTab({
 <<<<<<< HEAD
 >>>>>>> 18b8302 (mint button navbar)
 =======
+=======
+>>>>>>> 68542a6 (dev: minor change on pool)
       handleRefetchDeposit={handleRefetchDeposit}
 >>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
     />
@@ -433,6 +438,7 @@ export default function PoolTab({
       claimable={Math.round(reward.rewardLpCurve)}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4560517 (dev: remove dirty console log)
       addressPool={LpCurvePool.addressPool}
       pairAddress={LpCurvePool.pairAddress}
@@ -470,9 +476,10 @@ export default function PoolTab({
 =======
 >>>>>>> 4c8ce80 (dev: removed rgn boolean from poolComponent)
       masterchef={false}
+=======
+>>>>>>> 68542a6 (dev: minor change on pool)
       depositVeYeti=""
       isLoading={isLoading}
-      aprInfo={aprInfoLpCurve}
       handleRefetchDeposit={handleRefetchDeposit}
     />
   );

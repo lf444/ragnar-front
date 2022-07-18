@@ -99,7 +99,6 @@ function a11yProps(index: number) {
 
 interface StableTabProps {
   pool: Pool;
-  masterchef: boolean;
   handleRefetchDeposit: () => void;
 }
 
@@ -129,7 +128,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
 =======
 const StableTab: FunctionComponent<StableTabProps> = ({
   pool,
-  masterchef,
   handleRefetchDeposit,
 }) => {
 >>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
@@ -177,7 +175,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     await approve(
       amountToStake,
       pool.pairAddress,
-      masterchef,
+      pool.isMasterchef,
       appTag,
       handleSetTx
     );
@@ -187,7 +185,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     await deposit(
       amountToStake,
       pool.pairAddress,
-      masterchef,
+      pool.isMasterchef,
       appTag,
       handleSetDepositTx
     );
@@ -197,7 +195,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     await withdraw(
       amountToStake,
       pool.pairAddress,
-      masterchef,
+      pool.isMasterchef,
       appTag,
       handleSetWithdrawTx
     );

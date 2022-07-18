@@ -64,6 +64,7 @@ export interface Pool {
   addressPool: any;
   pairAddress: any;
   info: any;
+  isMasterchef: boolean;
 }
 
 // NEVER CHANGE PAIR NAME PREFER TO USE TEXT TRANSFORM CSS PROPERTIES
@@ -74,6 +75,7 @@ export const rgnPool: Pool = {
   addressPool: contractAddress.masterchefAddress,
   pairAddress: contractAddress.rgnAddress,
   info: "Stake RGN on Ragnar Finance to earn a portion of the platform's revenue, distributed as Yeti and RGN.",
+  isMasterchef: true,
 };
 export const YetiPool = {
   pairName: "yeti",
@@ -81,6 +83,7 @@ export const YetiPool = {
   addressPool: contractAddress.masterchefAddress,
   pairAddress: contractAddress.yetiAddres,
   info: "",
+  isMasterchef: true,
 };
 export const YusdPool = {
   pairName: "yusd",
@@ -88,6 +91,7 @@ export const YusdPool = {
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.yusdAddress,
   info: "Deposit your YUSD to enjoy the veYeti boost and receive bonus RGN !",
+  isMasterchef: false,
 };
 export const LpCurvePool = {
 <<<<<<< HEAD
@@ -108,5 +112,6 @@ export const LpCurvePool = {
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.lpCurveAddress,
   info: "Deposit your LP Curve to enjoy the veYeti boost and receive bonus RGN !",
+  isMasterchef: false,
 };
 >>>>>>> d1d8a1a (dev: rename component)
