@@ -4,6 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import logo from "../assets/images/logo.png";
 import rgn from "../assets/images/pools/rgn.png";
 import yeti from "../assets/images/pools/yeti.png";
+import avax from "../assets/images/pools/avax.png";
 
 import Button from "@mui/material/Button";
 import { Box, Drawer, Grid, List, Typography, Modal } from "@mui/material";
@@ -25,6 +26,7 @@ const Navbar = ({
   tokensPrices: {
     priceYeti: number;
     priceYusd: number;
+    priceAvax: number;
     priceRgn: number;
     priceLpCurve: number;
     priceRgnYeti: number;
@@ -379,7 +381,7 @@ const Navbar = ({
               xs={7}
               sm={1}
               md={2}
-              lg={1.5}
+              lg={2}
               item
               container
               direction="row"
@@ -461,6 +463,32 @@ const Navbar = ({
                   alt="YETI Logo"
                 />{" "}
                 {tokensPrices.priceYeti.toFixed(3)}$
+              </Typography>
+
+              <Typography
+                sx={{
+                  marginRight: "2%",
+                  fontSize: {
+                    xs: "0.9em",
+                    sm: "0.9em",
+                    md: "0.9em",
+                  },
+                  display: "flex",
+                  alignItems: "center",
+                  fontWeight: "600",
+                }}
+                color="textPrimary"
+              >
+                <Box
+                  component={"img"}
+                  sx={{
+                    height: "22px",
+                    marginRight: "8px",
+                  }}
+                  src={avax}
+                  alt="AVAX Logo"
+                />{" "}
+                {tokensPrices.priceAvax.toFixed(3)}$
               </Typography>
             </Grid>
             <Grid item xs={2} sm={2} md={2} lg={2}>

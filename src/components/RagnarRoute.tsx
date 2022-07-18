@@ -60,8 +60,9 @@ const RagnarRoute = () => {
     priceYeti: 0,
     priceYusd: 0,
     priceRgn: 0,
-    priceLpCurve: 0,
-    priceRgnYeti: 0,
+    priceAvax: 0,
+    priceLpCurve: 1,
+    priceRgnYeti: 1,
   });
 
   // Change of account will trigger render on each fetch for personnal data and update the state accordingly
@@ -75,12 +76,14 @@ const RagnarRoute = () => {
     const yusdPrice = await coinGeckoService.getPrice(TOKEN_ID.yusd);
     const yetiprice = await coinGeckoService.getPrice(TOKEN_ID.yeti);
     const rgnPrice = await coinGeckoService.getPrice(TOKEN_ID.yeti);
+    const avaxPrice = await coinGeckoService.getPrice(TOKEN_ID.avax);
     const lpCurvePrice = await coinGeckoService.getPrice(TOKEN_ID.lpCurve);
     setTokensPrices({
       ...tokensPrices,
       priceYeti: yetiprice,
       priceYusd: yusdPrice,
       priceRgn: rgnPrice,
+      priceAvax: avaxPrice,
       priceLpCurve: 1,
       priceRgnYeti: 1,
     });
