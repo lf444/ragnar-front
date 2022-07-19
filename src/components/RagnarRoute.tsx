@@ -1,12 +1,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
+=======
+>>>>>>> e8b2f8c (dev: repare page)
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import StakeScreen from './stake/StakeScreen';
 import Navbar from './Navbar';
+<<<<<<< HEAD
 import ClaimRewards from './claim/Claim';
 import LockRGN from './lock/Lock';
 import { coinGeckoService } from '../services/coinGeckoService';
@@ -53,6 +57,15 @@ import Footer from "./shared/Footer";
 =======
 import { CircularProgress } from "@mui/material";
 >>>>>>> 2fe4e23 (dev: improve loading on landing)
+=======
+import ClaimScreen from './claim/ClaimScreen';
+import LockRGN from './lock/Lock';
+import { coinGeckoService } from '../services/coinGeckoService';
+import { TOKEN_ID } from '../utils/constance';
+import { useAccount } from 'wagmi';
+import Footer from './shared/Footer';
+import { CircularProgress } from '@mui/material';
+>>>>>>> e8b2f8c (dev: repare page)
 
 const RagnarRoute = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -103,8 +116,13 @@ const RagnarRoute = () => {
   }, [data]);
 
   useEffect(() => {
+<<<<<<< HEAD
     if (location.pathname === "/") {
       navigate("/farm");
+=======
+    if (location.pathname === '/') {
+      navigate('/stake');
+>>>>>>> e8b2f8c (dev: repare page)
     }
   }, [location]);
 
@@ -113,19 +131,23 @@ const RagnarRoute = () => {
       <Navbar tokensPrices={tokensPrices} />
       <Routes>
         <Route
+<<<<<<< HEAD
           path="/farm"
+=======
+          path='/farm'
+>>>>>>> e8b2f8c (dev: repare page)
           element={
             <StakeScreen data={userAccount} tokensPrices={tokensPrices} />
           }
         />
         <Route
-          path="/claim"
+          path='/claim'
           element={
             <ClaimScreen tokensPrices={tokensPrices} data={userAccount} />
           }
         />
         <Route
-          path="/lock"
+          path='/lock'
           element={<LockRGN tokensPrices={tokensPrices} data={userAccount} />}
         />
       </Routes>
@@ -134,11 +156,11 @@ const RagnarRoute = () => {
     <>
       <Navbar tokensPrices={tokensPrices} />
       <CircularProgress
-        size="6rem"
+        size='6rem'
         sx={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
         }}
       />
     </>
