@@ -104,7 +104,7 @@ const RagnarRoute = () => {
 
   useEffect(() => {
     if (location.pathname === "/") {
-      navigate("/stake");
+      navigate("/farm");
     }
   }, [location]);
 
@@ -113,7 +113,7 @@ const RagnarRoute = () => {
       <Navbar tokensPrices={tokensPrices} />
       <Routes>
         <Route
-          path="/stake"
+          path="/farm"
           element={
             <StakeScreen data={userAccount} tokensPrices={tokensPrices} />
           }
