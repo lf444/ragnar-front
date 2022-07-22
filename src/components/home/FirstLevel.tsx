@@ -81,7 +81,7 @@ const FirstLevel = () => {
           <Button
             variant="contained"
             onClick={() => {
-              navigate("/stake");
+              navigate("/farm");
             }}
             sx={{
               backgroundColor: "#DE7650",
@@ -92,12 +92,12 @@ const FirstLevel = () => {
               width: "fit-content",
             }}
           >
-            Start staking !
+            Start farming !
           </Button>
           <Button
             variant="outlined"
             onClick={() => {
-              navigate("/stake");
+              navigate("/farm");
             }}
             sx={{
               backgroundColor: "transparent",
