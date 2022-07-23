@@ -23,7 +23,7 @@ export const claimAll = async (appTag: string) => {
           contractAddress.fakeLpCurveAddress,
           contractAddress.fakeYusdAddress,
         ],
-        String(accounts)
+        accounts[0]
       );
       await claimAll.wait();
     }
@@ -49,7 +49,7 @@ export const claimRagnarPools = async () => {
 
       const claimRagnarPools = await masterchef.multiclaim(
         [contractAddress.rgnAddress, contractAddress.rgnYetiAddress],
-        String(accounts)
+        accounts[0]
       );
       await claimRagnarPools.wait();
     }
@@ -75,7 +75,7 @@ export const claimYetiPools = async () => {
 
       const claimYetiPools = await masterchef.multiclaim(
         [contractAddress.fakeLpCurveAddress, contractAddress.fakeYusdAddress],
-        String(accounts)
+        accounts[0]
       );
       await claimYetiPools.wait();
     }

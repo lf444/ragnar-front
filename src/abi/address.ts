@@ -1,4 +1,5 @@
 export const contractAddress = {
+<<<<<<< HEAD
   masterchefAddress: "0x1361Bc704c62E0fa156af17d209Ff0bbBf1E1540",
   mainstakingAddress: "0xaCaB55cB52BAB9d5c9be3031Cd964DB5726b47Ca",
   rgnAddress: "0xC85ead0da95468d9dE0D8169511370A4884eFA71",
@@ -9,4 +10,16 @@ export const contractAddress = {
   fakeLpCurveAddress: "0x53BC43875405EF5ED9Fc98706Ec815Fa957A38FB",
   lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024",
   NFTAddress: "0xd296aFC2767D5b58EEBc3e03452F6bb53b1A59b1"
+=======
+  masterchefAddress: "0xBb3bD58cF15FE3C79B2a22ca719483956686fA8F",
+  mainstakingAddress: "0xe5F9B91542695079A512b4F03cff2e0044823a5d",
+  rgnAddress: "0x7419e236c11a76aF2faED903BE2bd7ffd57F522a",
+  rgnYetiAddress: "0x727F23956EB69d844A32719580224a12B1BDEACF",
+  yusdAddress: "0xe6BbfD5be4B5AD13302FD5764dFF8e4f604d4887",
+  yetiAddres: "0x77777777777d4554c39223C354A05825b2E8Faa3",
+  fakeYusdAddress: "0xE3Faf2FE4F5Be9c69ec1Ab1D6083A7CA431205Fd",
+  fakeLpCurveAddress: "0x8f820Fc5dbEe7f74A6Aef4976Df57D5aDF3b84A6",
+  lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024",
+  NFTAddress: "0x8A305186a0a2fEdb2E619431a8D23baD6eDe3d22",
+>>>>>>> 1bfe751 (dev: add nft fetch data)
 };

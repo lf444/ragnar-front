@@ -133,22 +133,22 @@ export default function ClaimRewardsScreen({
 
         const myRewardYUSD = await masterchef.pendingTokens(
           contractAddress.fakeYusdAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
         const myRewardRgnYeti = await masterchef.pendingTokens(
           contractAddress.rgnYetiAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
         const myRewardLpCurve = await masterchef.pendingTokens(
           contractAddress.fakeLpCurveAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
         const myRewardRGN = await masterchef.pendingTokens(
           contractAddress.rgnAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
 

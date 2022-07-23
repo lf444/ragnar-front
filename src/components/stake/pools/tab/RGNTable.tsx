@@ -3,20 +3,18 @@ import React from "react";
 import { useState, FunctionComponent } from "react";
 import CustomDisplay from "../../../shared/CustomDisplay";
 import CustomInput from "../../../shared/CustomInput";
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 import { contractAddress } from "../../../../abi/address";
 import { useWaitForTransaction } from "wagmi";
 import { errorToast, successToast } from "../../../../utils/method";
-import RGNABI from '../../../../abi/contracts/Tokens/RGN.sol/RGN.json'
-import LOCKABI from '../../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json'
+import RGNABI from "../../../../abi/contracts/Tokens/RGN.sol/RGN.json";
+import LOCKABI from "../../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
 
 interface RGNTableProps {
   selectedIndex: any;
 }
 
 const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
- 
-  
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -26,84 +24,65 @@ const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
     setAmountToStake(newValue);
   };
 
-  async function approve(
-    qty: number,
-  ) {
+  async function approve(qty: number) {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const rgn = new ethers.Contract(contractAddress.rgnAddress, RGNABI.abi, signer);
+        const rgn = new ethers.Contract(
+          contractAddress.rgnAddress,
+          RGNABI.abi,
+          signer
+        );
         const amount = ethers.utils.parseEther(qty.toString());
-       
-          const tokenApproveMasterchef = await rgn.approve(
-            contractAddress.NFTAddress,
-            amount
-          );
-          tokenApproveMasterchef.wait();
-        } 
-      } catch (err: any) {
-    errorToast(err.code);
+
+        const tokenApproveMasterchef = await rgn.approve(
+          contractAddress.NFTAddress,
+          amount
+        );
+        tokenApproveMasterchef.wait();
+      }
+    } catch (err: any) {
+      errorToast(err.code);
+    }
   }
-}
-  async function lock(
-    qty: number,
-  ) {
+  async function lock(qty: number) {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const lock = new ethers.Contract(contractAddress.NFTAddress, LOCKABI.abi, signer);
+        const lock = new ethers.Contract(
+          contractAddress.NFTAddress,
+          LOCKABI.abi,
+          signer
+        );
         const amount = ethers.utils.parseEther(qty.toString());
         let accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
 
         if (selectedIndex === 0) {
-          const lockNFT3month = await lock.mint(
-            String(accounts),
-            amount,
-            3
-          );
+          const lockNFT3month = await lock.mint(accounts[0], amount, 3);
           lockNFT3month.wait();
-
         } else if (selectedIndex === 1) {
-          const lockNFT6month = await lock.mint(
-            accounts,
-            amount,
-            6
-          );
+          const lockNFT6month = await lock.mint(accounts, amount, 6);
           lockNFT6month.wait();
         } else if (selectedIndex === 2) {
-          const lockNFT12month = await lock.mint(
-            accounts,
-            amount,
-            12
-          );
+          const lockNFT12month = await lock.mint(accounts, amount, 12);
           lockNFT12month.wait();
         } else if (selectedIndex === 3) {
-          const lockNFT24month = await lock.mint(
-            accounts,
-            amount,
-            24
-          );
+          const lockNFT24month = await lock.mint(accounts, amount, 24);
           lockNFT24month.wait();
         } else if (selectedIndex === 4) {
-          const lockNFT36month = await lock.mint(
-            accounts,
-            amount,
-            36
-          );
+          const lockNFT36month = await lock.mint(accounts, amount, 36);
           lockNFT36month.wait();
-        } 
-       
-        } 
-      } catch (err: any) {
-    errorToast(err.code);
-    console.log(err)
+        }
+      }
+    } catch (err: any) {
+      errorToast(err.code);
+      console.log(err);
+    }
   }
-}
-
 
   return (
     <Grid sx={{ width: "100%", pt: "1rem" }} direction="column">
@@ -122,7 +101,8 @@ const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
       </Grid>
       <Grid item container xs={6} justifyContent="flex-start">
         {" "}
-        <Button onClick={() => approve(amountToStake)}
+        <Button
+          onClick={() => approve(amountToStake)}
           variant="contained"
           sx={{
             mr: "1rem",
@@ -468,7 +448,8 @@ const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
 =======
           Approve
         </Button>
-        <Button onClick={() => lock(amountToStake)}
+        <Button
+          onClick={() => lock(amountToStake)}
           variant="contained"
           sx={{
             width: "20%",
@@ -482,6 +463,6 @@ const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
     </Grid>
 >>>>>>> 2ab6f7c (dev: css top lock)
   );
-}
+};
 
 export default RGNTable;

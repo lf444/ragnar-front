@@ -77,7 +77,7 @@ export const deposit = async (
         const depositTokenMainstaking = await mainstaking.deposit(
           address,
           amount,
-          String(accounts)
+          accounts[0]
         );
         depositTokenMainstaking.wait();
         handleSetTx(depositTokenMainstaking.hash);
@@ -126,7 +126,7 @@ export const withdraw = async (
         const depositTokenMainstaking = await mainstaking.withdraw(
           address,
           amount,
-          String(accounts)
+          accounts[0]
         );
         depositTokenMainstaking.wait();
         handleSetTx(depositTokenMainstaking.hash);

@@ -65,13 +65,13 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
       );
       try {
         if (stake) {
-          const balanceOfToken = await token.balanceOf(String(accounts));
+          const balanceOfToken = await token.balanceOf(accounts[0]);
           const parseBalanceOf = formatEther(String(balanceOfToken));
           setAmountToStake(Math.round(+parseBalanceOf));
         } else {
           const balanceOfTokenStaked = await masterchef.depositInfo(
             address,
-            String(accounts)
+            accounts[0]
           );
           const parseBalanceOfStaked = ethers.utils.formatEther(
             String(balanceOfTokenStaked)

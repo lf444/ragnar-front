@@ -57,19 +57,19 @@ const Funds = ({
 
         const myDepositYUSD = await masterchef.depositInfo(
           contractAddress.fakeYusdAddress,
-          String(accounts)
+          accounts[0]
         );
         const myDepositRgnYeti = await masterchef.depositInfo(
           contractAddress.rgnYetiAddress,
-          String(accounts)
+          accounts[0]
         );
         const myDepositLpCurve = await masterchef.depositInfo(
           contractAddress.fakeLpCurveAddress,
-          String(accounts)
+          accounts[0]
         );
         const myDepositRGN = await masterchef.depositInfo(
           contractAddress.rgnAddress,
-          String(accounts)
+          accounts[0]
         );
         setDeposit(
           +formatEther(myDepositYUSD) * tokensPrices.priceYusd +
@@ -100,22 +100,22 @@ const Funds = ({
         );
         const myRewardYUSD = await masterchef.pendingTokens(
           contractAddress.fakeYusdAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
         const myRewardRgnYeti = await masterchef.pendingTokens(
           contractAddress.rgnYetiAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
         const myRewardLpCurve = await masterchef.pendingTokens(
           contractAddress.fakeLpCurveAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
         const myRewardRGN = await masterchef.pendingTokens(
           contractAddress.rgnAddress,
-          String(accounts),
+          accounts[0],
           contractAddress.yetiAddres
         );
 

@@ -120,19 +120,19 @@ export const fetchDeposit = async (
       );
       const myDepositYUSD = await masterchefUser.depositInfo(
         contractAddress.fakeYusdAddress,
-        String(accounts)
+        accounts[0]
       );
       const myDepositYeti = await masterchefUser.depositInfo(
         contractAddress.rgnYetiAddress,
-        String(accounts)
+        accounts[0]
       );
       const myDepositRgn = await masterchefUser.depositInfo(
         contractAddress.rgnAddress,
-        String(accounts)
+        accounts[0]
       );
       const myDepositLpCurve = await masterchefUser.depositInfo(
         contractAddress.fakeLpCurveAddress,
-        String(accounts)
+        accounts[0]
       );
 
       handleChangeStake(
@@ -178,22 +178,22 @@ export const fetchReward = async (
       );
       const myRewardYUSD = await masterchef.pendingTokens(
         contractAddress.fakeYusdAddress,
-        String(accounts),
+        accounts[0],
         contractAddress.yetiAddres
       );
       const myRewardRgnYeti = await masterchef.pendingTokens(
         contractAddress.rgnYetiAddress,
-        String(accounts),
+        accounts[0],
         contractAddress.yetiAddres
       );
       const myRewardLpCurve = await masterchef.pendingTokens(
         contractAddress.fakeLpCurveAddress,
-        String(accounts),
+        accounts[0],
         contractAddress.yetiAddres
       );
       const myRewardRGN = await masterchef.pendingTokens(
         contractAddress.rgnAddress,
-        String(accounts),
+        accounts[0],
         contractAddress.yetiAddres
       );
 
