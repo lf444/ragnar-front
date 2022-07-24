@@ -39,7 +39,7 @@ const MyNFT = () => {
          }
          nftByUser.forEach(async (element) => nftMetadataByUser.push(await lock.tokenURI(element)))  
          
-        console.log(atob(nftMetadataByUser))
+        console.log(nftMetadataByUser)
         
       } 
   } catch (error) {
