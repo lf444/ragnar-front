@@ -1,21 +1,17 @@
-import { CardMedia, Grid, Typography } from "@mui/material";
+import { Box, CardMedia, Grid, Paper, Typography } from "@mui/material";
 import { ethers } from "ethers";
 import { contractAddress } from "../../abi/address";
 import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
 import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { Buffer } from "buffer";
-import { formatEther } from "ethers/lib/utils";
-import DisplayNFT from "./DisplayNFT";
-import { appLogger } from "../../utils/method";
+import Carousel from "react-material-ui-carousel";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const MyNFT = () => {
   const { data, error } = useAccount();
-
-  const nftByUser: any[] = [];
-  const nftMetadataByUser: any[] = [];
-
-  const [test, setTest] = useState<any[]>([]);
+  const [nftMetadata, setNftMetadata] = useState<any[]>([]);
 
   useEffect(() => {
     if (data) {
@@ -72,7 +68,7 @@ const MyNFT = () => {
               );
             });
           })
-          .then(() => setTest(emptyNFt));
+          .then(() => setNftMetadata(emptyNFt));
       }
     } catch (error) {
       console.log(error);
@@ -80,11 +76,53 @@ const MyNFT = () => {
     }
   };
 
+  var items = [
+    {
+      name: "Random Name #1",
+      description: "Probably the most random thing you have ever seen!",
+    },
+    {
+      name: "Random Name #2",
+      description: "Hello World!",
+    },
+  ];
+
   return (
     <>
-      <DisplayNFT test={test} />
+      <Carousel
+        navButtonsAlwaysVisible
+        NextIcon={<ArrowRightIcon />}
+        PrevIcon={<ArrowLeftIcon />}
+        indicatorContainerProps={{
+          style: {
+            marginTop: "1.5rem",
+            textAlign: "center",
+          },
+        }}
+      >
+        {nftMetadata.map((meta, i) => (
+          <Box
+            sx={{
+              height: "300px",
+              width: "250px",
+              ml: "auto",
+              mr: "auto",
+            }}
+          >
+            <object type="image/svg+xml" data={meta.image}></object>
+          </Box>
+        ))}
+      </Carousel>
     </>
   );
 };
 
 export default MyNFT;
+
+function Item(props: any) {
+  return (
+    <Box sx={{ height: "300px", width: "250px" }}>
+      <object type="image/svg+xml" data={props.item}></object>
+    </Box>
+  );
+}

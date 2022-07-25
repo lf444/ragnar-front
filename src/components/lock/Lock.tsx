@@ -27,7 +27,7 @@ const LockRGN = ({
       <Zoom in={true}>
         <Grid
           container
-          direction="column"
+          direction="row"
           alignItems="center"
           sx={{
             marginBottom: "4rem",
@@ -35,12 +35,12 @@ const LockRGN = ({
             marginRight: "auto",
             width: {
               xs: "100%",
-              sm: "70%",
+              sm: "65%",
             },
             borderRadius: { xs: "0px", sm: "20px" },
           }}
         >
-          <Grid item sx={{ width: "90%", paddingBottom: 5 }}>
+          <Grid item sx={{ width: "100%", paddingBottom: 5 }}>
             <Typography
               sx={{
                 fontWeight: "bold",
@@ -62,7 +62,7 @@ const LockRGN = ({
             />
           </Grid>
 
-          <Grid item sx={{ width: "90%" }}>
+          <Grid item xs={12} sx={{ width: "100%", mb: "25px", p: 1 }}>
             <LockPool
               pairName1={"RGN"}
               addressPool={"0x5817d4f0b62a59b17f75207da1848c2ce75e7af4"}
@@ -70,32 +70,84 @@ const LockRGN = ({
               type={"rgn"}
               openForScreen={true}
             />
-            <Grid item sx={{ width: "90%", paddingBottom: 5 }} />
+          </Grid>
+          <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
+            {" "}
             <Grid
               item
+              xs={12}
               sx={{
                 color: (theme) => theme.palette.text.primary,
+                backgroundColor: theme.palette.secondary.main,
+                borderRadius: "5px 5px 0 0",
+                widthl: "100%",
                 fontWeight: "bold",
                 fontSize: { xs: "0.75em", sm: "1em" },
+                pl: "1rem",
+                pt: "0.5em",
+                pb: "1rem",
+                borderBottom: 2,
+                borderColor: "divider",
+                alignItems: "center",
               }}
             >
-              Your NFTs
+              My NFTs
             </Grid>
-            <Box
+            <Grid
+              xs={12}
               sx={{
                 width: "100%",
-                color: "#000000",
                 marginBottom: "25px",
                 backgroundColor: theme.palette.secondary.main,
-                borderRadius: "5px 5px 5px 5px",
+                borderRadius: "0 0 5px 5px",
                 paddingTop: 1,
                 paddingBottom: 1,
                 paddingLeft: 3,
                 paddingRight: 3,
+                marginLeft: "auto",
+                marginRight: "auto",
               }}
             >
               <MyNFT />
-            </Box>
+            </Grid>
+          </Grid>
+          <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
+            {" "}
+            <Grid
+              item
+              xs={12}
+              sx={{
+                color: (theme) => theme.palette.text.primary,
+                backgroundColor: theme.palette.secondary.main,
+                borderRadius: "5px 5px 0 0",
+                widthl: "100%",
+                fontWeight: "bold",
+                fontSize: { xs: "0.75em", sm: "1em" },
+                pl: "1rem",
+                pt: "0.5em",
+                pb: "1rem",
+                borderBottom: 2,
+                borderColor: "divider",
+                alignItems: "center",
+              }}
+            >
+              Rewards
+            </Grid>
+            <Grid
+              xs={12}
+              sx={{
+                width: "100%",
+                marginBottom: "25px",
+                backgroundColor: theme.palette.secondary.main,
+                borderRadius: "0 0 5px 5px",
+                paddingTop: 1,
+                paddingBottom: 1,
+                paddingLeft: 3,
+                paddingRight: 3,
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            ></Grid>
           </Grid>
         </Grid>
       </Zoom>
