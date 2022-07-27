@@ -127,6 +127,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   function approveTokenRgnYETI() {
 <<<<<<< HEAD
     try {
@@ -213,14 +214,19 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
     withdraw(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 =======
+=======
+  // @ts-ignore
+>>>>>>> 4485386 (dev: better metamask connexion gestion)
   const { data, isError, isLoading } = useWaitForTransaction({
     hash: transaction,
   });
 
+  // @ts-ignore
   const waitDepositTX = useWaitForTransaction({
     hash: depositTX,
   });
 
+  // @ts-ignore
   const waitWithdrawTX = useWaitForTransaction({
     hash: withdrawTX,
   });

@@ -161,12 +161,12 @@ function a11yProps(index: number) {
 }
 
 export default function PoolTab({
-  data,
+  userAddress,
   tokensPrices,
   shouldRefetchData,
   handleRefetchDeposit,
 }: {
-  data: any;
+  userAddress: any;
   tokensPrices: {
     priceYeti: number;
     priceYusd: number;
@@ -576,7 +576,7 @@ export default function PoolTab({
   const fetchAllData = async () => {
     await fetchTVL();
     await getApr();
-    if (data) {
+    if (userAddress) {
       await fetchMyReward();
       await fetchMyStake();
     }
@@ -627,19 +627,27 @@ export default function PoolTab({
   }, []);
 
   useEffect(() => {
-    if (data && data.isConnected) {
+    if (userAddress) {
       setIsLoading(true);
       fetchAllData().then(() => setTimeout(() => setIsLoading(false), 1000));
     }
+<<<<<<< HEAD
     if (!data) {
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
+=======
+    if (!userAddress) {
+>>>>>>> 4485386 (dev: better metamask connexion gestion)
       setIsLoading(true);
       resetData();
       setTimeout(() => setIsLoading(false), 1000);
     }
+<<<<<<< HEAD
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
   }, [data]);
 >>>>>>> 3e0e08f (dev: when connect sucfuless re-fetch data)
+=======
+  }, [userAddress]);
+>>>>>>> 4485386 (dev: better metamask connexion gestion)
 
   useEffect(() => {
     if (shouldRefetchData) {

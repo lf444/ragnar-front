@@ -7,10 +7,10 @@ import PageHeader from "../shared/PageHeader";
 import { useState } from "react";
 
 const StakeScreen = ({
-  data,
+  userAddress,
   tokensPrices,
 }: {
-  data: any;
+  userAddress: any;
   tokensPrices: {
     priceYeti: number;
     priceYusd: number;
@@ -60,14 +60,14 @@ const StakeScreen = ({
             <Funds
               tokensPrices={tokensPrices}
               shouldDisplaySecondTabPrice
-              data={data}
+              userAddress={userAddress}
               shouldRefetchData={shouldRefetchData}
             />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
             <PoolTab
               tokensPrices={tokensPrices}
-              data={data}
+              userAddress={userAddress}
               shouldRefetchData={shouldRefetchData}
               handleRefetchDeposit={handleRefetchDeposit}
             />

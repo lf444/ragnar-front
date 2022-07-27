@@ -1,4 +1,4 @@
-import { Box, CardMedia, Grid, Paper, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { ethers } from "ethers";
 import { contractAddress } from "../../abi/address";
 import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
@@ -9,15 +9,14 @@ import Carousel from "react-material-ui-carousel";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
-const MyNFT = () => {
-  const { data, error } = useAccount();
+const MyNFT = ({ userAddress }: { userAddress: string | undefined }) => {
   const [nftMetadata, setNftMetadata] = useState<any[]>([]);
 
   useEffect(() => {
-    if (data) {
+    if (userAddress) {
       getNFTByOwner();
     }
-  }, [data]);
+  }, [userAddress]);
 
   const getNFTByOwner = async () => {
     try {
@@ -29,6 +28,7 @@ const MyNFT = () => {
           LOCKABI.abi,
           signer
         );
+<<<<<<< HEAD
         let accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
@@ -53,9 +53,11 @@ const MyNFT = () => {
         }
 =======
 >>>>>>> 881e8eb (dev: add nft viewer)
+=======
+>>>>>>> 4485386 (dev: better metamask connexion gestion)
 
         let emptyNFt: any[] = [];
-        const test = await lock.getNftsOfOwner(accounts[0]);
+        const test = await lock.getNftsOfOwner(userAddress);
         const allNFTOwned = await Promise.all(
           test.map((e: any) => {
             return lock.tokenURI(e);
@@ -108,6 +110,7 @@ const MyNFT = () => {
               ml: "auto",
               mr: "auto",
             }}
+            key={i}
           >
             <object type="image/svg+xml" data={meta.image}></object>
           </Box>

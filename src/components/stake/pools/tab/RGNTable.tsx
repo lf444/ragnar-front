@@ -85,7 +85,7 @@ const RGNTable: FunctionComponent<RGNTableProps> = ({ selectedIndex }) => {
   }
 
   return (
-    <Grid sx={{ width: "100%", pt: "1rem" }} direction="column">
+    <Grid container sx={{ width: "100%", pt: "1rem" }} direction="column">
       <Grid item container xs={12}>
         <CustomDisplay poolName={"RGN"} display="LOCK" />
       </Grid>

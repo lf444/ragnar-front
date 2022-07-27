@@ -165,7 +165,6 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({
           onChange={(e) => handleChangeAmount(e)}
           disableUnderline
           placeholder="Enter an amount"
-          defaultValue={0}
           value={amountToStake}
           type="number"
         ></Input>

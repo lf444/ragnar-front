@@ -9,10 +9,10 @@ import PageHeader from "../shared/PageHeader";
 import { useState } from "react";
 
 const LockRGN = ({
-  data,
+  userAddress,
   tokensPrices,
 }: {
-  data: any;
+  userAddress: string | undefined;
   tokensPrices: {
     priceYeti: number;
     priceYusd: number;
@@ -56,7 +56,7 @@ const LockRGN = ({
             </Typography>
             <Funds
               shouldDisplaySecondTabPrice={true}
-              data={data}
+              userAddress={userAddress}
               shouldRefetchData={false}
               tokensPrices={tokensPrices}
             />
@@ -94,6 +94,7 @@ const LockRGN = ({
               My NFTs
             </Grid>
             <Grid
+              item
               xs={12}
               sx={{
                 width: "100%",
@@ -108,7 +109,7 @@ const LockRGN = ({
                 marginRight: "auto",
               }}
             >
-              <MyNFT />
+              <MyNFT userAddress={userAddress} />
             </Grid>
           </Grid>
           <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
@@ -134,6 +135,7 @@ const LockRGN = ({
               Rewards
             </Grid>
             <Grid
+              item
               xs={12}
               sx={{
                 width: "100%",

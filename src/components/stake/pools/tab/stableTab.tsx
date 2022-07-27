@@ -147,14 +147,17 @@ const StableTab: FunctionComponent<StableTabProps> = ({
     setAmountToStake(newValue);
   };
 
+  // @ts-ignore
   const { data, isError, isLoading } = useWaitForTransaction({
     hash: transaction,
   });
 
+  // @ts-ignore
   const waitDepositTX = useWaitForTransaction({
     hash: depositTX,
   });
 
+  // @ts-ignore
   const waitWithdrawTX = useWaitForTransaction({
     hash: withdrawTX,
   });

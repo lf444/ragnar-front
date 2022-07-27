@@ -6,10 +6,10 @@ import Funds from "../stake/funds/Funds";
 import ClaimRewardsScreen from "./ClaimRewardsScreen";
 
 const ClaimScreen = ({
-  data,
+  userAddress,
   tokensPrices,
 }: {
-  data: any;
+  userAddress: any;
   tokensPrices: {
     priceYeti: number;
     priceYusd: number;
@@ -54,12 +54,15 @@ const ClaimScreen = ({
             <Funds
               tokensPrices={tokensPrices}
               shouldDisplaySecondTabPrice={false}
-              data={data}
+              userAddress={userAddress}
               shouldRefetchData={false}
             />
           </Grid>
           <Grid item sx={{ width: "90%" }}>
-            <ClaimRewardsScreen tokensPrices={tokensPrices} data={data} />
+            <ClaimRewardsScreen
+              tokensPrices={tokensPrices}
+              userAddress={userAddress}
+            />
           </Grid>
         </Grid>
       </Zoom>

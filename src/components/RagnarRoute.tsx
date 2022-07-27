@@ -79,9 +79,9 @@ const RagnarRoute = () => {
   });
 
   // Change of account will trigger render on each fetch for personnal data and update the state accordingly
-  const [userAccount, setUserAccount] = useState<any>(undefined);
+  const [userAddress, setUserAccount] = useState<any>(undefined);
 
-  const { data, error } = useAccount();
+  const { address, isConnected } = useAccount();
   let navigate = useNavigate();
   const location = useLocation();
 
@@ -108,12 +108,12 @@ const RagnarRoute = () => {
   }, []);
 
   useEffect(() => {
-    if (data) {
-      setUserAccount(data);
+    if (isConnected && address) {
+      setUserAccount(address);
     } else {
       setUserAccount(undefined);
     }
-  }, [data]);
+  }, [address]);
 
   useEffect(() => {
 <<<<<<< HEAD
@@ -137,18 +137,31 @@ const RagnarRoute = () => {
           path='/farm'
 >>>>>>> e8b2f8c (dev: repare page)
           element={
-            <StakeScreen data={userAccount} tokensPrices={tokensPrices} />
+            <StakeScreen
+              userAddress={userAddress}
+              tokensPrices={tokensPrices}
+            />
           }
         />
         <Route
           path='/claim'
           element={
-            <ClaimScreen tokensPrices={tokensPrices} data={userAccount} />
+            <ClaimScreen
+              tokensPrices={tokensPrices}
+              userAddress={userAddress}
+            />
           }
         />
         <Route
+<<<<<<< HEAD
           path='/lock'
           element={<LockRGN tokensPrices={tokensPrices} data={userAccount} />}
+=======
+          path="/lock"
+          element={
+            <LockRGN tokensPrices={tokensPrices} userAddress={userAddress} />
+          }
+>>>>>>> 4485386 (dev: better metamask connexion gestion)
         />
       </Routes>
     </>

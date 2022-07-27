@@ -14,12 +14,12 @@ import { fetchAllTvl } from "../../../rpc/PoolFunc";
 const appTag: string = "Funds";
 
 const Funds = ({
-  data,
+  userAddress,
   shouldDisplaySecondTabPrice,
   shouldRefetchData,
   tokensPrices,
 }: {
-  data: any;
+  userAddress: string | undefined;
   tokensPrices: {
     priceYeti: number;
     priceYusd: number;
@@ -194,7 +194,7 @@ const Funds = ({
   };
 
   const fetchAllData = async () => {
-    if (data) {
+    if (userAddress) {
       await fetchMasterChefData();
     }
     shouldDisplaySecondTabPrice && (await getMainsStakingData());
@@ -211,17 +211,17 @@ const Funds = ({
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (userAddress) {
       setIsLoading(true);
       fetchAllData().then(() => setIsLoading(false));
     }
 
-    if (!data) {
+    if (!userAddress) {
       setIsLoading(true);
       resetData();
       setTimeout(() => setIsLoading(false), 1000);
     }
-  }, [data]);
+  }, [userAddress]);
 
   useEffect(() => {
     if (shouldRefetchData) {

@@ -21,10 +21,10 @@ import {
 const appTag: string = "ClaimRewardsScreen";
 
 export default function ClaimRewardsScreen({
-  data,
+  userAddress,
   tokensPrices,
 }: {
-  data: any;
+  userAddress: string | undefined;
   tokensPrices: {
     priceYeti: number;
     priceYusd: number;
@@ -120,9 +120,6 @@ export default function ClaimRewardsScreen({
   async function fetchMyReward() {
     try {
       if (window.ethereum) {
-        let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const masterchef = new ethers.Contract(
@@ -133,22 +130,22 @@ export default function ClaimRewardsScreen({
 
         const myRewardYUSD = await masterchef.pendingTokens(
           contractAddress.fakeYusdAddress,
-          accounts[0],
+          userAddress,
           contractAddress.yetiAddres
         );
         const myRewardRgnYeti = await masterchef.pendingTokens(
           contractAddress.rgnYetiAddress,
-          accounts[0],
+          userAddress,
           contractAddress.yetiAddres
         );
         const myRewardLpCurve = await masterchef.pendingTokens(
           contractAddress.fakeLpCurveAddress,
-          accounts[0],
+          userAddress,
           contractAddress.yetiAddres
         );
         const myRewardRGN = await masterchef.pendingTokens(
           contractAddress.rgnAddress,
-          accounts[0],
+          userAddress,
           contractAddress.yetiAddres
         );
 
@@ -220,7 +217,7 @@ export default function ClaimRewardsScreen({
   const fetchAllData = async () => {
     await fetchTVL();
     await getApr();
-    if (data && data.isConnected) {
+    if (userAddress) {
       await fetchMyReward();
       await fetchMyStake();
     }
@@ -231,16 +228,16 @@ export default function ClaimRewardsScreen({
   }, []);
 
   useEffect(() => {
-    if (data && data.isConnected) {
+    if (userAddress) {
       setIsLoading(true);
       fetchAllData().then(() => setIsLoading(false));
     }
-    if (!data) {
+    if (!userAddress) {
       setIsLoading(true);
       resetData();
       setTimeout(() => setIsLoading(false), 1000);
     }
-  }, [data]);
+  }, [userAddress]);
 
   return (
     <>
