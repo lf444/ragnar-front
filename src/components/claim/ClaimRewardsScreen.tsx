@@ -241,173 +241,213 @@ export default function ClaimRewardsScreen({
 
   return (
     <>
-      <Grid
-        container
-        direction="row"
-        alignItems="center"
-        sx={{ height: "400px" }}
-      >
-        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
-          <Grid
-            container
-            sx={{
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "60px",
-              borderRadius: "5px 5px 0px 0px",
-            }}
-          >
+      <Grid container direction="row">
+        <Grid
+          item
+          container
+          direction="row"
+          xs={12}
+          sx={{ marginBottom: "5rem" }}
+        >
+          <Grid item xs={6} sx={{ pr: 2 }}>
             <Grid
-              item
-              xs={1.5}
+              container
               sx={{
-                fontWeight: "bold",
-                fontSize: "20px",
-                textAlign: "center",
-                marginTop: "10px",
-                marginLeft: "8px",
+                backgroundColor: (theme) => theme.palette.secondary.main,
+                height: "40px",
+                borderRadius: "5px 5px 0px 0px",
               }}
             >
-              <img height="40px" src={rgn} alt="Ragnar Logo"></img>
+              <Grid
+                item
+                xs={1.5}
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  textAlign: "center",
+                  marginTop: "10px",
+                  marginLeft: "8px",
+                }}
+              >
+                <img height="40px" src={rgn} alt="Ragnar Logo"></img>
+              </Grid>
+              <Grid
+                item
+                xs={6}
+                lg={8}
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: { xs: "12px", md: "16px" },
+                  textAlign: "left",
+                  marginTop: { xs: "20px", md: "18px" },
+                  color: (theme) => theme.palette.text.primary,
+                  marginLeft: { xs: "30px", md: "20px", lg: "10px" },
+                }}
+              >
+                Ragnar Pools
+              </Grid>
             </Grid>
             <Grid
               item
-              xs={6}
-              lg={8}
+              xs={12}
+              container
+              direction="row"
               sx={{
-                fontWeight: "bold",
-                fontSize: { xs: "12px", md: "16px" },
-                textAlign: "left",
-                marginTop: { xs: "20px", md: "18px" },
-                color: (theme) => theme.palette.text.primary,
-                marginLeft: { xs: "30px", md: "20px", lg: "10px" },
+                p: 1,
+                borderRadius: "0px 0px 5px 5px",
+                backgroundColor: (theme) => theme.palette.secondary.main,
+                height: "100%",
               }}
             >
-              Ragnar Pools
+              <ClaimTable
+                pool1="RGN"
+                pool2="RGNYETI"
+                apr1={Math.round(aprRgn.aprRgn)}
+                apr2={Math.round(aprRgn.aprYeti)}
+                deposit1={Math.round(myStake.myRgn)}
+                deposit2={Math.round(myStake.myYeti)}
+                tvl1={Math.round(TVL.tvlRgn)}
+                tvl2={Math.round(TVL.tvlYeti)}
+                isLoading={isLoading}
+              />
+              {/*              <Button
+                sx={{
+                  variant: "contained",
+                  backgroundColor: (theme) => theme.palette.primary.light,
+                  color: (theme) => theme.palette.text.primary,
+                  width: { xs: "100px" },
+                  fontWeight: "bold",
+                  fontSize: "12px",
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                }}
+              >
+                Claim
+              </Button> */}
             </Grid>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            container
-            direction="row"
-            sx={{
-              p: 1,
-              borderRadius: "0px 0px 5px 5px",
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "100%",
-            }}
-          >
-            <ClaimTable
-              pool1="RGN"
-              pool2="RGNYETI"
-              apr1={Math.round(aprRgn.aprRgn)}
-              apr2={Math.round(aprRgn.aprYeti)}
-              deposit1={Math.round(myStake.myRgn)}
-              deposit2={Math.round(myStake.myYeti)}
-              tvl1={Math.round(TVL.tvlRgn)}
-              tvl2={Math.round(TVL.tvlYeti)}
+          <Grid item xs={6} sx={{ pr: 2, pb: "1.3rem" }}>
+            <ClaimRewards
+              claim={claimRagnarPools}
+              title={InfoRgnYetiPools}
+              title2={InfoRgnPools}
+              text1={"RGNYETI Pools:"}
+              text2={"RGN Pools:"}
+              price1={reward.rewardYetiRGN + reward.rewardYetiYETI}
+              price2={reward.rewardRgnRGN + reward.rewardRgnYETI}
+              price3={
+                reward.rewardYetiRGN +
+                reward.rewardYetiYETI +
+                reward.rewardRgnRGN +
+                reward.rewardRgnYETI
+              }
               isLoading={isLoading}
             />
           </Grid>
         </Grid>
-        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
-          <ClaimRewards
-            claim={claimRagnarPools}
-            title={InfoRgnYetiPools}
-            title2={InfoRgnPools}
-            text1={"RGNYETI Pools:"}
-            text2={"RGN Pools:"}
-            price1={reward.rewardYetiRGN + reward.rewardYetiYETI}
-            price2={reward.rewardRgnRGN + reward.rewardRgnYETI}
-            price3={
-              reward.rewardYetiRGN +
-              reward.rewardYetiYETI +
-              reward.rewardRgnRGN +
-              reward.rewardRgnYETI
-            }
-            isLoading={isLoading}
-          />
-        </Grid>
-        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
-          <Grid
-            container
-            sx={{
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "60px",
-              borderRadius: "5px 5px 0px 0px",
-            }}
-          >
+        <Grid item container direction="row" xs={12}>
+          <Grid item xs={6} sx={{ pr: 2, marginBottom: "5rem" }}>
             <Grid
-              item
-              xs={1.5}
+              container
               sx={{
-                fontWeight: "bold",
-                fontSize: "20px",
-                textAlign: "center",
-                marginTop: "10px",
-                marginLeft: "8px",
+                backgroundColor: (theme) => theme.palette.secondary.main,
+                height: "60px",
+                borderRadius: "5px 5px 0px 0px",
               }}
             >
-              <img height="45px" src={yeti} alt="yeti logo"></img>
+              <Grid
+                item
+                xs={1.5}
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  textAlign: "center",
+                  marginTop: "10px",
+                  marginLeft: "8px",
+                }}
+              >
+                <img height="45px" src={yeti} alt="yeti logo"></img>
+              </Grid>
+              <Grid
+                item
+                xs={6}
+                lg={8}
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: { xs: "12px", md: "16px" },
+                  textAlign: "left",
+                  marginTop: { xs: "22px", md: "18px" },
+                  color: (theme) => theme.palette.text.primary,
+                  marginLeft: { xs: "30px", md: "20px", lg: "10px" },
+                }}
+              >
+                Yeti Pools
+              </Grid>
             </Grid>
             <Grid
               item
-              xs={6}
-              lg={8}
+              xs={12}
+              container
+              direction="row"
               sx={{
-                fontWeight: "bold",
-                fontSize: { xs: "12px", md: "16px" },
-                textAlign: "left",
-                marginTop: { xs: "22px", md: "18px" },
-                color: (theme) => theme.palette.text.primary,
-                marginLeft: { xs: "30px", md: "20px", lg: "10px" },
+                p: 1,
+                borderRadius: "0px 0px 5px 5px",
+                backgroundColor: (theme) => theme.palette.secondary.main,
+                height: "100%",
               }}
             >
-              Yeti Pools
+              <ClaimTable
+                pool1="YUSD"
+                pool2="LPCURVE"
+                apr1={Math.round(aprRgn.aprYusd)}
+                apr2={Math.round(aprRgn.aprLpCurve)}
+                deposit1={Math.round(myStake.myYusd)}
+                deposit2={Math.round(myStake.myLpCurve)}
+                tvl1={Math.round(TVL.tvlYusd)}
+                tvl2={Math.round(TVL.tvlLpCurve)}
+                isLoading={isLoading}
+              />
+              {/*          <Button
+                sx={{
+                  variant: "contained",
+                  backgroundColor: (theme) => theme.palette.primary.light,
+                  color: (theme) => theme.palette.text.primary,
+                  width: { xs: "100px" },
+                  fontWeight: "bold",
+                  fontSize: "",
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                }}
+              >
+                Claim
+              </Button> */}
             </Grid>
           </Grid>
           <Grid
             item
-            xs={12}
-            container
-            direction="row"
+            xs={6}
             sx={{
-              p: 1,
-              borderRadius: "0px 0px 5px 5px",
-              backgroundColor: (theme) => theme.palette.secondary.main,
-              height: "100%",
+              pr: 2,
+              marginBottom: "5rem",
             }}
           >
-            <ClaimTable
-              pool1="YUSD"
-              pool2="LPCURVE"
-              apr1={Math.round(aprRgn.aprYusd)}
-              apr2={Math.round(aprRgn.aprLpCurve)}
-              deposit1={Math.round(myStake.myYusd)}
-              deposit2={Math.round(myStake.myLpCurve)}
-              tvl1={Math.round(TVL.tvlYusd)}
-              tvl2={Math.round(TVL.tvlLpCurve)}
+            <ClaimRewards
+              claim={claimYetiPools}
+              title={InfoYUSDPools}
+              title2={InfoLpCurvePools}
+              text1={"YUSD Pools:"}
+              text2={"LP CURVE Pools:"}
+              price1={reward.rewardYusdRGN + reward.rewardYusdYETI}
+              price2={reward.rewardLpCurveRGN + reward.rewardLpCurveYETI}
+              price3={
+                reward.rewardYusdRGN +
+                reward.rewardYusdYETI +
+                reward.rewardLpCurveRGN +
+                reward.rewardLpCurveYETI
+              }
               isLoading={isLoading}
             />
           </Grid>
-        </Grid>
-        <Grid item xs={6} sx={{ height: "50%", pr: 2, marginBottom: "5rem" }}>
-          <ClaimRewards
-            claim={claimYetiPools}
-            title={InfoYUSDPools}
-            title2={InfoLpCurvePools}
-            text1={"YUSD Pools:"}
-            text2={"LP CURVE Pools:"}
-            price1={reward.rewardYusdRGN + reward.rewardYusdYETI}
-            price2={reward.rewardLpCurveRGN + reward.rewardLpCurveYETI}
-            price3={
-              reward.rewardYusdRGN +
-              reward.rewardYusdYETI +
-              reward.rewardLpCurveRGN +
-              reward.rewardLpCurveYETI
-            }
-            isLoading={isLoading}
-          />
         </Grid>
         <Grid container>
           <Grid item xs={12} sx={{ textAlign: "center" }}>

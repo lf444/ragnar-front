@@ -70,10 +70,9 @@ const Navbar = ({
       pageURL: "/claim",
     },
     {
-      menuTitle: "Stake",
+      menuTitle: "Lock",
       pageURL: "/lock",
     },
-    // SOMES CHANGES
     /*   {
       menuTitle: "Borrow",
       pageURL: "/borrow",

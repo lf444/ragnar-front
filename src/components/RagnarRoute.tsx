@@ -53,6 +53,7 @@ import { useAccount } from "wagmi";
 >>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
 import Footer from "./shared/Footer";
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b84f72d (dev: component re-organise)
 =======
 import { CircularProgress } from "@mui/material";
@@ -66,6 +67,9 @@ import { useAccount } from 'wagmi';
 import Footer from './shared/Footer';
 import { CircularProgress } from '@mui/material';
 >>>>>>> e8b2f8c (dev: repare page)
+=======
+import { Box, CircularProgress } from "@mui/material";
+>>>>>>> 63997b5 (dev: test footer)
 
 const RagnarRoute = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -179,35 +183,43 @@ const RagnarRoute = () => {
       />
 =======
       {!isLoading ? (
-        <Routes>
-          <Route
-            path="/farm"
-            element={
-              <Farm userAddress={userAddress} tokensPrices={tokensPrices} />
-            }
-          />
-          <Route
-            path="/claim"
-            element={
-              <Claim tokensPrices={tokensPrices} userAddress={userAddress} />
-            }
-          />
-          <Route
-            path="/lock"
-            element={
-              <Lock tokensPrices={tokensPrices} userAddress={userAddress} />
-            }
-          />
-        </Routes>
+        <>
+          <Routes>
+            <Route
+              path="/farm"
+              element={
+                <Farm userAddress={userAddress} tokensPrices={tokensPrices} />
+              }
+            />
+            <Route
+              path="/claim"
+              element={
+                <Claim tokensPrices={tokensPrices} userAddress={userAddress} />
+              }
+            />
+            <Route
+              path="/lock"
+              element={
+                <Lock tokensPrices={tokensPrices} userAddress={userAddress} />
+              }
+            />
+          </Routes>
+          <Footer />
+        </>
       ) : (
-        <CircularProgress
-          size="6rem"
-          sx={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-          }}
-        />
+        <>
+          <CircularProgress
+            size="6rem"
+            sx={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+            }}
+          />
+          <Box sx={{ position: "fixed", left: 0, bottom: 0, right: 0 }}>
+            <Footer />
+          </Box>
+        </>
       )}
 >>>>>>> 2605053 (dev: files arch changes & navbar amelioration)
     </>
