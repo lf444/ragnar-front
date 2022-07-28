@@ -1,5 +1,5 @@
 import { Typography, Grid, CardMedia, Box } from "@mui/material";
-import "../../index.css";
+import "../../assets/styles/index.css";
 import a_ragnar from "../../assets/images/home/a_ragnar.png";
 import a_liqui from "../../assets/images/home/a_liqui.png";
 import a_pool from "../../assets/images/home/a_pool.png";

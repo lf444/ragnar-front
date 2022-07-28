@@ -2,7 +2,7 @@ import { Button, Typography, Box, Grid, CardMedia } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import bigYeti from "../../assets/images/bigYeti.png";
-import "../../index.css";
+import "../../assets/styles/index.css";
 
 const FirstLevel = () => {
   let navigate = useNavigate();

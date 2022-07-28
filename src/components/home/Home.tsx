@@ -1,6 +1,6 @@
 import { Typography, Box, Grid } from "@mui/material";
 import logo from "../../assets/images/logo.png";
-import "../../index.css";
+import "../../assets/styles/index.css";
 import FirstLevel from "./FirstLevel";
 import logo_ts from "../../assets/images/home/logo_ts.png";
 import SecondLevel from "./SecondLevel";

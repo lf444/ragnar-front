@@ -1,5 +1,5 @@
 import { Typography, Grid, CardMedia, Box } from "@mui/material";
-import "../../index.css";
+import "../../assets/styles/index.css";
 import arrow from "../../assets/images/home/arrow.png";
 
 const FiveLevel = () => {

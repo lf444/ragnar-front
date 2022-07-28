@@ -1,14 +1,13 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
-import LockPool from "./LockPool";
-import rgn from "../../assets/images/pools/rgn.png";
-import Funds from "../stake/funds/Funds";
-import MyNFT from "./MyNFT";
-import theme from "../../theme";
-import PageHeader from "../shared/PageHeader";
-import { useState } from "react";
+import LockPool from "../components/lock/LockPool";
+import rgn from "../assets/images/pools/rgn.png";
+import Funds from "../components/shared/funds/Funds";
+import MyNFT from "../components/lock/MyNFT";
+import theme from "../utils/theme";
+import PageHeader from "../components/shared/PageHeader";
 
-const LockRGN = ({
+const Lock = ({
   userAddress,
   tokensPrices,
 }: {
@@ -157,4 +156,4 @@ const LockRGN = ({
   );
 };
 
-export default LockRGN;
+export default Lock;

@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import { contractAddress } from "../../abi/address";
 import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
 import { useState, useEffect } from "react";
-import { useAccount } from "wagmi";
 import { Buffer } from "buffer";
 import Carousel from "react-material-ui-carousel";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";

@@ -1,11 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
-import PageHeader from "../shared/PageHeader";
+import PageHeader from "../components/shared/PageHeader";
 
-import Funds from "../stake/funds/Funds";
-import ClaimRewardsScreen from "./ClaimRewardsScreen";
+import Funds from "../components/shared/funds/Funds";
+import ClaimRewardsScreen from "../components/claim/ClaimRewardsScreen";
 
-const ClaimScreen = ({
+const Claim = ({
   userAddress,
   tokensPrices,
 }: {
@@ -70,4 +70,4 @@ const ClaimScreen = ({
   );
 };
 
-export default ClaimScreen;
+export default Claim;

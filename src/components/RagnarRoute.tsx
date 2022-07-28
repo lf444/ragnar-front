@@ -27,10 +27,10 @@ import Footer from './Footer';
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import StakeScreen from "./stake/StakeScreen";
+import Farm from "../pages/Farm";
 import Navbar from "./Navbar";
-import ClaimScreen from "./claim/ClaimScreen";
-import LockRGN from "./lock/Lock";
+import Claim from "../pages/Claim";
+import Lock from "../pages/Lock";
 import { coinGeckoService } from "../services/coinGeckoService";
 import { TOKEN_ID } from "../utils/constance";
 <<<<<<< HEAD
@@ -126,9 +126,10 @@ const RagnarRoute = () => {
     }
   }, [location]);
 
-  return !isLoading ? (
+  return (
     <>
       <Navbar tokensPrices={tokensPrices} />
+<<<<<<< HEAD
       <Routes>
         <Route
 <<<<<<< HEAD
@@ -176,6 +177,39 @@ const RagnarRoute = () => {
           top: '50%',
         }}
       />
+=======
+      {!isLoading ? (
+        <Routes>
+          <Route
+            path="/farm"
+            element={
+              <Farm userAddress={userAddress} tokensPrices={tokensPrices} />
+            }
+          />
+          <Route
+            path="/claim"
+            element={
+              <Claim tokensPrices={tokensPrices} userAddress={userAddress} />
+            }
+          />
+          <Route
+            path="/lock"
+            element={
+              <Lock tokensPrices={tokensPrices} userAddress={userAddress} />
+            }
+          />
+        </Routes>
+      ) : (
+        <CircularProgress
+          size="6rem"
+          sx={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+          }}
+        />
+      )}
+>>>>>>> 2605053 (dev: files arch changes & navbar amelioration)
     </>
   );
 };

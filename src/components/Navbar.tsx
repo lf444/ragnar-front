@@ -16,7 +16,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import theme from "../theme";
+import theme from "../utils/theme";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 100;
 
@@ -116,12 +117,14 @@ const Navbar = ({
                 },
               }}
             >
-              <img height="40" src={logo} alt="Ragnar Logo" />
+              <Link to="/home">
+                <img height="40" src={logo} alt="Ragnar Logo" />
+              </Link>
             </Grid>
             <Grid
               item
               xs={2}
-              sm={2}
+              sm={1.5}
               md={0}
               sx={{
                 display: {
@@ -137,7 +140,7 @@ const Navbar = ({
                   sm: "-4rem",
                   md: "-4rem",
                   lg: "-2rem",
-                  xl: "-0.5rem",
+                  xl: "-1.5rem",
                 },
               }}
             >
@@ -254,18 +257,6 @@ const Navbar = ({
                 >
                   More <KeyboardArrowDownIcon />
                 </Button>
-                <Button
-                  sx={{
-                    left: "25px",
-                    fontSize: "20px",
-                    fontWeight: "700",
-                    textTransform: "none",
-                    color: "#D0BA97",
-                  }}
-                  onClick={handleOpenModal}
-                >
-                  Mint
-                </Button>
                 <Modal
                   open={openModal}
                   onClose={handleCloseModal}
@@ -274,15 +265,15 @@ const Navbar = ({
                 >
                   <Box
                     sx={{
-                      width: "50%",
+                      width: "30%",
                       color: "#000000",
                       marginBottom: "25px",
                       alignContent: "center",
                       backgroundColor: theme.palette.background.default,
                       borderRadius: "5px 5px 5px 5px",
                       paddingTop: 1,
+                      margin: "auto",
                       marginTop: "15%",
-                      marginLeft: "25%",
                       paddingBottom: 1,
                       paddingLeft: 3,
                       paddingRight: 3,
@@ -373,6 +364,7 @@ const Navbar = ({
                   <MenuItem onClick={handleClose}>Discord</MenuItem>
                   <MenuItem onClick={handleClose}>Medium</MenuItem>
                   <MenuItem onClick={handleClose}>Twitter</MenuItem>
+                  <MenuItem onClick={handleOpenModal}>MINT</MenuItem>
                 </Menu>
               </List>
             </Grid>

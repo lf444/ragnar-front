@@ -1,12 +1,12 @@
 import { Grid } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
-import Funds from "./funds/Funds";
-import PoolTab from "./pools/PoolTab";
+import Funds from "../components/shared/funds/Funds";
+import PoolTab from "../components/stake/pools/PoolTab";
 import { Typography } from "@mui/material";
-import PageHeader from "../shared/PageHeader";
+import PageHeader from "../components/shared/PageHeader";
 import { useState } from "react";
 
-const StakeScreen = ({
+const Farm = ({
   userAddress,
   tokensPrices,
 }: {
@@ -27,7 +27,7 @@ const StakeScreen = ({
 
   return (
     <>
-      <PageHeader pageTitle={`Ragnar finance - Stake`} />{" "}
+      <PageHeader pageTitle={`Ragnar finance - Farm`} />{" "}
       <Zoom in={true}>
         <Grid
           container
@@ -78,4 +78,4 @@ const StakeScreen = ({
   );
 };
 
-export default StakeScreen;
+export default Farm;
