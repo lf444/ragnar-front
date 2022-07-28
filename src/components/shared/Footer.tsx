@@ -12,15 +12,15 @@ export default function Footer() {
           color: (theme) => theme.palette.text.primary,
         }}
       >
-        <Grid container>
+        <Grid container sx={{ flexDirection: { xs: "column", sm: "row" } }}>
           <Grid
             item
             container
-            xs={2}
-            sm={4}
+            xs={12}
+            sm={7}
             lg={8}
             alignItems="center"
-            sx={{ pl: "4rem" }}
+            sx={{ pl: "4rem", marginBottom: { xs: "1rem", sm: 0 } }}
           >
             {" "}
             <img height="40" src={logo} alt="Ragnar Logo" />
@@ -51,7 +51,7 @@ export default function Footer() {
               Finance
             </Typography>{" "}
           </Grid>
-          <Grid item container direction={"row"} xs={8} sm={4}>
+          <Grid item container direction={"row"} xs={12} sm={5}>
             <Grid item container xs direction="column">
               <Typography sx={{ fontSize: "1.25rem", fontWeight: "bold" }}>
                 Explore
