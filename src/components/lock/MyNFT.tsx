@@ -1,13 +1,9 @@
-import { Box } from "@mui/material";
-import { ethers } from "ethers";
-import { contractAddress } from "../../abi/address";
-import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
-import { useState, useEffect } from "react";
-import { Buffer } from "buffer";
+import { Box, CircularProgress } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
+<<<<<<< HEAD
 const MyNFT = ({ userAddress }: { userAddress: string | undefined }) => {
   const [nftMetadata, setNftMetadata] = useState<any[]>([]);
 
@@ -88,6 +84,15 @@ const MyNFT = ({ userAddress }: { userAddress: string | undefined }) => {
     },
   ];
 
+=======
+const MyNFT = ({
+  nftMetadata,
+  isLoadingMyNft,
+}: {
+  nftMetadata: any[];
+  isLoadingMyNft: boolean;
+}) => {
+>>>>>>> 5133f0e (dev add loading on NFT page)
   return (
     <>
       <Carousel
@@ -101,30 +106,38 @@ const MyNFT = ({ userAddress }: { userAddress: string | undefined }) => {
           },
         }}
       >
-        {nftMetadata.map((meta, i) => (
-          <Box
-            sx={{
-              height: "300px",
-              width: "250px",
-              ml: "auto",
-              mr: "auto",
-            }}
-            key={i}
-          >
-            <object type="image/svg+xml" data={meta.image}></object>
-          </Box>
-        ))}
+        {!isLoadingMyNft ? (
+          nftMetadata.length > 0 ? (
+            nftMetadata.map((meta, i) => (
+              <Box
+                sx={{
+                  height: "300px",
+                  width: "250px",
+                  ml: "auto",
+                  mr: "auto",
+                }}
+                key={i}
+              >
+                <object type="image/svg+xml" data={meta.image}></object>
+              </Box>
+            ))
+          ) : (
+            <></>
+          )
+        ) : (
+          <>
+            {" "}
+            <CircularProgress
+              size="6rem"
+              sx={{
+                margin: "auto",
+              }}
+            />
+          </>
+        )}
       </Carousel>
     </>
   );
 };
 
 export default MyNFT;
-
-function Item(props: any) {
-  return (
-    <Box sx={{ height: "300px", width: "250px" }}>
-      <object type="image/svg+xml" data={props.item}></object>
-    </Box>
-  );
-}

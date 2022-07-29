@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import { Buffer } from "buffer";
+import { contractAddress } from "../abi/address";
 import { Grid, Typography } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import LockPool from "../components/lock/LockPool";
@@ -6,6 +10,10 @@ import Funds from "../components/shared/funds/Funds";
 import MyNFT from "../components/lock/MyNFT";
 import theme from "../utils/theme";
 import PageHeader from "../components/shared/PageHeader";
+import LOCKABI from "../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
+import { appLogger, errorToast } from "../utils/method";
+
+const appTag = "Lock";
 
 const Lock = ({
   userAddress,
@@ -20,6 +28,50 @@ const Lock = ({
     priceRgnYeti: number;
   };
 }) => {
+  const [nftMetadata, setNftMetadata] = useState<any[]>([]);
+  const [isLoadingMyNft, setIsLoading] = useState(false);
+
+  const getNFTByOwner = async () => {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lock = new ethers.Contract(
+          contractAddress.NFTAddress,
+          LOCKABI.abi,
+          signer
+        );
+
+        let emptyNFt: any[] = [];
+        const test = await lock.getNftsOfOwner(userAddress);
+        const allNFTOwned = await Promise.all(
+          test.map((e: any) => {
+            return lock.tokenURI(e);
+          })
+        )
+          .then((e) => {
+            emptyNFt = e.map((e: any) => {
+              return JSON.parse(
+                Buffer.from(e.substring(29), "base64").toString()
+              );
+            });
+          })
+          .then(() => setNftMetadata(emptyNFt));
+      }
+    } catch (error: any) {
+      errorToast(error.code);
+      appLogger(appTag, " fetchMyDeposit masterChef", error.message);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (userAddress) {
+      setIsLoading(true);
+      getNFTByOwner().then(() => setIsLoading(false));
+    }
+  }, [userAddress]);
+
   return (
     <>
       <PageHeader pageTitle={`Ragnar finance - Lock`} />{" "}
@@ -108,7 +160,10 @@ const Lock = ({
                 marginRight: "auto",
               }}
             >
-              <MyNFT userAddress={userAddress} />
+              <MyNFT
+                nftMetadata={nftMetadata}
+                isLoadingMyNft={isLoadingMyNft}
+              />
             </Grid>
           </Grid>
           <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
