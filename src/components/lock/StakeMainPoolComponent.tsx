@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import { Box, Grid, Typography } from '@mui/material';
 import { FunctionComponent, useState } from 'react';
 import Fade from '@mui/material/Fade';
 import LinearScaleIcon from '@mui/icons-material/LinearScale';
 import RGNTable from '../stake/pools/tab/RGNTable';
+=======
+import { Box, Grid, Typography } from "@mui/material";
+import { FunctionComponent, useState } from "react";
+import Fade from "@mui/material/Fade";
+import LinearScaleIcon from "@mui/icons-material/LinearScale";
+>>>>>>> e1c2612 (dev: lock better animation)
 
 interface StakeMainPoolComponenttProps {
   pairName1: string;
@@ -64,6 +71,7 @@ const StakeMainPoolComponent: FunctionComponent<
         >
           Lock RGN in a NFT
         </Grid>
+<<<<<<< HEAD
         <Grid item xs={2}>
 <<<<<<< HEAD
 =======
@@ -87,6 +95,9 @@ const StakeMainPoolComponent: FunctionComponent<
           </Typography>
 >>>>>>> 719e4c8 (dev: remove border)
         </Grid>
+=======
+        <Grid item xs={2}></Grid>
+>>>>>>> e1c2612 (dev: lock better animation)
         <Grid item xs={2}>
           <Typography
             sx={{
@@ -164,9 +175,7 @@ const StakeMainPoolComponent: FunctionComponent<
 
       {open && (
         <Fade in={open}>
-          <Box>
-            
-          </Box>
+          <Box></Box>
         </Fade>
       )}
     </Box>

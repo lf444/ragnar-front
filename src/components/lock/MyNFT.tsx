@@ -1,8 +1,10 @@
+import { FunctionComponent } from "react";
 import { Box, CircularProgress } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const MyNFT = ({ userAddress }: { userAddress: string | undefined }) => {
   const [nftMetadata, setNftMetadata] = useState<any[]>([]);
@@ -89,8 +91,16 @@ const MyNFT = ({
   nftMetadata,
   isLoadingMyNft,
 }: {
+=======
+interface MyNftProps {
+>>>>>>> e1c2612 (dev: lock better animation)
   nftMetadata: any[];
   isLoadingMyNft: boolean;
+}
+
+const MyNft: FunctionComponent<MyNftProps> = ({
+  nftMetadata,
+  isLoadingMyNft,
 }) => {
 >>>>>>> 5133f0e (dev add loading on NFT page)
   return (
@@ -122,22 +132,37 @@ const MyNFT = ({
               </Box>
             ))
           ) : (
-            <></>
+            <Box
+              sx={{
+                height: "300px",
+                width: "200px",
+                margin: "auto",
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              NO NFT
+            </Box>
           )
         ) : (
-          <>
-            {" "}
-            <CircularProgress
-              size="6rem"
-              sx={{
-                margin: "auto",
-              }}
-            />
-          </>
+          <Box
+            sx={{
+              height: "300px",
+              width: "250px",
+              margin: "auto",
+              border: "2px solid red",
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <CircularProgress size="6rem" />
+          </Box>
         )}
       </Carousel>
     </>
   );
 };
 
-export default MyNFT;
+export default MyNft;

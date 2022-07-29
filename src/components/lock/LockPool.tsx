@@ -1,25 +1,17 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { FunctionComponent, useState } from "react";
-import Fade from "@mui/material/Fade";
-import LinearScaleIcon from "@mui/icons-material/LinearScale";
-import RGNTable from "../stake/pools/tab/RGNTable";
+import LockRGN from "./LockRGN";
 
 interface LockPoolComponenttProps {
-  pairName1: string;
-  addressPool: string;
   logo1: string;
-  type: "rgn" | "yeti";
-  openForScreen: boolean;
+  handleRefetchDeposit: () => void;
 }
 
 const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
-  pairName1,
-  addressPool,
   logo1,
-  type,
-  openForScreen,
+  handleRefetchDeposit,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(3);
 
   return (
     <Box
@@ -72,42 +64,6 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
           {" "}
           <Grid
             item
-            onClick={() => setSelectedIndex(0)}
-            sx={{
-              cursor: "pointer",
-              color: selectedIndex === 0 ? "#ddeaf2" : "#929ea6",
-              borderBottom: selectedIndex === 0 ? 2 : 0,
-              borderColor: selectedIndex === 0 ? "#ddeaf2" : "#929ea6",
-            }}
-          >
-            3 Months
-          </Grid>
-          <Grid
-            item
-            onClick={() => setSelectedIndex(1)}
-            sx={{
-              cursor: "pointer",
-              color: selectedIndex === 1 ? "#ddeaf2" : "#929ea6",
-              borderBottom: selectedIndex === 1 ? 2 : 0,
-              borderColor: selectedIndex === 1 ? "#ddeaf2" : "#929ea6",
-            }}
-          >
-            6 Months
-          </Grid>
-          <Grid
-            item
-            onClick={() => setSelectedIndex(2)}
-            sx={{
-              cursor: "pointer",
-              color: selectedIndex === 2 ? "#ddeaf2" : "#929ea6",
-              borderBottom: selectedIndex === 2 ? 2 : 0,
-              borderColor: selectedIndex === 2 ? "#ddeaf2" : "#929ea6",
-            }}
-          >
-            1 Year
-          </Grid>
-          <Grid
-            item
             onClick={() => setSelectedIndex(3)}
             sx={{
               cursor: "pointer",
@@ -116,23 +72,62 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
               borderColor: selectedIndex === 3 ? "#ddeaf2" : "#929ea6",
             }}
           >
+            3 Months
+          </Grid>
+          <Grid
+            item
+            onClick={() => setSelectedIndex(6)}
+            sx={{
+              cursor: "pointer",
+              color: selectedIndex === 6 ? "#ddeaf2" : "#929ea6",
+              borderBottom: selectedIndex === 6 ? 2 : 0,
+              borderColor: selectedIndex === 6 ? "#ddeaf2" : "#929ea6",
+            }}
+          >
+            6 Months
+          </Grid>
+          <Grid
+            item
+            onClick={() => setSelectedIndex(12)}
+            sx={{
+              cursor: "pointer",
+              color: selectedIndex === 12 ? "#ddeaf2" : "#929ea6",
+              borderBottom: selectedIndex === 12 ? 2 : 0,
+              borderColor: selectedIndex === 12 ? "#ddeaf2" : "#929ea6",
+            }}
+          >
+            1 Year
+          </Grid>
+          <Grid
+            item
+            onClick={() => setSelectedIndex(24)}
+            sx={{
+              cursor: "pointer",
+              color: selectedIndex === 24 ? "#ddeaf2" : "#929ea6",
+              borderBottom: selectedIndex === 24 ? 2 : 0,
+              borderColor: selectedIndex === 24 ? "#ddeaf2" : "#929ea6",
+            }}
+          >
             2 Years
           </Grid>
           <Grid
             item
-            onClick={() => setSelectedIndex(4)}
+            onClick={() => setSelectedIndex(36)}
             sx={{
               cursor: "pointer",
-              color: selectedIndex === 4 ? "#ddeaf2" : "#929ea6",
-              borderBottom: selectedIndex === 4 ? 2 : 0,
-              borderColor: selectedIndex === 4 ? "#ddeaf2" : "#929ea6",
+              color: selectedIndex === 36 ? "#ddeaf2" : "#929ea6",
+              borderBottom: selectedIndex === 36 ? 2 : 0,
+              borderColor: selectedIndex === 36 ? "#ddeaf2" : "#929ea6",
             }}
           >
             {" "}
             3 Years
           </Grid>
         </Grid>
-        <RGNTable selectedIndex={selectedIndex}/>
+        <LockRGN
+          selectedIndex={selectedIndex}
+          handleRefetchDeposit={handleRefetchDeposit}
+        />
       </Grid>
     </Box>
   );

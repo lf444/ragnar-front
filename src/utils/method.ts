@@ -17,7 +17,7 @@ export function appLogger(
 }
 
 export const errorToast = (errorCode: string) => {
-  switch (errorCode) {
+  switch ("" + errorCode) {
     case "CALL_EXCEPTION":
       toast.error("Error - Please check your network.");
       break;
@@ -41,6 +41,10 @@ export const errorToast = (errorCode: string) => {
       break;
     case "TX_ERRROR":
       toast.error("The transaction was rejected");
+      break;
+
+    case "4001":
+      toast.error("User denied transaction");
       break;
 
     default:

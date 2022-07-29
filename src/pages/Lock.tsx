@@ -7,7 +7,7 @@ import Zoom from "@mui/material/Zoom";
 import LockPool from "../components/lock/LockPool";
 import rgn from "../assets/images/pools/rgn.png";
 import Funds from "../components/shared/funds/Funds";
-import MyNFT from "../components/lock/MyNFT";
+import MyNft from "../components/lock/MyNFT";
 import theme from "../utils/theme";
 import PageHeader from "../components/shared/PageHeader";
 import LOCKABI from "../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
@@ -28,8 +28,15 @@ const Lock = ({
     priceRgnYeti: number;
   };
 }) => {
+  const [shouldRefetchData, setShouldRefetchData] = useState(false);
+  const handleRefetchDeposit = () => {
+    setShouldRefetchData(true);
+    setTimeout(() => setShouldRefetchData(false), 1500);
+  };
+
   const [nftMetadata, setNftMetadata] = useState<any[]>([]);
   const [isLoadingMyNft, setIsLoading] = useState(false);
+  const [numberOfNFTOwned, setNumberOfNFTOwned] = useState(0);
 
   const getNFTByOwner = async () => {
     try {
@@ -44,6 +51,7 @@ const Lock = ({
 
         let emptyNFt: any[] = [];
         const test = await lock.getNftsOfOwner(userAddress);
+        setNumberOfNFTOwned(+test.length);
         const allNFTOwned = await Promise.all(
           test.map((e: any) => {
             return lock.tokenURI(e);
@@ -71,6 +79,13 @@ const Lock = ({
       getNFTByOwner().then(() => setIsLoading(false));
     }
   }, [userAddress]);
+
+  useEffect(() => {
+    if (userAddress && shouldRefetchData) {
+      setIsLoading(true);
+      getNFTByOwner().then(() => setIsLoading(false));
+    }
+  }, [shouldRefetchData]);
 
   return (
     <>
@@ -108,24 +123,21 @@ const Lock = ({
             <Funds
               shouldDisplaySecondTabPrice={true}
               userAddress={userAddress}
-              shouldRefetchData={false}
+              shouldRefetchData={shouldRefetchData}
               tokensPrices={tokensPrices}
             />
           </Grid>
 
           <Grid item xs={12} sx={{ width: "100%", mb: "25px", p: 1 }}>
-            <LockPool
-              pairName1={"RGN"}
-              addressPool={"0x5817d4f0b62a59b17f75207da1848c2ce75e7af4"}
-              logo1={rgn}
-              type={"rgn"}
-              openForScreen={true}
-            />
+            <LockPool logo1={rgn} handleRefetchDeposit={handleRefetchDeposit} />
           </Grid>
           <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
             {" "}
             <Grid
               item
+              container
+              direction="row"
+              justifyContent="space-between"
               xs={12}
               sx={{
                 color: (theme) => theme.palette.text.primary,
@@ -142,7 +154,11 @@ const Lock = ({
                 alignItems: "center",
               }}
             >
-              My NFTs
+              <Typography> My NFTs </Typography>
+              <Typography sx={{ pr: "2rem" }}>
+                {" "}
+                Number of NFTs: {numberOfNFTOwned}{" "}
+              </Typography>
             </Grid>
             <Grid
               item
@@ -160,7 +176,7 @@ const Lock = ({
                 marginRight: "auto",
               }}
             >
-              <MyNFT
+              <MyNft
                 nftMetadata={nftMetadata}
                 isLoadingMyNft={isLoadingMyNft}
               />
