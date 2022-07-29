@@ -1,5 +1,6 @@
-import { Box, Grid, Link, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import logo from "../../assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -12,13 +13,17 @@ export default function Footer() {
           color: (theme) => theme.palette.text.primary,
         }}
       >
-        <Grid container sx={{ flexDirection: { xs: "column", sm: "row" } }}>
+        <Grid
+          container
+          sx={{
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
           <Grid
             item
             container
             xs={12}
             sm={7}
-            lg={8}
             alignItems="center"
             sx={{ pl: "4rem", marginBottom: { xs: "1rem", sm: 0 } }}
           >
@@ -56,163 +61,217 @@ export default function Footer() {
               <Typography sx={{ fontSize: "1.25rem", fontWeight: "bold" }}>
                 Explore
               </Typography>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
-              >
-                Home
+              <Link to="/home" style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Home
+                </Typography>
               </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
-              >
-                Borrow
+              <Link to="/home" style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Borrow
+                </Typography>
               </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
-              >
-                Farm
+              <Link to="/farm" style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Farm
+                </Typography>
               </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
-              >
-                Claim
+              <Link to="/claim" style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Claim
+                </Typography>
               </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
-              >
-                Lock
+              <Link to="/lock" style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Lock
+                </Typography>
               </Link>
             </Grid>
             <Grid item container xs direction="column">
               <Typography sx={{ fontSize: "1.25rem" }}>Docs</Typography>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+              <a
+                href="https://ragnarfinance.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Medium
-              </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Medium
+                </Typography>
+              </a>
+              <a
+                href="https://ragnarfinance.gitbook.io/ragnar-finance/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Gitbook
-              </Link>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Gitbook
+                </Typography>
+              </a>
             </Grid>
             <Grid item container xs direction="column">
               {" "}
               <Typography sx={{ fontSize: "1.25rem" }}>Social</Typography>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+              <a
+                href="https://twitter.com/ragnarfinance"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Twitter
-              </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Twitter
+                </Typography>
+              </a>
+              <a
+                href="https://discord.com/invite/MHHEYWTFyq"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Discord
-              </Link>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Discord
+                </Typography>
+              </a>
             </Grid>
             <Grid item container xs direction="column">
               <Typography sx={{ fontSize: "1.25rem" }}>Help</Typography>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+              <a
+                href="https://ragnarfinance.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Help Center
-              </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Help Center
+                </Typography>
+              </a>
+              <a
+                href="https://ragnarfinance.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Contact us
-              </Link>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Contact us
+                </Typography>{" "}
+              </a>
             </Grid>
             <Grid item container xs direction="column">
               {" "}
               <Typography sx={{ fontSize: "1.25rem" }}>Legal</Typography>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+              <a
+                href="https://ragnarfinance.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Terms
-              </Link>
-              <Link
-                underline="none"
-                sx={{
-                  color: (theme) => theme.palette.text.primary,
-                  fontSize: "0.95rem",
-                  cursor: "pointer",
-                  fontWeight: "200",
-                }}
+                {" "}
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Terms
+                </Typography>{" "}
+              </a>
+              <a
+                href="https://ragnarfinance.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Privacy
-              </Link>
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "200",
+                  }}
+                >
+                  Privacy
+                </Typography>{" "}
+              </a>
             </Grid>
           </Grid>
         </Grid>
