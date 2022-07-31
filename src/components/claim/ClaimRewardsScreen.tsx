@@ -239,7 +239,7 @@ export default function ClaimRewardsScreen({
     }
   }, [userAddress]);
 
-  return (
+  return userAddress && true ? (
     <>
       <Grid container direction="row">
         <Grid
@@ -489,5 +489,7 @@ export default function ClaimRewardsScreen({
         </Grid>
       </Grid>
     </>
+  ) : (
+    <></>
   );
 }

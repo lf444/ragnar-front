@@ -212,13 +212,22 @@ const RagnarRoute = () => {
           backgroundColor: "#F2D6A9",
           borderRadius: "25px",
           position: "absolute",
-          right: "5%",
-          top: "50%",
+          right: { sm: "3%", xs: "1%", lg: "5%" },
+          top: { lg: "50%", sm: "35%", xs: "40%" },
           height: "25px",
           textTransform: "none",
         }}
       >
-        <HelpIcon sx={{ marginRight: "0.20em" }} /> Help center
+        <HelpIcon />{" "}
+        <Typography
+          sx={{
+            display: { xs: "none", sm: "none", md: "flex" },
+            marginLeft: "0.2em",
+          }}
+        >
+          {" "}
+          Help center
+        </Typography>
       </Button>
 >>>>>>> abc1331 (dev: add help center)
       {!isLoading ? (

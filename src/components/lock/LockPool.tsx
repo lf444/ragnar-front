@@ -53,13 +53,15 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
         pt: "1rem",
       }}
     >
-      <Grid container>
+      <Grid container justifyContent="space-between">
         <Grid
           item
           container
           justifyContent="flex-start"
           alignItems="center"
-          sm={9}
+          xs={12}
+          sm={8}
+          sx={{ marginBottom: "25px" }}
         >
           <Grid
             item
@@ -158,7 +160,14 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
             handleChangeAmount={handleChangeAmount}
           />
         </Grid>
-        <Grid item container justifyContent="center" sm={3}>
+        <Grid
+          item
+          container
+          justifyContent="center"
+          alignItems="center"
+          xs={12}
+          sm={3}
+        >
           {selectedIndex === 36 ? (
             <SvgThreeYears
               numberOfRGN={amountToStake}

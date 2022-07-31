@@ -131,7 +131,7 @@ const Lock = ({
           <Grid item xs={12} sx={{ width: "100%", mb: "25px", p: 1 }}>
             <LockPool logo1={rgn} handleRefetchDeposit={handleRefetchDeposit} />
           </Grid>
-          <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
+          <Grid item container xs={12} sm={6} sx={{ width: "100%", p: 1 }}>
             {" "}
             <MyNft
               nftMetadata={nftMetadata}
@@ -139,7 +139,7 @@ const Lock = ({
               numberOfNFTOwned={numberOfNFTOwned}
             />
           </Grid>
-          <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
+          <Grid item container xs={12} sm={6} sx={{ width: "100%", p: 1 }}>
             {" "}
             <Grid
               item
