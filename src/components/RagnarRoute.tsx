@@ -54,6 +54,7 @@ import { useAccount } from "wagmi";
 import Footer from "./shared/Footer";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b84f72d (dev: component re-organise)
 =======
 import { CircularProgress } from "@mui/material";
@@ -70,8 +71,25 @@ import { CircularProgress } from '@mui/material';
 =======
 import { Box, CircularProgress } from "@mui/material";
 >>>>>>> 63997b5 (dev: test footer)
+=======
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  Modal,
+  useTheme,
+  CardMedia,
+  CardHeader,
+  Card,
+  CardContent,
+  Typography,
+} from "@mui/material";
+import HelpIcon from "@mui/icons-material/Help";
+>>>>>>> abc1331 (dev: add help center)
 
 const RagnarRoute = () => {
+  const theme = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [tokensPrices, setTokensPrices] = useState({
     priceYeti: 0,
@@ -82,6 +100,9 @@ const RagnarRoute = () => {
     priceRgnYeti: 1,
   });
 
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
   // Change of account will trigger render on each fetch for personnal data and update the state accordingly
   const [userAddress, setUserAccount] = useState<any>(undefined);
 
@@ -134,6 +155,7 @@ const RagnarRoute = () => {
     <>
       <Navbar tokensPrices={tokensPrices} />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Routes>
         <Route
 <<<<<<< HEAD
@@ -182,6 +204,23 @@ const RagnarRoute = () => {
         }}
       />
 =======
+=======
+      <Button
+        onClick={handleOpenModal}
+        sx={{
+          color: "#000000",
+          backgroundColor: "#F2D6A9",
+          borderRadius: "25px",
+          position: "absolute",
+          right: "5%",
+          top: "50%",
+          height: "25px",
+          textTransform: "none",
+        }}
+      >
+        <HelpIcon sx={{ marginRight: "0.20em" }} /> Help center
+      </Button>
+>>>>>>> abc1331 (dev: add help center)
       {!isLoading ? (
         <>
           <Routes>
@@ -221,7 +260,96 @@ const RagnarRoute = () => {
           </Box>
         </>
       )}
+<<<<<<< HEAD
 >>>>>>> 2605053 (dev: files arch changes & navbar amelioration)
+=======
+
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Grid
+          container
+          direction="row"
+          sx={{
+            color: "#000000",
+            backgroundColor: theme.palette.background.default,
+            borderRadius: "5px 5px 5px 5px",
+            width: "fit-content",
+          }}
+        >
+          <Grid item sm={6}>
+            <a
+              href="https://ragnarfinance.gitbook.io/ragnar-finance/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <Card
+                sx={{
+                  maxWidth: 250,
+                  margin: "1em",
+                  cursor: "pointer",
+                  backgroundColor: theme.palette.secondary.main,
+                }}
+              >
+                <CardHeader title="Documentation" />
+                <CardMedia
+                  component="img"
+                  height="150"
+                  image={require("../assets/images/gitbook.png")}
+                  alt="gitbook image"
+                />
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </a>
+          </Grid>
+          <Grid item sm={6}>
+            <a
+              href="https://discord.com/invite/MHHEYWTFyq"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <Card
+                sx={{
+                  maxWidth: 250,
+                  margin: "1em",
+                  cursor: "pointer",
+                  backgroundColor: theme.palette.secondary.main,
+                }}
+              >
+                <CardHeader title="Discord" />
+                <CardMedia
+                  component="img"
+                  height="150"
+                  image={require("../assets/images/discord.jpg")}
+                  alt="discord image"
+                />
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </a>
+          </Grid>
+        </Grid>
+      </Modal>
+>>>>>>> abc1331 (dev: add help center)
     </>
   );
 };
