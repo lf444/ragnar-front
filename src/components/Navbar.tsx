@@ -340,7 +340,7 @@ const Navbar = ({
                       }
                       id="modal-modal-description"
                     >
-                      Click here to mint LpCurve.
+                      Click here to mint Curve LP.
                     </Button>
                   </Box>
                 </Modal>

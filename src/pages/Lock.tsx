@@ -133,54 +133,11 @@ const Lock = ({
           </Grid>
           <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
             {" "}
-            <Grid
-              item
-              container
-              direction="row"
-              justifyContent="space-between"
-              xs={12}
-              sx={{
-                color: (theme) => theme.palette.text.primary,
-                backgroundColor: theme.palette.secondary.main,
-                borderRadius: "5px 5px 0 0",
-                widthl: "100%",
-                fontWeight: "bold",
-                fontSize: { xs: "0.75em", sm: "1em" },
-                pl: "1rem",
-                pt: "0.5em",
-                pb: "1rem",
-                borderBottom: 2,
-                borderColor: "divider",
-                alignItems: "center",
-              }}
-            >
-              <Typography> My NFTs </Typography>
-              <Typography sx={{ pr: "2rem" }}>
-                {" "}
-                Number of NFTs: {numberOfNFTOwned}{" "}
-              </Typography>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{
-                width: "100%",
-                marginBottom: "25px",
-                backgroundColor: theme.palette.secondary.main,
-                borderRadius: "0 0 5px 5px",
-                paddingTop: 1,
-                paddingBottom: 1,
-                paddingLeft: 3,
-                paddingRight: 3,
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-            >
-              <MyNft
-                nftMetadata={nftMetadata}
-                isLoadingMyNft={isLoadingMyNft}
-              />
-            </Grid>
+            <MyNft
+              nftMetadata={nftMetadata}
+              isLoadingMyNft={isLoadingMyNft}
+              numberOfNFTOwned={numberOfNFTOwned}
+            />
           </Grid>
           <Grid item container xs={6} sx={{ width: "100%", p: 1 }}>
             {" "}

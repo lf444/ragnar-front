@@ -97,7 +97,7 @@ const FirstLevel = () => {
           <Button
             variant="outlined"
             onClick={() => {
-              navigate("/farm");
+              window.open("https://ragnarfinance.gitbook.io/ragnar-finance/");
             }}
             sx={{
               backgroundColor: "transparent",

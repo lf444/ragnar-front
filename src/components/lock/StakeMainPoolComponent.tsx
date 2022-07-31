@@ -37,8 +37,13 @@ const StakeMainPoolComponent: FunctionComponent<
       sx={{
         width: '100%',
         backgroundColor: (theme) => theme.palette.secondary.main,
+<<<<<<< HEAD
         borderRadius: '5px 5px 5px 5px',
         boxShadow: 'none',
+=======
+        borderRadius: "5px 5px 5px 5px",
+        boxShadow: "none",
+>>>>>>> 46eca83 (dev : add nft preview on select lock)
       }}
     >
       <Grid

@@ -90,10 +90,11 @@ export const YusdPool = {
   logo: yusd,
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.yusdAddress,
-  info: "Deposit your YUSD to enjoy the veYeti boost and receive bonus RGN !",
+  info: "Deposit your YUSD to enjoy the veYETI boost and receive bonus RGN !",
   isMasterchef: false,
 };
 export const LpCurvePool = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     pairName: "LpCurve",
@@ -108,10 +109,13 @@ export const LpCurvePool = {
 =======
   pairName: "lpcurve",
 >>>>>>> 4c8ce80 (dev: removed rgn boolean from poolComponent)
+=======
+  pairName: "Curve LP",
+>>>>>>> 46eca83 (dev : add nft preview on select lock)
   logo: curve,
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.lpCurveAddress,
-  info: "Deposit your LP Curve to enjoy the veYeti boost and receive bonus RGN !",
+  info: "Deposit your Curve LP to enjoy the veYETI boost and receive bonus RGN !",
   isMasterchef: false,
 };
 >>>>>>> d1d8a1a (dev: rename component)

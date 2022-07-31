@@ -301,7 +301,7 @@ export default function ClaimRewardsScreen({
             >
               <ClaimTable
                 pool1="RGN"
-                pool2="RGNYETI"
+                pool2="rgnYETI"
                 apr1={Math.round(aprRgn.aprRgn)}
                 apr2={Math.round(aprRgn.aprYeti)}
                 deposit1={Math.round(myStake.myRgn)}
@@ -331,7 +331,7 @@ export default function ClaimRewardsScreen({
               claim={claimRagnarPools}
               title={InfoRgnYetiPools}
               title2={InfoRgnPools}
-              text1={"RGNYETI Pools:"}
+              text1={"rgnYETI Pools:"}
               text2={"RGN Pools:"}
               price1={reward.rewardYetiRGN + reward.rewardYetiYETI}
               price2={reward.rewardRgnRGN + reward.rewardRgnYETI}
@@ -398,7 +398,7 @@ export default function ClaimRewardsScreen({
             >
               <ClaimTable
                 pool1="YUSD"
-                pool2="LPCURVE"
+                pool2="CURVE LP"
                 apr1={Math.round(aprRgn.aprYusd)}
                 apr2={Math.round(aprRgn.aprLpCurve)}
                 deposit1={Math.round(myStake.myYusd)}
@@ -436,7 +436,7 @@ export default function ClaimRewardsScreen({
               title={InfoYUSDPools}
               title2={InfoLpCurvePools}
               text1={"YUSD Pools:"}
-              text2={"LP CURVE Pools:"}
+              text2={"CURVE LP Pools:"}
               price1={reward.rewardYusdRGN + reward.rewardYusdYETI}
               price2={reward.rewardLpCurveRGN + reward.rewardLpCurveYETI}
               price3={

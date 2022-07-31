@@ -1,5 +1,12 @@
 import { FunctionComponent } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -96,71 +103,123 @@ interface MyNftProps {
 >>>>>>> e1c2612 (dev: lock better animation)
   nftMetadata: any[];
   isLoadingMyNft: boolean;
+  numberOfNFTOwned: number;
 }
 
 const MyNft: FunctionComponent<MyNftProps> = ({
   nftMetadata,
   isLoadingMyNft,
+  numberOfNFTOwned,
 }) => {
+<<<<<<< HEAD
 >>>>>>> 5133f0e (dev add loading on NFT page)
+=======
+  const theme = useTheme();
+>>>>>>> 46eca83 (dev : add nft preview on select lock)
   return (
     <>
-      <Carousel
-        navButtonsAlwaysVisible
-        NextIcon={<ArrowRightIcon />}
-        PrevIcon={<ArrowLeftIcon />}
-        indicatorContainerProps={{
-          style: {
-            marginTop: "1.5rem",
-            textAlign: "center",
-          },
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        xs={12}
+        sx={{
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.secondary.main,
+          borderRadius: "5px 5px 0 0",
+          widthl: "100%",
+          fontWeight: "bold",
+          fontSize: { xs: "0.75em", sm: "1em" },
+          pl: "1rem",
+          pt: "0.5em",
+          pb: "1rem",
+          borderBottom: 2,
+          borderColor: "divider",
+          alignItems: "center",
         }}
       >
-        {!isLoadingMyNft ? (
-          nftMetadata.length > 0 ? (
-            nftMetadata.map((meta, i) => (
+        <Typography> My NFTs </Typography>
+        <Typography sx={{ pr: "2rem" }}>
+          {" "}
+          Number of NFTs: {numberOfNFTOwned}{" "}
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          width: "100%",
+          marginBottom: "25px",
+          backgroundColor: theme.palette.secondary.main,
+          borderRadius: "0 0 5px 5px",
+          paddingTop: 1,
+          paddingBottom: 1,
+          paddingLeft: 3,
+          paddingRight: 3,
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <Carousel
+          navButtonsAlwaysVisible
+          NextIcon={<ArrowRightIcon />}
+          PrevIcon={<ArrowLeftIcon />}
+          indicatorContainerProps={{
+            style: {
+              marginTop: "1.5rem",
+              textAlign: "center",
+            },
+          }}
+          autoPlay={false}
+        >
+          {!isLoadingMyNft ? (
+            nftMetadata.length > 0 ? (
+              nftMetadata.map((meta, i) => (
+                <>
+                  <Box
+                    sx={{
+                      height: "300px",
+                      width: "250px",
+                      ml: "auto",
+                      mr: "auto",
+                    }}
+                    key={i}
+                  >
+                    <object type="image/svg+xml" data={meta.image}></object>
+                  </Box>
+                </>
+              ))
+            ) : (
               <Box
                 sx={{
                   height: "300px",
-                  width: "250px",
-                  ml: "auto",
-                  mr: "auto",
+                  width: "200px",
+                  margin: "auto",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
                 }}
-                key={i}
               >
-                <object type="image/svg+xml" data={meta.image}></object>
+                NO NFT
               </Box>
-            ))
+            )
           ) : (
             <Box
               sx={{
                 height: "300px",
-                width: "200px",
+                width: "250px",
                 margin: "auto",
                 justifyContent: "center",
                 alignItems: "center",
                 display: "flex",
               }}
             >
-              NO NFT
+              <CircularProgress size="6rem" />
             </Box>
-          )
-        ) : (
-          <Box
-            sx={{
-              height: "300px",
-              width: "250px",
-              margin: "auto",
-              border: "2px solid red",
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <CircularProgress size="6rem" />
-          </Box>
-        )}
-      </Carousel>
+          )}
+        </Carousel>
+      </Grid>
     </>
   );
 };

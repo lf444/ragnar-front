@@ -4,11 +4,11 @@ import {
   IconButton,
   CircularProgress,
   Typography,
-} from '@mui/material';
-import { useState } from 'react';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useTheme } from '@emotion/react';
+} from "@mui/material";
+import { useState } from "react";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useTheme } from "@emotion/react";
 
 const FundSecondTabs = ({
   totalYeti,
@@ -34,57 +34,57 @@ const FundSecondTabs = ({
     <>
       <Grid
         container
-        direction='row'
-        sx={{ display: { xs: 'none', sm: 'flex' } }}
+        direction="row"
+        sx={{ display: { xs: "none", sm: "flex" } }}
       >
         <Grid
           item
           xs
           sx={{
             backgroundColor: (theme) => theme.palette.secondary.main,
-            borderRadius: '1px 0 0 1px',
-            borderRight: '1px solid grey',
+            borderRadius: "1px 0 0 1px",
+            borderRight: "1px solid grey",
 
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
-          {' '}
+          {" "}
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              marginTop: '5px',
-              color: '#929ea6',
+              marginTop: "5px",
+              color: "#929ea6",
             }}
           >
-            {' '}
+            {" "}
             RGN SUPPLY
           </Typography>
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
-              color: '#bfcbd2',
+              fontWeight: "bold",
+              color: "#bfcbd2",
             }}
           >
             {!isLoading ? (
-              totalRGN.toLocaleString('en')
+              totalRGN.toLocaleString("en")
             ) : (
               <CircularProgress
-                size='0.95em'
-                color='inherit'
+                size="0.95em"
+                color="inherit"
                 sx={{
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               />
             )}
@@ -95,48 +95,48 @@ const FundSecondTabs = ({
           xs
           sx={{
             backgroundColor: (theme) => theme.palette.secondary.main,
-            borderRight: '1px solid grey',
+            borderRight: "1px solid grey",
 
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
-          {' '}
+          {" "}
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              marginTop: '5px',
+              marginTop: "5px",
               color: (theme) => theme.palette.text.secondary,
             }}
           >
-            {' '}
+            {" "}
             MARKET CAP
           </Typography>
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
-              color: '#bfcbd2',
+              fontWeight: "bold",
+              color: "#bfcbd2",
             }}
           >
             {!isLoading ? (
               0
             ) : (
               <CircularProgress
-                size='0.95em'
-                color='inherit'
+                size="0.95em"
+                color="inherit"
                 sx={{
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               />
             )}
@@ -147,21 +147,21 @@ const FundSecondTabs = ({
           xs
           sx={{
             backgroundColor: (theme) => theme.palette.secondary.main,
-            borderRight: '1px solid grey',
+            borderRight: "1px solid grey",
 
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
-          {' '}
+          {" "}
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              marginTop: '5px',
+              marginTop: "5px",
               color: (theme) => theme.palette.text.secondary,
             }}
           >
@@ -170,12 +170,12 @@ const FundSecondTabs = ({
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
+              fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
             }}
           >
@@ -183,11 +183,11 @@ const FundSecondTabs = ({
               0
             ) : (
               <CircularProgress
-                size='0.95em'
-                color='inherit'
+                size="0.95em"
+                color="inherit"
                 sx={{
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               />
             )}
@@ -198,21 +198,21 @@ const FundSecondTabs = ({
           xs
           sx={{
             backgroundColor: (theme) => theme.palette.secondary.main,
-            textAlign: 'center',
+            textAlign: "center",
 
-            borderRight: '1px solid grey',
+            borderRight: "1px solid grey",
           }}
         >
-          {' '}
+          {" "}
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              marginTop: '5px',
+              marginTop: "5px",
               color: (theme) => theme.palette.text.secondary,
             }}
           >
@@ -221,12 +221,12 @@ const FundSecondTabs = ({
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
+              fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
             }}
           >
@@ -234,11 +234,11 @@ const FundSecondTabs = ({
               totalYeti
             ) : (
               <CircularProgress
-                size='0.95em'
-                color='inherit'
+                size="0.95em"
+                color="inherit"
                 sx={{
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               />
             )}
@@ -249,36 +249,36 @@ const FundSecondTabs = ({
           xs
           sx={{
             backgroundColor: (theme) => theme.palette.secondary.main,
-            textAlign: 'center',
+            textAlign: "center",
 
-            borderRadius: '0 1px 1px 0',
+            borderRadius: "0 1px 1px 0",
           }}
         >
-          {' '}
+          {" "}
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              marginTop: '5px',
-              color: '#929ea6',
+              marginTop: "5px",
+              color: "#929ea6",
             }}
           >
-            {' '}
-            veYeti BALANCE
+            {" "}
+            veYETI BALANCE
           </Typography>
           <Typography
             sx={{
               fontSize: {
-                lg: '0.85em',
-                md: '0.75em',
-                sm: '0.65em',
-                xs: '0.50rem',
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
-              fontWeight: 'bold',
+              fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
             }}
           >
@@ -286,11 +286,11 @@ const FundSecondTabs = ({
               totalVeYeti
             ) : (
               <CircularProgress
-                size='0.95em'
-                color='inherit'
+                size="0.95em"
+                color="inherit"
                 sx={{
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               />
             )}
@@ -300,32 +300,32 @@ const FundSecondTabs = ({
       <Grid
         item
         xs
-        justifyContent='space-between'
-        alignItems='center'
+        justifyContent="space-between"
+        alignItems="center"
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
-          borderRadius: '5px 5px 0 0',
-          textAlign: 'center',
-          display: { xs: 'flex', sm: 'none' },
+          borderRadius: "5px 5px 0 0",
+          textAlign: "center",
+          display: { xs: "flex", sm: "none" },
         }}
       >
-        {' '}
+        {" "}
         <Typography
           sx={{
             fontSize: {
-              lg: '0.85em',
-              md: '0.75em',
-              sm: '0.75em',
-              xs: '0.75em',
+              lg: "0.85em",
+              md: "0.75em",
+              sm: "0.75em",
+              xs: "0.75em",
             },
-            fontWeight: 'bold',
-            marginTop: '5px',
+            fontWeight: "bold",
+            marginTop: "5px",
             color: (theme) => theme.palette.text.primary,
-            padding: '0px 10px 0px 10px',
-            display: { xs: 'flex', sm: 'none' },
+            padding: "0px 10px 0px 10px",
+            display: { xs: "flex", sm: "none" },
           }}
         >
-          {' '}
+          {" "}
           Ragnar protocols infos
         </Typography>
         <IconButton onClick={handleDrawerOpen}>
@@ -334,55 +334,55 @@ const FundSecondTabs = ({
       </Grid>
       <Collapse
         in={open}
-        orientation='vertical'
-        style={{ transformOrigin: '0 0 0' }}
+        orientation="vertical"
+        style={{ transformOrigin: "0 0 0" }}
         {...(open ? { timeout: 1000 } : {})}
       >
         <Grid
           container
-          direction='column'
-          sx={{ display: { xs: 'flex', sm: 'none' } }}
+          direction="column"
+          sx={{ display: { xs: "flex", sm: "none" } }}
         >
           <>
             <Grid
               item
               xs
-              justifyContent='space-between'
-              alignItems='center'
+              justifyContent="space-between"
+              alignItems="center"
               sx={{
                 backgroundColor: (theme) => theme.palette.secondary.main,
-                display: 'flex',
-                textAlign: 'center',
-                padding: '0px 16px 0px 10px',
+                display: "flex",
+                textAlign: "center",
+                padding: "0px 16px 0px 10px",
               }}
             >
-              {' '}
+              {" "}
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  marginTop: '5px',
-                  color: '#929ea6',
+                  fontSize: "0.75em",
+                  marginTop: "5px",
+                  color: "#929ea6",
                 }}
               >
-                {' '}
+                {" "}
                 RAGNAR SUPPLY
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  fontWeight: 'bold',
-                  color: '#bfcbd2',
+                  fontSize: "0.75em",
+                  fontWeight: "bold",
+                  color: "#bfcbd2",
                 }}
               >
                 {!isLoading ? (
-                  totalRGN.toLocaleString('en')
+                  totalRGN.toLocaleString("en")
                 ) : (
                   <CircularProgress
-                    size='0.95em'
-                    color='inherit'
+                    size="0.95em"
+                    color="inherit"
                     sx={{
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
+                      marginLeft: "auto",
+                      marginRight: "auto",
                     }}
                   />
                 )}
@@ -391,31 +391,31 @@ const FundSecondTabs = ({
             <Grid
               item
               xs
-              justifyContent='space-between'
-              alignItems='center'
+              justifyContent="space-between"
+              alignItems="center"
               sx={{
                 backgroundColor: (theme) => theme.palette.secondary.main,
-                display: 'flex',
-                textAlign: 'center',
-                padding: '0px 16px 0px 10px',
+                display: "flex",
+                textAlign: "center",
+                padding: "0px 16px 0px 10px",
               }}
             >
-              {' '}
+              {" "}
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  marginTop: '5px',
+                  fontSize: "0.75em",
+                  marginTop: "5px",
                   color: (theme) => theme.palette.text.secondary,
                 }}
               >
-                {' '}
+                {" "}
                 MARKET CAP
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  fontWeight: 'bold',
-                  color: '#bfcbd2',
+                  fontSize: "0.75em",
+                  fontWeight: "bold",
+                  color: "#bfcbd2",
                 }}
               >
                 {totalYeti}
@@ -424,20 +424,20 @@ const FundSecondTabs = ({
             <Grid
               item
               xs
-              justifyContent='space-between'
-              alignItems='center'
+              justifyContent="space-between"
+              alignItems="center"
               sx={{
                 backgroundColor: (theme) => theme.palette.secondary.main,
-                display: 'flex',
-                textAlign: 'center',
-                padding: '0px 16px 0px 10px',
+                display: "flex",
+                textAlign: "center",
+                padding: "0px 16px 0px 10px",
               }}
             >
-              {' '}
+              {" "}
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  marginTop: '5px',
+                  fontSize: "0.75em",
+                  marginTop: "5px",
                   color: (theme) => theme.palette.text.secondary,
                 }}
               >
@@ -445,8 +445,8 @@ const FundSecondTabs = ({
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  fontWeight: 'bold',
+                  fontSize: "0.75em",
+                  fontWeight: "bold",
                   color: (theme) => theme.palette.text.primary,
                 }}
               >
@@ -454,11 +454,11 @@ const FundSecondTabs = ({
                   totalVeYeti
                 ) : (
                   <CircularProgress
-                    size='0.95em'
-                    color='inherit'
+                    size="0.95em"
+                    color="inherit"
                     sx={{
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
+                      marginLeft: "auto",
+                      marginRight: "auto",
                     }}
                   />
                 )}
@@ -466,20 +466,20 @@ const FundSecondTabs = ({
             </Grid>
             <Grid
               item
-              justifyContent='space-between'
-              alignItems='center'
+              justifyContent="space-between"
+              alignItems="center"
               sx={{
                 backgroundColor: (theme) => theme.palette.secondary.main,
-                display: 'flex',
-                textAlign: 'center',
-                padding: '0px 16px 0px 10px',
+                display: "flex",
+                textAlign: "center",
+                padding: "0px 16px 0px 10px",
               }}
             >
-              {' '}
+              {" "}
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  marginTop: '5px',
+                  fontSize: "0.75em",
+                  marginTop: "5px",
                   color: (theme) => theme.palette.text.secondary,
                 }}
               >
@@ -487,8 +487,8 @@ const FundSecondTabs = ({
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  fontWeight: 'bold',
+                  fontSize: "0.75em",
+                  fontWeight: "bold",
                   color: (theme) => theme.palette.text.primary,
                 }}
               >
@@ -496,11 +496,11 @@ const FundSecondTabs = ({
                   0
                 ) : (
                   <CircularProgress
-                    size='0.95em'
-                    color='inherit'
+                    size="0.95em"
+                    color="inherit"
                     sx={{
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
+                      marginLeft: "auto",
+                      marginRight: "auto",
                     }}
                   />
                 )}
@@ -508,31 +508,31 @@ const FundSecondTabs = ({
             </Grid>
             <Grid
               item
-              justifyContent='space-between'
-              alignItems='center'
+              justifyContent="space-between"
+              alignItems="center"
               sx={{
                 backgroundColor: (theme) => theme.palette.secondary.main,
-                display: 'flex',
-                textAlign: 'center',
-                padding: '0px 16px 10px 10px',
-                borderRadius: '0px 0px 5px 5px',
+                display: "flex",
+                textAlign: "center",
+                padding: "0px 16px 10px 10px",
+                borderRadius: "0px 0px 5px 5px",
               }}
             >
-              {' '}
+              {" "}
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  marginTop: '5px',
-                  color: '#929ea6',
+                  fontSize: "0.75em",
+                  marginTop: "5px",
+                  color: "#929ea6",
                 }}
               >
-                {' '}
+                {" "}
                 veYETI BALANCE
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '0.75em',
-                  fontWeight: 'bold',
+                  fontSize: "0.75em",
+                  fontWeight: "bold",
                   color: (theme) => theme.palette.text.primary,
                 }}
               >
@@ -540,11 +540,11 @@ const FundSecondTabs = ({
                   0
                 ) : (
                   <CircularProgress
-                    size='0.95em'
-                    color='inherit'
+                    size="0.95em"
+                    color="inherit"
                     sx={{
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
+                      marginLeft: "auto",
+                      marginRight: "auto",
                     }}
                   />
                 )}

@@ -21,17 +21,16 @@ import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
 interface LockRGNProps {
   selectedIndex: any;
   handleRefetchDeposit: () => void;
+  handleChangeAmount: (newValue: number) => void;
+  amountToStake: number;
 }
 
 const LockRGN: FunctionComponent<LockRGNProps> = ({
   selectedIndex,
   handleRefetchDeposit,
+  amountToStake,
+  handleChangeAmount,
 }) => {
-  const [amountToStake, setAmountToStake] = useState(0);
-  const handleChangeAmount = (newValue: number) => {
-    setAmountToStake(newValue);
-  };
-
   const [approveWait, setApproveWait] = useState("");
   const [waitLockTx, setWaitLockTx] = useState("");
   const [Approved, setApproved] = useState(false);
