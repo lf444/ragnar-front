@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { Buffer } from "buffer";
 import { contractAddress } from "../abi/address";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Button } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import LockPool from "../components/lock/LockPool";
 import rgn from "../assets/images/pools/rgn.png";
@@ -48,7 +48,6 @@ const Lock = ({
           LOCKABI.abi,
           signer
         );
-
         let emptyNFt: any[] = [];
         const test = await lock.getNftsOfOwner(userAddress);
         setNumberOfNFTOwned(+test.length);
@@ -66,6 +65,7 @@ const Lock = ({
           })
           .then(() => setNftMetadata(emptyNFt));
       }
+      console.log(nftMetadata)
     } catch (error: any) {
       errorToast(error.code);
       appLogger(appTag, " fetchMyDeposit masterChef", error.message);
@@ -138,45 +138,6 @@ const Lock = ({
               isLoadingMyNft={isLoadingMyNft}
               numberOfNFTOwned={numberOfNFTOwned}
             />
-          </Grid>
-          <Grid item container xs={12} sm={6} sx={{ width: "100%", p: 1 }}>
-            {" "}
-            <Grid
-              item
-              xs={12}
-              sx={{
-                color: (theme) => theme.palette.text.primary,
-                backgroundColor: theme.palette.secondary.main,
-                borderRadius: "5px 5px 0 0",
-                widthl: "100%",
-                fontWeight: "bold",
-                fontSize: { xs: "0.75em", sm: "1em" },
-                pl: "1rem",
-                pt: "0.5em",
-                pb: "1rem",
-                borderBottom: 2,
-                borderColor: "divider",
-                alignItems: "center",
-              }}
-            >
-              Rewards
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{
-                width: "100%",
-                marginBottom: "25px",
-                backgroundColor: theme.palette.secondary.main,
-                borderRadius: "0 0 5px 5px",
-                paddingTop: 1,
-                paddingBottom: 1,
-                paddingLeft: 3,
-                paddingRight: 3,
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-            ></Grid>
           </Grid>
         </Grid>
       </Zoom>

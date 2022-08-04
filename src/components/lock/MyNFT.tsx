@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import {
   Box,
   Button,
@@ -10,6 +10,10 @@ import {
 import Carousel from "react-material-ui-carousel";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
+import { contractAddress } from "../../abi/address";
+import { ethers } from "ethers";
+
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -104,6 +108,7 @@ interface MyNftProps {
   nftMetadata: any[];
   isLoadingMyNft: boolean;
   numberOfNFTOwned: number;
+  
 }
 
 const MyNft: FunctionComponent<MyNftProps> = ({
@@ -112,8 +117,69 @@ const MyNft: FunctionComponent<MyNftProps> = ({
   numberOfNFTOwned,
 }) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 5133f0e (dev add loading on NFT page)
 =======
+=======
+
+
+  async function rewards(index: number, rgn: boolean) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lock = new ethers.Contract(
+          contractAddress.NFTAddress,
+          LOCKABI.abi,
+          signer
+        );
+        const pendingtokens = await lock.pendingTokens(index);
+        
+        if (rgn) {
+        return pendingtokens.pendingRGN;
+        } else return pendingtokens.pendingBRGN;
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+  async function claimRGN(index: number) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lock = new ethers.Contract(
+          contractAddress.NFTAddress,
+          LOCKABI.abi,
+          signer
+        );
+        const generateBRgn = await lock.generateBRgn(index);
+        generateBRgn.wait();
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+  async function compoundReward(index: number) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lock = new ethers.Contract(
+          contractAddress.NFTAddress,
+          LOCKABI.abi,
+          signer
+        );
+        const compoundReward = await lock.compoundReward(index, true);
+        compoundReward.wait();
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+
+
+>>>>>>> 92d3965 (buttton nft)
   const theme = useTheme();
 >>>>>>> 46eca83 (dev : add nft preview on select lock)
   return (
@@ -179,21 +245,41 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                 <>
                   <Box
                     sx={{
-                      height: "300px",
+                      height: "420px",
                       width: "250px",
                       ml: "auto",
                       mr: "auto",
                     }}
                     key={i}
                   >
-                    <object type="image/svg+xml" data={meta.image}></object>
+                  <object type="image/svg+xml" data={meta.image}></object>
+                  <Typography sx={{textAlign: "center"}}>Total Rewards: {meta.edition}</Typography>
+                  <Typography sx={{textAlign: "center"}}>Pending bRGN: {meta.edition}</Typography>
+                  <Typography sx={{textAlign: "center"}}>Power of Gouvernance: </Typography>
+                  <Button onClick={() => claimRGN(meta.edition)} sx={{
+                variant: "contained",
+                marginRight: "25%",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                fontSize: "12px",
+                marginBottom: "20px",
+              }}>Claim bRGN</Button>
+                  <Button onClick={() => compoundReward(meta.edition)} sx={{
+                variant: "contained",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                fontSize: "12px",
+                marginBottom: "20px",
+              }}>Claim RGN</Button>
                   </Box>
                 </>
               ))
             ) : (
               <Box
                 sx={{
-                  height: "300px",
+                  height: "420px",
                   width: "200px",
                   margin: "auto",
                   justifyContent: "center",
@@ -207,7 +293,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           ) : (
             <Box
               sx={{
-                height: "300px",
+                height: "420px",
                 width: "250px",
                 margin: "auto",
                 justifyContent: "center",
