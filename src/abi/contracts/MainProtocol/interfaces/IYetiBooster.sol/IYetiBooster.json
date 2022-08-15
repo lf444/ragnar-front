@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "IMainStaking",
-  "sourceName": "contracts/Tokens/interfaces/IMainStaking.sol",
+  "contractName": "IYetiBooster",
+  "sourceName": "contracts/MainProtocol/interfaces/IYetiBooster.sol",
   "abi": [
     {
       "inputs": [

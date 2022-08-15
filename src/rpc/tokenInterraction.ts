@@ -3,7 +3,7 @@ import { contractAddress } from "../abi/address";
 import { appLogger, errorToast } from "../utils/method";
 import tokenABI from "../abi/contracts/Tokens/RGN.sol/RGN.json";
 import masterchefABI from "../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
-import mainstakingABI from "../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import mainstakingABI from "../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json";
 
 export const approve = async (
   qty: number,

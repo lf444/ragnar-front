@@ -1,4 +1,5 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -13,6 +14,8 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
 import { contractAddress } from "../../abi/address";
 import { ethers } from "ethers";
+import { formatEther } from "ethers/lib/utils";
+import { Sign } from "crypto";
 
 
 <<<<<<< HEAD
@@ -123,7 +126,8 @@ const MyNft: FunctionComponent<MyNftProps> = ({
 =======
 
 
-  async function rewards(index: number, rgn: boolean) {
+
+  async function rewards(index: number, rgn: boolean):Promise<string | undefined> {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -133,16 +137,19 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           LOCKABI.abi,
           signer
         );
-        const pendingtokens = await lock.pendingTokens(index);
+        const pendingtokens = await lock.pendingTokens(index);  
+        const rewardsRGN = formatEther(pendingtokens.pendingRGN);
+        const rewardsBRGN = formatEther(pendingtokens.pendingBRGN);
         
-        if (rgn) {
-        return pendingtokens.pendingRGN;
-        } else return pendingtokens.pendingBRGN;
+        return rgn ? rewardsRGN: rewardsBRGN;
+
+   
       }
     } catch (err: any) {
       console.log(err);
     }
   }
+
   async function claimRGN(index: number) {
     try {
       if (window.ethereum) {
@@ -181,7 +188,12 @@ const MyNft: FunctionComponent<MyNftProps> = ({
 
 >>>>>>> 92d3965 (buttton nft)
   const theme = useTheme();
+<<<<<<< HEAD
 >>>>>>> 46eca83 (dev : add nft preview on select lock)
+=======
+
+
+>>>>>>> a779675 (fix data NFTLOCK)
   return (
     <>
       <Grid
@@ -227,6 +239,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           marginRight: "auto",
         }}
       >
+        
         <Carousel
           navButtonsAlwaysVisible
           NextIcon={<ArrowRightIcon />}
@@ -239,6 +252,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           }}
           autoPlay={false}
         >
+          
           {!isLoadingMyNft ? (
             nftMetadata.length > 0 ? (
               nftMetadata.map((meta, i) => (
@@ -253,9 +267,8 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                     key={i}
                   >
                   <object type="image/svg+xml" data={meta.image}></object>
-                  <Typography sx={{textAlign: "center"}}>Total Rewards: {meta.edition}</Typography>
-                  <Typography sx={{textAlign: "center"}}>Pending bRGN: {meta.edition}</Typography>
-                  <Typography sx={{textAlign: "center"}}>Power of Gouvernance: </Typography>
+                  <Typography sx={{textAlign: "center"}}>Total Rewards:<></></Typography>
+                  <Typography sx={{textAlign: "center"}}>Pending bRGN:<></></Typography>
                   <Button onClick={() => claimRGN(meta.edition)} sx={{
                 variant: "contained",
                 marginRight: "25%",
@@ -265,7 +278,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                 fontSize: "12px",
                 marginBottom: "20px",
               }}>Claim bRGN</Button>
-                  <Button onClick={() => compoundReward(meta.edition)} sx={{
+                  <Button onClick={() => console.log(meta.attributes.value)} sx={{
                 variant: "contained",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 color: (theme) => theme.palette.text.primary,
@@ -287,7 +300,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                   display: "flex",
                 }}
               >
-                NO NFT
+                You dont have NFT!
               </Box>
             )
           ) : (

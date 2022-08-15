@@ -91,7 +91,7 @@ import mainstakingABI from "../../abi/contracts/MainProtocol/MainStaking.sol/Mai
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
 =======
 import masterchefABI from "../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
-import mainstakingABI from "../../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import mainstakingABI from "../../../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json";
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../../abi/pools";
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/PoolTab.tsx
 
@@ -1337,13 +1337,11 @@ async function depositVeYeti(qty: number) {
       </Box>
       <TabPanel value={value} index={0}>
         {Yeti}
-        {RGN}
         {Yusd}
         {CurveLp}
       </TabPanel>
       <TabPanel value={value} index={1}>
         {Yeti}
-        {RGN}
       </TabPanel>
       <TabPanel value={value} index={2}>
         {Yusd}

@@ -278,7 +278,7 @@
       "outputs": [
         {
           "internalType": "uint256",
-          "name": "pendingVTX",
+          "name": "pendingRGN",
           "type": "uint256"
         },
         {
@@ -480,7 +480,7 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_vtxPerSec",
+          "name": "_rgnPerSec",
           "type": "uint256"
         }
       ],

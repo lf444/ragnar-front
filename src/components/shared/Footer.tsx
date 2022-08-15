@@ -7,7 +7,7 @@ export default function Footer() {
     <footer>
       <Box
         px={{ xs: 3, sm: 3 }}
-        py={{ xs: 5, sm: 5 }}
+        py={{ xs: 7, sm: 8.5 }}
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
           color: (theme) => theme.palette.text.primary,

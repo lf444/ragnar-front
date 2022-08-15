@@ -123,7 +123,7 @@ const SvgThreeYears: React.FunctionComponent<SvgThreeYearsProps> = ({
           {"000000 bRGN"}
         </text>
         <text className="cls-10" transform="translate(51 520.88)">
-          {"3 years"}
+          {"18 months"}
         </text>
         <path
           className="cls-9"

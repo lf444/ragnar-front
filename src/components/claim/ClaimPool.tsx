@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Button } from "@mui/material";
 import { FunctionComponent } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 import { formatPrice } from "../../utils/method";
@@ -8,7 +8,6 @@ interface ClaimPoolProps {
   apr: number;
   deposit: number;
   tvl: number;
-
   isLoading: boolean;
 }
 

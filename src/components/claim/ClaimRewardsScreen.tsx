@@ -1,6 +1,6 @@
 import { Grid, Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import ClaimTable from "./ClaimTable";
+import  { ClaimTable, ClaimTable2 } from "./ClaimTable";
 import rgn from "../../assets/images/pools/rgn.png";
 import yeti from "../../assets/images/pools/yeti.png";
 import { ethers } from "ethers";
@@ -9,7 +9,7 @@ import { appLogger, errorToast } from "../../utils/method";
 import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 import { useProvider } from "wagmi";
 import LinearProgress from "@mui/material/LinearProgress";
-import ClaimRewards from "./ClaimRewards";
+import { ClaimRewards, ClaimRewards2 } from "./ClaimRewards";
 import { formatEther } from "ethers/lib/utils";
 import { fetchAllTvl, fetchAllApr, fetchDeposit } from "../../rpc/PoolFunc";
 import {
@@ -299,47 +299,24 @@ export default function ClaimRewardsScreen({
                 height: "100%",
               }}
             >
-              <ClaimTable
-                pool1="RGN"
-                pool2="rgnYETI"
-                apr1={Math.round(aprRgn.aprRgn)}
-                apr2={Math.round(aprRgn.aprYeti)}
-                deposit1={Math.round(myStake.myRgn)}
-                deposit2={Math.round(myStake.myYeti)}
-                tvl1={Math.round(TVL.tvlRgn)}
-                tvl2={Math.round(TVL.tvlYeti)}
+              <ClaimTable2
+                pool1="rgnYETI"
+                apr1={Math.round(aprRgn.aprYeti)}
+                deposit1={Math.round(myStake.myYeti)}
+                tvl1={Math.round(TVL.tvlYeti)}
                 isLoading={isLoading}
               />
-              {/*              <Button
-                sx={{
-                  variant: "contained",
-                  backgroundColor: (theme) => theme.palette.primary.light,
-                  color: (theme) => theme.palette.text.primary,
-                  width: { xs: "100px" },
-                  fontWeight: "bold",
-                  fontSize: "12px",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                }}
-              >
-                Claim
-              </Button> */}
             </Grid>
           </Grid>
           <Grid item xs={6} sx={{ pr: 2, pb: "1.3rem" }}>
-            <ClaimRewards
+            <ClaimRewards2
               claim={claimRagnarPools}
               title={InfoRgnYetiPools}
-              title2={InfoRgnPools}
               text1={"rgnYETI Pools:"}
-              text2={"RGN Pools:"}
               price1={reward.rewardYetiRGN + reward.rewardYetiYETI}
-              price2={reward.rewardRgnRGN + reward.rewardRgnYETI}
-              price3={
+              price2={
                 reward.rewardYetiRGN +
-                reward.rewardYetiYETI +
-                reward.rewardRgnRGN +
-                reward.rewardRgnYETI
+                reward.rewardYetiYETI 
               }
               isLoading={isLoading}
             />
@@ -407,20 +384,6 @@ export default function ClaimRewardsScreen({
                 tvl2={Math.round(TVL.tvlLpCurve)}
                 isLoading={isLoading}
               />
-              {/*          <Button
-                sx={{
-                  variant: "contained",
-                  backgroundColor: (theme) => theme.palette.primary.light,
-                  color: (theme) => theme.palette.text.primary,
-                  width: { xs: "100px" },
-                  fontWeight: "bold",
-                  fontSize: "",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                }}
-              >
-                Claim
-              </Button> */}
             </Grid>
           </Grid>
           <Grid

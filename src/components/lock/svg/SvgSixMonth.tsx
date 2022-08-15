@@ -121,7 +121,7 @@ const SvgSixMonth: React.FunctionComponent<SvgSixMonthhProps> = ({
           {"000000 bRGN"}
         </text>
         <text className="cls-9" transform="translate(51 520.88)">
-          {"6 months"}
+          {"3 months"}
         </text>
         <path
           className="cls-7"

@@ -64,8 +64,8 @@ const Lock = ({
             });
           })
           .then(() => setNftMetadata(emptyNFt));
+          
       }
-      console.log(nftMetadata)
     } catch (error: any) {
       errorToast(error.code);
       appLogger(appTag, " fetchMyDeposit masterChef", error.message);

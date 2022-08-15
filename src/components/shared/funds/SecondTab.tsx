@@ -180,7 +180,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              0
+              totalRGNLocked
             ) : (
               <CircularProgress
                 size="0.95em"

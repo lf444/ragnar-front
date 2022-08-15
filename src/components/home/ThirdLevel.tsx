@@ -64,7 +64,7 @@ const ThirdLevel = () => {
           }}
         >
           {" "}
-          Convertt your $YETI to $rgnYETI. Stake your $rgnYeti on the Ragnrar
+          Convert your $YETI to $rgnYETI. Stake your $rgnYeti on the Ragnrar
           platform. Convert your $etiaett Convertt your $YETI to $rgnYETI. Stake
           your $rgnYeti on the Ragnrar platform. Convert your $etiaett
         </Typography>{" "}
@@ -76,7 +76,7 @@ const ThirdLevel = () => {
           }}
         >
           {" "}
-          Convertt your $YETI to $rgnYETI. Stake your $rgnYeti on the Ragnrar
+          Convert your $YETI to $rgnYETI. Stake your $rgnYeti on the Ragnrar
           platform. Convert your $etiaett
         </Typography>{" "}
         <Typography
@@ -87,7 +87,7 @@ const ThirdLevel = () => {
           }}
         >
           {" "}
-          Convertt your $YETI to $rgnYETI. Stake your $rgnYeti on the Ragnrar
+          Convert your $YETI to $rgnYETI. Stake your $rgnYeti on the Ragnrar
           platform. Convert your $etiaett
         </Typography>{" "}
       </Grid>

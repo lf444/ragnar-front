@@ -18,6 +18,10 @@ import { useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import theme from "../utils/theme";
 import { Link } from "react-router-dom";
+import RagnarVaultABI from "../abi/contracts/MainProtocol/RagnarVault.sol/RagnarVault.json"
+import { ethers } from "ethers";
+import { contractAddress } from "../abi/address";
+import TokenABI from '../abi/contracts/Tokens/LpCurve.sol/Lpcurve.json'
 
 const drawerWidth = 100;
 
@@ -79,6 +83,47 @@ const Navbar = ({
     }, */
   ];
 
+  async function mint(qty: number, rgn: boolean) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const vault = new ethers.Contract(
+          contractAddress.VaultAddress,
+          RagnarVaultABI.abi,
+          signer
+        );
+        const amount = ethers.utils.parseEther(qty.toString());
+        if (rgn) {
+          await vault.mintRgn(amount);
+        } else {
+          await vault.mintYeti(amount);
+        }
+
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+
+  async function mintLpCurve(qty: number) {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lpcurve = new ethers.Contract(
+          contractAddress.lpCurveAddress,
+          TokenABI,
+          signer
+        );
+        const amount = ethers.utils.parseEther(qty.toString());
+        await lpcurve.mint(amount)
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <AppBar
@@ -123,7 +168,7 @@ const Navbar = ({
             <Grid
               item
               xs={2}
-              sm={1.5}
+              sm={2}
               md={0}
               sx={{
                 display: {
@@ -316,11 +361,8 @@ const Navbar = ({
                         color: (theme) => theme.palette.text.primary,
                       }}
                       onClick={() =>
-                        window.open(
-                          "https://faucet.avax-test.network/",
-                          "_blank"
-                        )
-                      }
+                        mint(3000, true)
+                      }      
                       id="modal-modal-description"
                     >
                       Click here to mint RGN.
@@ -329,18 +371,28 @@ const Navbar = ({
                       sx={{
                         width: "100%",
                         alignContent: "center",
-                        marginBottom: "25px",
                         color: (theme) => theme.palette.text.primary,
                       }}
                       onClick={() =>
-                        window.open(
-                          "https://faucet.avax-test.network/",
-                          "_blank"
-                        )
+                        mintLpCurve(3000)
                       }
                       id="modal-modal-description"
                     >
                       Click here to mint Curve LP.
+                    </Button>
+                    <Button 
+                      sx={{
+                        width: "100%",
+                        alignContent: "center",
+                        marginBottom: "25px",
+                        color: (theme) => theme.palette.text.primary,
+                      }}
+                      onClick={() =>
+                        mint(3000, false)
+                      }
+                      id="modal-modal-description"
+                    >
+                      Click here to mint YETI.
                     </Button>
                   </Box>
                 </Modal>
@@ -359,10 +411,74 @@ const Navbar = ({
                   onClose={handleClose}
                   TransitionComponent={Fade}
                 >
-                  <MenuItem onClick={handleClose}>Docs</MenuItem>
-                  <MenuItem onClick={handleClose}>Discord</MenuItem>
-                  <MenuItem onClick={handleClose}>Medium</MenuItem>
-                  <MenuItem onClick={handleClose}>Twitter</MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://ragnarfinance.gitbook.io/ragnar-finance/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Docs
+                </Typography>
+              </a></MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://discord.com/invite/MHHEYWTFyq"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Discord
+                </Typography>
+              </a></MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://ragnarfinance.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Medium
+                </Typography>
+              </a></MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://twitter.com/ragnarfinance"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Twitter
+                </Typography>
+              </a></MenuItem>
                   <MenuItem onClick={handleOpenModal}>MINT</MenuItem>
                 </Menu>
               </List>
@@ -560,10 +676,75 @@ const Navbar = ({
                 onClose={handleClose}
                 TransitionComponent={Fade}
               >
-                <MenuItem onClick={handleClose}>Docs</MenuItem>
-                <MenuItem onClick={handleClose}>Discord</MenuItem>
-                <MenuItem onClick={handleClose}>Medium</MenuItem>
-                <MenuItem onClick={handleClose}>Twitter</MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://ragnarfinance.gitbook.io/ragnar-finance/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Docs
+                </Typography>
+              </a></MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://discord.com/invite/MHHEYWTFyq"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Discord
+                </Typography>
+              </a></MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://ragnarfinance.medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Medium
+                </Typography>
+              </a></MenuItem>
+                  <MenuItem onClick={handleClose}><a
+                href="https://twitter.com/ragnarfinance"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Typography
+                  sx={{
+                    color: (theme) => theme.palette.text.primary,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    fontWeight: "500px",
+                  }}
+                >
+                  Twitter
+                </Typography>
+              </a></MenuItem>
+              <MenuItem onClick={handleOpenModal}>MINT</MenuItem>
               </Menu>
             </List>
           </Drawer>

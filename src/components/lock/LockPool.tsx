@@ -86,11 +86,21 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
             justifyContent={"space-between"}
             sx={{
               pt: "1rem",
-              borderBottom: 2,
-              borderColor: "#929ea6",
             }}
           >
             {" "}
+            <Grid
+              item
+              onClick={() => setSelectedIndex(1)}
+              sx={{
+                cursor: "pointer",
+                color: selectedIndex === 1 ? "#ddeaf2" : "#929ea6",
+                borderBottom: selectedIndex === 1 ? 2 : 0,
+                borderColor: selectedIndex === 1 ? "#ddeaf2" : "#929ea6",
+              }}
+            >
+              1 Month
+            </Grid>
             <Grid
               item
               onClick={() => setSelectedIndex(3)}
@@ -125,32 +135,20 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
                 borderColor: selectedIndex === 12 ? "#ddeaf2" : "#929ea6",
               }}
             >
-              1 Year
+              12 Months
             </Grid>
             <Grid
               item
-              onClick={() => setSelectedIndex(24)}
+              onClick={() => setSelectedIndex(18)}
               sx={{
                 cursor: "pointer",
-                color: selectedIndex === 24 ? "#ddeaf2" : "#929ea6",
-                borderBottom: selectedIndex === 24 ? 2 : 0,
-                borderColor: selectedIndex === 24 ? "#ddeaf2" : "#929ea6",
-              }}
-            >
-              2 Years
-            </Grid>
-            <Grid
-              item
-              onClick={() => setSelectedIndex(36)}
-              sx={{
-                cursor: "pointer",
-                color: selectedIndex === 36 ? "#ddeaf2" : "#929ea6",
-                borderBottom: selectedIndex === 36 ? 2 : 0,
-                borderColor: selectedIndex === 36 ? "#ddeaf2" : "#929ea6",
+                color: selectedIndex === 18 ? "#ddeaf2" : "#929ea6",
+                borderBottom: selectedIndex === 18 ? 2 : 0,
+                borderColor: selectedIndex === 18 ? "#ddeaf2" : "#929ea6",
               }}
             >
               {" "}
-              3 Years
+              18 Months
             </Grid>
           </Grid>
           <LockRGN
@@ -168,30 +166,30 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
           xs={12}
           sm={3}
         >
-          {selectedIndex === 36 ? (
+          {selectedIndex === 18 ? (
             <SvgThreeYears
               numberOfRGN={amountToStake}
-              releaseDate={getReleaseDate(36)}
-            />
-          ) : selectedIndex === 24 ? (
-            <SvgTwoYears
-              numberOfRGN={amountToStake}
-              releaseDate={getReleaseDate(24)}
+              releaseDate={getReleaseDate(18)}
             />
           ) : selectedIndex === 12 ? (
-            <SvgOneYears
+            <SvgTwoYears
               numberOfRGN={amountToStake}
               releaseDate={getReleaseDate(12)}
             />
           ) : selectedIndex === 6 ? (
-            <SvgSixMonth
+            <SvgOneYears
               numberOfRGN={amountToStake}
               releaseDate={getReleaseDate(6)}
+            />
+          ) : selectedIndex === 3 ? (
+            <SvgSixMonth
+              numberOfRGN={amountToStake}
+              releaseDate={getReleaseDate(3)}
             />
           ) : (
             <SvgThreeMonth
               numberOfRGN={amountToStake}
-              releaseDate={getReleaseDate(3)}
+              releaseDate={getReleaseDate(1)}
             />
           )}
         </Grid>

@@ -1,7 +1,9 @@
 import { ethers } from "ethers";
+import { useState } from "react";
 import { contractAddress } from "../abi/address";
 import { appLogger, errorToast } from "../utils/method";
 import masterchefABI from "../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+import NFTABI from "../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json"
 import { formatEther } from "ethers/lib/utils";
 
 export const fetchAllTvl = async (
@@ -11,7 +13,8 @@ export const fetchAllTvl = async (
     tvlYusd: number,
     tvlYeti: number,
     tvlRgn: number,
-    tvlLpCurve: number
+    tvlLpCurve: number,
+    tvlNFT: number
   ) => void
 ) => {
   try {
@@ -19,6 +22,11 @@ export const fetchAllTvl = async (
       const masterchef = new ethers.Contract(
         contractAddress.masterchefAddress,
         masterchefABI.abi,
+        provider
+      );
+      const NFT = new ethers.Contract(
+        contractAddress.NFTAddress,
+        NFTABI.abi,
         provider
       );
       const TVLYUSD = await masterchef.getPoolInfo(
@@ -31,12 +39,14 @@ export const fetchAllTvl = async (
         contractAddress.fakeLpCurveAddress
       );
       const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
+      const TVLNFT = await NFT.totalValueLocked();
 
       handleChangeTVL(
         +formatEther(TVLYUSD.sizeOfPool),
         +formatEther(TVLRgnYeti.sizeOfPool),
         +formatEther(TVLRGN.sizeOfPool),
-        +formatEther(TVLLpCurve.sizeOfPool)
+        +formatEther(TVLLpCurve.sizeOfPool),
+        +formatEther(TVLNFT)
       );
     }
   } catch (err: any) {

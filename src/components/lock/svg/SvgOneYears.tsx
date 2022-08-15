@@ -121,7 +121,7 @@ const SvgOneYears: React.FunctionComponent<SvgOneYearsProps> = ({
           {"000000 bRGN"}
         </text>
         <text className="cls-9" transform="translate(51 520.88)">
-          {"1 year"}
+          {"6 Months"}
         </text>
         <path
           className="cls-7"

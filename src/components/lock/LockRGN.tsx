@@ -74,6 +74,7 @@ const LockRGN: FunctionComponent<LockRGNProps> = ({
       errorToast(err.code);
     }
   }
+  
   async function lock(qty: number) {
     try {
       if (window.ethereum) {

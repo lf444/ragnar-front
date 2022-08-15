@@ -121,7 +121,7 @@ const SvgThreeMonth: React.FunctionComponent<SvgThreeMonthProps> = ({
           {"000000 bRGN"}
         </text>
         <text className="cls-9" transform="translate(51 520.88)">
-          {"3 months"}
+          {"1 months"}
         </text>
         <path
           className="cls-7"

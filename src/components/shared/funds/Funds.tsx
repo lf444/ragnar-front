@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import masterchefABI from "../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
-import mainstakingABI from "../../../abi/contracts/MainProtocol/MainStaking.sol/MainStaking.json";
+import mainstakingABI from "../../../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json";
+import NFTABI from "../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json"
 import rgnABI from "../../../abi/contracts/Tokens/RGN.sol/RGN.json";
 import { contractAddress } from "../../../abi/address";
 import { useEffect, useState } from "react";
@@ -10,6 +11,9 @@ import FundSecondTabs from "./SecondTab";
 import { useProvider } from "wagmi";
 import { formatEther } from "ethers/lib/utils";
 import { fetchAllTvl } from "../../../rpc/PoolFunc";
+import { Buffer } from "buffer";
+
+
 
 const appTag: string = "Funds";
 
@@ -40,6 +44,51 @@ const Funds = ({
 
   const [isLoading, setIsLoading] = useState(true);
   const provider = useProvider();
+
+const [nftMetadata, setNftMetadata] = useState<any[]>([]);
+let [RGNlock, setRGNlock] = useState(0)
+let [NFTrewards, setNFTrewards] = useState(0)
+const [numberOfNFTOwned, setNumberOfNFTOwned] = useState(0);
+
+const getNFTByOwner = async () => {
+  try {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const lock = new ethers.Contract(
+        contractAddress.NFTAddress,
+        NFTABI.abi,
+        signer
+      );
+      let emptyNFt: any[] = [];
+      const test = await lock.getNftsOfOwner(userAddress);
+      setNumberOfNFTOwned(+test.length);
+      const allNFTOwned = await Promise.all(
+        test.map((e: any) => {
+          return lock.tokenURI(e);
+        })
+      )
+        .then((e) => {
+          emptyNFt = e.map((e: any) => {
+            return JSON.parse(
+              Buffer.from(e.substring(29), "base64").toString()
+            );
+          });
+        })
+        .then(() => setNftMetadata(emptyNFt));    
+        for (let i = 0; i < emptyNFt.length; i++) {
+          RGNlock += (emptyNFt[i].attributes[0].value / 10**18) / 2;
+         };
+        console.log(emptyNFt[0].attributes[0].value / 10 ** 18);
+        console.log(emptyNFt[1].attributes[0].value / 10 ** 18);
+        console.log(RGNlock);
+    }
+  } catch (error: any) {
+    errorToast(error.code);
+    appLogger(appTag, " fetchMyDeposit masterChef", error.message);
+    setIsLoading(false);
+  }
+};
 
   const getMasterChefDeposit = async () => {
     try {
@@ -75,7 +124,8 @@ const Funds = ({
           +formatEther(myDepositYUSD) * tokensPrices.priceYusd +
             +formatEther(myDepositRgnYeti) * tokensPrices.priceRgnYeti +
             +formatEther(myDepositLpCurve) * tokensPrices.priceLpCurve +
-            +formatEther(myDepositRGN) * tokensPrices.priceRgn
+            +formatEther(myDepositRGN) * tokensPrices.priceRgn +
+            RGNlock * tokensPrices.priceRgn
         );
       }
     } catch (err: any) {
@@ -145,13 +195,15 @@ const Funds = ({
     tvlYusd: number,
     tvlYeti: number,
     tvlRgn: number,
-    tvlLpCurve: number
+    tvlLpCurve: number,
+    tvlNFT: number,
   ) => {
     setTotalValueLocked(
       tvlYusd * tokensPrices.priceYusd +
         tvlYeti * tokensPrices.priceYeti +
         tvlRgn * tokensPrices.priceRgn +
-        tvlLpCurve * tokensPrices.priceLpCurve
+        tvlLpCurve * tokensPrices.priceLpCurve +
+        tvlNFT * tokensPrices.priceRgn
     );
   };
 
@@ -167,6 +219,11 @@ const Funds = ({
           mainstakingABI.abi,
           provider
         );
+        const NFT = new ethers.Contract(
+          contractAddress.NFTAddress,
+          NFTABI.abi,
+          provider
+        );
         const rgn = new ethers.Contract(
           contractAddress.rgnAddress,
           rgnABI.abi,
@@ -175,11 +232,14 @@ const Funds = ({
         const getStackedYETI = await mainstaking.getStakedYeti();
         const getStackedVeYeti = await mainstaking.getVeYETI();
         const rgnSupply = await rgn.totalSupply();
+        const TotalRGNLOCKED = await NFT.totalValueLocked();
+        console.log(formatEther(TotalRGNLOCKED))
+        console.log(rgnSupply)
 
         setTotalYeti(+formatEther(getStackedYETI));
         setTotalVeYeti(+formatEther(getStackedVeYeti));
         setTotalRGN(+formatEther(rgnSupply));
-        //setTotalRGNLocked(+formatEther(rgnLocked))
+        setTotalRGNLocked(+formatEther(TotalRGNLOCKED));
       }
     } catch (err: any) {
       errorToast(err.code);
@@ -205,6 +265,10 @@ const Funds = ({
     setDeposit(0);
     setReward(0);
   };
+
+  useEffect(() => {
+    getNFTByOwner();
+  }, []);
 
   useEffect(() => {
     fetchAllData().then(() => setIsLoading(false));

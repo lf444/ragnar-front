@@ -47,7 +47,15 @@ interface ClaimTableProps {
   isLoading: boolean;
 }
 
-const ClaimTable: FunctionComponent<ClaimTableProps> = ({
+interface ClaimTableProps2 {
+  pool1: string;
+  apr1: number;
+  deposit1: number;
+  tvl1: number;
+  isLoading: boolean;
+}
+
+export const ClaimTable: FunctionComponent<ClaimTableProps> = ({
   pool1,
   pool2,
   apr1,
@@ -63,6 +71,7 @@ const ClaimTable: FunctionComponent<ClaimTableProps> = ({
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
 
   return (
     <>
@@ -117,4 +126,54 @@ const ClaimTable: FunctionComponent<ClaimTableProps> = ({
   );
 };
 
-export default ClaimTable;
+export const ClaimTable2: FunctionComponent<ClaimTableProps2> = ({
+  pool1,
+  apr1,
+  deposit1,
+  tvl1,
+  isLoading,
+}) => {
+  
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+
+  return (
+    <>
+      <Box sx={{ width: "100%" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            variant="fullWidth"
+            centered
+            aria-label="basic tabs example"
+          >
+            <Tab
+              label={pool1}
+              {...a11yProps(0)}
+              style={{
+                color: value === 0 ? "#ddeaf2" : "#929ea6",
+                textTransform: "none",
+              }}
+            />
+          </Tabs>
+        </Box>
+
+        <TabPanel value={value} index={0}>
+          <ClaimPool
+            pool={pool1}
+            apr={apr1}
+            deposit={deposit1}
+            tvl={tvl1}
+            isLoading={isLoading}
+          />
+        </TabPanel>
+      </Box>
+    </>
+  );
+};
+

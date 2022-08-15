@@ -290,11 +290,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       errorToast('TX_ERRROR');
     }
   }, [waitWithdrawTX.isLoading, waitWithdrawTX.isError]);
-  /* 
-   function approveTokenRgnYETI() {
-    await approve(amountToStake, contractAddress.rgnYetiAddress, true, appTag);
-  }
-*/
+  
+
+
   const approveYeti = async () => {
     await approve(
       amountToStake,
@@ -709,7 +707,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             {' '}
 >>>>>>> 5383c94 (dev: push kool change)
             <Button
-              /*  onClick={approveToken} */
+              onClick={approveYeti} 
               variant='contained'
               sx={{
                 width: '45%',
@@ -767,6 +765,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             </Button>
             <Button
 <<<<<<< HEAD
+<<<<<<< HEAD
               onClick={depositVeYetiMain}
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -776,6 +775,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 797b602 (dev: remove disabled)
               variant="contained"
 =======
+=======
+                 onClick={depositToken} 
+>>>>>>> a779675 (fix data NFTLOCK)
               variant='contained'
 >>>>>>> 5383c94 (dev: push kool change)
               sx={{
@@ -1045,7 +1047,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             {' '}
 >>>>>>> 5383c94 (dev: push kool change)
             <Button
-              /*  onClick={approveToken} */
+               onClick={approveYeti} 
               variant='contained'
               sx={{
                 width: '45%',
