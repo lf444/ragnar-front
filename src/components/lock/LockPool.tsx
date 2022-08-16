@@ -77,7 +77,7 @@ const LockPool: FunctionComponent<LockPoolComponenttProps> = ({
           >
             <img height="45px" style={{}} src={logo1} alt={`${logo1} Logo`} />
             <Typography sx={{ textAlign: "center", ml: "0.5rem" }}>
-              Lock RGN in a NFT
+              Lock your RGN into the NFT to stake them
             </Typography>
           </Grid>
           <Grid

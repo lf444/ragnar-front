@@ -127,29 +127,6 @@ const MyNft: FunctionComponent<MyNftProps> = ({
 
 
 
-  async function rewards(index: number, rgn: boolean):Promise<string | undefined> {
-    try {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const lock = new ethers.Contract(
-          contractAddress.NFTAddress,
-          LOCKABI.abi,
-          signer
-        );
-        const pendingtokens = await lock.pendingTokens(index);  
-        const rewardsRGN = formatEther(pendingtokens.pendingRGN);
-        const rewardsBRGN = formatEther(pendingtokens.pendingBRGN);
-        
-        return rgn ? rewardsRGN: rewardsBRGN;
-
-   
-      }
-    } catch (err: any) {
-      console.log(err);
-    }
-  }
-
   async function claimRGN(index: number) {
     try {
       if (window.ethereum) {
@@ -160,14 +137,14 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           LOCKABI.abi,
           signer
         );
-        const generateBRgn = await lock.generateBRgn(index);
-        generateBRgn.wait();
+        const test = await lock.rgnPerSec()
+        console.log(test)
       }
     } catch (err: any) {
       console.log(err);
     }
   }
-  async function compoundReward(index: number) {
+  async function claimbRGN(index: number) {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -267,8 +244,8 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                     key={i}
                   >
                   <object type="image/svg+xml" data={meta.image}></object>
-                  <Typography sx={{textAlign: "center"}}>Total Rewards:<></></Typography>
-                  <Typography sx={{textAlign: "center"}}>Pending bRGN:<></></Typography>
+                  <Typography sx={{textAlign: "center"}}></Typography>
+                  <Typography sx={{textAlign: "center"}}></Typography>
                   <Button onClick={() => claimRGN(meta.edition)} sx={{
                 variant: "contained",
                 marginRight: "25%",
@@ -278,7 +255,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                 fontSize: "12px",
                 marginBottom: "20px",
               }}>Claim bRGN</Button>
-                  <Button onClick={() => console.log(meta.attributes.value)} sx={{
+                  <Button onClick={() => claimbRGN(meta.edition)} sx={{
                 variant: "contained",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 color: (theme) => theme.palette.text.primary,

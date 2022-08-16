@@ -65,6 +65,11 @@ const Lock = ({
           })
           .then(() => setNftMetadata(emptyNFt));
           
+          const test4 = await lock.pendingTokens(1)
+          const test5 = await lock.rgnPerSec();
+          console.log(test4)  
+
+          
       }
     } catch (error: any) {
       errorToast(error.code);
