@@ -79,6 +79,10 @@ const getNFTByOwner = async () => {
         for (let i = 0; i < emptyNFt.length; i++) {
           RGNlock += (emptyNFt[i].attributes[0].value / 10**18) / 2;
          };
+        for (let i = 0; i < emptyNFt.length; i++) {
+          NFTrewards += (emptyNFt[i].attributes[2].value / 10**18) / 2;
+         };
+         console.log(NFTrewards)
     }
   } catch (error: any) {
     errorToast(error.code);
@@ -168,7 +172,8 @@ const getNFTByOwner = async () => {
             +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn +
             +formatEther(myRewardLpCurve.pendingBonusToken) *
               tokensPrices.priceRgnYeti +
-            +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn 
+            +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn +
+            NFTrewards * tokensPrices.priceRgn
 
         );
       }

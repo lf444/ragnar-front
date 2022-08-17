@@ -487,7 +487,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 5383c94 (dev: push kool change)
           }}
         >
-          Convert YETI to RGNYETI, then stake RGNYETI to earn protocol revenue
+          Convert YETI to rgnYETI, then stake rgnYETI to earn protocol revenue
           plus RGN tokens
         </Typography>
         <Typography
@@ -519,9 +519,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 5383c94 (dev: push kool change)
           }}
         >
-          Important: Converting YETI to RGNYETI is irreversible. You may stake
-          and unstake RGNYETI tokens, but not convert them back to YETI via our
-          protocol. Secondary markets exist to allow the exchange of RGNYETI for
+          Important: Converting YETI to rgnYETI is irreversible. You may stake
+          and unstake rgnYETI tokens, but not convert them back to YETI via our
+          protocol. Secondary markets exist to allow the exchange of rgnYETI for
           YETI (see Trader Joe).
         </Typography>
         <Grid container>
@@ -862,7 +862,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 5383c94 (dev: push kool change)
           }}
         >
-          By staking RGNYETI, you are earning approximately 66.6% of the Yeti
+          By staking rgnYETI, you are earning approximately 66.6% of the Yeti
           pool's revenue, plus additional RGN tokens on top of that.
         </Typography>
         <Grid container>
@@ -1363,7 +1363,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
           }}
         >
           {' '}
-          RgnYeti Contract:{'    '}
+          rgnYeti Contract:{'    '}
           <Link
             sx={{
               color: (theme) => theme.palette.text.secondary,
