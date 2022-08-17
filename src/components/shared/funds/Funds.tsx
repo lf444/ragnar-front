@@ -79,9 +79,6 @@ const getNFTByOwner = async () => {
         for (let i = 0; i < emptyNFt.length; i++) {
           RGNlock += (emptyNFt[i].attributes[0].value / 10**18) / 2;
          };
-        console.log(emptyNFt[0].attributes[0].value / 10 ** 18);
-        console.log(emptyNFt[1].attributes[0].value / 10 ** 18);
-        console.log(RGNlock);
     }
   } catch (error: any) {
     errorToast(error.code);
@@ -116,15 +113,12 @@ const getNFTByOwner = async () => {
           contractAddress.fakeLpCurveAddress,
           accounts[0]
         );
-        const myDepositRGN = await masterchef.depositInfo(
-          contractAddress.rgnAddress,
-          accounts[0]
-        );
+    
+        
         setDeposit(
           +formatEther(myDepositYUSD) * tokensPrices.priceYusd +
             +formatEther(myDepositRgnYeti) * tokensPrices.priceRgnYeti +
             +formatEther(myDepositLpCurve) * tokensPrices.priceLpCurve +
-            +formatEther(myDepositRGN) * tokensPrices.priceRgn +
             RGNlock * tokensPrices.priceRgn
         );
       }
@@ -163,11 +157,7 @@ const getNFTByOwner = async () => {
           accounts[0],
           contractAddress.yetiAddres
         );
-        const myRewardRGN = await masterchef.pendingTokens(
-          contractAddress.rgnAddress,
-          accounts[0],
-          contractAddress.yetiAddres
-        );
+
 
         setReward(
           +formatEther(myRewardYUSD.pendingBonusToken) *
@@ -178,10 +168,8 @@ const getNFTByOwner = async () => {
             +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn +
             +formatEther(myRewardLpCurve.pendingBonusToken) *
               tokensPrices.priceRgnYeti +
-            +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn +
-            +formatEther(myRewardRGN.pendingBonusToken) *
-              tokensPrices.priceRgnYeti +
-            +formatEther(myRewardRGN.pendingRGN) * tokensPrices.priceRgn
+            +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn 
+
         );
       }
     } catch (err: any) {
@@ -194,14 +182,12 @@ const getNFTByOwner = async () => {
   const handleChangeTVL = (
     tvlYusd: number,
     tvlYeti: number,
-    tvlRgn: number,
     tvlLpCurve: number,
     tvlNFT: number,
   ) => {
     setTotalValueLocked(
       tvlYusd * tokensPrices.priceYusd +
         tvlYeti * tokensPrices.priceYeti +
-        tvlRgn * tokensPrices.priceRgn +
         tvlLpCurve * tokensPrices.priceLpCurve +
         tvlNFT * tokensPrices.priceRgn
     );

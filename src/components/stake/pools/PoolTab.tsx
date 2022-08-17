@@ -181,18 +181,17 @@ export default function PoolTab({
   const [myStake, setMyStake] = useState({
     myYusd: 0,
     myYeti: 0,
-    myRgn: 0,
     myLpCurve: 0,
   });
   const [TVL, setTVL] = useState({
     tvlYusd: 0,
     tvlYeti: 0,
-    tvlRgn: 0,
     tvlLpCurve: 0,
   });
   const [aprRgn, setAprRgn] = useState({
     aprYusd: 0,
     aprYeti: 0,
+<<<<<<< HEAD
     aprRgn: 0,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -202,12 +201,15 @@ export default function PoolTab({
     aprLpCurve: 0
   })
 =======
+=======
+>>>>>>> 9b85b04 (fix nft + remove rgn pool)
     aprLpCurve: 0,
   });
 >>>>>>> 4560517 (dev: remove dirty console log)
   const [reward, setReward] = useState({
     rewardYusd: 0,
     rewardYeti: 0,
+<<<<<<< HEAD
     rewardRgn: 0,
 <<<<<<< HEAD
     rewardLpCurve: 0
@@ -220,6 +222,8 @@ export default function PoolTab({
 =======
 >>>>>>> 7449a99 (all data + all function)
 =======
+=======
+>>>>>>> 9b85b04 (fix nft + remove rgn pool)
     rewardLpCurve: 0,
   });
 >>>>>>> 4560517 (dev: remove dirty console log)
@@ -232,6 +236,7 @@ export default function PoolTab({
 <<<<<<< HEAD
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -271,6 +276,9 @@ export default function PoolTab({
     />
   );
 >>>>>>> 4560517 (dev: remove dirty console log)
+=======
+
+>>>>>>> 9b85b04 (fix nft + remove rgn pool)
 
   const Yeti = (
     <PoolComponent
@@ -488,13 +496,11 @@ export default function PoolTab({
   const handleChangeStake = (
     myDepositYUSD: number,
     myDepositYeti: number,
-    myDepositRgn: number,
     myDepositLpCurve: number
   ) => {
     setMyStake({
       myYusd: myDepositYUSD,
       myYeti: myDepositYeti,
-      myRgn: myDepositRgn,
       myLpCurve: myDepositLpCurve,
     });
   };
@@ -505,13 +511,11 @@ export default function PoolTab({
   const handleChangeAPR = (
     Yusd: number,
     LpCurve: number,
-    Rgn: number,
     Yeti: number
   ) => {
     setAprRgn({
       aprYusd: Yusd,
       aprLpCurve: LpCurve,
-      aprRgn: Rgn,
       aprYeti: Yeti,
     });
   };
@@ -522,13 +526,11 @@ export default function PoolTab({
   const handleChangeReward = (
     Yusd: number,
     Yeti: number,
-    Rgn: number,
     LpCurve: number
   ) => {
     setReward({
       rewardYusd: Yusd,
       rewardYeti: Yeti,
-      rewardRgn: Rgn,
       rewardLpCurve: LpCurve,
     });
   };
@@ -540,14 +542,12 @@ export default function PoolTab({
   const handleChangeTVL = (
     tvlYusd: number,
     tvlYeti: number,
-    tvlRgn: number,
     tvlLpCurve: number
   ) => {
     setTVL({
       ...TVL,
       tvlYusd: tvlYusd * tokensPrices.priceYusd,
       tvlYeti: tvlYeti * tokensPrices.priceYeti,
-      tvlRgn: tvlRgn * tokensPrices.priceRgn,
       tvlLpCurve: tvlLpCurve * tokensPrices.priceLpCurve,
     });
   };
@@ -561,14 +561,12 @@ export default function PoolTab({
       ...reward,
       rewardYusd: 0,
       rewardYeti: 0,
-      rewardRgn: 0,
       rewardLpCurve: 0,
     });
     setMyStake({
       ...myStake,
       myYusd: 0,
       myYeti: 0,
-      myRgn: 0,
       myLpCurve: 0,
     });
   };

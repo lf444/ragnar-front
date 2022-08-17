@@ -244,25 +244,27 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                     key={i}
                   >
                   <object type="image/svg+xml" data={meta.image}></object>
-                  <Typography sx={{textAlign: "center"}}></Typography>
-                  <Typography sx={{textAlign: "center"}}></Typography>
-                  <Button onClick={() => claimRGN(meta.edition)} sx={{
-                variant: "contained",
-                marginRight: "25%",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                fontSize: "12px",
-                marginBottom: "20px",
-              }}>Claim bRGN</Button>
-                  <Button onClick={() => claimbRGN(meta.edition)} sx={{
+                <Button onClick={() => claimRGN(meta.edition)} sx={{
                 variant: "contained",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 color: (theme) => theme.palette.text.primary,
                 fontWeight: "bold",
                 fontSize: "12px",
                 marginBottom: "20px",
-              }}>Claim RGN</Button>
+                marginTop: "10px",
+                width: "95%", marginLeft: "auto", marginRight: "auto"
+              }}>Claim bRGN ({(meta.attributes[3].value / 10**18).toLocaleString("en")})
+               </Button>
+                <Button onClick={() => claimbRGN(meta.edition)} sx={{
+                variant: "contained",
+                backgroundColor: (theme) => theme.palette.primary.light,
+                color: (theme) => theme.palette.text.primary,
+                fontWeight: "bold",
+                fontSize: "12px",
+                marginBottom: "20px",
+                width: "95%", marginLeft: "auto", marginRight: "auto"
+              }}>Claim RGN ({(meta.attributes[2].value / 10**18).toLocaleString("en")})
+              </Button>
                   </Box>
                 </>
               ))
@@ -270,14 +272,14 @@ const MyNft: FunctionComponent<MyNftProps> = ({
               <Box
                 sx={{
                   height: "420px",
-                  width: "200px",
+                  width: "300px",
                   margin: "auto",
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
                 }}
               >
-                You dont have NFT!
+                <Typography>NO NFT, Lock now to get one!</Typography>
               </Box>
             )
           ) : (

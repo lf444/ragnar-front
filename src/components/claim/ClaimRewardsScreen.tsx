@@ -39,19 +39,16 @@ export default function ClaimRewardsScreen({
   const [myStake, setMyStake] = useState({
     myYusd: 0,
     myYeti: 0,
-    myRgn: 0,
     myLpCurve: 0,
   });
   const [TVL, setTVL] = useState({
     tvlYusd: 0,
     tvlYeti: 0,
-    tvlRgn: 0,
     tvlLpCurve: 0,
   });
   const [aprRgn, setAprRgn] = useState({
     aprYusd: 0,
     aprYeti: 0,
-    aprRgn: 0,
     aprLpCurve: 0,
   });
   const [reward, setReward] = useState({
@@ -59,8 +56,6 @@ export default function ClaimRewardsScreen({
     rewardYusdYETI: 0,
     rewardYetiRGN: 0,
     rewardYetiYETI: 0,
-    rewardRgnRGN: 0,
-    rewardRgnYETI: 0,
     rewardLpCurveRGN: 0,
     rewardLpCurveYETI: 0,
   });
@@ -68,13 +63,11 @@ export default function ClaimRewardsScreen({
   const handleChangeStake = (
     myDepositYUSD: number,
     myDepositYeti: number,
-    myDepositRgn: number,
     myDepositLpCurve: number
   ) => {
     setMyStake({
       myYusd: +formatEther(myDepositYUSD),
       myYeti: +formatEther(myDepositYeti),
-      myRgn: +formatEther(myDepositRgn),
       myLpCurve: +formatEther(myDepositLpCurve),
     });
   };
@@ -85,13 +78,11 @@ export default function ClaimRewardsScreen({
   const handleChangeAPR = (
     Yusd: number,
     LpCurve: number,
-    Rgn: number,
     Yeti: number
   ) => {
     setAprRgn({
       aprYusd: Yusd,
       aprLpCurve: LpCurve,
-      aprRgn: Rgn,
       aprYeti: Yeti,
     });
   };
@@ -102,13 +93,11 @@ export default function ClaimRewardsScreen({
   const handleChangeTVL = (
     tvlYusd: number,
     tvlYeti: number,
-    tvlRgn: number,
     tvlLpCurve: number
   ) => {
     setTVL({
       tvlYusd: tvlYusd * tokensPrices.priceYusd,
       tvlYeti: tvlYeti * tokensPrices.priceYeti,
-      tvlRgn: tvlRgn * tokensPrices.priceRgn,
       tvlLpCurve: tvlLpCurve * tokensPrices.priceLpCurve,
     });
   };
@@ -143,11 +132,7 @@ export default function ClaimRewardsScreen({
           userAddress,
           contractAddress.yetiAddres
         );
-        const myRewardRGN = await masterchef.pendingTokens(
-          contractAddress.rgnAddress,
-          userAddress,
-          contractAddress.yetiAddres
-        );
+
 
         setReward({
           ...reward,
@@ -160,11 +145,6 @@ export default function ClaimRewardsScreen({
             +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn,
           rewardYetiYETI:
             +formatEther(myRewardRgnYeti.pendingBonusToken) *
-            tokensPrices.priceRgnYeti,
-          rewardRgnRGN:
-            +formatEther(myRewardRGN.pendingRGN) * tokensPrices.priceRgn,
-          rewardRgnYETI:
-            +formatEther(myRewardRGN.pendingBonusToken) *
             tokensPrices.priceRgnYeti,
           rewardLpCurveRGN:
             +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn,
@@ -183,9 +163,6 @@ export default function ClaimRewardsScreen({
   const InfoRgnYetiPools = `RGN: $${reward.rewardYetiRGN.toLocaleString(
     "en"
   )} , YETI: $${reward.rewardYetiYETI.toLocaleString("en")}`;
-  const InfoRgnPools = `RGN: $${reward.rewardRgnRGN.toLocaleString(
-    "en"
-  )} , YETI: $${reward.rewardRgnYETI.toLocaleString("en")}`;
   const InfoYUSDPools = `RGN: $${reward.rewardYusdRGN.toLocaleString(
     "en"
   )} , YETI: $${reward.rewardYusdYETI.toLocaleString("en")}`;
@@ -200,8 +177,6 @@ export default function ClaimRewardsScreen({
       rewardYusdYETI: 0,
       rewardYetiRGN: 0,
       rewardYetiYETI: 0,
-      rewardRgnRGN: 0,
-      rewardRgnYETI: 0,
       rewardLpCurveRGN: 0,
       rewardLpCurveYETI: 0,
     });
@@ -209,7 +184,6 @@ export default function ClaimRewardsScreen({
       ...myStake,
       myYusd: 0,
       myYeti: 0,
-      myRgn: 0,
       myLpCurve: 0,
     });
   };
@@ -434,9 +408,7 @@ export default function ClaimRewardsScreen({
                   reward.rewardLpCurveRGN +
                   reward.rewardLpCurveYETI +
                   reward.rewardYetiRGN +
-                  reward.rewardYetiYETI +
-                  reward.rewardRgnRGN +
-                  reward.rewardRgnYETI
+                  reward.rewardYetiYETI
                 ).toLocaleString("en")
               ) : (
                 <LinearProgress

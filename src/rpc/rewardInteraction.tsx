@@ -18,7 +18,6 @@ export const claimAll = async (appTag: string) => {
       );
       const claimAll = await masterchef.multiclaim(
         [
-          contractAddress.rgnAddress,
           contractAddress.rgnYetiAddress,
           contractAddress.fakeLpCurveAddress,
           contractAddress.fakeYusdAddress,
@@ -48,7 +47,7 @@ export const claimRagnarPools = async () => {
       );
 
       const claimRagnarPools = await masterchef.multiclaim(
-        [contractAddress.rgnAddress, contractAddress.rgnYetiAddress],
+        [contractAddress.rgnYetiAddress],
         accounts[0]
       );
       await claimRagnarPools.wait();

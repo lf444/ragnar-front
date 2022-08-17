@@ -12,7 +12,6 @@ export const fetchAllTvl = async (
   handleChangeTVL: (
     tvlYusd: number,
     tvlYeti: number,
-    tvlRgn: number,
     tvlLpCurve: number,
     tvlNFT: number
   ) => void
@@ -38,13 +37,11 @@ export const fetchAllTvl = async (
       const TVLLpCurve = await masterchef.getPoolInfo(
         contractAddress.fakeLpCurveAddress
       );
-      const TVLRGN = await masterchef.getPoolInfo(contractAddress.rgnAddress);
       const TVLNFT = await NFT.totalValueLocked();
 
       handleChangeTVL(
         +formatEther(TVLYUSD.sizeOfPool),
         +formatEther(TVLRgnYeti.sizeOfPool),
-        +formatEther(TVLRGN.sizeOfPool),
         +formatEther(TVLLpCurve.sizeOfPool),
         +formatEther(TVLNFT)
       );
@@ -59,7 +56,6 @@ export const fetchAllApr = async (
   handleChangeAPR: (
     Yusd: number,
     LpCurve: number,
-    Rgn: number,
     Yeti: number
   ) => void,
   appTag: string
@@ -82,9 +78,7 @@ export const fetchAllApr = async (
       const allocPointLpCurve = await masterchef.getPoolInfo(
         contractAddress.fakeLpCurveAddress
       );
-      const allocPointRgn = await masterchef.getPoolInfo(
-        contractAddress.rgnAddress
-      );
+
       const allocPointTotal = await masterchef.totalAllocPoint();
       const rgnPerBlockYusd =
         (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
@@ -92,13 +86,11 @@ export const fetchAllApr = async (
         (allocPointYeti.allocpoint * rgnPerBlock) / allocPointTotal;
       const rgnPerBlockLpCurve =
         (allocPointLpCurve.allocpoint * rgnPerBlock) / allocPointTotal;
-      const rgnPerBlockRgn =
-        (allocPointRgn.allocpoint * rgnPerBlock) / allocPointTotal;
+
       handleChangeAPR(
         ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
         ((rgnPerBlockLpCurve * 28800 * 365) / allocPointLpCurve.sizeOfPool) *
           100,
-        ((rgnPerBlockRgn * 28800 * 365) / allocPointRgn.sizeOfPool) * 100,
         ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100
       );
     }
@@ -111,7 +103,6 @@ export const fetchDeposit = async (
   handleChangeStake: (
     myDepositYUSD: number,
     myDepositYeti: number,
-    myDepositRgn: number,
     myDepositLpCurve: number
   ) => void,
   appTag: string
@@ -136,10 +127,7 @@ export const fetchDeposit = async (
         contractAddress.rgnYetiAddress,
         accounts[0]
       );
-      const myDepositRgn = await masterchefUser.depositInfo(
-        contractAddress.rgnAddress,
-        accounts[0]
-      );
+
       const myDepositLpCurve = await masterchefUser.depositInfo(
         contractAddress.fakeLpCurveAddress,
         accounts[0]
@@ -148,7 +136,6 @@ export const fetchDeposit = async (
       handleChangeStake(
         +formatEther(myDepositYUSD),
         +formatEther(myDepositYeti),
-        +formatEther(myDepositRgn),
         +formatEther(myDepositLpCurve)
       );
     }
@@ -169,7 +156,6 @@ export const fetchReward = async (
   handleChangeRewards: (
     rewardYusd: number,
     rewardYeti: number,
-    rewardRgn: number,
     rewardLpCurve: number
   ) => void,
   appTag: string
@@ -201,11 +187,6 @@ export const fetchReward = async (
         accounts[0],
         contractAddress.yetiAddres
       );
-      const myRewardRGN = await masterchef.pendingTokens(
-        contractAddress.rgnAddress,
-        accounts[0],
-        contractAddress.yetiAddres
-      );
 
       handleChangeRewards(
         +formatEther(myRewardYUSD.pendingBonusToken) *
@@ -215,10 +196,6 @@ export const fetchReward = async (
         +formatEther(myRewardRgnYeti.pendingBonusToken) *
           tokensPrices.priceRgnYeti +
           +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn,
-
-        +formatEther(myRewardRGN.pendingBonusToken) *
-          tokensPrices.priceRgnYeti +
-          +formatEther(myRewardRGN.pendingRGN) * tokensPrices.priceRgn,
 
         +formatEther(myRewardLpCurve.pendingBonusToken) *
           tokensPrices.priceLpCurve +
