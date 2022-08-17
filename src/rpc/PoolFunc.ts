@@ -1,10 +1,10 @@
-import { ethers } from "ethers";
-import { useState } from "react";
-import { contractAddress } from "../abi/address";
-import { appLogger, errorToast } from "../utils/method";
-import masterchefABI from "../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
-import NFTABI from "../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json"
-import { formatEther } from "ethers/lib/utils";
+import { ethers } from 'ethers';
+import { useState } from 'react';
+import { contractAddress } from '../abi/address';
+import { appLogger, errorToast } from '../utils/method';
+import masterchefABI from '../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
+import NFTABI from '../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json';
+import { formatEther } from 'ethers/lib/utils';
 
 export const fetchAllTvl = async (
   provider: any,
@@ -48,16 +48,12 @@ export const fetchAllTvl = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, "- Error fetchTVL-", err.message);
+    appLogger(appTag, '- Error fetchTVL-', err.message);
   }
 };
 export const fetchAllApr = async (
   provider: any,
-  handleChangeAPR: (
-    Yusd: number,
-    LpCurve: number,
-    Yeti: number
-  ) => void,
+  handleChangeAPR: (Yusd: number, LpCurve: number, Yeti: number) => void,
   appTag: string
 ) => {
   try {
@@ -96,7 +92,7 @@ export const fetchAllApr = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, "- Error fetchAprRGN-", err.message);
+    appLogger(appTag, '- Error fetchAprRGN-', err.message);
   }
 };
 export const fetchDeposit = async (
@@ -110,7 +106,7 @@ export const fetchDeposit = async (
   try {
     if (window.ethereum) {
       let accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -141,7 +137,7 @@ export const fetchDeposit = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, "- Error fetchAprRGN-", err.message);
+    appLogger(appTag, '- Error fetchAprRGN-', err.message);
   }
 };
 
@@ -163,7 +159,7 @@ export const fetchReward = async (
   try {
     if (window.ethereum) {
       let accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -204,6 +200,6 @@ export const fetchReward = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, "- Error fetchMyDeposit-", err.message);
+    appLogger(appTag, '- Error fetchReward-', err.message);
   }
 };

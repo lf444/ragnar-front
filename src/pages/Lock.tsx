@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import { ethers } from "ethers";
-import { Buffer } from "buffer";
-import { contractAddress } from "../abi/address";
-import { Grid, Typography, Button } from "@mui/material";
-import Zoom from "@mui/material/Zoom";
-import LockPool from "../components/lock/LockPool";
-import rgn from "../assets/images/pools/rgn.png";
-import Funds from "../components/shared/funds/Funds";
-import MyNft from "../components/lock/MyNFT";
-import theme from "../utils/theme";
-import PageHeader from "../components/shared/PageHeader";
-import LOCKABI from "../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
-import { appLogger, errorToast } from "../utils/method";
+import { useEffect, useState } from 'react';
+import { ethers } from 'ethers';
+import { Buffer } from 'buffer';
+import { contractAddress } from '../abi/address';
+import { Grid, Typography, Button } from '@mui/material';
+import Zoom from '@mui/material/Zoom';
+import LockPool from '../components/lock/LockPool';
+import rgn from '../assets/images/pools/rgn.png';
+import Funds from '../components/shared/funds/Funds';
+import MyNft from '../components/lock/MyNFT';
+import theme from '../utils/theme';
+import PageHeader from '../components/shared/PageHeader';
+import LOCKABI from '../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json';
+import { appLogger, errorToast } from '../utils/method';
 
-const appTag = "Lock";
+const appTag = 'Lock';
 
 const Lock = ({
   userAddress,
@@ -59,21 +59,19 @@ const Lock = ({
           .then((e) => {
             emptyNFt = e.map((e: any) => {
               return JSON.parse(
-                Buffer.from(e.substring(29), "base64").toString()
+                Buffer.from(e.substring(29), 'base64').toString()
               );
             });
           })
           .then(() => setNftMetadata(emptyNFt));
-          
-          const test4 = await lock.pendingTokens(1)
-          const test5 = await lock.rgnPerSec();
-          console.log(test4)  
 
-          
+        const test4 = await lock.pendingTokens(1);
+        const test5 = await lock.rgnPerSec();
+        console.log(test4);
       }
     } catch (error: any) {
       errorToast(error.code);
-      appLogger(appTag, " fetchMyDeposit masterChef", error.message);
+      appLogger(appTag, ' getNFTByOwner lock', error.message);
       setIsLoading(false);
     }
   };
@@ -94,33 +92,33 @@ const Lock = ({
 
   return (
     <>
-      <PageHeader pageTitle={`Ragnar finance - Lock`} />{" "}
+      <PageHeader pageTitle={`Ragnar finance - Lock`} />{' '}
       <Zoom in={true}>
         <Grid
           container
-          direction="row"
-          alignItems="center"
+          direction='row'
+          alignItems='center'
           sx={{
-            marginBottom: "4rem",
-            marginLeft: "auto",
-            marginRight: "auto",
+            marginBottom: '4rem',
+            marginLeft: 'auto',
+            marginRight: 'auto',
             width: {
-              xs: "100%",
-              sm: "65%",
+              xs: '100%',
+              sm: '65%',
             },
-            borderRadius: { xs: "0px", sm: "20px" },
+            borderRadius: { xs: '0px', sm: '20px' },
           }}
         >
-          <Grid item sx={{ width: "100%", paddingBottom: 5 }}>
+          <Grid item sx={{ width: '100%', paddingBottom: 5 }}>
             <Typography
               sx={{
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 color: (theme) => theme.palette.text.primary,
-                width: "fit-content",
+                width: 'fit-content',
                 padding: 1,
                 paddingTop: 4,
-                borderRadius: "5px",
-                fontSize: "1rem",
+                borderRadius: '5px',
+                fontSize: '1rem',
               }}
             >
               LOCK RGN
@@ -133,11 +131,11 @@ const Lock = ({
             />
           </Grid>
 
-          <Grid item xs={12} sx={{ width: "100%", mb: "25px", p: 1 }}>
+          <Grid item xs={12} sx={{ width: '100%', mb: '25px', p: 1 }}>
             <LockPool logo1={rgn} handleRefetchDeposit={handleRefetchDeposit} />
           </Grid>
-          <Grid item container xs={12} sm={12} sx={{ width: "100%", p: 1 }}>
-            {" "}
+          <Grid item container xs={12} sm={12} sx={{ width: '100%', p: 1 }}>
+            {' '}
             <MyNft
               nftMetadata={nftMetadata}
               isLoadingMyNft={isLoadingMyNft}

@@ -1,21 +1,19 @@
-import { ethers } from "ethers";
-import masterchefABI from "../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
-import mainstakingABI from "../../../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json";
-import NFTABI from "../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json"
-import rgnABI from "../../../abi/contracts/Tokens/RGN.sol/RGN.json";
-import { contractAddress } from "../../../abi/address";
-import { useEffect, useState } from "react";
-import { appLogger, errorToast } from "../../../utils/method";
-import FundsFirstTabs from "./FirstTab";
-import FundSecondTabs from "./SecondTab";
-import { useProvider } from "wagmi";
-import { formatEther } from "ethers/lib/utils";
-import { fetchAllTvl } from "../../../rpc/PoolFunc";
-import { Buffer } from "buffer";
+import { ethers } from 'ethers';
+import masterchefABI from '../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
+import mainstakingABI from '../../../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json';
+import NFTABI from '../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json';
+import rgnABI from '../../../abi/contracts/Tokens/RGN.sol/RGN.json';
+import { contractAddress } from '../../../abi/address';
+import { useEffect, useState } from 'react';
+import { appLogger, errorToast } from '../../../utils/method';
+import FundsFirstTabs from './FirstTab';
+import FundSecondTabs from './SecondTab';
+import { useProvider } from 'wagmi';
+import { formatEther } from 'ethers/lib/utils';
+import { fetchAllTvl } from '../../../rpc/PoolFunc';
+import { Buffer } from 'buffer';
 
-
-
-const appTag: string = "Funds";
+const appTag: string = 'Funds';
 
 const Funds = ({
   userAddress,
@@ -45,57 +43,57 @@ const Funds = ({
   const [isLoading, setIsLoading] = useState(true);
   const provider = useProvider();
 
-const [nftMetadata, setNftMetadata] = useState<any[]>([]);
-let [RGNlock, setRGNlock] = useState(0)
-let [NFTrewards, setNFTrewards] = useState(0)
-const [numberOfNFTOwned, setNumberOfNFTOwned] = useState(0);
+  const [nftMetadata, setNftMetadata] = useState<any[]>([]);
+  let [RGNlock, setRGNlock] = useState(0);
+  let [NFTrewards, setNFTrewards] = useState(0);
+  const [numberOfNFTOwned, setNumberOfNFTOwned] = useState(0);
 
-const getNFTByOwner = async () => {
-  try {
-    if (window.ethereum) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const lock = new ethers.Contract(
-        contractAddress.NFTAddress,
-        NFTABI.abi,
-        signer
-      );
-      let emptyNFt: any[] = [];
-      const test = await lock.getNftsOfOwner(userAddress);
-      setNumberOfNFTOwned(+test.length);
-      const allNFTOwned = await Promise.all(
-        test.map((e: any) => {
-          return lock.tokenURI(e);
-        })
-      )
-        .then((e) => {
-          emptyNFt = e.map((e: any) => {
-            return JSON.parse(
-              Buffer.from(e.substring(29), "base64").toString()
-            );
-          });
-        })
-        .then(() => setNftMetadata(emptyNFt));    
+  const getNFTByOwner = async () => {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lock = new ethers.Contract(
+          contractAddress.NFTAddress,
+          NFTABI.abi,
+          signer
+        );
+        let emptyNFt: any[] = [];
+        const test = await lock.getNftsOfOwner(userAddress);
+        setNumberOfNFTOwned(+test.length);
+        const allNFTOwned = await Promise.all(
+          test.map((e: any) => {
+            return lock.tokenURI(e);
+          })
+        )
+          .then((e) => {
+            emptyNFt = e.map((e: any) => {
+              return JSON.parse(
+                Buffer.from(e.substring(29), 'base64').toString()
+              );
+            });
+          })
+          .then(() => setNftMetadata(emptyNFt));
         for (let i = 0; i < emptyNFt.length; i++) {
-          RGNlock += (emptyNFt[i].attributes[0].value / 10**18) / 2;
-         };
+          RGNlock += emptyNFt[i].attributes[0].value / 10 ** 18 / 2;
+        }
         for (let i = 0; i < emptyNFt.length; i++) {
-          NFTrewards += (emptyNFt[i].attributes[2].value / 10**18) / 2;
-         };
-         console.log(NFTrewards)
+          NFTrewards += emptyNFt[i].attributes[2].value / 10 ** 18 / 2;
+        }
+        console.log(NFTrewards);
+      }
+    } catch (error: any) {
+      errorToast(error.code);
+      appLogger(appTag, ' getNFTByOwner', error.message);
+      setIsLoading(false);
     }
-  } catch (error: any) {
-    errorToast(error.code);
-    appLogger(appTag, " fetchMyDeposit masterChef", error.message);
-    setIsLoading(false);
-  }
-};
+  };
 
   const getMasterChefDeposit = async () => {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
+          method: 'eth_requestAccounts',
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -118,8 +116,11 @@ const getNFTByOwner = async () => {
           accounts[0]
         );
 
+<<<<<<< HEAD
     
         
+=======
+>>>>>>> 3bcb567 (dev small changes & redeploy)
         setDeposit(
           +formatEther(myDepositYUSD) * tokensPrices.priceYusd +
             +formatEther(myDepositRgnYeti) * tokensPrices.priceRgnYeti +
@@ -129,7 +130,7 @@ const getNFTByOwner = async () => {
       }
     } catch (err: any) {
       errorToast(err.code);
-      appLogger(appTag, " fetchMyDeposit masterChef", err.message);
+      appLogger(appTag, ' getMasterChefDeposit', err.message);
       setIsLoading(false);
     }
   };
@@ -138,7 +139,7 @@ const getNFTByOwner = async () => {
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
+          method: 'eth_requestAccounts',
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -163,7 +164,6 @@ const getNFTByOwner = async () => {
           contractAddress.yetiAddres
         );
 
-
         setReward(
           +formatEther(myRewardYUSD.pendingBonusToken) *
             tokensPrices.priceRgnYeti +
@@ -175,12 +175,11 @@ const getNFTByOwner = async () => {
               tokensPrices.priceRgnYeti +
             +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn +
             NFTrewards * tokensPrices.priceRgn
-
         );
       }
     } catch (err: any) {
       errorToast(err.code);
-      appLogger(appTag, " fetchMyReward masterChef", err.message);
+      appLogger(appTag, ' fetchMyReward masterChef', err.message);
       setIsLoading(false);
     }
   };
@@ -189,7 +188,7 @@ const getNFTByOwner = async () => {
     tvlYusd: number,
     tvlYeti: number,
     tvlLpCurve: number,
-    tvlNFT: number,
+    tvlNFT: number
   ) => {
     setTotalValueLocked(
       tvlYusd * tokensPrices.priceYusd +
@@ -225,8 +224,8 @@ const getNFTByOwner = async () => {
         const getStackedVeYeti = await mainstaking.getVeYETI();
         const rgnSupply = await rgn.totalSupply();
         const TotalRGNLOCKED = await NFT.totalValueLocked();
-        console.log(formatEther(TotalRGNLOCKED))
-        console.log(rgnSupply)
+        console.log(formatEther(TotalRGNLOCKED));
+        console.log(rgnSupply);
 
         setTotalYeti(+formatEther(getStackedYETI));
         setTotalVeYeti(+formatEther(getStackedVeYeti));
@@ -235,7 +234,7 @@ const getNFTByOwner = async () => {
       }
     } catch (err: any) {
       errorToast(err.code);
-      appLogger(appTag, "- Error getMainsStakingData-", err.message);
+      appLogger(appTag, '- Error getMainsStakingData-', err.message);
       setIsLoading(false);
     }
   };
@@ -259,8 +258,10 @@ const getNFTByOwner = async () => {
   };
 
   useEffect(() => {
-    getNFTByOwner();
-  }, []);
+    if (userAddress) {
+      getNFTByOwner();
+    }
+  }, [userAddress]);
 
   useEffect(() => {
     fetchAllData().then(() => setIsLoading(false));
@@ -283,6 +284,7 @@ const getNFTByOwner = async () => {
     if (shouldRefetchData) {
       setIsLoading(true);
       fetchAllData().then(() => setTimeout(() => setIsLoading(false), 3000));
+      getNFTByOwner();
     }
   }, [shouldRefetchData]);
 
