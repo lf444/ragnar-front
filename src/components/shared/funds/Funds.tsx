@@ -117,6 +117,7 @@ const getNFTByOwner = async () => {
           contractAddress.fakeLpCurveAddress,
           accounts[0]
         );
+
     
         
         setDeposit(

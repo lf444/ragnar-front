@@ -137,8 +137,8 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           LOCKABI.abi,
           signer
         );
-        const test = await lock.rgnPerSec()
-        console.log(test)
+        const claimRGN1 = await lock.compoundReward(index, false)
+        claimRGN1.wait();
       }
     } catch (err: any) {
       console.log(err);
@@ -154,7 +154,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           LOCKABI.abi,
           signer
         );
-        const compoundReward = await lock.compoundReward(index, true);
+        const compoundReward = await lock.generateBRgn(index);
         compoundReward.wait();
       }
     } catch (err: any) {
@@ -244,7 +244,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                     key={i}
                   >
                   <object type="image/svg+xml" data={meta.image}></object>
-                <Button onClick={() => claimRGN(meta.edition)} sx={{
+                <Button onClick={() => claimbRGN(meta.edition)} sx={{
                 variant: "contained",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 color: (theme) => theme.palette.text.primary,
@@ -255,7 +255,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                 width: "95%", marginLeft: "auto", marginRight: "auto"
               }}>Claim bRGN ({(meta.attributes[3].value / 10**18).toLocaleString("en")})
                </Button>
-                <Button onClick={() => claimbRGN(meta.edition)} sx={{
+                <Button onClick={() => claimRGN(meta.edition)} sx={{
                 variant: "contained",
                 backgroundColor: (theme) => theme.palette.primary.light,
                 color: (theme) => theme.palette.text.primary,
