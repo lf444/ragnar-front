@@ -301,6 +301,7 @@ const getNFTByOwner = async () => {
           totalRGN={totalRGN}
           totalRGNLocked={totalRGNLocked}
           isLoading={isLoading}
+          priceRGN={tokensPrices.priceRgn}
         />
       )}
     </>

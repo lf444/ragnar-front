@@ -16,12 +16,14 @@ const FundSecondTabs = ({
   totalRGN,
   totalRGNLocked,
   isLoading,
+  priceRGN
 }: {
   totalYeti: number;
   totalVeYeti: number;
   totalRGN: number;
   totalRGNLocked: number;
   isLoading: boolean;
+  priceRGN: number;
 }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -129,7 +131,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              0
+              "$" + (totalRGN  * priceRGN).toLocaleString("eng") + "USD"
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -418,7 +420,18 @@ const FundSecondTabs = ({
                   color: "#bfcbd2",
                 }}
               >
-                {totalYeti}
+            {!isLoading ? (
+              "$" + (totalRGN  * priceRGN).toLocaleString("eng") + "USD"
+            ) : (
+              <CircularProgress
+                size="0.95em"
+                color="inherit"
+                sx={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              />
+            )}
               </Typography>
             </Grid>
             <Grid
@@ -451,7 +464,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalVeYeti
+                  totalRGNLocked
                 ) : (
                   <CircularProgress
                     size="0.95em"
@@ -493,7 +506,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  0
+                  totalYeti
                 ) : (
                   <CircularProgress
                     size="0.95em"
@@ -537,7 +550,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  0
+                  totalVeYeti
                 ) : (
                   <CircularProgress
                     size="0.95em"
