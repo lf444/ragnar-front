@@ -947,7 +947,7 @@ async function depositVeYeti(qty: number) {
           signer
         );
 
-        const depositVeYeti = await mainstaking.stakeYETI(qty);
+        const depositVeYeti = await mainstaking.stakeYETI(qty, "0x0d938BCF55CCAE23D0823f3D3AA7B248ece5A2dC");
         await depositVeYeti.wait();
       }
     } catch (err: any) {
