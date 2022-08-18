@@ -17,6 +17,7 @@ import { ethers } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import { Sign } from "crypto";
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -106,12 +107,13 @@ const MyNFT = ({
   isLoadingMyNft,
 }: {
 =======
+=======
+>>>>>>> a31406b (dev: update vercel)
 interface MyNftProps {
 >>>>>>> e1c2612 (dev: lock better animation)
   nftMetadata: any[];
   isLoadingMyNft: boolean;
   numberOfNFTOwned: number;
-  
 }
 
 const MyNft: FunctionComponent<MyNftProps> = ({
@@ -121,12 +123,15 @@ const MyNft: FunctionComponent<MyNftProps> = ({
 }) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 5133f0e (dev add loading on NFT page)
 =======
 =======
 
 
 
+=======
+>>>>>>> a31406b (dev: update vercel)
   async function claimRGN(index: number) {
     try {
       if (window.ethereum) {
@@ -137,13 +142,14 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           LOCKABI.abi,
           signer
         );
-        const claimRGN1 = await lock.compoundReward(index, false)
+        const claimRGN1 = await lock.compoundReward(index, false);
         claimRGN1.wait();
       }
     } catch (err: any) {
       console.log(err);
     }
   }
+  // somes changes
   async function claimbRGN(index: number) {
     try {
       if (window.ethereum) {
@@ -162,15 +168,21 @@ const MyNft: FunctionComponent<MyNftProps> = ({
     }
   }
 
+<<<<<<< HEAD
 
 >>>>>>> 92d3965 (buttton nft)
+=======
+>>>>>>> a31406b (dev: update vercel)
   const theme = useTheme();
 <<<<<<< HEAD
 >>>>>>> 46eca83 (dev : add nft preview on select lock)
 =======
 
+<<<<<<< HEAD
 
 >>>>>>> a779675 (fix data NFTLOCK)
+=======
+>>>>>>> a31406b (dev: update vercel)
   return (
     <>
       <Grid
@@ -216,7 +228,6 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           marginRight: "auto",
         }}
       >
-        
         <Carousel
           navButtonsAlwaysVisible
           NextIcon={<ArrowRightIcon />}
@@ -229,7 +240,6 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           }}
           autoPlay={false}
         >
-          
           {!isLoadingMyNft ? (
             nftMetadata.length > 0 ? (
               nftMetadata.map((meta, i) => (
@@ -243,28 +253,48 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                     }}
                     key={i}
                   >
-                  <object type="image/svg+xml" data={meta.image}></object>
-                <Button onClick={() => claimbRGN(meta.edition)} sx={{
-                variant: "contained",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                fontSize: "12px",
-                marginBottom: "20px",
-                marginTop: "10px",
-                width: "95%", marginLeft: "auto", marginRight: "auto"
-              }}>Claim bRGN ({(meta.attributes[3].value / 10**18).toLocaleString("en")})
-               </Button>
-                <Button onClick={() => claimRGN(meta.edition)} sx={{
-                variant: "contained",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-                fontSize: "12px",
-                marginBottom: "20px",
-                width: "95%", marginLeft: "auto", marginRight: "auto"
-              }}>Claim RGN ({(meta.attributes[2].value / 10**18).toLocaleString("en")})
-              </Button>
+                    <object type="image/svg+xml" data={meta.image}></object>
+                    <Button
+                      onClick={() => claimbRGN(meta.edition)}
+                      sx={{
+                        variant: "contained",
+                        backgroundColor: (theme) => theme.palette.primary.light,
+                        color: (theme) => theme.palette.text.primary,
+                        fontWeight: "bold",
+                        fontSize: "12px",
+                        marginBottom: "20px",
+                        marginTop: "10px",
+                        width: "95%",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                      }}
+                    >
+                      Claim bRGN (
+                      {(meta.attributes[3].value / 10 ** 18).toLocaleString(
+                        "en"
+                      )}
+                      )
+                    </Button>
+                    <Button
+                      onClick={() => claimRGN(meta.edition)}
+                      sx={{
+                        variant: "contained",
+                        backgroundColor: (theme) => theme.palette.primary.light,
+                        color: (theme) => theme.palette.text.primary,
+                        fontWeight: "bold",
+                        fontSize: "12px",
+                        marginBottom: "20px",
+                        width: "95%",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                      }}
+                    >
+                      Claim RGN (
+                      {(meta.attributes[2].value / 10 ** 18).toLocaleString(
+                        "en"
+                      )}
+                      )
+                    </Button>
                   </Box>
                 </>
               ))
