@@ -41,6 +41,7 @@ export const contractAddress = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   NFTAddress: "0xd296aFC2767D5b58EEBc3e03452F6bb53b1A59b1"
 =======
   masterchefAddress: "0xBb3bD58cF15FE3C79B2a22ca719483956686fA8F",
@@ -65,6 +66,9 @@ export const contractAddress = {
 =======
   NFTAddress: "0x556E7F3BEC06D7906eDD445F236e836aaec259E9",
 >>>>>>> 2672284 (fix withdraw)
+=======
+  NFTAddress: "0x88b49E39aC04E42215cDD317ACebc60241eC6831",
+>>>>>>> 2ca26c5 (address nft)
   VaultAddress: "0xdaf7b8653119feb9fddb77ccafbbdd1ea67d87c5"
 >>>>>>> a779675 (fix data NFTLOCK)
 };
