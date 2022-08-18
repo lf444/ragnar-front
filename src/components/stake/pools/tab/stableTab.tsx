@@ -62,7 +62,11 @@ import { Pool } from "../../../../abi/pools";
 =======
 import { useWaitForTransaction } from "wagmi";
 import { errorToast, successToast } from "../../../../utils/method";
+<<<<<<< HEAD
 >>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
+=======
+import { contractAddress } from "../../../../abi/address";
+>>>>>>> c705a4a (fix withdraw)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -643,7 +647,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               poolName={"YETI"}
               amountToStake={amountToStake}
               setAmountToStake={handleChangeAmount}
-              address={pool.pairAddress}
+              address={pool.fakeAddress}
               stake={false}
             />
           </Grid>
@@ -733,7 +737,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             }}
             href={`https://snowtrace.io/address/${pool.pairAddress}`}
           >
-            {pool.addressPool}
+            {pool.pairAddress}
           </Link>
         </Typography>
         <Typography
@@ -786,9 +790,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               fontSize: { xs: "10px", md: "14px" },
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             }}
-            href={`https://snowtrace.io/address/${pool.addressPool}`}
+            href={`https://snowtrace.io/address/${contractAddress.mainstakingAddress}`}
           >
-            {pool.addressPool}
+            {contractAddress.mainstakingAddress}
           </Link>
         </Typography>
       </TabPanel>

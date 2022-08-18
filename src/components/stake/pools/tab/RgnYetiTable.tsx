@@ -302,6 +302,15 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       handleSetTx
     );
   };
+  const approveRGNYeti = async () => {
+    await approve(
+      amountToStake,
+      contractAddress.rgnYetiAddress,
+      false,
+      appTag,
+      handleSetTx
+    );
+  };
 
 <<<<<<< HEAD
   function approveYeti() {
@@ -766,6 +775,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             <Button
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               onClick={depositVeYetiMain}
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -778,6 +788,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 =======
                  onClick={depositToken} 
 >>>>>>> a779675 (fix data NFTLOCK)
+=======
+                 onClick={depositVeYetiMain} 
+>>>>>>> c705a4a (fix withdraw)
               variant='contained'
 >>>>>>> 5383c94 (dev: push kool change)
               sx={{
@@ -1047,7 +1060,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             {' '}
 >>>>>>> 5383c94 (dev: push kool change)
             <Button
-               onClick={approveYeti} 
+               onClick={approveRGNYeti} 
               variant='contained'
               sx={{
                 width: '45%',
@@ -1106,6 +1119,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             <Button
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               onClick={depositToken}
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1118,6 +1132,9 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 >>>>>>> 797b602 (dev: remove disabled)
               variant="contained"
 =======
+=======
+                   onClick={depositToken} 
+>>>>>>> c705a4a (fix withdraw)
               variant='contained'
 >>>>>>> 5383c94 (dev: push kool change)
               sx={{
@@ -1228,7 +1245,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             {' '}
 >>>>>>> 5383c94 (dev: push kool change)
             <Button
-              /* onClick={withdrawToken} */
+               onClick={withdrawToken} 
               variant='contained'
               sx={{
                 width: '55%',

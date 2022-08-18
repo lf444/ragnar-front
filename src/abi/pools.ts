@@ -63,6 +63,7 @@ export interface Pool {
   logo: any;
   addressPool: any;
   pairAddress: any;
+  fakeAddress: any;
   info: any;
   isMasterchef: boolean;
 }
@@ -74,6 +75,7 @@ export const rgnPool: Pool = {
   logo: rgn,
   addressPool: contractAddress.masterchefAddress,
   pairAddress: contractAddress.rgnAddress,
+  fakeAddress: "",
   info: "Stake RGN on Ragnar Finance to earn a portion of the platform's revenue, distributed as Yeti and RGN.",
   isMasterchef: true,
 };
@@ -82,6 +84,7 @@ export const YetiPool = {
   logo: yeti,
   addressPool: contractAddress.masterchefAddress,
   pairAddress: contractAddress.yetiAddres,
+  fakeAddress: "",
   info: "",
   isMasterchef: true,
 };
@@ -90,6 +93,7 @@ export const YusdPool = {
   logo: yusd,
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.yusdAddress,
+  fakeAddress: contractAddress.fakeYusdAddress,
   info: "Deposit your YUSD to enjoy the veYETI boost and receive bonus RGN !",
   isMasterchef: false,
 };
@@ -115,6 +119,7 @@ export const LpCurvePool = {
   logo: curve,
   addressPool: contractAddress.mainstakingAddress,
   pairAddress: contractAddress.lpCurveAddress,
+  fakeAddress: contractAddress.fakeLpCurveAddress,
   info: "Deposit your Curve LP to enjoy the veYETI boost and receive bonus RGN !",
   isMasterchef: false,
 };
