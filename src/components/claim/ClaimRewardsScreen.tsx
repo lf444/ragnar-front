@@ -138,17 +138,17 @@ export default function ClaimRewardsScreen({
             +formatEther(myRewardYUSD.pendingRGN) * tokensPrices.priceRgn,
           rewardYusdYETI:
             +formatEther(myRewardYUSD.pendingBonusToken) *
-            tokensPrices.priceRgnYeti,
+            tokensPrices.priceYeti,
           rewardYetiRGN:
             +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn,
           rewardYetiYETI:
             +formatEther(myRewardRgnYeti.pendingBonusToken) *
-            tokensPrices.priceRgnYeti,
+            tokensPrices.priceYeti,
           rewardLpCurveRGN:
             +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn,
           rewardLpCurveYETI:
             +formatEther(myRewardLpCurve.pendingBonusToken) *
-            tokensPrices.priceRgnYeti,
+            tokensPrices.priceYeti,
         });
       }
     } catch (err: any) {

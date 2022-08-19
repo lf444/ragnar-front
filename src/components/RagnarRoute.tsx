@@ -114,7 +114,7 @@ const RagnarRoute = () => {
     priceRgn: 0,
     priceAvax: 0,
     priceLpCurve: 1,
-    priceRgnYeti: 1,
+    priceRgnYeti: 0,
   });
 
   const [openModal, setOpenModal] = useState(false);
@@ -140,7 +140,7 @@ const RagnarRoute = () => {
       priceRgn: rgnPrice,
       priceAvax: avaxPrice,
       priceLpCurve: 1,
-      priceRgnYeti: 1,
+      priceRgnYeti: rgnPrice,
     });
   };
 
