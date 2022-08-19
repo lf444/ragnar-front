@@ -4,6 +4,7 @@ export const contractAddress = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   masterchefAddress: "0x1361Bc704c62E0fa156af17d209Ff0bbBf1E1540",
   mainstakingAddress: "0xaCaB55cB52BAB9d5c9be3031Cd964DB5726b47Ca",
   rgnAddress: "0xC85ead0da95468d9dE0D8169511370A4884eFA71",
@@ -32,11 +33,18 @@ export const contractAddress = {
   rgnAddress: "0x951642B5Fc088BE73B732440fD7Bf42285066534",
   rgnYetiAddress: "0xBBcD4F8bC0195c44D1b4dE74A5C8DDd7a33EF976",
 >>>>>>> c705a4a (fix withdraw)
+=======
+  masterchefAddress: "0x52828c4f0Fedfcbc0D197Ce35Ec12d8fA11d7aBE",
+  mainstakingAddress: "0x029e487AE9ee944b58Db1d31989F68e566646f91",
+  rgnAddress: "0x63dbD091649c3c88e35AEfaB67817A5C4c280D0D",
+  rgnYetiAddress: "0xD8E2c918d43D81a6C674A9416a1b8C4FF9a5D608",
+>>>>>>> d1cc518 (proxy)
   yusdAddress: "0xe6BbfD5be4B5AD13302FD5764dFF8e4f604d4887",
   yetiAddres: "0x77777777777d4554c39223C354A05825b2E8Faa3",
-  fakeYusdAddress: "0x5bfc6879f794AFE4f36d3b46a2586e5c4Ca6F402",
-  fakeLpCurveAddress: "0x0C8Fe21110152159778924B7557804dCa8992512",
+  fakeYusdAddress: "0xAc04F069086383Ec47dCb5317E126D9EC4F6c7DB",
+  fakeLpCurveAddress: "0x4b937619a5604DC4C0C25Ef80234031b869E511E",
   lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -72,3 +80,8 @@ export const contractAddress = {
   VaultAddress: "0xdaf7b8653119feb9fddb77ccafbbdd1ea67d87c5"
 >>>>>>> a779675 (fix data NFTLOCK)
 };
+=======
+  NFTAddress: "0x51926D602d7e4c73BA7c9A6B599897208817f5EB",
+  VaultAddress: "0xdaf7b8653119feb9fddb77ccafbbdd1ea67d87c5"
+}
+>>>>>>> d1cc518 (proxy)
