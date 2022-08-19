@@ -50,6 +50,7 @@ export const contractAddress = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   NFTAddress: "0xd296aFC2767D5b58EEBc3e03452F6bb53b1A59b1"
 =======
   masterchefAddress: "0xBb3bD58cF15FE3C79B2a22ca719483956686fA8F",
@@ -82,6 +83,9 @@ export const contractAddress = {
 };
 =======
   NFTAddress: "0x51926D602d7e4c73BA7c9A6B599897208817f5EB",
+=======
+  NFTAddress: "0x5FfC241A6e46A787502991308BbA6b8564fb4397",
+>>>>>>> 62931fe (nft address)
   VaultAddress: "0xdaf7b8653119feb9fddb77ccafbbdd1ea67d87c5"
 }
 >>>>>>> d1cc518 (proxy)
