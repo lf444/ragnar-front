@@ -62,6 +62,9 @@ const LastLevel = () => {
             fontSize: "16px",
             width: "fit-content",
           }}
+          onClick={() => {
+            window.open("https://ragnarfinance.gitbook.io/ragnar-finance/");
+          }}
         >
           Gitbook
         </Button>
@@ -109,6 +112,9 @@ const LastLevel = () => {
             fontSize: "16px",
             width: "fit-content",
           }}
+          onClick={() => {
+            window.open("https://discord.com/invite/MHHEYWTFyq");
+          }}
         >
           Discord
         </Button>{" "}
@@ -123,6 +129,9 @@ const LastLevel = () => {
             fontSize: "16px",
             width: "fit-content",
           }}
+          onClick={() => {
+            window.open("https://twitter.com/ragnarfinance");
+          }}
         >
           Twitter
         </Button>{" "}
@@ -136,6 +145,9 @@ const LastLevel = () => {
             m: 1,
             fontSize: "16px",
             width: "fit-content",
+          }}
+          onClick={() => {
+            window.open("https://ragnarfinance.medium.com/");
           }}
         >
           Medium

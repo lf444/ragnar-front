@@ -24,7 +24,7 @@ const SecondLevel = () => {
             color: (theme) => theme.palette.secondary.main,
             lineHeight: "29px",
             marginTop: "3rem",
-            fontSize: "3rem",
+            fontSize: { xs: "1.75em", sm: "3rem" },
           }}
         >
           {" "}
@@ -37,7 +37,7 @@ const SecondLevel = () => {
             lineHeight: "29px",
             marginTop: "3rem",
             textAlign: "right",
-            fontSize: "3rem",
+            fontSize: { xs: "1.75em", sm: "3rem" },
           }}
         >
           {" "}

@@ -1,26 +1,33 @@
-import { Grid, Button, CardMedia, Box, Typography } from '@mui/material';
-import { useState, useEffect } from 'react';
-import { ClaimTable, ClaimTable2 } from './ClaimTable';
-import rgn from '../../assets/images/pools/rgn.png';
-import yeti from '../../assets/images/pools/yeti.png';
-import { ethers } from 'ethers';
-import { contractAddress } from '../../abi/address';
-import { appLogger, errorToast } from '../../utils/method';
-import masterchefABI from '../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
-import { useProvider } from 'wagmi';
-import LinearProgress from '@mui/material/LinearProgress';
-import { ClaimRewards, ClaimRewards2 } from './ClaimRewards';
-import { formatEther } from 'ethers/lib/utils';
-import { fetchAllTvl, fetchAllApr, fetchDeposit } from '../../rpc/PoolFunc';
+import {
+  Grid,
+  Button,
+  CardMedia,
+  Box,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
+import { useState, useEffect } from "react";
+import { ClaimTable, ClaimTable2 } from "./ClaimTable";
+import rgn from "../../assets/images/pools/rgn.png";
+import yeti from "../../assets/images/pools/yeti.png";
+import { ethers } from "ethers";
+import { contractAddress } from "../../abi/address";
+import { appLogger, errorToast } from "../../utils/method";
+import masterchefABI from "../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+import { useProvider } from "wagmi";
+import LinearProgress from "@mui/material/LinearProgress";
+import { ClaimRewards, ClaimRewards2 } from "./ClaimRewards";
+import { formatEther } from "ethers/lib/utils";
+import { fetchAllTvl, fetchAllApr, fetchDeposit } from "../../rpc/PoolFunc";
 import {
   claimAll,
   claimRagnarPools,
   claimYetiPools,
-} from '../../rpc/rewardInteraction';
-import bigYeti from '../../assets/images/no_rewards.png';
-import { useNavigate } from 'react-router-dom';
+} from "../../rpc/rewardInteraction";
+import bigYeti from "../../assets/images/no_rewards.png";
+import { useNavigate } from "react-router-dom";
 
-const appTag: string = 'ClaimRewardsScreen';
+const appTag: string = "ClaimRewardsScreen";
 
 export default function ClaimRewardsScreen({
   userAddress,
@@ -153,20 +160,20 @@ export default function ClaimRewardsScreen({
       }
     } catch (err: any) {
       errorToast(err.code);
-      appLogger(appTag, '- Error fetchMyDeposit-', err.message);
+      appLogger(appTag, "- Error fetchMyDeposit-", err.message);
       setIsLoading(false);
     }
   }
 
   const InfoRgnYetiPools = `RGN: $${reward.rewardYetiRGN.toLocaleString(
-    'en'
-  )} , YETI: $${reward.rewardYetiYETI.toLocaleString('en')}`;
+    "en"
+  )} , YETI: $${reward.rewardYetiYETI.toLocaleString("en")}`;
   const InfoYUSDPools = `RGN: $${reward.rewardYusdRGN.toLocaleString(
-    'en'
-  )} , YETI: $${reward.rewardYusdYETI.toLocaleString('en')}`;
+    "en"
+  )} , YETI: $${reward.rewardYusdYETI.toLocaleString("en")}`;
   const InfoLpCurvePools = `RGN: $${reward.rewardLpCurveRGN.toLocaleString(
-    'en'
-  )} , YETI: $${reward.rewardLpCurveYETI.toLocaleString('en')}`;
+    "en"
+  )} , YETI: $${reward.rewardLpCurveYETI.toLocaleString("en")}`;
 
   const resetData = async () => {
     setReward({
@@ -211,51 +218,65 @@ export default function ClaimRewardsScreen({
     }
   }, [userAddress]);
 
-  return (
+  return isLoading ? (
+    <>
+      {" "}
+      <CircularProgress
+        size="6rem"
+        sx={{
+          marginLeft: "40%",
+          marginRight: "auto",
+          position: "relative",
+          marginBottom: "12rem",
+          marginTop: "10rem",
+        }}
+      />
+    </>
+  ) : (
     <>
       {userAddress &&
       myStake.myLpCurve + myStake.myYeti + myStake.myYusd > 0 ? (
-        <Grid container direction='row'>
+        <Grid container direction="row">
           <Grid
             item
             container
-            direction='row'
+            direction="row"
             xs={12}
-            sx={{ marginBottom: '5rem' }}
+            sx={{ marginBottom: "5rem" }}
           >
             <Grid item xs={6} sx={{ pr: 2 }}>
               <Grid
                 container
                 sx={{
                   backgroundColor: (theme) => theme.palette.secondary.main,
-                  height: '40px',
-                  borderRadius: '5px 5px 0px 0px',
+                  height: "40px",
+                  borderRadius: "5px 5px 0px 0px",
                 }}
               >
                 <Grid
                   item
                   xs={1.5}
                   sx={{
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    textAlign: 'center',
-                    marginTop: '10px',
-                    marginLeft: '8px',
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                    textAlign: "center",
+                    marginTop: "10px",
+                    marginLeft: "8px",
                   }}
                 >
-                  <img height='40px' src={rgn} alt='Ragnar Logo'></img>
+                  <img height="40px" src={rgn} alt="Ragnar Logo"></img>
                 </Grid>
                 <Grid
                   item
                   xs={6}
                   lg={8}
                   sx={{
-                    fontWeight: 'bold',
-                    fontSize: { xs: '12px', md: '16px' },
-                    textAlign: 'left',
-                    marginTop: { xs: '20px', md: '18px' },
+                    fontWeight: "bold",
+                    fontSize: { xs: "12px", md: "16px" },
+                    textAlign: "left",
+                    marginTop: { xs: "20px", md: "18px" },
                     color: (theme) => theme.palette.text.primary,
-                    marginLeft: { xs: '30px', md: '20px', lg: '10px' },
+                    marginLeft: { xs: "30px", md: "20px", lg: "10px" },
                   }}
                 >
                   Ragnar Pools
@@ -265,16 +286,16 @@ export default function ClaimRewardsScreen({
                 item
                 xs={12}
                 container
-                direction='row'
+                direction="row"
                 sx={{
                   p: 1,
-                  borderRadius: '0px 0px 5px 5px',
+                  borderRadius: "0px 0px 5px 5px",
                   backgroundColor: (theme) => theme.palette.secondary.main,
-                  height: '100%',
+                  height: "100%",
                 }}
               >
                 <ClaimTable2
-                  pool1='rgnYETI'
+                  pool1="rgnYETI"
                   apr1={Math.round(aprRgn.aprYeti)}
                   deposit1={Math.round(myStake.myYeti)}
                   tvl1={Math.round(TVL.tvlYeti)}
@@ -282,51 +303,51 @@ export default function ClaimRewardsScreen({
                 />
               </Grid>
             </Grid>
-            <Grid item xs={6} sx={{ pr: 2, pb: '1.3rem' }}>
+            <Grid item xs={6} sx={{ pr: 2, pb: "1.3rem" }}>
               <ClaimRewards2
                 claim={claimRagnarPools}
                 title={InfoRgnYetiPools}
-                text1={'rgnYETI Pools:'}
+                text1={"rgnYETI Pools:"}
                 price1={reward.rewardYetiRGN + reward.rewardYetiYETI}
                 price2={reward.rewardYetiRGN + reward.rewardYetiYETI}
                 isLoading={isLoading}
               />
             </Grid>
           </Grid>
-          <Grid item container direction='row' xs={12}>
-            <Grid item xs={6} sx={{ pr: 2, marginBottom: '5rem' }}>
+          <Grid item container direction="row" xs={12}>
+            <Grid item xs={6} sx={{ pr: 2, marginBottom: "5rem" }}>
               <Grid
                 container
                 sx={{
                   backgroundColor: (theme) => theme.palette.secondary.main,
-                  height: '60px',
-                  borderRadius: '5px 5px 0px 0px',
+                  height: "60px",
+                  borderRadius: "5px 5px 0px 0px",
                 }}
               >
                 <Grid
                   item
                   xs={1.5}
                   sx={{
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    textAlign: 'center',
-                    marginTop: '10px',
-                    marginLeft: '8px',
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                    textAlign: "center",
+                    marginTop: "10px",
+                    marginLeft: "8px",
                   }}
                 >
-                  <img height='45px' src={yeti} alt='yeti logo'></img>
+                  <img height="45px" src={yeti} alt="yeti logo"></img>
                 </Grid>
                 <Grid
                   item
                   xs={6}
                   lg={8}
                   sx={{
-                    fontWeight: 'bold',
-                    fontSize: { xs: '12px', md: '16px' },
-                    textAlign: 'left',
-                    marginTop: { xs: '22px', md: '18px' },
+                    fontWeight: "bold",
+                    fontSize: { xs: "12px", md: "16px" },
+                    textAlign: "left",
+                    marginTop: { xs: "22px", md: "18px" },
                     color: (theme) => theme.palette.text.primary,
-                    marginLeft: { xs: '30px', md: '20px', lg: '10px' },
+                    marginLeft: { xs: "30px", md: "20px", lg: "10px" },
                   }}
                 >
                   Yeti Pools
@@ -336,17 +357,17 @@ export default function ClaimRewardsScreen({
                 item
                 xs={12}
                 container
-                direction='row'
+                direction="row"
                 sx={{
                   p: 1,
-                  borderRadius: '0px 0px 5px 5px',
+                  borderRadius: "0px 0px 5px 5px",
                   backgroundColor: (theme) => theme.palette.secondary.main,
-                  height: '100%',
+                  height: "100%",
                 }}
               >
                 <ClaimTable
-                  pool1='YUSD'
-                  pool2='CURVE LP'
+                  pool1="YUSD"
+                  pool2="CURVE LP"
                   apr1={Math.round(aprRgn.aprYusd)}
                   apr2={Math.round(aprRgn.aprLpCurve)}
                   deposit1={Math.round(myStake.myYusd)}
@@ -362,15 +383,15 @@ export default function ClaimRewardsScreen({
               xs={6}
               sx={{
                 pr: 2,
-                marginBottom: '5rem',
+                marginBottom: "5rem",
               }}
             >
               <ClaimRewards
                 claim={claimYetiPools}
                 title={InfoYUSDPools}
                 title2={InfoLpCurvePools}
-                text1={'YUSD Pools:'}
-                text2={'CURVE LP Pools:'}
+                text1={"YUSD Pools:"}
+                text2={"CURVE LP Pools:"}
                 price1={reward.rewardYusdRGN + reward.rewardYusdYETI}
                 price2={reward.rewardLpCurveRGN + reward.rewardLpCurveYETI}
                 price3={
@@ -384,17 +405,17 @@ export default function ClaimRewardsScreen({
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={12} sx={{ textAlign: 'center' }}>
+            <Grid item xs={12} sx={{ textAlign: "center" }}>
               <Button
                 onClick={() => claimAll(appTag)}
                 sx={{
-                  width: { lg: '20%', xs: '40%' },
-                  backgroundColor: '#D0BA97',
-                  fontWeight: 'bold',
+                  width: { lg: "20%", xs: "40%" },
+                  backgroundColor: "#D0BA97",
+                  fontWeight: "bold",
                   color: (theme) => theme.palette.secondary.main,
-                  fontSize: '15px',
-                  marginBottom: '20px',
-                  marginTop: '20px',
+                  fontSize: "15px",
+                  marginBottom: "20px",
+                  marginTop: "20px",
                 }}
               >
                 Claim all ($
@@ -406,12 +427,12 @@ export default function ClaimRewardsScreen({
                     reward.rewardLpCurveYETI +
                     reward.rewardYetiRGN +
                     reward.rewardYetiYETI
-                  ).toLocaleString('en')
+                  ).toLocaleString("en")
                 ) : (
                   <LinearProgress
-                    color='inherit'
+                    color="inherit"
                     sx={{
-                      width: '1rem',
+                      width: "1rem",
                     }}
                   />
                 )}
@@ -424,51 +445,51 @@ export default function ClaimRewardsScreen({
         <Grid
           container
           item
-          direction='row'
-          alignItems='center'
-          justifyContent='space-between'
-          sx={{ mb: '3rem', mt: '1rem' }}
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ mt: "1rem", position: "relative", bottom: "0" }}
         >
           <Grid item xs={6}>
             <CardMedia
-              component='img'
+              component="img"
               sx={{
                 maxHeight: { xs: 233, md: 450 },
                 maxWidth: { xs: 350, md: 450 },
-                pr: '1em',
+                pr: "1em",
               }}
               src={bigYeti}
             />
           </Grid>
-          <Grid item xs={6} sx={{ pl: '1em' }}>
+          <Grid item xs={6} sx={{ pl: "1em" }}>
             <Typography
               sx={{
-                fontSize: { xs: '1.05em', sm: '1.5em', mb: '1em' },
-                fontWeight: 'bold',
+                fontSize: { xs: "1.05em", sm: "1.5em", mb: "1em" },
+                fontWeight: "bold",
               }}
             >
-              {' '}
+              {" "}
               NOTHING TO CLAIM
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '0.95', sm: '1.25em', mb: '1em' },
-                fontWeight: 'bold',
+                fontSize: { xs: "0.95", sm: "1.25em", mb: "1em" },
+                fontWeight: "bold",
               }}
             >
-              {' '}
+              {" "}
               You don't have anything from farming
             </Typography>
             <Button
-              variant='contained'
+              variant="contained"
               onClick={() => {
-                navigate('/farm');
+                navigate("/farm");
               }}
               sx={{
-                backgroundColor: '#D0BA97',
-                marginTop: '1%',
-                fontSize: '16px',
-                width: 'fit-content',
+                backgroundColor: "#D0BA97",
+                marginTop: "1%",
+                fontSize: "16px",
+                width: "fit-content",
               }}
             >
               GO FARM

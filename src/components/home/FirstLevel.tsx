@@ -9,7 +9,7 @@ const FirstLevel = () => {
 
   return (
     <Grid container direction="row" sx={{ width: "100%" }}>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <Grid container item alignItems={"center"}>
           <Grid item>
             <img height="40" src={logo} alt="Ragnar Logo" />
@@ -45,7 +45,7 @@ const FirstLevel = () => {
           <Typography
             sx={{
               fontWeight: "700",
-              fontSize: "3.13rem",
+              fontSize: { xs: "1.5rem", sm: "2.13rem", lg: "3.13rem" },
               paddingTop: "1%",
             }}
           >
@@ -54,7 +54,7 @@ const FirstLevel = () => {
           <Typography
             sx={{
               fontWeight: "700",
-              fontSize: "3.13rem",
+              fontSize: { xs: "1.5rem", sm: "2.13rem", lg: "3.13rem" },
               color: "#DE7650",
             }}
           >
@@ -63,7 +63,7 @@ const FirstLevel = () => {
           <Typography
             sx={{
               fontWeight: "700",
-              fontSize: "3.13rem",
+              fontSize: { xs: "1.5rem", sm: "2.13rem", lg: "3.13rem" },
             }}
           >
             boosting
@@ -71,13 +71,18 @@ const FirstLevel = () => {
           <Typography
             sx={{
               fontWeight: "700",
-              fontSize: "3.13rem",
+              fontSize: { xs: "1.5rem", sm: "2.13rem", lg: "3.13rem" },
             }}
           >
             protocol
           </Typography>
         </Grid>
-        <Grid container item direction="row">
+        <Grid
+          container
+          item
+          direction="row"
+          sx={{ marginBottom: { xs: "10em", sm: 0 } }}
+        >
           <Button
             variant="contained"
             onClick={() => {
@@ -86,10 +91,9 @@ const FirstLevel = () => {
             sx={{
               backgroundColor: "#DE7650",
               marginTop: "1%",
-              /*    height: '50%',
-            width: '10%', */
               fontSize: "16px",
               width: "fit-content",
+              marginRight: { xs: 0, sm: "2em" },
             }}
           >
             Start farming !
@@ -103,18 +107,15 @@ const FirstLevel = () => {
               backgroundColor: "transparent",
               color: "#ddeaf2",
               marginTop: "1%",
-              /*    height: '50%',
-            width: '10%', */
               width: "fit-content",
-              fontSize: "16px",
-              marginLeft: "2rem",
+              fontSize: "12.7px",
             }}
           >
             How does it WORK ?
           </Button>
         </Grid>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={0} sm={6}>
         <Box
           sx={{
             position: "relative",
@@ -128,8 +129,9 @@ const FirstLevel = () => {
             component="img"
             sx={{
               position: "relative",
-              maxHeight: { xs: 233, md: 550 },
-              maxWidth: { xs: 350, md: 550 },
+              display: { xs: "none", sm: "flex" },
+              maxHeight: { md: 550 },
+              maxWidth: { md: 550 },
               zIndex: 9,
             }}
             src={bigYeti}
