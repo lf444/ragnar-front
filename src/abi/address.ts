@@ -5,6 +5,7 @@ export const contractAddress = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   masterchefAddress: "0x1361Bc704c62E0fa156af17d209Ff0bbBf1E1540",
   mainstakingAddress: "0xaCaB55cB52BAB9d5c9be3031Cd964DB5726b47Ca",
   rgnAddress: "0xC85ead0da95468d9dE0D8169511370A4884eFA71",
@@ -39,10 +40,16 @@ export const contractAddress = {
   rgnAddress: "0x63dbD091649c3c88e35AEfaB67817A5C4c280D0D",
   rgnYetiAddress: "0xD8E2c918d43D81a6C674A9416a1b8C4FF9a5D608",
 >>>>>>> d1cc518 (proxy)
+=======
+  masterchefAddress: "0xE3409Dc4554b3A360abff8acF50E0D0436bb3431",
+  mainstakingAddress: "0x029e487AE9ee944b58Db1d31989F68e566646f91",
+  rgnAddress: "0x63dbD091649c3c88e35AEfaB67817A5C4c280D0D",
+  rgnYetiAddress: "0x1833EDf10c02cd006680F9B3bE400cA3BE7b4813",
+>>>>>>> 1ea0721 (fix deposit yeti + new abi)
   yusdAddress: "0xe6BbfD5be4B5AD13302FD5764dFF8e4f604d4887",
   yetiAddres: "0x77777777777d4554c39223C354A05825b2E8Faa3",
-  fakeYusdAddress: "0xAc04F069086383Ec47dCb5317E126D9EC4F6c7DB",
-  fakeLpCurveAddress: "0x4b937619a5604DC4C0C25Ef80234031b869E511E",
+  fakeYusdAddress: "0x1976b40D29cdd028D1f1E68C02587777b344102a",
+  fakeLpCurveAddress: "0x9f499ac26e1287F7d489c19ab26272ec24d9c4D4",
   lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024",
 <<<<<<< HEAD
 <<<<<<< HEAD

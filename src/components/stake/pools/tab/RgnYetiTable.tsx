@@ -70,9 +70,10 @@ import CustomInput from '../../../shared/CustomInput';
 import { contractAddress } from '../../../../abi/address';
 import { BigNumber, ethers } from 'ethers';
 import { appLogger, errorToast, successToast } from '../../../../utils/method';
-import { approve, deposit, withdraw } from '../../../../rpc/tokenInterraction';
+import { approve, deposit, withdraw, approveRGNYETI } from '../../../../rpc/tokenInterraction';
 import { useWaitForTransaction } from 'wagmi';
 >>>>>>> 5383c94 (dev: push kool change)
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -302,6 +303,15 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
       handleSetTx
     );
   };
+  
+  const approveRGNYETIto = async () => {
+    await approveRGNYETI(
+      amountToStake,
+      contractAddress.yetiAddres,
+      appTag,
+      handleSetTx
+    );
+  };
   const approveRGNYeti = async () => {
     await approve(
       amountToStake,
@@ -345,8 +355,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
 
   function depositVeYetiMain() {
     try {
-      const amount = ethers.utils.parseEther(String(amountToStake));
-      depositVeYeti(amount);
+      depositVeYeti(amountToStake);
     } catch (err: any) {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -716,7 +725,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
             {' '}
 >>>>>>> 5383c94 (dev: push kool change)
             <Button
-              onClick={approveYeti} 
+              onClick={approveRGNYETIto} 
               variant='contained'
               sx={{
                 width: '45%',
@@ -830,7 +839,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
               }}
             >
               {!waitDepositTX.isLoading ? (
-                'DEPOSIT'
+                'CONVERT'
               ) : (
                 <CircularProgress
                   size='0.95em'

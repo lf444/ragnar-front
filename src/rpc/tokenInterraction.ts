@@ -39,6 +39,33 @@ export const approve = async (
     appLogger(appTag, "- Error approve-", err.message);
   }
 };
+export const approveRGNYETI = async (
+  qty: number,
+  address: string,
+  appTag: string,
+  handleSetTx: (tx: string) => void
+): Promise<void> => {
+  try {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const token = new ethers.Contract(address, tokenABI.abi, signer);
+      const amount = ethers.utils.parseEther(qty.toString());
+  
+      const tokenApproveMasterchef = await token.approve(
+          contractAddress.rgnYetiAddress,
+          amount
+        );
+        tokenApproveMasterchef.wait();
+        handleSetTx(tokenApproveMasterchef.hash);
+
+      
+    }
+  } catch (err: any) {
+    errorToast(err.code);
+    appLogger(appTag, "- Error approve-", err.message);
+  }
+};
 
 export const deposit = async (
   qty: number,

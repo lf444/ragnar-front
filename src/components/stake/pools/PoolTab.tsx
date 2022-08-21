@@ -92,6 +92,7 @@ import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../abi/pools";
 =======
 import masterchefABI from "../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
 import mainstakingABI from "../../../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json";
+import rgnyetiABI from "../../../abi/contracts/Tokens/RGNYeti.sol/RGNYETI.json"
 import { rgnPool, YetiPool, YusdPool, LpCurvePool } from "../../../abi/pools";
 >>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/PoolTab.tsx
 
@@ -941,13 +942,23 @@ async function depositVeYeti(qty: number) {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const mainstaking = new ethers.Contract(
-          contractAddress.mainstakingAddress,
-          mainstakingABI.abi,
+        const rgnyeti = new ethers.Contract(
+          contractAddress.rgnYetiAddress,
+          rgnyetiABI.abi,
           signer
         );
 
-        const depositVeYeti = await mainstaking.stakeYETI(qty, "0x0d938BCF55CCAE23D0823f3D3AA7B248ece5A2dC");
+        const quantity = ethers.utils.parseEther(qty.toString());
+        console.log(quantity)
+        const value = [
+          {
+            rewarder: "0x0d938BCF55CCAE23D0823f3D3AA7B248ece5A2dC",
+            amount: quantity,
+            isIncrease: true
+          }
+        ]
+
+        const depositVeYeti = await rgnyeti.deposit(value);
         await depositVeYeti.wait();
       }
     } catch (err: any) {

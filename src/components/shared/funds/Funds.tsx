@@ -163,7 +163,6 @@ const Funds = ({
           accounts[0],
           contractAddress.yetiAddres
         );
-
         setReward(
           +formatEther(myRewardYUSD.pendingBonusToken) *
             tokensPrices.priceRgnYeti +
@@ -205,10 +204,12 @@ const Funds = ({
   const getMainsStakingData = async () => {
     try {
       if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
         const mainstaking = new ethers.Contract(
           contractAddress.mainstakingAddress,
           mainstakingABI.abi,
-          provider
+          signer
         );
         const NFT = new ethers.Contract(
           contractAddress.NFTAddress,
@@ -224,8 +225,6 @@ const Funds = ({
         const getStackedVeYeti = await mainstaking.getVeYETI();
         const rgnSupply = await rgn.totalSupply();
         const TotalRGNLOCKED = await NFT.totalValueLocked();
-        console.log(formatEther(TotalRGNLOCKED));
-        console.log(rgnSupply);
 
         setTotalYeti(+formatEther(getStackedYETI));
         setTotalVeYeti(+formatEther(getStackedVeYeti));
