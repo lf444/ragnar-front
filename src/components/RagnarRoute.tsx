@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
 =======
@@ -26,6 +27,8 @@ import Footer from './Footer';
 =======
 =======
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+>>>>>>> 92f4ef0 (dev: re-deploy)
 import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Farm from "../pages/Farm";
@@ -34,6 +37,7 @@ import Claim from "../pages/Claim";
 import Lock from "../pages/Lock";
 import { coinGeckoService } from "../services/coinGeckoService";
 import { TOKEN_ID } from "../utils/constance";
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 import { useAccount } from "wagmi";
@@ -84,6 +88,10 @@ import { Box, CircularProgress } from "@mui/material";
 =======
 =======
 >>>>>>> 5a5daed (dev: add claim image when not connected or no stake at all)
+=======
+import { useAccount } from "wagmi";
+import Footer from "./shared/Footer";
+>>>>>>> 92f4ef0 (dev: re-deploy)
 import {
   Box,
   Button,
@@ -97,6 +105,7 @@ import {
   CardContent,
   Typography,
 <<<<<<< HEAD
+<<<<<<< HEAD
 } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
 >>>>>>> abc1331 (dev: add help center)
@@ -104,6 +113,10 @@ import HelpIcon from "@mui/icons-material/Help";
 } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
 >>>>>>> 5a5daed (dev: add claim image when not connected or no stake at all)
+=======
+} from "@mui/material";
+import HelpIcon from "@mui/icons-material/Help";
+>>>>>>> 92f4ef0 (dev: re-deploy)
 
 const RagnarRoute = () => {
   const theme = useTheme();
@@ -160,6 +173,7 @@ const RagnarRoute = () => {
   useEffect(() => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (location.pathname === "/") {
       navigate("/farm");
 =======
@@ -170,6 +184,10 @@ const RagnarRoute = () => {
     if (location.pathname === '/') {
       navigate('/farm');
 >>>>>>> 5a5daed (dev: add claim image when not connected or no stake at all)
+=======
+    if (location.pathname === "/") {
+      navigate("/farm");
+>>>>>>> 92f4ef0 (dev: re-deploy)
     }
   }, [location]);
 
@@ -230,24 +248,24 @@ const RagnarRoute = () => {
       <Button
         onClick={handleOpenModal}
         sx={{
-          color: '#000000',
-          backgroundColor: '#F2D6A9',
-          borderRadius: '25px',
-          position: 'absolute',
-          right: { sm: '3%', xs: '1%', lg: '5%' },
-          top: '70%',
-          height: '25px',
-          textTransform: 'none',
+          color: "#000000",
+          backgroundColor: "#F2D6A9",
+          borderRadius: "25px",
+          position: "absolute",
+          right: { sm: "3%", xs: "1%", lg: "5%" },
+          top: "70%",
+          height: "25px",
+          textTransform: "none",
         }}
       >
-        <HelpIcon />{' '}
+        <HelpIcon />{" "}
         <Typography
           sx={{
-            display: { xs: 'none', sm: 'none', md: 'flex' },
-            marginLeft: '0.2em',
+            display: { xs: "none", sm: "none", md: "flex" },
+            marginLeft: "0.2em",
           }}
         >
-          {' '}
+          {" "}
           Help center
         </Typography>
       </Button>
@@ -256,19 +274,19 @@ const RagnarRoute = () => {
         <>
           <Routes>
             <Route
-              path='/farm'
+              path="/farm"
               element={
                 <Farm userAddress={userAddress} tokensPrices={tokensPrices} />
               }
             />
             <Route
-              path='/claim'
+              path="/claim"
               element={
                 <Claim tokensPrices={tokensPrices} userAddress={userAddress} />
               }
             />
             <Route
-              path='/lock'
+              path="/lock"
               element={
                 <Lock tokensPrices={tokensPrices} userAddress={userAddress} />
               }
@@ -279,14 +297,14 @@ const RagnarRoute = () => {
       ) : (
         <>
           <CircularProgress
-            size='6rem'
+            size="6rem"
             sx={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
+              position: "absolute",
+              left: "50%",
+              top: "50%",
             }}
           />
-          <Box sx={{ position: 'fixed', left: 0, bottom: 0, right: 0 }}>
+          <Box sx={{ position: "fixed", left: 0, bottom: 0, right: 0 }}>
             <Footer />
           </Box>
         </>
@@ -298,48 +316,48 @@ const RagnarRoute = () => {
       <Modal
         open={openModal}
         onClose={handleCloseModal}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Grid
           container
-          direction='row'
+          direction="row"
           sx={{
-            color: '#000000',
+            color: "#000000",
             backgroundColor: theme.palette.background.default,
-            borderRadius: '5px 5px 5px 5px',
-            width: 'fit-content',
+            borderRadius: "5px 5px 5px 5px",
+            width: "fit-content",
           }}
         >
           <Grid item sm={6}>
             <a
-              href='https://ragnarfinance.gitbook.io/ragnar-finance/'
-              target='_blank'
-              rel='noopener noreferrer'
-              style={{ textDecoration: 'none' }}
+              href="https://ragnarfinance.gitbook.io/ragnar-finance/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
             >
               <Card
                 sx={{
                   maxWidth: 250,
-                  margin: '1em',
-                  cursor: 'pointer',
+                  margin: "1em",
+                  cursor: "pointer",
                   backgroundColor: theme.palette.secondary.main,
                 }}
               >
-                <CardHeader title='Documentation' />
+                <CardHeader title="Documentation" />
                 <CardMedia
-                  component='img'
-                  height='150'
-                  image={require('../assets/images/gitbook.png')}
-                  alt='gitbook image'
+                  component="img"
+                  height="150"
+                  image={require("../assets/images/gitbook.png")}
+                  alt="gitbook image"
                 />
                 <CardContent>
-                  <Typography variant='body2' color='text.secondary'>
+                  <Typography variant="body2" color="text.secondary">
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry.
                   </Typography>
@@ -349,30 +367,30 @@ const RagnarRoute = () => {
           </Grid>
           <Grid item sm={6}>
             <a
-              href='https://discord.com/invite/MHHEYWTFyq'
-              target='_blank'
-              rel='noopener noreferrer'
-              style={{ textDecoration: 'none' }}
+              href="https://discord.com/invite/MHHEYWTFyq"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
             >
               <Card
                 sx={{
                   maxWidth: 250,
-                  margin: '1em',
-                  cursor: 'pointer',
+                  margin: "1em",
+                  cursor: "pointer",
                   backgroundColor: theme.palette.secondary.main,
                 }}
               >
-                <CardHeader title='Discord' />
+                <CardHeader title="Discord" />
                 <CardMedia
-                  component='img'
-                  height='150'
-                  image={require('../assets/images/discord.jpg')}
-                  alt='discord image'
+                  component="img"
+                  height="150"
+                  image={require("../assets/images/discord.jpg")}
+                  alt="discord image"
                 />
                 <CardContent>
-                  <Typography variant='body2' color='text.secondary'>
+                  <Typography variant="body2" color="text.secondary">
                     Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                    typesetting.
                   </Typography>
                 </CardContent>
               </Card>
