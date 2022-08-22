@@ -58,6 +58,7 @@ const Claim = ({
               shouldRefetchData={false}
             />
           </Grid>
+          {/*  // TODO ADD USEWAITTR */}
           <Grid item sx={{ width: "90%" }}>
             <ClaimRewardsScreen
               tokensPrices={tokensPrices}
