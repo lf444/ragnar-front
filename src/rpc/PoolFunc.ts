@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ethers } from 'ethers';
 import { useState } from 'react';
 import { contractAddress } from '../abi/address';
@@ -8,6 +9,15 @@ import { formatEther } from 'ethers/lib/utils';
 import LpCurveBoostABI from '../abi/contracts/MainProtocol/LpCurveBoost/LpCurveBoost.json'
 import { userInfo } from 'os';
 import veYetiABI from '../abi/contracts/MainProtocol/veYeti.sol/veYETI.json'
+=======
+import { ethers } from "ethers";
+import { useState } from "react";
+import { contractAddress } from "../abi/address";
+import { appLogger, errorToast } from "../utils/method";
+import masterchefABI from "../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+import NFTABI from "../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
+import { formatEther } from "ethers/lib/utils";
+>>>>>>> 2f2f57b (dev: test dev)
 
 export const fetchAllTvl = async (
   provider: any,
@@ -18,6 +28,7 @@ export const fetchAllTvl = async (
     tvlLpCurve: number,
     tvlNFT: number
   ) => void
+  // test
 ) => {
   try {
     if (window.ethereum) {
@@ -51,7 +62,7 @@ export const fetchAllTvl = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, '- Error fetchTVL-', err.message);
+    appLogger(appTag, "- Error fetchTVL-", err.message);
   }
 };
 export const fetchAllApr = async (
@@ -88,6 +99,7 @@ export const fetchAllApr = async (
         contractAddress.fakeLpCurveAddress
       );
 
+<<<<<<< HEAD
       const userInfoBoostedPool = await lpcurveboost.userInfo(contractAddress.mainstakingAddress);
       const veYetiBalance = await veYeti.getTotalVeYeti(contractAddress.mainstakingAddress);
 
@@ -104,6 +116,8 @@ export const fetchAllApr = async (
       const boostedAPR = 100 * 0.014 * annualBoostedReward / userInfoBoostedPool.amount * userBoostedRewardShare
 
  
+=======
+>>>>>>> 2f2f57b (dev: test dev)
       const allocPointTotal = await masterchef.totalAllocPoint();
       const rgnPerBlockYusd =
         (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
@@ -121,7 +135,7 @@ export const fetchAllApr = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, '- Error fetchAprRGN-', err.message);
+    appLogger(appTag, "- Error fetchAprRGN-", err.message);
   }
 };
 export const fetchDeposit = async (
@@ -135,7 +149,7 @@ export const fetchDeposit = async (
   try {
     if (window.ethereum) {
       let accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -166,7 +180,7 @@ export const fetchDeposit = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, '- Error fetchAprRGN-', err.message);
+    appLogger(appTag, "- Error fetchAprRGN-", err.message);
   }
 };
 
@@ -188,7 +202,7 @@ export const fetchReward = async (
   try {
     if (window.ethereum) {
       let accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -229,6 +243,6 @@ export const fetchReward = async (
     }
   } catch (err: any) {
     errorToast(err.code);
-    appLogger(appTag, '- Error fetchReward-', err.message);
+    appLogger(appTag, "- Error fetchReward-", err.message);
   }
 };
