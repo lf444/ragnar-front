@@ -163,6 +163,7 @@ const Funds = ({
           accounts[0],
           contractAddress.yetiAddres
         );
+        console.log(myRewardRgnYeti)
         setReward(
           +formatEther(myRewardYUSD.pendingBonusToken) *
             tokensPrices.priceRgnYeti +
@@ -221,8 +222,10 @@ const Funds = ({
           rgnABI.abi,
           provider
         );
+
         const getStackedYETI = await mainstaking.getStakedYeti();
         const getStackedVeYeti = await mainstaking.getVeYETI();
+
         const rgnSupply = await rgn.totalSupply();
         const TotalRGNLOCKED = await NFT.totalValueLocked();
 

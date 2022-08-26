@@ -316,7 +316,7 @@ const RgnYetiTable: FunctionComponent<RgnYetiTableProps> = ({
     await approve(
       amountToStake,
       contractAddress.rgnYetiAddress,
-      false,
+      true,
       appTag,
       handleSetTx
     );

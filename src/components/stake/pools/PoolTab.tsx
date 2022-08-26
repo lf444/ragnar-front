@@ -949,7 +949,8 @@ async function depositVeYeti(qty: number) {
         );
 
         const quantity = ethers.utils.parseEther(qty.toString());
-        console.log(quantity)
+        const testt = rgnyeti.yetiBooster()
+        console.log(testt)
         const value = [
           {
             rewarder: "0x0d938BCF55CCAE23D0823f3D3AA7B248ece5A2dC",

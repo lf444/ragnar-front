@@ -75,6 +75,7 @@ export const fetchAllApr = async (
         contractAddress.fakeLpCurveAddress
       );
 
+ 
       const allocPointTotal = await masterchef.totalAllocPoint();
       const rgnPerBlockYusd =
         (allocPointYusd.allocpoint * rgnPerBlock) / allocPointTotal;
