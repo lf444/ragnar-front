@@ -141,23 +141,16 @@ const Navbar = ({
       >
         <Toolbar disableGutters>
           <Grid container direction="row" alignItems="center">
-            <Grid item xs={0.2} sm={1.55}></Grid>
+            <Grid item xs={0.2} sm={2.35} md={2.35}></Grid>
             <Grid
               item
               xs={2}
-              sm={1}
+              sm={0.1}
               sx={{
                 position: "relative",
                 display: {
                   xs: "none",
                   sm: "flex",
-                },
-                left: {
-                  xs: "2rem",
-                  sm: "0rem",
-                  md: "2rem",
-                  lg: "3rem",
-                  xl: "7rem",
                 },
               }}
             >
@@ -165,6 +158,7 @@ const Navbar = ({
                 <img height="40" src={logo} alt="Ragnar Logo" />
               </Link>
             </Grid>
+            <Grid item xs={0.2} sm={0.1}></Grid>
             <Grid
               item
               xs={2}
@@ -179,13 +173,7 @@ const Navbar = ({
                   xl: "flex",
                 },
                 position: "relative",
-                left: {
-                  xs: "-4rem",
-                  sm: "-4rem",
-                  md: "-4rem",
-                  lg: "-2rem",
-                  xl: "-0rem",
-                },
+
               }}
             >
               {" "}
