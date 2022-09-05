@@ -135,13 +135,13 @@ const Navbar = ({
             sm: "4rem",
           },
           marginBottom: "2rem",
-          marginTop: "0.5rem",
+          marginTop: "1rem",
           backgroundColor: "#2f343a",
         }}
       >
         <Toolbar disableGutters>
           <Grid container direction="row" alignItems="center">
-            <Grid item xs={0.2} sm={2.35} md={2.35}></Grid>
+            <Grid item xs={0.2} sm={2.25} md={2.25}></Grid>
             <Grid
               item
               xs={2}
@@ -206,7 +206,7 @@ const Navbar = ({
             </Grid>
             <Grid
               item
-              xs={2}
+              xs={1.5}
               sm={0}
               sx={{
                 display: {
@@ -218,9 +218,6 @@ const Navbar = ({
                   sm: "initial",
                 },
                 bot: { xs: "0" },
-                left: {
-                  xs: "1rem",
-                },
               }}
             >
               <Button
@@ -232,11 +229,12 @@ const Navbar = ({
                 <MenuIcon />
               </Button>
             </Grid>
+            <Grid item xs={0.01} sm={0.5} md={0.5} lg={0.35}></Grid>
             <Grid
               item
               xs={0}
-              sm={3.5}
-              md={2.5}
+              sm={3}
+              md={2.35}
               sx={{
                 display: {
                   xs: "none",
@@ -487,7 +485,7 @@ const Navbar = ({
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    xs: "0.95em",
+                    xs: "0.8em",
                     sm: "0.9em",
                     md: "0.9em",
                   },
@@ -538,7 +536,7 @@ const Navbar = ({
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    xs: "0.9em",
+                    xs: "0.8em",
                     sm: "0.9em",
                     md: "0.9em",
                   },
@@ -564,7 +562,7 @@ const Navbar = ({
                 sx={{
                   marginRight: "2%",
                   fontSize: {
-                    xs: "0.9em",
+                    xs: "0.8em",
                     sm: "0.9em",
                     md: "0.9em",
                   },
