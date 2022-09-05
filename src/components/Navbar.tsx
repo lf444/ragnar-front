@@ -184,7 +184,7 @@ const Navbar = ({
                   sm: "-4rem",
                   md: "-4rem",
                   lg: "-2rem",
-                  xl: "-1.5rem",
+                  xl: "-0rem",
                 },
               }}
             >
@@ -654,9 +654,10 @@ const Navbar = ({
                   py: 1.25,
                   textTransform: "none",
                   width: "fit-content",
-                  fontSize: "20px",
+                  fontSize: "16px",
                   fontWeight: "700",
                   lineHeight: "24px",
+                  marginTop: "6px"
                 }}
               >
                 More <KeyboardArrowDownIcon />

@@ -80,7 +80,6 @@ const Funds = ({
         for (let i = 0; i < emptyNFt.length; i++) {
           NFTrewards += emptyNFt[i].attributes[2].value / 10 ** 18 / 2;
         }
-        console.log(NFTrewards);
       }
     } catch (error: any) {
       errorToast(error.code);
@@ -163,7 +162,6 @@ const Funds = ({
           accounts[0],
           contractAddress.yetiAddres
         );
-        console.log(myRewardRgnYeti)
         setReward(
           +formatEther(myRewardYUSD.pendingBonusToken) *
             tokensPrices.priceRgnYeti +

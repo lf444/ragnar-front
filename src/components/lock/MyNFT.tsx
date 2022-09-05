@@ -1,5 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import React from "react";
+import { FunctionComponent } from "react";
 import {
   Box,
   Button,
@@ -14,8 +13,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import LOCKABI from "../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
 import { contractAddress } from "../../abi/address";
 import { ethers } from "ethers";
-import { formatEther } from "ethers/lib/utils";
-import { Sign } from "crypto";
+;
 
 <<<<<<< HEAD
 
@@ -226,6 +224,7 @@ const MyNft: FunctionComponent<MyNftProps> = ({
           paddingRight: 3,
           marginLeft: "auto",
           marginRight: "auto",
+          height: "auto"
         }}
       >
         <Carousel
@@ -247,13 +246,14 @@ const MyNft: FunctionComponent<MyNftProps> = ({
                   <Box
                     sx={{
                       height: "420px",
-                      width: "250px",
+                      width: {lg:"250px", xs:"180px"},
                       ml: "auto",
                       mr: "auto",
                     }}
                     key={i}
                   >
                     <object type="image/svg+xml" data={meta.image}></object>
+
                     <Button
                       onClick={() => claimbRGN(meta.edition)}
                       sx={{

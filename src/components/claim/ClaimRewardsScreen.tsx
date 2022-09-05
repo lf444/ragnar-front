@@ -76,9 +76,9 @@ export default function ClaimRewardsScreen({
     myDepositLpCurve: number
   ) => {
     setMyStake({
-      myYusd: +formatEther(myDepositYUSD),
-      myYeti: +formatEther(myDepositYeti),
-      myLpCurve: +formatEther(myDepositLpCurve),
+      myYusd: myDepositYUSD,
+      myYeti: myDepositYeti,
+      myLpCurve: myDepositLpCurve,
     });
   };
   const fetchMyStake = async () => {

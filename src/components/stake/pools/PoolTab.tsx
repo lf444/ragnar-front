@@ -205,6 +205,7 @@ export default function PoolTab({
 =======
 >>>>>>> 9b85b04 (fix nft + remove rgn pool)
     aprLpCurve: 0,
+    aprLpCurveBoosted: 0
   });
 >>>>>>> 4560517 (dev: remove dirty console log)
   const [reward, setReward] = useState({
@@ -289,6 +290,7 @@ export default function PoolTab({
       tvl={Math.round(TVL.tvlYeti)}
       claimable={Math.round(reward.rewardYeti)}
       depositVeYeti={depositVeYeti}
+      aprYetiFinance={aprRgn.aprLpCurveBoosted * 0.05}
       isLoading={isLoading}
       handleRefetchDeposit={handleRefetchDeposit}
     />
@@ -372,6 +374,7 @@ export default function PoolTab({
 =======
       depositVeYeti=""
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> aa8edd6 (dev: add auto connect to wallet)
 =======
 =======
@@ -388,6 +391,9 @@ export default function PoolTab({
 >>>>>>> 68542a6 (dev: minor change on pool)
       depositVeYeti=""
 >>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
+=======
+      aprYetiFinance= {0}
+>>>>>>> 079c796 (add: grid my rewards in nft page + apr yeti on pool + some changes responsive)
       isLoading={isLoading}
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -488,6 +494,7 @@ export default function PoolTab({
 =======
 >>>>>>> 68542a6 (dev: minor change on pool)
       depositVeYeti=""
+      aprYetiFinance={aprRgn.aprLpCurveBoosted * 0.95}
       isLoading={isLoading}
       handleRefetchDeposit={handleRefetchDeposit}
     />
@@ -512,12 +519,14 @@ export default function PoolTab({
   const handleChangeAPR = (
     Yusd: number,
     LpCurve: number,
-    Yeti: number
+    Yeti: number,
+    LpCurveBoosted: number
   ) => {
     setAprRgn({
       aprYusd: Yusd,
       aprLpCurve: LpCurve,
       aprYeti: Yeti,
+      aprLpCurveBoosted: LpCurveBoosted
     });
   };
   const getApr = async () => {
@@ -666,6 +675,25 @@ Total valeur des rewards token = Nombre de reward token * Prix d'un reward token
 Nombre de reward token = Token par block * le nombre de block par an
 
 Total valeur des staked token = Nombre de token stake * Prix d'un token stake
+
+
+
+
+  const newFactor = Math.sqrt(LPStaked * veYETIBalance / 10 ** 4) OK
+
+  const sumOfFactors = boosted.sumOfFactor; OK
+
+  userBoostedRewardShare = newFactor / sumOfFactors OK
+ 
+  
+  const annualBoostedReward = format(veYETIStaked.boostRewardRate) * 365 * 86400 * (1000 - formatWithDecimals(veYETIStaked.boostBasePartition, 0)) / 1000 OK
+
+  let boostedAPR = 100 * yetiPrice * annualBoostedReward / LPStaked * userBoostedRewardShare
+
+
+
+
+
 
 */
 
@@ -949,8 +977,6 @@ async function depositVeYeti(qty: number) {
         );
 
         const quantity = ethers.utils.parseEther(qty.toString());
-        const testt = rgnyeti.yetiBooster()
-        console.log(testt)
         const value = [
           {
             rewarder: "0x0d938BCF55CCAE23D0823f3D3AA7B248ece5A2dC",

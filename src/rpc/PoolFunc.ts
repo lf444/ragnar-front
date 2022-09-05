@@ -5,6 +5,9 @@ import { appLogger, errorToast } from '../utils/method';
 import masterchefABI from '../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
 import NFTABI from '../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json';
 import { formatEther } from 'ethers/lib/utils';
+import LpCurveBoostABI from '../abi/contracts/MainProtocol/LpCurveBoost/LpCurveBoost.json'
+import { userInfo } from 'os';
+import veYetiABI from '../abi/contracts/MainProtocol/veYeti.sol/veYETI.json'
 
 export const fetchAllTvl = async (
   provider: any,
@@ -53,7 +56,7 @@ export const fetchAllTvl = async (
 };
 export const fetchAllApr = async (
   provider: any,
-  handleChangeAPR: (Yusd: number, LpCurve: number, Yeti: number) => void,
+  handleChangeAPR: (Yusd: number, LpCurve: number, Yeti: number, LpCurveBoosted: number) => void,
   appTag: string
 ) => {
   try {
@@ -63,6 +66,16 @@ export const fetchAllApr = async (
         masterchefABI.abi,
         provider
       );
+      const lpcurveboost = new ethers.Contract(
+        contractAddress.boostedPool,
+        LpCurveBoostABI,
+        provider
+      )
+      const veYeti = new ethers.Contract(
+        contractAddress.veYeti,
+        veYetiABI.abi,
+        provider
+      )
 
       const rgnPerBlock = await masterchef.rgnPerSec();
       const allocPointYusd = await masterchef.getPoolInfo(
@@ -75,6 +88,21 @@ export const fetchAllApr = async (
         contractAddress.fakeLpCurveAddress
       );
 
+      const userInfoBoostedPool = await lpcurveboost.userInfo(contractAddress.mainstakingAddress);
+      const veYetiBalance = await veYeti.getTotalVeYeti(contractAddress.mainstakingAddress);
+
+      const newFactor = Math.sqrt(userInfoBoostedPool.amount * veYetiBalance / 10 ** 4)
+      const sumOfFactors = await lpcurveboost.sumOfFactors();
+
+      const userBoostedRewardShare = newFactor / sumOfFactors;
+
+      const boostRewardRate = await lpcurveboost.rewardRate();
+      const basePartition = await lpcurveboost.basePartition();
+
+      const annualBoostedReward = parseFloat(boostRewardRate) * 365 * 86400 * (1000 - parseFloat(basePartition)) / 1000
+
+      const boostedAPR = 100 * 0.014 * annualBoostedReward / userInfoBoostedPool.amount * userBoostedRewardShare
+
  
       const allocPointTotal = await masterchef.totalAllocPoint();
       const rgnPerBlockYusd =
@@ -86,9 +114,9 @@ export const fetchAllApr = async (
 
       handleChangeAPR(
         ((rgnPerBlockYusd * 28800 * 365) / allocPointYusd.sizeOfPool) * 100,
-        ((rgnPerBlockLpCurve * 28800 * 365) / allocPointLpCurve.sizeOfPool) *
-          100,
-        ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100
+        ((rgnPerBlockLpCurve * 28800 * 365) / allocPointLpCurve.sizeOfPool) * 100,
+        ((rgnPerBlockYeti * 28800 * 365) / allocPointYeti.sizeOfPool) * 100,
+        boostedAPR / 1000000000
       );
     }
   } catch (err: any) {
@@ -195,7 +223,7 @@ export const fetchReward = async (
           +formatEther(myRewardRgnYeti.pendingRGN) * tokensPrices.priceRgn,
 
         +formatEther(myRewardLpCurve.pendingBonusToken) *
-          tokensPrices.priceLpCurve +
+          tokensPrices.priceRgnYeti +
           +formatEther(myRewardLpCurve.pendingRGN) * tokensPrices.priceRgn
       );
     }

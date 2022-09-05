@@ -17,6 +17,7 @@ interface PoolComponentProps {
   claimable: number;
   depositVeYeti: any;
   isLoading: boolean;
+  aprYetiFinance: number;
   handleRefetchDeposit: () => void;
 }
 
@@ -28,6 +29,7 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
   claimable,
   depositVeYeti,
   isLoading,
+  aprYetiFinance,
   handleRefetchDeposit,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -128,8 +130,8 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
           >
             {!isLoading ? (
               <>
-                {apr + "%"}
-                <Tooltip title={`RGN: ${Math.round(apr)}% , YETI: 0%`}>
+                {(apr + aprYetiFinance).toFixed(2).toLocaleString() + "%"}
+                <Tooltip title={`RGN: ${Math.round(apr)}% , YETI: ${aprYetiFinance.toFixed(2).toLocaleString()}%`}>
                   <InfoRoundedIcon
                     sx={{
                       color: (theme) => theme.palette.background.default,

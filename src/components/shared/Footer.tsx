@@ -6,11 +6,12 @@ export default function Footer() {
   return (
     <footer>
       <Box
-        px={{ xs: 3, sm: 3 }}
+        px={{ xs: 1, sm: 3 }}
         py={{ xs: 7, sm: 8.5 }}
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
           color: (theme) => theme.palette.text.primary,
+          marginTop: "500px"
         }}
       >
         <Grid
@@ -56,9 +57,9 @@ export default function Footer() {
               Finance
             </Typography>{" "}
           </Grid>
-          <Grid item container direction={"row"} xs={12} sm={5}>
+          <Grid item container direction={"row"} xs={12} sm={5} sx={{ marginLeft: {xs: "10px", md: "0", sm: "0"} }}>
             <Grid item container xs direction="column">
-              <Typography sx={{ fontSize: "1.25rem", fontWeight: "bold" }}>
+              <Typography sx={{ fontSize: "1.25rem" }}>
                 Explore
               </Typography>
               <Link to="/home" style={{ textDecoration: "none" }}>

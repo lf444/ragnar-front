@@ -65,6 +65,7 @@ export const contractAddress = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   NFTAddress: "0xd296aFC2767D5b58EEBc3e03452F6bb53b1A59b1"
 =======
   masterchefAddress: "0xBb3bD58cF15FE3C79B2a22ca719483956686fA8F",
@@ -103,3 +104,11 @@ export const contractAddress = {
   VaultAddress: "0xdaf7b8653119feb9fddb77ccafbbdd1ea67d87c5"
 }
 >>>>>>> d1cc518 (proxy)
+=======
+  NFTAddress: "0x5FfC241A6e46A787502991308BbA6b8564fb4397",
+  VaultAddress: "0xdaf7b8653119feb9fddb77ccafbbdd1ea67d87c5",
+  boostedPool: "0x0d938BCF55CCAE23D0823f3D3AA7B248ece5A2dC",
+  veYeti: "0x88888888847DF39Cf1dfe1a05c904b4E603C9416",
+  bRGN: "0xd0C2C1bf9FDcFF636be2bc8B680ce7a63da60cf9"
+}
+>>>>>>> 079c796 (add: grid my rewards in nft page + apr yeti on pool + some changes responsive)

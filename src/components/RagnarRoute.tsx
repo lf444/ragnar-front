@@ -356,12 +356,6 @@ const RagnarRoute = () => {
                   image={require("../assets/images/gitbook.png")}
                   alt="gitbook image"
                 />
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
-                  </Typography>
-                </CardContent>
               </Card>
             </a>
           </Grid>
@@ -387,12 +381,6 @@ const RagnarRoute = () => {
                   image={require("../assets/images/discord.jpg")}
                   alt="discord image"
                 />
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting.
-                  </Typography>
-                </CardContent>
               </Card>
             </a>
           </Grid>

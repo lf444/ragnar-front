@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { Buffer } from 'buffer';
 import { contractAddress } from '../abi/address';
-import { Grid, Typography, Button } from '@mui/material';
+import { Grid, Typography, Button, Box } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
 import LockPool from '../components/lock/LockPool';
 import rgn from '../assets/images/pools/rgn.png';
@@ -12,6 +12,7 @@ import theme from '../utils/theme';
 import PageHeader from '../components/shared/PageHeader';
 import LOCKABI from '../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json';
 import { appLogger, errorToast } from '../utils/method';
+import MyRewards from '../components/lock/MyRewards';
 
 const appTag = 'Lock';
 
@@ -65,9 +66,6 @@ const Lock = ({
           })
           .then(() => setNftMetadata(emptyNFt));
 
-        const test4 = await lock.pendingTokens(1);
-        const test5 = await lock.rgnPerSec();
-        console.log(test4);
       }
     } catch (error: any) {
       errorToast(error.code);
@@ -134,13 +132,35 @@ const Lock = ({
           <Grid item xs={12} sx={{ width: '100%', mb: '25px', p: 1 }}>
             <LockPool logo1={rgn} handleRefetchDeposit={handleRefetchDeposit} />
           </Grid>
-          <Grid item container xs={12} sm={12} sx={{ width: '100%', p: 1 }}>
+          <Grid item container xs={12} sm={6} sx={{ width: '100%', p: 1 }}>
             {' '}
             <MyNft
               nftMetadata={nftMetadata}
               isLoadingMyNft={isLoadingMyNft}
               numberOfNFTOwned={numberOfNFTOwned}
             />
+          </Grid>
+          <Grid item container xs={12} sm={6} sx={{ width: '100%', p: 1 }}>
+            {' '}
+            <MyRewards
+              nftMetadata={nftMetadata}
+            />
+          </Grid>
+          <Grid item container xs={12} sm={12} sx={{ width: '100%', p: 1 }}>
+            {' '}
+            <Typography sx={{fontSize: "20px", fontWeight: "bold"}} >Secondary Market</Typography>         
+          </Grid>
+          <Grid item container xs={2} sm={3} md={2} lg={1} sx={{ width: '100%', p: 1 }}>
+            {' '}
+            <Button sx={{fontSize: "14px", backgroundColor: (theme) => theme.palette.primary.light, color: (theme) => theme.palette.text.primary, width: {xs:"20%", sm:"100%"}}} >JoePegs</Button>         
+          </Grid>
+          <Grid item container xs={2} sm={3} md={2} lg={1}sx={{ width: '100%', p: 1 }}>
+            {' '}
+            <Button sx={{fontSize: "14px", backgroundColor: (theme) => theme.palette.primary.light, color: (theme) => theme.palette.text.primary, width: {xs:"20%", sm:"100%"}}} >Kalao</Button>         
+          </Grid>
+          <Grid item container xs={2} sm={3} md={2} lg={1}sx={{ width: '100%', p: 1 }}>
+            {' '}
+            <Button sx={{fontSize: "14px", backgroundColor: (theme) => theme.palette.primary.light, color: (theme) => theme.palette.text.primary, width: {xs:"20%", sm:"100%"}}} >NFTrade</Button>         
           </Grid>
         </Grid>
       </Zoom>

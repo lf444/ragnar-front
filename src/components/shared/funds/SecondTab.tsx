@@ -275,17 +275,17 @@ const FundSecondTabs = ({
           <Typography
             sx={{
               fontSize: {
-                lg: "0.85em",
-                md: "0.75em",
-                sm: "0.65em",
-                xs: "0.50rem",
+                lg: "0.6em",
+                md: "0.45em",
+                sm: "0.35em",
+                xs: "0.30rem",
               },
               fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
             }}
           >
             {!isLoading ? (
-              totalVeYeti
+              totalVeYeti.toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
