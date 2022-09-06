@@ -154,7 +154,7 @@ const Navbar = ({
                 },
               }}
             >
-              <Link to="/home">
+              <Link to="/farm">
                 <img height="40" src={logo} alt="Ragnar Logo" />
               </Link>
             </Grid>

@@ -274,7 +274,7 @@ const RagnarRoute = () => {
         <>
           <Routes>
             <Route
-              path="/farm"
+              path="*"
               element={
                 <Farm userAddress={userAddress} tokensPrices={tokensPrices} />
               }

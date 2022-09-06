@@ -8,6 +8,7 @@ import RagnarRoute from "./components/RagnarRoute";
 function App() {
   let navigate = useNavigate();
 
+  /*
   useEffect(() => {
     // check if user is first time lauching the app and redirect to home
     if (localStorage.getItem("firstTime") === null) {
@@ -15,6 +16,9 @@ function App() {
       navigate("/home");
     }
   }, []);
+    <Route path="/home" element={<Home />}></Route>
+
+  */
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -30,7 +34,6 @@ function App() {
   return (
     <React.Fragment>
       <Routes>
-        <Route path="/home" element={<Home />}></Route>
         <Route path="*" element={<RagnarRoute />} />
       </Routes>
       <ToastContainer
