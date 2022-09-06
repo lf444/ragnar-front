@@ -228,7 +228,7 @@ const Funds = ({
         const TotalRGNLOCKED = await NFT.totalValueLocked();
 
         setTotalYeti(+formatEther(getStackedYETI));
-        setTotalVeYeti(+formatEther(getStackedVeYeti));
+        setTotalVeYeti((getStackedVeYeti / 10**36));
         setTotalRGN(+formatEther(rgnSupply));
         setTotalRGNLocked(+formatEther(TotalRGNLOCKED));
       }

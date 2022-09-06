@@ -182,7 +182,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalRGNLocked
+              totalRGNLocked.toLocaleString("eng")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -233,7 +233,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalYeti
+              totalYeti.toLocaleString("eng")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -275,10 +275,10 @@ const FundSecondTabs = ({
           <Typography
             sx={{
               fontSize: {
-                lg: "0.6em",
-                md: "0.45em",
-                sm: "0.35em",
-                xs: "0.30rem",
+                lg: "0.85em",
+                md: "0.75em",
+                sm: "0.65em",
+                xs: "0.50rem",
               },
               fontWeight: "bold",
               color: (theme) => theme.palette.text.primary,
@@ -464,7 +464,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalRGNLocked
+                  totalRGNLocked.toLocaleString("en")
                 ) : (
                   <CircularProgress
                     size="0.95em"
@@ -506,7 +506,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalYeti
+                  totalYeti.toLocaleString("en")
                 ) : (
                   <CircularProgress
                     size="0.95em"
@@ -550,7 +550,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalVeYeti
+                  totalVeYeti.toLocaleString("en")
                 ) : (
                   <CircularProgress
                     size="0.95em"

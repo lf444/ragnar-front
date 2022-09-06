@@ -164,7 +164,7 @@ export default function Footer() {
               {" "}
               <Typography sx={{ fontSize: "1.25rem" }}>Social</Typography>
               <a
-                href="https://twitter.com/ragnarfinance"
+                href="https://twitter.com/RagnarProtocol"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}

@@ -449,7 +449,7 @@ const Navbar = ({
                 </Typography>
               </a></MenuItem>
                   <MenuItem onClick={handleClose}><a
-                href="https://twitter.com/ragnarfinance"
+                href="https://twitter.com/RagnarProtocol"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
@@ -715,7 +715,7 @@ const Navbar = ({
                 </Typography>
               </a></MenuItem>
                   <MenuItem onClick={handleClose}><a
-                href="https://twitter.com/ragnarfinance"
+                href="https://twitter.com/RagnarProtocol"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
