@@ -79,7 +79,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalRGN.toLocaleString("en")
+              parseFloat(totalRGN.toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -131,7 +131,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              "$" + (totalRGN  * priceRGN).toLocaleString("eng") + "USD"
+              "$" + parseFloat((totalRGN  * priceRGN).toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -182,7 +182,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalRGNLocked.toLocaleString("eng")
+              parseFloat(totalRGNLocked.toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -233,7 +233,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalYeti.toLocaleString("eng")
+              parseFloat(totalYeti.toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -285,7 +285,7 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              totalVeYeti.toLocaleString("en")
+              parseFloat(totalVeYeti.toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -377,7 +377,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalRGN.toLocaleString("en")
+                  parseFloat(totalRGN.toFixed(2)).toLocaleString("en")
                 ) : (
                   <CircularProgress
                     size="0.95em"
@@ -421,7 +421,7 @@ const FundSecondTabs = ({
                 }}
               >
             {!isLoading ? (
-              "$" + (totalRGN  * priceRGN).toLocaleString("eng") + "USD"
+              "$" + parseFloat((totalRGN  * priceRGN).toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -464,7 +464,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalRGNLocked.toLocaleString("en")
+                  parseFloat(totalRGNLocked.toFixed(2)).toLocaleString("en")
                 ) : (
                   <CircularProgress
                     size="0.95em"
@@ -506,7 +506,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalYeti.toLocaleString("en")
+                  parseFloat(totalYeti.toFixed(2)).toLocaleString("en")
                 ) : (
                   <CircularProgress
                     size="0.95em"
@@ -550,7 +550,7 @@ const FundSecondTabs = ({
                 }}
               >
                 {!isLoading ? (
-                  totalVeYeti.toLocaleString("en")
+                  parseFloat(totalVeYeti.toFixed(2)).toLocaleString("en")
                 ) : (
                   <CircularProgress
                     size="0.95em"

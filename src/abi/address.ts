@@ -111,4 +111,26 @@ export const contractAddress = {
   veYeti: "0x88888888847DF39Cf1dfe1a05c904b4E603C9416",
   bRGN: "0xd0C2C1bf9FDcFF636be2bc8B680ce7a63da60cf9"
 }
+<<<<<<< HEAD
 >>>>>>> 079c796 (add: grid my rewards in nft page + apr yeti on pool + some changes responsive)
+=======
+
+/* a garder pour les futurs mises a jour
+export const contractAddress = {
+  masterchefAddress: "0xcCb9BA82Bc084EAaaBa49D4Ad69953c1e1b55520",
+  mainstakingAddress: "0x029e487AE9ee944b58Db1d31989F68e566646f91",
+  rgnAddress: "0x63dbD091649c3c88e35AEfaB67817A5C4c280D0D",
+  rgnYetiAddress: "0x16af72Ec2EDFC8C41707F35fb4e6aFC285Fb1Aa7",
+  yusdAddress: "0x111111111111ed1D73f860F57b2798b683f2d325",
+  yetiAddres: "0x77777777777d4554c39223C354A05825b2E8Faa3",
+  fakeYusdAddress: "0x1fbFF20Ee35f21F1842144B5aDdDc099F6B01762",
+  fakeLpCurveAddress: "0x112805eE504cf179f6Bed39374f3827016a92Cd6",
+  lpCurveAddress: "0x0139Ad947582E12Ee5c2b03bEcE52557dA8dD024",
+  NFTAddress: "0x5FfC241A6e46A787502991308BbA6b8564fb4397",
+  VaultAddress: "0xdaf7b8653119feb9fddb77ccafbbdd1ea67d87c5",
+  boostedPool: "0x0d938BCF55CCAE23D0823f3D3AA7B248ece5A2dC",
+  veYeti: "0x88888888847DF39Cf1dfe1a05c904b4E603C9416",
+  bRGN: "0xd0C2C1bf9FDcFF636be2bc8B680ce7a63da60cf9"
+}
+*/
+>>>>>>> ee8c0b9 (fix: display of data)

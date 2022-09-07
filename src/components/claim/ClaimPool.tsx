@@ -60,7 +60,7 @@ const ClaimPool: FunctionComponent<ClaimPoolProps> = ({
         >
           <Typography sx={{ marginRight: "0.5em" }}>APR</Typography>
           {!isLoading ? (
-            apr + "%"
+            parseFloat(apr.toFixed(2)).toLocaleString("en") + "%"
           ) : (
             <LinearProgress
               color="inherit"
@@ -87,7 +87,7 @@ const ClaimPool: FunctionComponent<ClaimPoolProps> = ({
         >
           <Typography sx={{ marginRight: "0.5em" }}>Deposit</Typography>
           {!isLoading ? (
-            deposit + " " + pool
+            parseFloat(deposit.toFixed(2)).toLocaleString("en") + " " + pool
           ) : (
             <LinearProgress
               color="inherit"
@@ -114,7 +114,7 @@ const ClaimPool: FunctionComponent<ClaimPoolProps> = ({
         >
           <Typography sx={{ marginRight: "0.5em" }}>TVL</Typography>
           {!isLoading ? (
-            formatPrice(tvl, "USD")
+            parseFloat(tvl.toFixed(2)).toLocaleString("en")
           ) : (
             <LinearProgress
               color="inherit"

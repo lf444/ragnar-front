@@ -62,7 +62,7 @@ const FundsFirstTabs = ({
             }}
           >
             {!isLoading ? (
-              "$" + deposit.toLocaleString("en") + "USD"
+              "$" + parseFloat(deposit.toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -121,7 +121,7 @@ const FundsFirstTabs = ({
             }}
           >
             {!isLoading ? (
-              "$" + reward.toLocaleString("en") + "USD"
+              "$" + parseFloat(reward.toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -174,7 +174,7 @@ const FundsFirstTabs = ({
             }}
           >
             {!isLoading ? (
-              "$" + valuelocked.toLocaleString("en") + "USD"
+              "$" + parseFloat(valuelocked.toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"

@@ -94,7 +94,7 @@ export const ClaimRewards: FunctionComponent<ClaimRewardsProps> = ({
           <Typography sx={{ marginRight: "0.5em" }}>{text1}</Typography>
           {!isLoading ? (
             <>
-              {formatPrice(price1, "USD")}
+              {"$" + parseFloat(price1.toFixed(2)).toLocaleString("en")}
               <Tooltip title={title}>
                 <InfoRoundedIcon
                   sx={{
@@ -131,7 +131,7 @@ export const ClaimRewards: FunctionComponent<ClaimRewardsProps> = ({
           <Typography sx={{ marginRight: "0.5em" }}>{text2}</Typography>
           {!isLoading ? (
             <>
-              {formatPrice(price2, "USD")}
+              {"$" + parseFloat(price2.toFixed(2)).toLocaleString("en")}
               <Tooltip title={title2}>
                 <InfoRoundedIcon
                   sx={{
@@ -174,7 +174,7 @@ export const ClaimRewards: FunctionComponent<ClaimRewardsProps> = ({
             >
               Claim (
               {!isLoading ? (
-                formatPrice(price3, "USD")
+                "$" + parseFloat(price3.toFixed(2)).toLocaleString("en")
               ) : (
                 <LinearProgress
                   color="inherit"
@@ -259,7 +259,7 @@ export const ClaimRewards2: FunctionComponent<ClaimRewardsProps2> = ({
           <Typography sx={{ marginRight: "0.5em" }}>{text1}</Typography>
           {!isLoading ? (
             <>
-              {formatPrice(price1, "USD")}
+              {"$" + parseFloat(price1.toFixed(2)).toLocaleString("en")}
               <Tooltip title={title}>
                 <InfoRoundedIcon
                   sx={{
@@ -317,7 +317,7 @@ export const ClaimRewards2: FunctionComponent<ClaimRewardsProps2> = ({
             >
               Claim (
               {!isLoading ? (
-                formatPrice(price2, "USD")
+                "$" + parseFloat(price2.toFixed(2)).toLocaleString("en")
               ) : (
                 <LinearProgress
                   color="inherit"
