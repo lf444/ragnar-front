@@ -72,7 +72,6 @@ export const ClaimTable: FunctionComponent<ClaimTableProps> = ({
     setValue(newValue);
   };
 
-
   return (
     <>
       <Box sx={{ width: "100%" }}>
@@ -133,13 +132,11 @@ export const ClaimTable2: FunctionComponent<ClaimTableProps2> = ({
   tvl1,
   isLoading,
 }) => {
-  
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
 
   return (
     <>
@@ -176,4 +173,3 @@ export const ClaimTable2: FunctionComponent<ClaimTableProps2> = ({
     </>
   );
 };
-

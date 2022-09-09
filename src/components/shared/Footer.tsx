@@ -11,7 +11,7 @@ export default function Footer() {
         sx={{
           backgroundColor: (theme) => theme.palette.secondary.main,
           color: (theme) => theme.palette.text.primary,
-          marginTop: "500px"
+          marginTop: "500px",
         }}
       >
         <Grid
@@ -57,11 +57,16 @@ export default function Footer() {
               Finance
             </Typography>{" "}
           </Grid>
-          <Grid item container direction={"row"} xs={12} sm={5} sx={{ marginLeft: {xs: "10px", md: "0", sm: "0"} }}>
+          <Grid
+            item
+            container
+            direction={"row"}
+            xs={12}
+            sm={5}
+            sx={{ marginLeft: { xs: "10px", md: "0", sm: "0" } }}
+          >
             <Grid item container xs direction="column">
-              <Typography sx={{ fontSize: "1.25rem" }}>
-                Explore
-              </Typography>
+              <Typography sx={{ fontSize: "1.25rem" }}>Explore</Typography>
               <Link to="/home" style={{ textDecoration: "none" }}>
                 <Typography
                   sx={{
@@ -165,7 +170,7 @@ export default function Footer() {
               <Typography sx={{ fontSize: "1.25rem" }}>Social</Typography>
               <a
                 href="https://twitter.com/RagnarProtocol"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >

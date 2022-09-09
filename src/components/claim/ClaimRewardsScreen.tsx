@@ -420,14 +420,16 @@ export default function ClaimRewardsScreen({
               >
                 Claim all ($
                 {!isLoading ? (
-                  parseFloat((
-                    reward.rewardYusdRGN +
-                    reward.rewardYusdYETI +
-                    reward.rewardLpCurveRGN +
-                    reward.rewardLpCurveYETI +
-                    reward.rewardYetiRGN +
-                    reward.rewardYetiYETI
-                  ).toFixed(2)).toLocaleString("en")
+                  parseFloat(
+                    (
+                      reward.rewardYusdRGN +
+                      reward.rewardYusdYETI +
+                      reward.rewardLpCurveRGN +
+                      reward.rewardLpCurveYETI +
+                      reward.rewardYetiRGN +
+                      reward.rewardYetiYETI
+                    ).toFixed(2)
+                  ).toLocaleString("en")
                 ) : (
                   <LinearProgress
                     color="inherit"

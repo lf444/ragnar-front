@@ -131,7 +131,11 @@ const PoolComponent: FunctionComponent<PoolComponentProps> = ({
             {!isLoading ? (
               <>
                 {(apr + aprYetiFinance).toFixed(2).toLocaleString() + "%"}
-                <Tooltip title={`RGN: ${Math.round(apr)}% , YETI: ${aprYetiFinance.toFixed(2).toLocaleString()}%`}>
+                <Tooltip
+                  title={`RGN: ${Math.round(apr)}% , YETI: ${aprYetiFinance
+                    .toFixed(2)
+                    .toLocaleString()}%`}
+                >
                   <InfoRoundedIcon
                     sx={{
                       color: (theme) => theme.palette.background.default,

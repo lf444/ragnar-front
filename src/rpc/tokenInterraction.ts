@@ -51,15 +51,13 @@ export const approveRGNYETI = async (
       const signer = provider.getSigner();
       const token = new ethers.Contract(address, tokenABI.abi, signer);
       const amount = ethers.utils.parseEther(qty.toString());
-  
-      const tokenApproveMasterchef = await token.approve(
-          contractAddress.rgnYetiAddress,
-          amount
-        );
-        tokenApproveMasterchef.wait();
-        handleSetTx(tokenApproveMasterchef.hash);
 
-      
+      const tokenApproveMasterchef = await token.approve(
+        contractAddress.rgnYetiAddress,
+        amount
+      );
+      tokenApproveMasterchef.wait();
+      handleSetTx(tokenApproveMasterchef.hash);
     }
   } catch (err: any) {
     errorToast(err.code);

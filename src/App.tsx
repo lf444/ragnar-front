@@ -20,17 +20,6 @@ function App() {
 
   */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
->>>>>>> d8abe5b (font + minor change responsive)
-=======
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-=======
-
-
->>>>>>> 2b2829d (minor)
   return (
     <React.Fragment>
       <Routes>

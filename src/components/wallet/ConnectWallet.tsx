@@ -77,7 +77,7 @@ export const ConnectWallet = () => {
                         )}
                       </div>
                     )}
-                   {/*  {chain.name} */}
+                    {/*  {chain.name} */}
                   </button>
 
                   <button onClick={openAccountModal} type="button">

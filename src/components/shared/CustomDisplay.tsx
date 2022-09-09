@@ -13,7 +13,9 @@ const CustomDisplay: FunctionComponent<CustomDisplayProps> = ({
   return (
     <>
       {" "}
-      <Typography sx={{ fontSize: "11px", color: (theme) => theme.palette.text.primary }}>
+      <Typography
+        sx={{ fontSize: "11px", color: (theme) => theme.palette.text.primary }}
+      >
         {" "}
         {display} {poolName}{" "}
       </Typography>

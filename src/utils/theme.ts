@@ -4,15 +4,12 @@ import { red } from "@mui/material/colors";
 // A custom theme for this app
 const theme = createTheme({
   typography: {
-    fontFamily: [
-      'Poppins',
-      'Noto Sans'
-    ].join(','),
+    fontFamily: ["Poppins", "Noto Sans"].join(","),
   },
   palette: {
     primary: {
       main: "#535b63",
-      light:"#627f91",
+      light: "#627f91",
     },
     secondary: {
       main: "#3A4149",
@@ -20,16 +17,14 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
-    text:{
+    text: {
       primary: "#ddeaf2",
       secondary: "#929ea6",
     },
     background: {
       default: "#2f343a",
-    }
+    },
   },
 });
 
 export default theme;
-
-

@@ -1,19 +1,19 @@
-import { ethers } from 'ethers';
-import masterchefABI from '../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json';
-import mainstakingABI from '../../../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json';
-import NFTABI from '../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json';
-import rgnABI from '../../../abi/contracts/Tokens/RGN.sol/RGN.json';
-import { contractAddress } from '../../../abi/address';
-import { useEffect, useState } from 'react';
-import { appLogger, errorToast } from '../../../utils/method';
-import FundsFirstTabs from './FirstTab';
-import FundSecondTabs from './SecondTab';
-import { useProvider } from 'wagmi';
-import { formatEther } from 'ethers/lib/utils';
-import { fetchAllTvl } from '../../../rpc/PoolFunc';
-import { Buffer } from 'buffer';
+import { ethers } from "ethers";
+import masterchefABI from "../../../abi/contracts/MainProtocol/MasterChef.sol/MasterChefRGN.json";
+import mainstakingABI from "../../../abi/contracts/MainProtocol/YetiBooster.sol/YetiBooster.json";
+import NFTABI from "../../../abi/contracts/NFT/RGNLOCK.sol/RGNLOCK.json";
+import rgnABI from "../../../abi/contracts/Tokens/RGN.sol/RGN.json";
+import { contractAddress } from "../../../abi/address";
+import { useEffect, useState } from "react";
+import { appLogger, errorToast } from "../../../utils/method";
+import FundsFirstTabs from "./FirstTab";
+import FundSecondTabs from "./SecondTab";
+import { useProvider } from "wagmi";
+import { formatEther } from "ethers/lib/utils";
+import { fetchAllTvl } from "../../../rpc/PoolFunc";
+import { Buffer } from "buffer";
 
-const appTag: string = 'Funds';
+const appTag: string = "Funds";
 
 const Funds = ({
   userAddress,
@@ -69,7 +69,7 @@ const Funds = ({
           .then((e) => {
             emptyNFt = e.map((e: any) => {
               return JSON.parse(
-                Buffer.from(e.substring(29), 'base64').toString()
+                Buffer.from(e.substring(29), "base64").toString()
               );
             });
           })
@@ -83,7 +83,7 @@ const Funds = ({
       }
     } catch (error: any) {
       errorToast(error.code);
-      appLogger(appTag, ' getNFTByOwner', error.message);
+      appLogger(appTag, " getNFTByOwner", error.message);
       setIsLoading(false);
     }
   };
@@ -92,7 +92,7 @@ const Funds = ({
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -115,11 +115,6 @@ const Funds = ({
           accounts[0]
         );
 
-<<<<<<< HEAD
-    
-        
-=======
->>>>>>> 3bcb567 (dev small changes & redeploy)
         setDeposit(
           +formatEther(myDepositYUSD) * tokensPrices.priceYusd +
             +formatEther(myDepositRgnYeti) * tokensPrices.priceRgnYeti +
@@ -129,7 +124,7 @@ const Funds = ({
       }
     } catch (err: any) {
       errorToast(err.code);
-      appLogger(appTag, ' getMasterChefDeposit', err.message);
+      appLogger(appTag, " getMasterChefDeposit", err.message);
       setIsLoading(false);
     }
   };
@@ -138,7 +133,7 @@ const Funds = ({
     try {
       if (window.ethereum) {
         let accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -177,7 +172,7 @@ const Funds = ({
       }
     } catch (err: any) {
       errorToast(err.code);
-      appLogger(appTag, ' fetchMyReward masterChef', err.message);
+      appLogger(appTag, " fetchMyReward masterChef", err.message);
       setIsLoading(false);
     }
   };
@@ -228,13 +223,13 @@ const Funds = ({
         const TotalRGNLOCKED = await NFT.totalValueLocked();
 
         setTotalYeti(+formatEther(getStackedYETI));
-        setTotalVeYeti((getStackedVeYeti / 10**36));
+        setTotalVeYeti(getStackedVeYeti / 10 ** 36);
         setTotalRGN(+formatEther(rgnSupply));
         setTotalRGNLocked(+formatEther(TotalRGNLOCKED));
       }
     } catch (err: any) {
       errorToast(err.code);
-      appLogger(appTag, '- Error getMainsStakingData-', err.message);
+      appLogger(appTag, "- Error getMainsStakingData-", err.message);
       setIsLoading(false);
     }
   };

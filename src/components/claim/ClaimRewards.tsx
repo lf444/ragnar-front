@@ -100,7 +100,7 @@ export const ClaimRewards: FunctionComponent<ClaimRewardsProps> = ({
                   sx={{
                     color: (theme) => theme.palette.background.default,
                     width: "20px",
-                    marginLeft: "10px"
+                    marginLeft: "10px",
                   }}
                 />
               </Tooltip>
@@ -137,7 +137,7 @@ export const ClaimRewards: FunctionComponent<ClaimRewardsProps> = ({
                   sx={{
                     color: (theme) => theme.palette.background.default,
                     width: "20px",
-                    marginLeft: "10px"
+                    marginLeft: "10px",
                   }}
                 />
               </Tooltip>
@@ -265,7 +265,7 @@ export const ClaimRewards2: FunctionComponent<ClaimRewardsProps2> = ({
                   sx={{
                     color: (theme) => theme.palette.background.default,
                     width: "20px",
-                    marginLeft: "10px"
+                    marginLeft: "10px",
                   }}
                 />
               </Tooltip>
@@ -292,8 +292,7 @@ export const ClaimRewards2: FunctionComponent<ClaimRewardsProps2> = ({
             display: "flex",
             alignItems: "center",
           }}
-        >
-        </Grid>
+        ></Grid>
         <Grid container sx={{ height: "60px" }}>
           <Grid
             item
@@ -334,4 +333,3 @@ export const ClaimRewards2: FunctionComponent<ClaimRewardsProps2> = ({
     </>
   );
 };
-

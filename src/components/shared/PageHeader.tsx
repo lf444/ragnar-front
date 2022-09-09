@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
-import { Helmet } from 'react-helmet-async'
-
+import { Helmet } from "react-helmet-async";
 
 interface HeaderProps {
   pageTitle: string;

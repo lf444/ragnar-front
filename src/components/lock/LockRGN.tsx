@@ -1,8 +1,4 @@
-import {
-  Button,
-  Grid,
-  CircularProgress,
-} from "@mui/material";
+import { Button, Grid, CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import { useState, FunctionComponent } from "react";
 import CustomDisplay from "../shared/CustomDisplay";
@@ -70,7 +66,7 @@ const LockRGN: FunctionComponent<LockRGNProps> = ({
       errorToast(err.code);
     }
   }
-  
+
   async function lock(qty: number) {
     try {
       if (window.ethereum) {

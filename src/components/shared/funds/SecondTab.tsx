@@ -16,7 +16,7 @@ const FundSecondTabs = ({
   totalRGN,
   totalRGNLocked,
   isLoading,
-  priceRGN
+  priceRGN,
 }: {
   totalYeti: number;
   totalVeYeti: number;
@@ -131,7 +131,8 @@ const FundSecondTabs = ({
             }}
           >
             {!isLoading ? (
-              "$" + parseFloat((totalRGN  * priceRGN).toFixed(2)).toLocaleString("en")
+              "$" +
+              parseFloat((totalRGN * priceRGN).toFixed(2)).toLocaleString("en")
             ) : (
               <CircularProgress
                 size="0.95em"
@@ -420,18 +421,21 @@ const FundSecondTabs = ({
                   color: "#bfcbd2",
                 }}
               >
-            {!isLoading ? (
-              "$" + parseFloat((totalRGN  * priceRGN).toFixed(2)).toLocaleString("en")
-            ) : (
-              <CircularProgress
-                size="0.95em"
-                color="inherit"
-                sx={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              />
-            )}
+                {!isLoading ? (
+                  "$" +
+                  parseFloat((totalRGN * priceRGN).toFixed(2)).toLocaleString(
+                    "en"
+                  )
+                ) : (
+                  <CircularProgress
+                    size="0.95em"
+                    color="inherit"
+                    sx={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                    }}
+                  />
+                )}
               </Typography>
             </Grid>
             <Grid

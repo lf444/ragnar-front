@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { Box, Typography, Tabs, Tab, Grid, Button, Link } from "@mui/material";
-import { FunctionComponent, useState } from "react";
-import CustomInput from "../../shared/CustomInput";
-import CustomDisplay from "../../shared/CustomDisplay";
-import { ethers, BigNumber } from 'ethers';
-=======
-import { Box, Typography, Tabs, Tab, Grid, Button, Link } from '@mui/material';
-import { FunctionComponent, useState } from 'react';
-import CustomInput from '../../shared/CustomInput';
-import CustomDisplay from '../../shared/CustomDisplay';
-import { ethers } from 'ethers';
-<<<<<<< HEAD
-import { appLogger } from '../../../utils/method';
-<<<<<<< HEAD
->>>>>>> 4560517 (dev: remove dirty console log)
-=======
-=======
-import { appLogger, errorToast } from '../../../utils/method';
->>>>>>> a69614b (dev: add toast first step)
-import { contractAddress } from '../../../abi/address';
->>>>>>> 98af50a (button max OK)
-=======
 import {
   Box,
   Typography,
@@ -32,41 +8,14 @@ import {
   Link,
   CircularProgress,
 } from "@mui/material";
-<<<<<<< HEAD
-import { FunctionComponent, useState } from "react";
-<<<<<<< HEAD:src/components/stake/tab/stableTab.tsx
-import CustomInput from "../../shared/CustomInput";
-import CustomDisplay from "../../shared/CustomDisplay";
-import { ethers } from "ethers";
-import { appLogger, errorToast } from "../../../utils/method";
-import { contractAddress } from "../../../abi/address";
-import { approve, deposit, withdraw } from "../../../rpc/simple";
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-=======
-=======
 import { FunctionComponent, useEffect, useState } from "react";
->>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
 import CustomInput from "../../../shared/CustomInput";
 import CustomDisplay from "../../../shared/CustomDisplay";
-<<<<<<< HEAD
-import { approve, deposit, withdraw } from "../../../../rpc/simple";
-<<<<<<< HEAD
->>>>>>> b84f72d (dev: component re-organise):src/components/stake/pools/tab/stableTab.tsx
-=======
-=======
 import { approve, deposit, withdraw } from "../../../../rpc/tokenInterraction";
->>>>>>> edf8c65 (dev: refactor rpc call)
 import { Pool } from "../../../../abi/pools";
-<<<<<<< HEAD
->>>>>>> d1d8a1a (dev: rename component)
-=======
 import { useWaitForTransaction } from "wagmi";
 import { errorToast, successToast } from "../../../../utils/method";
-<<<<<<< HEAD
->>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
-=======
 import { contractAddress } from "../../../../abi/address";
->>>>>>> c705a4a (fix withdraw)
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -106,35 +55,12 @@ interface StableTabProps {
   handleRefetchDeposit: () => void;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const StableTab: FunctionComponent<StableTabProps> = ({
-  addressPool, pairAddress, pairName, info, deposit, withdraw, approve, masterchef
-=======
-const appTag: string = 'StableTab';
-=======
 const appTag: string = "StableTab";
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const StableTab: FunctionComponent<StableTabProps> = ({
-  addressPool,
-  pairAddress,
-  pairName,
-  info,
-  masterchef,
->>>>>>> 4560517 (dev: remove dirty console log)
-}) => {
-=======
-const StableTab: FunctionComponent<StableTabProps> = ({ pool, masterchef }) => {
->>>>>>> d1d8a1a (dev: rename component)
-=======
 const StableTab: FunctionComponent<StableTabProps> = ({
   pool,
   handleRefetchDeposit,
 }) => {
->>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
   const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -248,37 +174,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           onChange={handleChange}
           variant="fullWidth"
           centered
-<<<<<<< HEAD
-<<<<<<< HEAD
           aria-label="basic tabs example"
-        >
-          <Tab
-            label="Stake"
-            {...a11yProps(0)}
-            style={{
-              color: value === 0 ? "#ddeaf2" : "#929ea6",
-              textTransform: "none",
-            }}
-          />
-          <Tab
-            label="Unstake"
-            {...a11yProps(1)}
-            style={{
-              color: value === 1 ? "#ddeaf2" : "#929ea6",
-              textTransform: "none",
-            }}
-          />
-          <Tab
-            label="INFO"
-            {...a11yProps(2)}
-            style={{
-              color: value === 2 ? "#ddeaf2" : "#929ea6",
-              textTransform: "none",
-=======
-          aria-label='basic tabs example'
-=======
-          aria-label="basic tabs example"
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
         >
           <Tab
             label="Stake"
@@ -300,14 +196,8 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             label="Info"
             {...a11yProps(2)}
             style={{
-<<<<<<< HEAD
-              color: value === 2 ? '#ddeaf2' : '#929ea6',
-              textTransform: 'none',
->>>>>>> 4560517 (dev: remove dirty console log)
-=======
               color: value === 2 ? "#ddeaf2" : "#929ea6",
               textTransform: "none",
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             }}
           />
         </Tabs>
@@ -315,27 +205,11 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       <TabPanel value={value} index={0}>
         <Typography
           sx={{
-<<<<<<< HEAD
-<<<<<<< HEAD
             fontSize: { xs: "0.65em", sm: "0.9em" },
             color: (theme) => theme.palette.text.primary,
             marginBottom: "20px",
             marginTop: "20px",
             fontWeight: "bold",
-=======
-            fontSize: { xs: '0.65em', sm: '0.9em' },
-            color: (theme) => theme.palette.text.primary,
-            marginBottom: '20px',
-            marginTop: '20px',
-            fontWeight: 'bold',
->>>>>>> 4560517 (dev: remove dirty console log)
-=======
-            fontSize: { xs: "0.65em", sm: "0.9em" },
-            color: (theme) => theme.palette.text.primary,
-            marginBottom: "20px",
-            marginTop: "20px",
-            fontWeight: "bold",
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
           }}
         >
           {pool.info}
@@ -356,8 +230,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               item
               xs={6}
               sx={{
-<<<<<<< HEAD
-<<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
                 fontWeight: "bold",
                 justifyContent: "flex-end",
@@ -367,24 +239,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               }}
             >
               {" "}
-<<<<<<< HEAD
-=======
-                fontSize: { xs: '0.65em', sm: '1em' },
-=======
-                fontSize: { xs: "0.65em", sm: "1em" },
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
-              }}
-            >
-<<<<<<< HEAD
-              {' '}
->>>>>>> 4560517 (dev: remove dirty console log)
-=======
-              {" "}
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-              1
-=======
               <Typography
                 sx={{
                   borderRadius: "50%",
@@ -409,33 +263,17 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                   height: "4px",
                 }}
               ></Box>
->>>>>>> 63b6b9f (dev: yata yata yata)
             </Grid>
             <Grid
               item
               xs={6}
               sx={{
-<<<<<<< HEAD
-<<<<<<< HEAD
                 fontSize: { xs: "0.65em", sm: "1em" },
                 fontWeight: "bold",
-<<<<<<< HEAD
-=======
-                fontSize: { xs: '0.65em', sm: '1em' },
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: 'bold',
->>>>>>> 4560517 (dev: remove dirty console log)
-=======
-                fontSize: { xs: "0.65em", sm: "1em" },
-                color: (theme) => theme.palette.text.primary,
-                fontWeight: "bold",
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-=======
                 justifyContent: "flex-start",
                 alignItems: "center",
                 display: "flex",
                 pb: "4px",
->>>>>>> 63b6b9f (dev: yata yata yata)
               }}
             >
               <Box
@@ -464,44 +302,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             </Grid>
           </Grid>
           <Grid item container xs={6}>
-<<<<<<< HEAD
-<<<<<<< HEAD
             {" "}
-<<<<<<< HEAD
-            <CustomInput
-              poolName={"YETI"}
-              amountToStake={amountToStake}
-              setAmountToStake={handleChangeAmount}
-            />
-          </Grid>
-          <Grid item container xs={6} justifyContent="space-around">
-            {" "}
-            <Button
-              onClick={approveToken}
-              variant="contained"
-              sx={{
-                width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                fontWeight: "bold",
-              }}
-            >
-              APPROVE
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                width: "45%",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                fontWeight: "bold",
-              }}
-            >
-=======
-            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount} />
-=======
-            {' '}
-=======
-            {" "}
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             <CustomInput
               poolName={"YETI"}
               amountToStake={amountToStake}
@@ -509,7 +310,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               address={pool.pairAddress}
               stake={true}
             />
->>>>>>> 4560517 (dev: remove dirty console log)
           </Grid>
           <Grid item container xs={6} justifyContent="space-around">
             {" "}
@@ -541,20 +341,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 />
               )}
             </Button>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <Button variant="contained" sx={{ width: "45%", backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
-<<<<<<< HEAD
-=======
-            <Button onClick={depositToken} variant="contained" sx={{ width: "45%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
->>>>>>> 67fd7e4 (all data + all function)
->>>>>>> 7449a99 (all data + all function)
-=======
->>>>>>> c66f1d1 (dev: pool minor change)
-=======
-            <Button onClick={depositToken} variant="contained" sx={{ width: "45%", backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold"}}>
->>>>>>> 53dd8be (minor change)
-=======
             <Button
               onClick={() => depositToken()}
               variant="contained"
@@ -570,10 +356,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
-<<<<<<< HEAD
->>>>>>> 4560517 (dev: remove dirty console log)
-              DEPOSIT
-=======
               {!waitDepositTX.isLoading ? (
                 "DEPOSIT"
               ) : (
@@ -586,7 +368,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                   }}
                 />
               )}
->>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
             </Button>
           </Grid>
         </Grid>
@@ -610,39 +391,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
             <Grid item xs={6}></Grid>
           </Grid>
           <Grid item container xs={6}>
-<<<<<<< HEAD
-<<<<<<< HEAD
             {" "}
-<<<<<<< HEAD
-            <CustomInput
-              poolName={"YETI"}
-              amountToStake={amountToStake}
-              setAmountToStake={handleChangeAmount}
-            />
-          </Grid>
-          <Grid item container xs={6} justifyContent="space-around">
-            {" "}
-            <Button
-              onClick={withdrawToken}
-              variant="contained"
-              sx={{
-                width: "50%",
-                backgroundColor: (theme) => theme.palette.primary.light,
-                fontWeight: "bold",
-              }}
-            >
-=======
-            <CustomInput poolName={"YETI"} amountToStake={amountToStake} setAmountToStake={handleChangeAmount}  />
-          </Grid>
-          <Grid item container xs={6} justifyContent="space-around">
-            {" "}
-            <Button onClick={withdrawToken} variant="contained" sx={{ width: "50%",backgroundColor: (theme) => theme.palette.primary.light, fontWeight: "bold" }}>
->>>>>>> 7449a99 (all data + all function)
-=======
-            {' '}
-=======
-            {" "}
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             <CustomInput
               poolName={"YETI"}
               amountToStake={amountToStake}
@@ -663,10 +412,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                 fontSize: { xs: "10px", md: "0.875em" },
               }}
             >
-<<<<<<< HEAD
->>>>>>> 4560517 (dev: remove dirty console log)
-              WITHDRAW
-=======
               {!waitWithdrawTX.isLoading ? (
                 "WITHDRAW"
               ) : (
@@ -679,7 +424,6 @@ const StableTab: FunctionComponent<StableTabProps> = ({
                   }}
                 />
               )}
->>>>>>> 92bf03c (dev: add waiting confirmation on stableTab)
             </Button>
           </Grid>
         </Grid>
@@ -687,10 +431,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
       <TabPanel value={value} index={2}>
         <Typography
           sx={{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            fontSize: "14px",
+            fontSize: { xs: "10px", md: "14px" },
             color: (theme) => theme.palette.text.primary,
             marginBottom: "10px",
             fontWeight: "bold",
@@ -703,37 +444,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
               color: (theme) => theme.palette.text.secondary,
               textDecoration: "none",
               fontWeight: "normal",
-=======
-            fontSize: '14px',
-=======
-            fontSize: {xs: "10px", md: "14px"},
->>>>>>> d8abe5b (font + minor change responsive)
-=======
-            fontSize: { xs: "10px", md: "14px" },
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-            color: (theme) => theme.palette.text.primary,
-            marginBottom: "10px",
-            fontWeight: "bold",
-          }}
-        >
-          {" "}
-          {pairName} Contract: {"    "}
-          <Link
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
-<<<<<<< HEAD
-              textDecoration: 'none',
-              fontWeight: 'normal',
-<<<<<<< HEAD
->>>>>>> 4560517 (dev: remove dirty console log)
-=======
-              fontSize: {xs: "10px", md: "14px"}
->>>>>>> d8abe5b (font + minor change responsive)
-=======
-              textDecoration: "none",
-              fontWeight: "normal",
               fontSize: { xs: "10px", md: "14px" },
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             }}
             href={`https://snowtrace.io/address/${pool.pairAddress}`}
           >
@@ -742,30 +453,7 @@ const StableTab: FunctionComponent<StableTabProps> = ({
         </Typography>
         <Typography
           sx={{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            fontSize: "14px",
-            color: (theme) => theme.palette.text.primary,
-            marginBottom: "10px",
-            fontWeight: "bold",
-          }}
-        >
-          {" "}
-          Staking Contract: {"    "}
-          <Link
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
-              textDecoration: "none",
-              fontWeight: "normal",
-=======
-            fontSize: '14px',
-=======
-            fontSize: {xs: "10px", md: "14px"},
->>>>>>> d8abe5b (font + minor change responsive)
-=======
             fontSize: { xs: "10px", md: "14px" },
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             color: (theme) => theme.palette.text.primary,
             marginBottom: "10px",
             fontWeight: "bold",
@@ -776,19 +464,9 @@ const StableTab: FunctionComponent<StableTabProps> = ({
           <Link
             sx={{
               color: (theme) => theme.palette.text.secondary,
-<<<<<<< HEAD
-              textDecoration: 'none',
-              fontWeight: 'normal',
-<<<<<<< HEAD
->>>>>>> 4560517 (dev: remove dirty console log)
-=======
-              fontSize: {xs: "10px", md: "14px"}
->>>>>>> d8abe5b (font + minor change responsive)
-=======
               textDecoration: "none",
               fontWeight: "normal",
               fontSize: { xs: "10px", md: "14px" },
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
             }}
             href={`https://snowtrace.io/address/${contractAddress.mainstakingAddress}`}
           >

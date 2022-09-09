@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
-=======
->>>>>>> e8b2f8c (dev: repare page)
-import { useEffect, useState } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import StakeScreen from './stake/StakeScreen';
-import Navbar from './Navbar';
-<<<<<<< HEAD
-import ClaimRewards from './claim/Claim';
-import LockRGN from './lock/Lock';
-import { coinGeckoService } from '../services/coinGeckoService';
-import { TOKEN_ID } from '../utils/constance';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { useAccount } from 'wagmi'
-
-=======
-import Footer from './Footer';
->>>>>>> 0098540 (Claim bientot fini + footer)
-=======
-=======
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-=======
->>>>>>> 92f4ef0 (dev: re-deploy)
 import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Farm from "../pages/Farm";
@@ -37,61 +6,8 @@ import Claim from "../pages/Claim";
 import Lock from "../pages/Lock";
 import { coinGeckoService } from "../services/coinGeckoService";
 import { TOKEN_ID } from "../utils/constance";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { useAccount } from "wagmi";
-import Footer from "./Footer";
->>>>>>> 03050fe (dev: add loader when fetch)
-=======
-import { useAccount } from 'wagmi';
-import Footer from './Footer';
->>>>>>> 0eef68e (fix: useProvider of rainbowKit to get data without connecting on wallet)
-=======
-import { useAccount, useWaitForTransaction } from "wagmi";
-<<<<<<< HEAD
-import Footer from "./Footer";
->>>>>>> 47f29bb (dev: simple rpc function move to another file deposit withdraw approve)
-=======
-=======
-import { useAccount } from "wagmi";
->>>>>>> f125765 (dev: refactor claim screen + add timeout on refetchData)
-import Footer from "./shared/Footer";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> b84f72d (dev: component re-organise)
-=======
-import { CircularProgress } from "@mui/material";
->>>>>>> 2fe4e23 (dev: improve loading on landing)
-=======
-import ClaimScreen from './claim/ClaimScreen';
-import LockRGN from './lock/Lock';
-=======
-import { useEffect, useState } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import Farm from '../pages/Farm';
-import Navbar from './Navbar';
-import Claim from '../pages/Claim';
-import Lock from '../pages/Lock';
->>>>>>> 5a5daed (dev: add claim image when not connected or no stake at all)
-import { coinGeckoService } from '../services/coinGeckoService';
-import { TOKEN_ID } from '../utils/constance';
-import { useAccount } from 'wagmi';
-import Footer from './shared/Footer';
-<<<<<<< HEAD
-import { CircularProgress } from '@mui/material';
->>>>>>> e8b2f8c (dev: repare page)
-=======
-import { Box, CircularProgress } from "@mui/material";
->>>>>>> 63997b5 (dev: test footer)
-=======
-=======
->>>>>>> 5a5daed (dev: add claim image when not connected or no stake at all)
-=======
 import { useAccount } from "wagmi";
 import Footer from "./shared/Footer";
->>>>>>> 92f4ef0 (dev: re-deploy)
 import {
   Box,
   Button,
@@ -104,19 +20,8 @@ import {
   Card,
   CardContent,
   Typography,
-<<<<<<< HEAD
-<<<<<<< HEAD
 } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
->>>>>>> abc1331 (dev: add help center)
-=======
-} from '@mui/material';
-import HelpIcon from '@mui/icons-material/Help';
->>>>>>> 5a5daed (dev: add claim image when not connected or no stake at all)
-=======
-} from "@mui/material";
-import HelpIcon from "@mui/icons-material/Help";
->>>>>>> 92f4ef0 (dev: re-deploy)
 
 const RagnarRoute = () => {
   const theme = useTheme();
@@ -171,80 +76,14 @@ const RagnarRoute = () => {
   }, [address]);
 
   useEffect(() => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     if (location.pathname === "/") {
       navigate("/farm");
-=======
-    if (location.pathname === '/') {
-      navigate('/stake');
->>>>>>> e8b2f8c (dev: repare page)
-=======
-    if (location.pathname === '/') {
-      navigate('/farm');
->>>>>>> 5a5daed (dev: add claim image when not connected or no stake at all)
-=======
-    if (location.pathname === "/") {
-      navigate("/farm");
->>>>>>> 92f4ef0 (dev: re-deploy)
     }
   }, [location]);
 
   return (
     <>
       <Navbar tokensPrices={tokensPrices} />
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <Routes>
-        <Route
-<<<<<<< HEAD
-          path="/farm"
-=======
-          path='/farm'
->>>>>>> e8b2f8c (dev: repare page)
-          element={
-            <StakeScreen
-              userAddress={userAddress}
-              tokensPrices={tokensPrices}
-            />
-          }
-        />
-        <Route
-          path='/claim'
-          element={
-            <ClaimScreen
-              tokensPrices={tokensPrices}
-              userAddress={userAddress}
-            />
-          }
-        />
-        <Route
-<<<<<<< HEAD
-          path='/lock'
-          element={<LockRGN tokensPrices={tokensPrices} data={userAccount} />}
-=======
-          path="/lock"
-          element={
-            <LockRGN tokensPrices={tokensPrices} userAddress={userAddress} />
-          }
->>>>>>> 4485386 (dev: better metamask connexion gestion)
-        />
-      </Routes>
-    </>
-  ) : (
-    <>
-      <Navbar tokensPrices={tokensPrices} />
-      <CircularProgress
-        size='6rem'
-        sx={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-        }}
-      />
-=======
-=======
       <Button
         onClick={handleOpenModal}
         sx={{
@@ -269,7 +108,6 @@ const RagnarRoute = () => {
           Help center
         </Typography>
       </Button>
->>>>>>> abc1331 (dev: add help center)
       {!isLoading ? (
         <>
           <Routes>
@@ -309,9 +147,6 @@ const RagnarRoute = () => {
           </Box>
         </>
       )}
-<<<<<<< HEAD
->>>>>>> 2605053 (dev: files arch changes & navbar amelioration)
-=======
 
       <Modal
         open={openModal}
@@ -386,7 +221,6 @@ const RagnarRoute = () => {
           </Grid>
         </Grid>
       </Modal>
->>>>>>> abc1331 (dev: add help center)
     </>
   );
 };

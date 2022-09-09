@@ -17,7 +17,10 @@ const NavItem: FunctionComponent<NavItemProps> = ({ pageURL, title }) => {
         component={RouterLink}
         sx={{
           marginRight: "10px",
-          color: location.pathname === pageURL ? (theme) => theme.palette.text.primary : "#929ea6",
+          color:
+            location.pathname === pageURL
+              ? (theme) => theme.palette.text.primary
+              : "#929ea6",
           justifyContent: "flex-start",
           /*  left: "-16px", */
           py: 1.25,
